@@ -1,0 +1,29 @@
+<nav class="nav" style="background-color: #8173DD;">
+    <div class="nav-menu flex-row">
+        <div class="nav-brand">
+            <a href="#" class="text-gray" style="color: #ffffff;"> <span>Tran</span>sportation Services</a>
+        </div>
+    </div>
+</nav>
+<div class="register">
+  <div class="cont">
+    <form class="form" [formGroup]='form' autocomplete="on" (ngSubmit)="onSubmit()">
+      <h2 class="">Đăng nhập</h2>
+      <div >
+          <label for="" class="">Email</label>
+          <input [class.is-invalid] = "form.get('email').invalid && form.get('email').touched" type="email" class="" formControlName='email' >
+      </div>
+      <div >
+          <label for="" class="">Mật khẩu</label>
+          <input type="password" class="" formControlName='password'>
+      </div>
+      <div>
+          <button type="submit" class="submit">
+          Đăng nhập</button>
+      </div>
+      <div>
+        <i class="fas fa-chevron-right" [routerLink]="['/register']"> Đăng ký</i>
+      </div>
+    </form>
+  </div>
+</div>  

@@ -1,0 +1,85 @@
+<app-header index=-1></app-header>
+<section>
+    <div class="route-container">
+        <ul class="progressbar">
+            <li class="active"></li>
+            <li class="active"></li>
+            <li class="active"></li>
+            <li class="active-next">Thanh toán</li>
+        </ul>
+        <div class="clear" style="height: 50px;">
+        </div>
+        <div class="pay-infor">
+            <div class="title">
+                <h2>Thông Tin Mua Vé</h2>
+            </div>
+            <div class="customer">
+                <h3>Thông tin khác hàng</h3>   
+                <div class="customer-infor">
+                    <div class="customer-name">
+                        Họ và tên: <label for="">{{infor.username}}</label>
+                    </div>
+                    <div class="customer-phone">
+                        Số điện thoại: <label for="">{{infor.phone}}</label>
+                    </div>
+                    <div class="customer-email">
+                        Email: <label for="">{{infor.email}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="customer">
+                <h3>Thông tin vé</h3>   
+                <div class="customer-infor">
+                    <div class="customer-name">
+                        Tuyến xe: <label for="">{{infor_router.departure}} => {{infor_router.destination}}</label>
+                    </div>
+                    <div class="customer-phone">
+                        Số lượng ghế: <label for="">{{infor_seat.number}}</label>
+                    </div>
+                    <div class="customer-email n_seats">
+                        Số ghế: <label for="" style="color: #00613D;" *ngFor="let item of infor_seat.seats">{{item}}</label>
+                    </div>
+                </div>
+                <div class="customer-infor">
+                    <div class="customer-name">
+                        Thời gian: <label for="" style="color: #00613D;">{{infor_seat.time}} {{infor_router.daygo}}</label>
+                    </div>
+                    <div class="customer-phone">
+                        Điểm lên xe: <label for="">{{infor_seat.boarding_point}}</label>
+                    </div>
+                    <div class="customer-email">
+                    </div>
+                </div>
+            </div>
+            <div class="customer total">
+                <div>
+                    <p>Tổng Tiền</p>
+                    <p class="pay-total">{{infor_seat.total_money}} <sup data-v-6f125f51="">₫</sup></p>
+                </div>
+            </div>
+        </div>
+        <div class="select-pay">
+            <p>Cách chọn thanh toán</p>
+            <div class="pay-type">
+                <div class="pay-items">
+                    <button (click)="onSelect(1)"><img src="../../../assets/visa.png" alt="" ><p>Thẻ Quốc tế Visa/Master/JCB</p></button>
+                </div>
+                <div class="pay-items">
+                    <button (click)="onSelect(2)"><img src="../../../assets/napas.png" alt="" ><p>Thẻ ATM Nội địa</p></button>
+                </div>
+                <div class="pay-items">
+                    <button (click)="onSelect(3)"><img src="" alt="" ><p>PayPal</p></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="back" style="margin-left: 32px;">
+            <button class="button" [routerLink]="['/booktickets/infor-customer']"><i class="fas fa-chevron-left"></i> Quay Lại</button>
+        </div>
+        <div class="cont">
+            <button class="button" (click)="onPay()">Tiếp Tục<i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+<div class="clear"></div>
+<app-footer></app-footer>

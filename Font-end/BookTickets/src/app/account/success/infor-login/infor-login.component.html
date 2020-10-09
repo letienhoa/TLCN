@@ -1,0 +1,46 @@
+<section>
+    <div class="infor-login-container">
+        <div class="infor-login">
+            <div class="title">
+                Thông tin đăng nhập
+            </div>
+            <div class="infor-login-left">
+                <div class='item-left'>
+                    <p>Email</p>
+                    <p>Mật khẩu</p>
+                </div>
+                <div class='item-right'>
+                    <p>lekimdinh1412@gmail.com</p>
+                    <p>**********</p>
+                </div>
+            </div>
+            <div class="infor-login-right">
+                <p (click)='onShowEditInfor()' class="edit-password"><i class="far fa-edit"></i> Đổi mật khẩu</p>
+            </div>
+        </div>
+        <div class="edit-infor-login">
+            <div class="title">
+                Đổi mật khẩu
+            </div>
+            <div class="edit-infor">
+                <form action="">
+                    <div class="infor-item" style="padding-top: 5px;">
+                        <p for="">Mật khẩu cũ</p>
+                        <input type="password" placeholder="Nhập mật khẩu cũ">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Mật khẩu mới</p>
+                        <input type="password" placeholder="Nhập mật khẩu mới">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Nhập lại mật khẩu mới</p>
+                        <input type="password" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+                    <div class="infor-item">
+                        <p (click)='onShowEditInfor()'><button class="btn-infor-item">Xác nhận</button></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,221 @@
+<section>
+    <div class="container-book-ticket">
+        <div class="ticket-item-left">
+            <div class="title">Thông tin chuyến đi</div>
+            <form action="">
+                <div class="item-left">
+                    <label for="">Tuyến đường</label>
+                    <i class="fas fa-bus"></i>
+                    <select>                    
+                        <option value="1">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="2">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="3">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="4">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="5">Đà Nẵng => TP Hồ Chí Minh</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="item-left">
+                    <label for="">Ngày đi</label>
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="text" value="6/10/2020" disabled>
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="item-left">
+                    <label for="">Giời khởi hành</label>
+                    <i class="fas fa-clock"></i>
+                    <select>                    
+                        <option value="1">6h</option>
+                        <option value="2">7h</option>
+                        <option value="3">8h</option>
+                        <option value="4">9h</option>
+                        <option value="5">10h</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="item-left">
+                    <label for="">Số vé</label>
+                    <i class="fas fa-ticket-alt"></i>
+                    <input type="number" min="1" max="5">
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="item-left">
+                    <label for="">Điểm lên xe</label>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select>                    
+                        <option value="1">Địa điểm A</option>
+                        <option value="2">Địa điểm B</option>
+                        <option value="3">Địa điểm C</option>
+                        <option value="4">Địa điểm D</option>
+                        <option value="5">Địa điểm E</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="accept-policy">
+                    <input type="checkbox"><label for="" style="color: black; margin-left: 0px;">Chấp nhận điều khoản <span style="color: #EF5222;">đặt vé</span> của chúng tôi.</label>
+                </div>
+            </form>
+        </div>
+        <div class="ticket-item-center">
+            <div class="title">
+                <div class="title-text">
+                    Sơ đồ ghế
+                </div>
+                <div class="title-info">
+                    Giá vé: 0<span style="text-transform: none; color: white;">đ</span>  Tổng tiền: 0<span style="text-transform: none; color: white;">đ</span>
+                </div>
+            </div>
+            <div class="floor">
+                <div class="floor-1 floor-title" (click)='select_floor("floor-1")'>
+                    Tầng 1
+                </div>
+                <div class="floor-2 floor-title" (click)='select_floor("floor-2")'>
+                    Tầng 2
+                </div>
+            </div>
+            <div class="floor-seat clear">
+                <table id="show-floor-1">
+                    <tr>
+                        <td id="A01"><button class="A01" (click)="onBook('A01',0)">A01</button></td>
+                        <td></td>
+                        <td id="A02"><button class="A02" (click)="onBook('A02',1)">A02</button></td>
+                        <td></td>
+                        <td id="A03"><button class="A03" (click)="onBook('A03',2)">A03</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A04"><button class="A04" (click)="onBook('A04',3)">A04</button></td>
+                        <td></td>
+                        <td id="A05"><button class="A05" (click)="onBook('A05', 4)">A05</button></td>
+                        <td></td>
+                        <td id="A06"><button class="A06" (click)="onBook('A06',5)">A06</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A07"><button class="A07" (click)="onBook('A07',6)">A07</button></td>
+                        <td></td>
+                        <td id="A08"><button class="A08" (click)="onBook('A08',7)">A08</button></td>
+                        <td></td>
+                        <td id="A09"><button class="A09" (click)="onBook('A09',8)">A09</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A10"><button class="A10" (click)="onBook('A10',9)">A10</button></td>
+                        <td></td>
+                        <td id="A11"><button class="A11" (click)="onBook('A11', 10)">A11</button></td>
+                        <td></td>
+                        <td id="A12"><button class="A12" (click)="onBook('A12',11)">A12</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A13"><button class="A13" (click)="onBook('A13',12)">A13</button></td>
+                        <td></td>
+                        <td id="A14"><button class="A14" (click)="onBook('A14',13)">A14</button></td>
+                        <td></td>
+                        <td id="A15"><button class="A15" (click)="onBook('A15',14)">A15</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A16"><button class="A16" (click)="onBook('A16',15)">A16</button></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="A17"><button class="A17" (click)="onBook('A17',16)">A17</button></td>
+                    </tr>
+                    <tr>
+                        <td id="A18"><button class="A18" (click)="onBook('A18',17)">A18</button></td>
+                        <td id="A19"><button class="A19" (click)="onBook('A19', 18)">A19</button></td>
+                        <td id="A20"><button class="A20" (click)="onBook('A20',19)">A20</button></td>
+                        <td id="A21"><button class="A21" (click)="onBook('A21',20)">A21</button></td>
+                        <td id="A22"><button class="A22" (click)="onBook('A22',21)">A22</button></td>
+                    </tr>
+                </table>
+                <table id="show-floor-2">
+                    <tr>
+                        <td id="B01"><button class="B01" (click)="onBook('B01',22)">B01</button></td>
+                        <td></td>
+                        <td id="B02"><button class="B02" (click)="onBook('B02',23)">B02</button></td>
+                        <td></td>
+                        <td id="B03"><button class="B03" (click)="onBook('B03',24)">B03</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B04"><button class="B04" (click)="onBook('B04',25)">B04</button></td>
+                        <td></td>
+                        <td id="B05"><button class="B05" (click)="onBook('B05',26)">B05</button></td>
+                        <td></td>
+                        <td id="B06"><button class="B06" (click)="onBook('B06',27)">B06</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B07"><button class="B07" (click)="onBook('B07',28)">B07</button></td>
+                        <td></td>
+                        <td id="B08"><button class="B08" (click)="onBook('B08',29)">B08</button></td>
+                        <td></td>
+                        <td id="B09"><button class="B09" (click)="onBook('B09',30)">B09</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B10"><button class="B10" (click)="onBook('B10',31)">B10</button></td>
+                        <td></td>
+                        <td id="B11"><button class="B11" (click)="onBook('B11',32)">B11</button></td>
+                        <td></td>
+                        <td id="B12"><button class="B12" (click)="onBook('B12',33)">B12</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B13"><button class="B13" (click)="onBook('B13',34)">B13</button></td>
+                        <td></td>
+                        <td id="B14"><button class="B14" (click)="onBook('B14',35)">B14</button></td>
+                        <td></td>
+                        <td id="B15"><button class="B15" (click)="onBook('B15', 36)">B15</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B16"><button class="B16" (click)="onBook('B16', 37)">B16</button></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="B17"><button class="B17" (click)="onBook('B17', 38)">B17</button></td>
+                    </tr>
+                    <tr>
+                        <td id="B18"><button class="B18" (click)="onBook('B18', 39)">B18</button></td>
+                        <td id="B19"><button class="B19" (click)="onBook('B19', 40)">B19</button></td>
+                        <td id="B20"><button class="B20" (click)="onBook('B20', 41)">B20</button></td>
+                        <td id="B21"><button class="B21" (click)="onBook('B21', 42)">B21</button></td>
+                        <td id="B22"><button class="B22" (click)="onBook('B22', 43)">B22</button></td>
+                    </tr>
+                </table>
+                <div class="note clear">
+                    <div class="note-item">
+                        <input type="text" disabled style="background: #eff9ff; border: 1px solid  rgb(65, 62, 62);"> <span style="font-weight: bold;"> Trống</span> 
+                        <input type="text" disabled style="background:  #e05c30; border: 1px solid  rgb(65, 62, 62);"> <span style="font-weight: bold;"> Đang chọn</span>
+                        <input type="text" disabled style="background: #c0c6cc; border: 1px solid  rgb(65, 62, 62);"> <span style="font-weight: bold;"> Đã đặt</span>
+                    </div>
+                </div>
+                <div class="btn-book-ticket">
+                    <button (click)='onSubmitBook()'>Đặt vé</button>
+                </div>
+            </div>
+        </div>
+        <div class="ticket-item-right">
+            <div class="title">
+                Điều Khoản đặt vé
+            </div>
+            <div class="ticket-item-right-infor">
+                <p>(*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước giờ xuất bến ít nhất <span style="color:  #EF5222;">60 phút</span>  để chúng tôi trung chuyển.</p>
+                <p>(*) Thông tin hành khách phải chính xác, nếu không sẽ không thể lên xe hoặc hủy/đổi vé</p>
+                <p>(*) Quý khách không được đổi / trả vé vào các ngày Lễ Tết ( ngày thường qúy khách được quyền chuyển đổi hoặc hủy vé <span style="color:  #EF5222;">một lần</span> duy nhất, và trước giờ xe chạy 24 giờ.), phí hủy vé 10%</p>
+                <p>(*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ số điện thoại
+                    <span style="color:  #EF5222;">1900 6067</span> trước khi đặt vé. Chúng tôi sẽ không đón/ trung chuyển tại những điểm xe trung chuyển không thể tới được.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section>
+    <div class="container-pay-item">
+        <div class="pay-item-left">
+            <div class="title">
+                Chọn loại thanh toán
+            </div>
+        </div>
+        <div class="pay-item-right">
+
+        </div>
+    </div>
+</section> -->

@@ -1,0 +1,207 @@
+<app-header></app-header>
+<main>
+    <img src="./assets/background.png" alt="" class="site-title">
+    <div class="auth-context" style="margin-top: -100px;">
+        <h2 class="form-title">Book Tickets Online</h2>
+        <form #inforRouteForm="ngForm" (ngSubmit)="submit()">
+            <div>
+                <label for="" class="label-title">Điểm Đi</label>
+                <select class="text-input" [(ngModel)]="service.select_route.departure" [ngModelOptions]="{standalone: true}" name="departure" (change)="cityChanged($event.target)" required>
+                    <option *ngFor="let item of list_departure" [Value]="item">{{item}}</option>
+                </select>
+                <label for=""  class="label-title">Điểm Đến</label>
+                <select class="text-input" [(ngModel)]="service.select_route.destination" [ngModelOptions]="{standalone: true}" name="destination" required>
+                    <option *ngFor="let item of list_destiantion" [Value]="item.name">{{item.name}}</option>
+                </select>
+
+            </div>
+            <div >
+                <label for="" class="label-title">Ngày Đi</label>
+                <input type="date"  class="text-input" id="date"  min="{{today}}" (change)="dateChanged($event.target)" required >
+                <label for=""  class="label-title">Ngày Về</label>
+                <input type="date" id="return-date" class="text-input"  min="{{today}}" (change)="dateChanged($event.target)">
+            </div>
+            <div>
+                <label for="" class="label-radio">Một chiều</label>
+                <input type="radio" name="type" value="oneway" class="text-radio" (change)="onItemChange(items[0])" checked>
+                <label for="" class="label-radio">Thứ Hồi</label>
+                <input type="radio" name="type" value="round" class="text-radio" (change)="onItemChange(items[1])" >
+            </div>
+            <hr>
+            <div>
+                <button type="submit" name="search" class="btn btn-big" >Search</button>
+            </div>
+        </form>
+    </div>   
+
+    <section style="margin-bottom:-100px;">
+        <div class="blog" style="margin-left: 25px;">
+            <h2 class="section-title">Tuyến Phố Biến</h2>
+            <div class="container">
+                <div class="section">
+                    <div class="section-info">
+                       <img src="../../assets/1.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/2.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/3.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/4.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-info">
+                       <img src="../../assets/5.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/6.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/7.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                    <div class="section-info">
+                       <img src="../../assets/8.jpg" alt="">
+                       <span style="float: right; margin-top: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                        <i class="fas fa-map-marker-alt">850KM</i>
+                        <i class="fas fa-clock">8h</i>
+                        <i class="fas fa-tags price" >250000đ</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title" style="text-align: center; margin-left: -30px;" >
+            <p style="font-size: 25px;">Điểm Đến Phổ Biến</p>
+            <p style="font-size: 25px;">Gợi ý những địa điểm du lịch được ưa thích trong năm</p>
+        </div>
+        <div class="for_slick_slider multiple-items">
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
+                    <h3>Sài Gòn</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>
+
+
+
+

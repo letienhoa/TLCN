@@ -1,0 +1,2708 @@
+body{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: #3f4954;
+}
+
+label{
+    font-size: 16px;
+}
+
+span{
+    color: black;
+    font-weight: bold;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #3f4954;
+
+}
+
+.text-gray{
+    color: #3f4954;
+}
+
+.h1{
+    font-family: 'Candal', 'serif';
+    color: #444;
+    margin-top: 20px;
+}
+
+/* ========================================== */
+/* Header - Navigation */
+.nav{
+    background: #ffffff;
+    padding:0 2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+
+}
+
+.nav .nav-menu{
+    justify-content: space-between;
+}
+
+.nav .toogle-collapse{
+    position: absolute;
+    top: 0%;
+    width: 90%;
+    cursor: pointer;
+    display: none;
+}
+
+.nav .toogle-collapse .toogle-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.7rem 0;
+}
+
+.nav .toogle-collapse .toogle-icons i{
+    font-size: 1.4rem;
+    color: #3f4954;
+}
+
+.logOut{
+    float: right;
+    padding: 2px 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 18px;
+   
+}
+
+.logOut:hover{
+    font-size: 20px;
+    transition: all .3s;
+}
+
+.display_logout{
+    display: none;
+}
+
+.collapse{
+    height: 30rem;
+}
+
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    padding: 1rem 0;
+    display: block;
+    font-family: 'Abel', sans-serif;
+    
+}
+
+.nav .nav-items{
+    display: flex;
+    margin: 0%;
+}
+
+
+
+.nav .nav-items .nav-link{
+    font-size: 1.1rem;
+    padding: 1rem 1rem;
+    position: relative;
+    font-family: 'Abel', sans-serif;
+}
+
+/* .nav .nav-items .nav-link:hover{
+    background-color: black;
+    color: white;
+
+} */
+
+.nav .nav-items .nav-link:hover a:hover{
+    cursor: pointer;
+
+}
+
+.nav .nav-items .item{
+    padding: 3px 20px 0;
+}
+
+
+
+
+.pick{
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff );
+    color: white;
+    height: 30px;
+    font-weight: bold;
+}
+
+.pick:hover{
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef );
+}
+
+.nav .social{
+    padding: 1.4rem 0rem;   
+}
+
+.nav .social i{
+    padding: 0.2rem;
+}
+
+.nav .social i:hover{
+    color: black;
+}
+/* ========================================== */
+
+/* Home */
+.auth-context{
+    width: 70%;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+
+}
+
+.auth-context .form-title{
+    font-size: 35px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.auth-context form div{
+    margin-bottom: 10px;
+   
+}
+
+.auth-context div{
+ display: flex;
+
+}
+
+.auth-context form p{
+    text-align: center;
+}
+
+.auth-context form p a{
+    text-decoration: underline;
+}
+
+.text-input{
+    display: block;
+    width: 50%;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    line-height: 1.5rem;
+    font-family: 'Lora', 'serif';
+    border: 1px solid #e0e0e0;
+    font-size: 1.2em;
+    margin-left: -70px;
+}
+
+.text-radio{
+    width: 30px;
+    height: 30px;
+    margin: 19px;
+}
+
+.label-title{
+    width: 30%;
+    margin: 22px;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.label-radio{
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 22px;
+}
+
+.btn{
+    padding: .5rem 1rem;
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff );
+    border-radius: .25rem;
+    font-size: 1.08em;
+    font-family: 'Lora','serif';
+    color: #ffffff !important;
+}
+
+.btn:hover{
+
+    background: -webkit-linear-gradient(left, #7579ff,#b224ef  );
+
+}
+
+.btn-big{
+    padding: .7rem 1.3rem auto;
+    line-height: 1.3rem;
+    border-radius: 100px;
+    width: 17%;
+    display: block;
+    cursor: pointer;
+    margin-top: 10px;
+    position: absolute; 
+    right:20%;
+}
+
+
+.site-title{   
+    background-size: cover;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.blog{
+    background: url('./assets/Abract01.png');
+    background-repeat: no-repeat;
+    background-position:right;
+    height: 100vh;
+    width: 100%;
+}
+
+.blog .container{
+    width: 70%;
+    margin: 50px auto;
+    
+}
+
+.section-title{
+    margin-left: 15%;
+    text-transform: uppercase;
+    color: orange;
+    font-size: 30px;
+}
+
+.blog .container .section{
+   
+    margin-bottom: 15px;
+    float: left;
+    width: 50%;
+    
+}
+
+.blog .container .section .section-info{
+    font-size: 24px;
+    height: 100px;
+    width: 95%;
+    border-radius: 10px;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+    margin-bottom: 25px;
+
+}
+
+.blog .container .section .section-info:hover{
+    transition: all .3s;
+    margin-left: 4%;
+    
+}
+
+.blog .container .section .section-info img{
+    height: 100%;
+    width: 35%;
+    float: left;
+    border-radius: 10px;
+
+}
+
+.blog .container .section .section-info i{
+    font-size: 20px;
+    margin: 15px;
+}
+
+.blog .container .section .section-info .price{
+    color: orange;
+}
+
+.for_slick_slider{
+    display: flex;
+
+}
+
+.for_slick_slider .items{
+    width: 200px;
+    height: 300px;
+    margin: 40px;
+    border-radius: 10px;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.for_slick_slider .items .item-text{
+    position: absolute;
+    bottom: -25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.for_slick_slider .items h3{
+    margin-top: 10px;
+    font-size: 34px;
+}
+
+.for_slick_slider .items .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(138, 129, 129, 0.4);
+    border-radius: 10px;
+    transition: all linear 0s;
+}
+
+.for_slick_slider .items img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: all linear .3s;
+
+}
+
+.for_slick_slider .slick-center .overlay{
+    opacity: 0;
+    transition: all linear .4s;
+
+}
+
+.for_slick_slider .slick-center  img{
+    transform: scale(1.2);
+
+}
+
+/* ========================================== */
+
+/* Footer */
+footer.footer{
+    height: 100%;
+    background: #0f0f0f;
+    position: relative;
+    margin-top: 100px;
+   
+}
+
+footer.footer p{
+    color: #686666da;
+}
+
+.footer-container{
+    margin: 0 5vw;
+}
+
+footer.footer .footer-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) ;
+}
+
+footer.footer .footer-container > div{
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 3rem .9rem;
+}
+
+footer.footer .footer-container .about-us span{
+    color: orange;
+    font-size: 40px;
+    float: left;
+    margin-right: 15px;
+}
+footer.footer .footer-container .about-us p{
+    font-size: 20px;
+    padding: 10px;
+   
+}
+
+
+footer.footer .footer-container  h2{
+    color: white;
+    text-transform: uppercase;
+}
+
+footer.footer .newsletter .form-element{
+    background: black;
+    display: inline-block;
+ 
+}
+
+footer.footer .newsletter .form-element input{
+    padding: .5rem .7rem;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    width: 78%;
+}
+
+footer.footer .newsletter .form-element span{
+    background: orange;
+    padding: .5rem .7rem;
+    cursor: pointer; 
+}
+
+footer.footer .instagram div > img{
+    display: inline-block;
+    width: 25%;
+    height: 50%;
+    margin: .3rem .4rem;
+}
+
+footer.footer .follow i{
+    color: white;
+    padding: 0 .4rem;
+}
+
+footer.footer .rights{
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+footer.footer .rights h4 a{
+    color: white;
+}
+
+footer.footer .move-up{
+    position: absolute;
+    right: 6%;
+    bottom: 50%;
+}
+
+footer.footer .move-up span{
+    color: orange;
+}
+
+footer.footer .move-up span:hover{
+    color: white;
+    cursor: pointer;
+}
+/* ========================================== */
+
+/* Login - Register */
+.register{
+    width: 100%;
+    height: 100%;
+ 
+    background: url('./assets/Abract01.png');
+    background-repeat: no-repeat;
+    background-position:right;
+    
+}
+
+.register .cont{
+    
+    width: 50%;
+    height: 170%;
+    background: transparent;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
+.register .cont .form{
+    width: 100%;
+    height: 100%;
+    padding: 30px 0%;
+    position: relative;
+}
+
+.register .cont h2{
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.register .cont label{
+    display: block;
+    width: 260px;
+    margin: 50px auto 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #505f75;
+    text-transform: uppercase;
+}
+
+.register .cont .form input, button,i{
+    border:none;
+    outline: none;
+    background: none;
+}
+
+.register .cont .form input{
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    font-size: 16px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+    text-align: center;
+  
+}
+
+.register .cont .form button{
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    height: 36px;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.register .cont .form .submit{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+  
+}
+.register .cont .form .submit:hover{
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff );
+  
+}
+
+.register .other-infor .infor{
+    display: flex; 
+    margin: auto 15%;
+}
+
+.register .cont .form div i{
+    position: absolute;
+    right: 0;
+    width: 150px;
+    height: 120px;
+    color: #7579ff;
+    font-size: 24px;
+    bottom: -75px;
+   
+}
+
+.register .cont .form div i:hover{
+    color: #b224ef;
+    cursor: pointer;
+}
+/* ========================================== */
+/* News-List */
+.content{
+    width: 90%;
+    margin: 30px auto 30px;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.content .main-content{
+    width: 70%;
+    float: left;
+}
+
+.content .main-content .recent-post-title{
+    margin: 30px 30px 0px;
+    font-family: 'Candal', 'serif';
+    color: #444;
+}
+
+.content .main-content .post{
+    width: 95%;
+    height: 270px;
+    margin: 50px 30px;
+    border-radius: 5px;
+    background: #f6f6f6;
+    position: relative;
+}
+
+.content .main-content .post .post-img{
+    width: 40%;
+    height: 100%;
+    float: left;
+    border-radius: 5px;
+}
+
+.content .main-content .post .post-preview{
+    width: 50%;
+    float: left;
+    margin-left: 5%;
+}
+
+.content .main-content .post .read-more{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+
+.content .sidebar{
+    width: 30%;
+    float: left;
+    height: 300px;
+
+}
+
+.content .sidebar .section{
+    background: #f6f6f6;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    
+}
+
+.content .sidebar .section .section-title{
+    margin: 10px 0px 10px 0px;
+    color: black;
+}
+
+.content .sidebar .section.search{
+    margin-top: 118px;
+}
+
+.content .sidebar .section .section-input{
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    line-height: 1.5rem;
+    font-family: 'Lora', 'serif';
+    border: 1px solid #e0e0e0;
+    font-size: 1.2em;
+}
+
+.pagination{
+    justify-content: center;
+    color: #3f4954;
+    margin: 4rem 0;
+}
+
+.pagination a{
+    padding: .6rem .9rem;
+    border-radius: 2rem;
+    margin: 0 .3rem;
+    font-family: var(--Lexend);
+}
+
+.pagination .pages{
+    background: #3f4954;
+    color: #ffffff;
+}
+/* ========================================== */
+/* News-details */
+.content .main-content{
+    width: 60%;
+    margin-left: 30px;
+    float: left;
+
+}
+
+.content .main-content.single{
+    background: #f6f6f6;
+    padding:20px;
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+
+.content .main-content .post-image{
+    width: 40%;
+    height: 100%;
+    float: left;
+    border-radius: 5px;
+}
+
+.content .main-content.single .post-content{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.content .main-content.single .post-content .single-image{
+    width: 90%;
+    height: 50%;
+    border-radius: 5px;
+}
+
+.content .sidebar1{
+    width: 30%;
+    float: left;
+    height: 300px;
+
+}
+
+.content .sidebar1 .section{
+    background: #f6f6f6;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.content .sidebar1.single{
+    padding: 0px 30px;
+
+}
+
+.content .popular .post{
+    border-top: 1px solid #e0e0e0;
+    margin-top: 10px;
+    padding-top: 10px ;
+}
+
+.content .popular .post img{
+    height: 60px;
+    width: 75px;
+    float: left;
+    margin-right: 10px;
+}
+/* ========================================== */
+/* Schedule */
+
+.container{
+    margin: auto;
+    width: 60%;
+    margin-top: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.container img{
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.container .search{
+    width: 100%;
+    height: 30px;
+    position: relative;
+    
+   
+}
+
+.container .search .search-left{
+    width: 49.8%;
+    position: absolute;
+    left: 0;
+ 
+
+}
+
+.container .search input{
+    width: 90%;
+    height: 20px;
+    padding: 3px;
+    border:none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+   
+}
+
+.container .search span{
+    padding: 6px;
+    color: black;
+    width: 5%;
+    text-align: center;
+}
+
+.container .search span:hover{
+    cursor: pointer;
+}
+
+.container .search .search-right{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    
+}
+
+.container .schedule-content{
+    border: 1px solid #f6f6f6;
+    border-radius: 5px;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+
+}
+
+.container .schedule-content td{
+    text-align: center;
+}
+
+.container table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container .scroll{
+    height: 600px;
+    overflow-y: scroll;
+
+}
+
+.container table th{
+    background: #f6f6f6;
+}
+
+.container table th,td{
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+
+.container table .paren {
+    background-color: #FFF7F5;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.container table .paren td{
+    text-align: left;   
+    color: #F15A61;
+}
+
+.container table tr td span{
+    font-weight: normal;
+}
+
+.container table tr td span:hover{
+    cursor: pointer;
+}
+
+.container table .detail{
+    color: #009344;
+}
+
+.container table .book{
+    color: #F15A24;
+}
+/* ========================================== */
+/* Schedule - Detail */
+.container .transhipment{
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1);
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.container .transhipment .title{
+    font-size: 20px;
+    background: #F7F7F7;
+    font-weight: bold;
+    color: #F15A24;
+    padding: 10px;
+}
+
+.container .transhipment .title span{
+    font-size: 18px;
+    color:#637280;
+}
+
+.container .transhipment .transhipment-content{
+    font-size: 18px;
+    background: #D9EDF7;
+    text-align: center;
+    padding: 30px;
+    color: #31708F;
+}
+
+.container .transhipment .content-left{
+    float: left;
+    width: 30%;
+    background: #d9edf7;
+    text-align: center;
+    font-size: 18px;
+    height: 300px;
+    padding-top: 20px;
+}
+
+
+.container .transhipment .content-right{
+    width: 70%;
+    background: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    height: 300px;
+    padding-top: 20px;
+}
+/* ========================================== */
+/* Book Tickets */
+/* Select Route */
+.route-container{
+    margin: 50px auto;
+    width: 70%;
+}
+
+.progressbar{
+    counter-reset: step;
+
+}
+
+.progressbar li{
+    list-style-type: none;
+    float: left ;
+    width: 25%;
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #a59f9f;
+}
+
+.progressbar li:before{
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #dddddd;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    line-height: 30px;
+    background-color: #dddddd;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.progressbar li:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color:#dddddd ;
+    top: 14px;
+    left: -50%;
+    z-index: -1;
+}
+
+.progressbar li:first-child:after{
+    content: none;
+}
+
+.progressbar li.active{
+    color:#F2754E;
+}
+
+.progressbar li.active-next{
+    color:#F2754E;
+}
+
+.progressbar li.active:before{
+    border-color:#F2754E;
+    background: white;
+}
+.progressbar li.active-next:before{
+    border-color:#F2754E;
+    background: white;
+}
+
+
+.progressbar li.active + li:after{
+    background-color:#F2754E;
+} 
+
+
+.route-container .route-input{
+    width: 100%;
+    margin: 20px auto;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    position: relative;
+    height: 250px;
+}
+
+.route-container .route-input .input{
+    padding: 20px;
+
+}
+
+.route-container .route-input .input label{
+    width: auto;
+    height: auto;
+
+}
+
+.route-container .route-input .input  input[type="radio"] {
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.route-container .route-input .input label {
+    position: relative;
+    line-height: 38px;
+    font-weight: bold;    
+    font: 18px;
+    padding: 50px;
+}
+
+.route-container .route-input .time{
+    width: 100%;
+    height: 100px;
+}
+
+.route-container .route-input .time div{
+    float: left;
+}
+
+.route-container .route-input .point{
+    width: 15%;
+    border: 1px solid #dddddd;
+    padding: 50px;
+    margin: 10px 10px;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+}
+
+.route-container .route-input .point label{
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ccc;
+    
+}
+
+.route-container .route-input .point  select{
+    width: 95%;
+    position: absolute;
+    bottom:5%;
+    left: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+    border:none;
+    outline: none;
+    background: none;
+    text-align: justify; 
+    -moz-text-align-last: center; 
+    text-align-last: center;
+}
+
+.route-container .route-input .point-date{
+    width: 42%;
+    border: 1px solid #dddddd;
+    margin: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.route-container .route-input .point-date .date-left{
+    width: 26%;
+    float: left;
+    padding: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.route-container .route-input .point-date  label{
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ccc;
+    top: 15%;
+    left: 26%;
+}
+
+.route-container .route-input .point-date input{
+    width: 90%;
+    position: absolute;
+    bottom:10%;
+    font-size: 16px;
+    left: 0;
+    font-weight: bold;
+    margin: 10px;
+    text-align: center;
+    border:none;
+    outline: none;
+    background: none;
+}
+
+.route-container .route-input .point-date .date-right{
+    float: right;
+    width: 26%;
+    padding: 50px;
+    position: relative;
+
+    text-align: center;
+
+}
+
+.point-date .vr{
+    width:2px;
+    background-color:#000;
+    position:absolute;
+    top:10px;
+    bottom:10px;
+    left:49.5%;
+}
+
+.route-container .route-input .title{
+    height: 30px;
+    background:#00603D;
+    width: 100%;
+    border-radius: 5px;
+    color:white;
+    text-align: center;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+
+.route-container .route-input .route-infor h2{
+    color: #F2754E;
+    padding:10px;
+    text-align: left;
+}
+.route-container .route-input .route-infor p{
+    padding-left: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.route-container .button{
+    width: 20%;
+    border: 1px solid black;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.route-container .continue{
+    background: #00603D;
+    position: absolute;
+    right: 15%;
+    color: white;
+    border: none;
+}
+
+.route-container .continue:hover{
+    background: #0b9764;
+    cursor: pointer;
+}
+
+.route-container .search{
+    width: 15%;
+    padding: 10px;
+    background: #ec400b;
+    position: absolute;
+    right: 25%;
+    color: white;
+    border: none;
+    font-weight: normal;
+    font-size: 16px;
+    
+}
+
+.route-container .search:hover{
+    background: #e65225;
+    cursor: pointer;
+
+}
+/* ========================================== */
+/* Select Seat */
+
+.route-container .container-left{
+    float: left;
+    width: 35%;
+    margin: 20px;
+    
+}
+
+.route-container .container-left .content-address{
+    border:1px solid #dddddd;
+    background: #f6f6f6;
+    border-radius: 10px;
+}
+
+.route-container .container-left .schedule{
+    border:1px solid #dddddd;
+    background: #f6f6f6;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.information{
+    display: none;
+    margin-left: 20px;
+    
+}
+
+.information-display{
+    display: initial;
+}
+
+.information th, td{
+    text-align: left;
+}
+
+.information td i{
+    margin-right: 5px;
+}
+
+
+.route-container .container-left .schedule h2{
+    text-align: center;
+    font-size: 18px;
+    color: #F15A24;
+}
+.route-container .container-left .schedule span{
+    color: #F15A24;
+    font-size: 20px;
+    float: right;
+    margin-right: 20px;
+}
+
+.route-container .container-left .schedule span:hover{
+    cursor: pointer;
+}
+
+.route-container .container-left .title h2,p{
+    text-align: center;
+    font-size: 18px;
+}
+
+.route-container .container-left .title h2 {
+    color: #F15A24;
+}
+
+.route-container .container-left .title p{
+    color: black;
+    font-weight: bold;
+}
+
+.route-container .container-left  .select-station p, label{
+    text-align: left;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #686464;
+    font-weight: bold;
+}
+
+.route-container .container-left  .select-station label{
+    color: #857f7f;
+    font-weight: normal;
+}
+
+.route-container .container-left  .select-station span{
+    margin-right: 20px;
+    float: right;
+    color: #857f7f;
+}
+
+.route-container .container-left  .select-station select{
+    margin-left: 20px;
+    width: 90%;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    color: #857f7f;
+
+}
+
+.route-container .container-right{
+    float: left;
+    width: 59%;
+    border:1px solid #dddddd;
+    background: #f6f6f6;
+    margin: 20px 0;
+    border-radius: 10px;
+    
+}
+
+.route-container .container-right .title h2{
+    text-align: center;
+    color: #F15A24;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.route-container .container-right .floor-1{
+    float: left;
+    border: 1px solid rgb(170, 166, 166);
+    border-radius: 10px;
+    width: 47%;
+    height: 370px;
+    margin-left: 10px;
+}
+
+.route-container .container-right .floor-2{
+    float: right;
+    border: 1px solid rgb(170, 166, 166);
+    border-radius: 10px;
+    width: 47%;
+    height: 370px;
+    margin-right: 10px;
+}
+
+.route-container .container-right td{
+    padding: 3px;
+    width: 15%;
+    text-align: center;
+    height: 38px;
+}
+
+.route-container .container-right button{
+    width: 100%;
+    height: 38px;
+    border-radius: 5px;
+
+}
+
+.route-container .container-right .active{
+    border: 1px solid #cbe2f3;
+    background-color: #eff9ff;
+    cursor: pointer;
+}
+
+.active{
+    border: 1px solid #cbe2f3;
+    background-color: #eff9ff;
+    cursor: pointer;
+}
+
+.select{
+    border: 1px solid #e05c30;
+    background-color: #e05c30;
+}
+.route-container .container-right .select{
+    border: 1px solid #e05c30;
+    background-color: #e05c30;
+}
+
+.disable{
+    border: 1px solid #919ba5;
+    background-color: #c0c6cc;
+    cursor: no-drop;
+}
+
+.route-container .container-right .note{
+    float: left;
+    margin-left: 25px;
+}
+
+.route-container .container-right .note .note-content{
+    float: left;
+    padding: 30px;
+}
+
+.route-container .container-right .note .note-content input{
+    width: 15px;
+    height: 15px;
+    border-radius:  3px;
+}
+
+.route-container .container-right .selected-seat{
+    float: left;
+    margin-left: 20px;
+    color: #a59d9d;
+}
+.route-container .container-right .total{
+    float: right;
+    margin-right: 20px;
+    color:  #a59d9d;
+}
+.route-container .container-right .total span{
+    font-size: 18px;
+    color: #F15A24;
+    font-weight: bold;
+}
+
+
+#none{
+    border: none; background: none;
+}
+
+.route-container .back{
+    float: left;
+    margin-left: 20px;
+   
+}
+
+.route-container .back button{
+    margin-top: 3px;
+    width: 250px;
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid   #e7e4e4;
+}
+
+.route-container .back i{
+    margin-right: 10px ;
+    font-size: 18px;
+}
+
+.route-container .cont{
+    float: right;
+    margin-right: 20px;
+   
+}
+
+.route-container .cont button{
+    width: 250px;
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid   #e7e4e4;
+    background: #094731;
+    color: white;
+}
+
+.route-container .back button:hover{
+    cursor: pointer;
+}
+
+.route-container .cont button:hover{
+    cursor: pointer;
+}
+
+.route-container .cont i{
+    margin-left: 10px ;
+    font-size: 18px;
+}
+
+
+
+
+.clear{
+    clear: left;
+}
+/* ========================================== */
+/* Infor Customer */
+.route-container .infor-left{
+    float: left;
+    width: 45%;
+    background: #f6f6f6;
+    border-radius: 10px;
+    height: 300px;
+    margin-left: 3%;
+    margin-bottom: 20px;
+   
+}
+.route-container .infor-right{
+    float: right;
+    width: 49%;
+    border: 2px solid #f6f6f6;
+    border-radius: 10px;
+    height: 350px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.route-container h2{
+    text-align: center;
+    font-size: 18px;
+    color: #F15A24;
+}
+
+.route-container .infor-left .form-group{
+    padding: 5px 0;
+
+}
+
+.route-container .infor-left .form-group .form-city-dis{
+    position: relative;
+}
+
+
+.route-container .infor-left .form-group input, select{
+    display: block;
+}
+
+.route-container .infor-left .form-group input, select{
+    width: 90%;
+    margin-left: 20px;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-size: 16px;
+    color: #797373;
+    border:1px solid black;
+}
+
+.route-container .infor-left .form-group select, option{
+    width: 200px;
+}
+
+
+.route-container .infor-left .form-group .city{
+    width: 80%;
+}
+
+.route-container .infor-left .form-group .form-city{
+    position: absolute;
+    left: 0;
+}
+
+.route-container .infor-left .form-group .form-district{
+    position: absolute;
+    right: 0;
+}
+
+.route-container .policy{
+   margin-left: 20px;
+   margin-bottom: 50px;
+}
+
+.route-container .policy label{
+    padding: 20px;
+}
+
+.route-container .policy input{
+    width: 15px;
+    height: 15px;
+}
+
+.route-container .infor-right p{
+    margin-left: 20px;
+    text-align: left;
+    padding: 5px;
+}
+/* ========================================== */
+/* Pay */
+.route-container .pay-infor{
+    border: 1px solid #dddddd;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background: #dddddd;
+}
+
+.route-container .pay-infor .title{
+    padding: 10px;
+    background: #f15a24;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.route-container .pay-infor .title h2{
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.route-container .pay-infor .customer h3{
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.route-container .pay-infor .customer .customer-infor{
+    display: flex;
+    background: white;
+    padding: 10px 30px;
+    font-size: 18px;
+    color: #637280;
+}
+.route-container .pay-infor .customer .customer-infor .customer-name{
+    width: 45%;
+}
+.route-container .pay-infor .customer .customer-infor .customer-phone{
+    width: 28%;
+}
+.route-container .pay-infor .customer .customer-infor .customer-email{
+    width: 28%;
+}
+
+.route-container .pay-infor .customer .customer-infor .n_seats label{
+    margin: 0 3px;
+}
+
+.route-container .pay-infor .total{
+    height: 100px;
+    position: relative;
+}
+
+.route-container .pay-infor .total p{
+    position: absolute;
+    right: 5%;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.route-container .pay-infor .total .pay-total{
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    color: #F15A24;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.route-container .select-pay{
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #00613D;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.route-container .select-pay .pay-type{
+    margin: 10px 60px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.route-container .select-pay .pay-type .pay-items{
+    padding: 0 32px;
+}
+
+.route-container .select-pay .pay-type button{
+    border: 0.5px dotted  rgb(59, 58, 58);
+    padding: 20px;
+    width: 250px;
+    height: 130px;
+    position: relative;
+    background: #f6f7f8;
+    border-radius: 10px;
+    border-style: dotted;
+    text-align: center;
+}
+
+.route-container .select-pay .pay-type button:hover{
+    cursor: pointer;
+}
+
+.route-container .select-pay .pay-type img{
+    width: 200px;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.route-container .select-pay .pay-type p{
+
+    width: 200px;
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+}
+/* ========================================== */
+/* Policy - Rules */
+.rules{
+    margin: 10px auto 0;
+    width: 60%;
+}
+
+.rules h2{
+    color: #EF5222;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.rules .title{
+    font-size: 36px;
+    text-align: center;
+    font-family: SFProText!important;
+    display: block;
+    
+}
+
+.rules p{
+    text-align: justify;
+    margin: 15px;
+    font-size: 20px;
+    
+    
+}
+/* ========================================== */
+/* Invoice */
+.invoice{
+    width: 30%;
+    margin: 100px auto;
+    height: 300px;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+    border-radius: 10px;
+}
+
+.invoice p{
+    padding-top: 20px;
+    color: white;
+    font-size: 30px;
+}
+
+.invoice .code{
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.invoice .code input{
+    font-size: 20px;
+}
+
+.invoice .code  i{
+    padding: 10.3px;
+    background: white;
+    border: 2px solid black;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.invoice .code input{
+    font-size: 15px;
+    padding: 10px;
+    width: 80%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.invoice .code-confirm{
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+
+.invoice .code-confirm .btn-code-confirm{
+    float: right;
+    margin-top: 10px;
+    margin-right: 12%;
+    text-align: center;
+    font-size: 50px;   
+    color: black;
+}
+
+.invoice .code-confirm button i:hover, .btn-code-confirm:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.invoice .btn-confirm{
+    border: 2px solid white;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    margin-left: 35%;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.invoice .btn-confirm:hover{
+    color: black;
+    border: 2px solid black;
+}
+
+/* ========================================== */
+/* Success */
+.container-success{
+    margin: auto;
+    width: 75%;
+    margin-top: 10px;
+    height: 80px;
+}
+
+.container-success .item{
+    float: left;
+    width: 19.33%;
+    border: 1px solid black;
+    height: 70px;
+    margin: 0px 2px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.container-success .item i{
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 25px 0px;
+}
+
+.container-success .item:hover{
+    cursor: pointer;
+
+}
+
+.container-success .item button:hover{
+    cursor: pointer;
+}
+
+.change{
+    background: orange;
+    border: 1px solid orange;
+}
+/* ========================================== */
+/* Book Ticket for loginer */
+.container-book-ticket{
+    margin: 10px auto;
+    width: 75%;
+    height: 500px;
+}
+.container-book-ticket .ticket-item-left{
+    float: left;
+    height: 500px;
+    width: 25%;
+}
+
+.container-book-ticket .ticket-item-center{
+    float: left;
+    margin-left: 10px;
+    width: 43%;
+    height: 500px;
+}
+
+.container-book-ticket .ticket-item-right{
+    float: right;
+    width: 30%;
+    height: 500px;
+}
+
+.container-book-ticket .title{
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10px;
+    width: 100%;
+    height: 30px;
+    background: #53A07D;
+    color: white;
+
+}
+
+.container-book-ticket .ticket-item-left .item-left label{
+    text-align: left;
+    margin-left: 0px;
+    padding: 10px 0px;
+    display: block;
+    color: black;
+}
+
+.container-book-ticket .ticket-item-left .item-left i{
+    float: left;
+    font-size: 20px;
+    margin-left: 5px;
+    color: #EF5222;
+}
+
+.container-book-ticket .ticket-item-left .item-left select{
+    float: right;
+    margin-left: 0px;
+    width: 90%;
+    border:none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+}
+.container-book-ticket .ticket-item-left .item-left input{
+    float: right;
+    width: 87.5%;
+    border:none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+    color: #797373;
+}
+
+.container-book-ticket .ticket-item-center .title{
+    text-transform: uppercase;
+    padding-top: 10px;
+    width: 100%;
+    height: 30px;
+    background: #53A07D;
+    color: white;
+}
+
+.container-book-ticket .ticket-item-center .title-text{
+    float: left;
+    margin-left: 10px;
+}
+
+.container-book-ticket .ticket-item-center .title-info{
+    float: right;
+    margin-right: 10px;
+}
+
+.container-book-ticket .ticket-item-center .floor{
+    width: 100%;
+    height: 50px;
+    
+}
+
+.container-book-ticket .ticket-item-center .floor-title{
+    height: 50px;
+    width: 50%;
+    text-align: center;
+    padding-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container-book-ticket .ticket-item-center .floor-title:hover{
+    cursor: pointer;
+}
+
+.container-book-ticket .ticket-item-center .floor-1{
+    float: left;
+}
+
+.show-boder{
+    color: #EF5222;
+    border-bottom: 5px solid #EF5222;
+}
+
+.hide-item{
+    display: none;
+}
+
+.container-book-ticket .ticket-item-center .floor-2{
+    float: right;
+}
+
+.container-book-ticket .ticket-item-center .floor-seat{
+    height: 400px;
+}
+
+.container-book-ticket .ticket-item-center .floor-seat table{
+    width: 100%;
+}
+
+.container-book-ticket .ticket-item-center .floor-seat td{
+    text-align: center;
+    padding: 5px;
+}
+
+.container-book-ticket .ticket-item-center .floor-seat button{
+    border: 1px solid black;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.container-book-ticket .ticket-item-center .floor-seat button:hover{
+    cursor: pointer;
+}
+
+.container-book-ticket .ticket-item-center .note{
+    width: 100%;
+}
+
+.container-book-ticket .ticket-item-center .note .note-item input{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 55px;
+}
+
+.container-book-ticket .ticket-item-center .btn-book-ticket{
+    margin-top: 20px;
+    background: #EF5222;
+    border: 1px solid #EF5222;
+    border-radius: 5px;
+}
+
+.container-book-ticket .ticket-item-center .btn-book-ticket button{
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+
+.container-book-ticket .ticket-item-right .ticket-item-right-infor{
+    border: 1px solid #FCF8E3;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: #FCF8E3;
+}
+
+.container-book-ticket .ticket-item-right .ticket-item-right-infor p{
+    text-align: justify;
+    padding: 0px 20px;
+}
+
+.show-book{
+    display: none;
+}
+
+/* ========================================== */
+/* Pay */
+/* .container-pay-item{
+    width: 75%;
+    height: 500px;
+    border: 1px solid red;
+    margin: 20px auto;
+}
+
+.container-pay-item .pay-item-left{
+    float: left;
+    width: 50%;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.container-pay-item .pay-item-right{
+    float: right;
+    width: 40%;
+    height: 500px;
+    border: 1px solid black;
+}
+ */
+
+
+/* ========================================== */
+/* History */
+.history-container{
+    margin: 20px auto;
+    width: 75%;
+    height: 500px;
+}
+
+.history-container p{
+
+    margin: 0px;
+    padding: 10px 0px;
+    background: #53A07D;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: white;
+    text-align: left;
+    padding-left: 20px;
+
+}
+
+
+
+.history-container .history-search{
+    margin-top: 10px;
+    height: 70px;
+    width: 100%;
+}
+
+.history-container .history-search .item-search{
+    float: left;
+    height: 70px;
+    width: 20%;
+}
+
+.history-container .history-search .item-search label{
+    display: block;
+    margin: 0px;
+    padding: 5px 0px;
+}
+
+.history-container .history-search .item-search .history-search-item{
+    padding: 10px 0px;
+    width: 100%;
+}
+
+.history-container .history-search .item-search .history-search-item input, select{
+    font-size: 14px;
+    
+}
+
+.history-container .history-search .item-search .history-search-item input{
+    margin-left: 5px;
+    width: 35%;
+}
+
+.history-container .history-search .item-search .history-search-item select{
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: -8px;
+    width: 95%;
+}
+
+.history-container .history-search .item-button-search{
+    float: right;
+    width: 30%;
+    height: 70px;
+}
+
+.history-container .history-search .item-button-search .item-btn-search{
+    margin-top: 25px;
+    padding: 10px 0px;
+    width: 30%;
+    text-align: center;
+    background: #53A07D;
+    border-radius: 10px;
+    float: right;
+}
+
+.history-container .history-search .item-button-search .item-btn-search button{
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.history-container .history-search .item-button-search .item-btn-search button:hover{
+    cursor: pointer;
+}
+
+.history-container .history-table  th{
+    border: 1px solid #53A07D;
+    background: #53A07D;
+    color: white;
+    
+}
+
+.history-container .history-table td{
+    font-size: 14px;
+    border: 1px solid #f6f6f6;
+}
+/* ========================================== */
+/* Reward point */
+.reward-point-container{
+    margin: 20px auto;
+    height: 500px;
+    width: 75%;
+    
+}
+
+.reward-point-container .reward-point-left{
+    float: left;
+    height: 500px;
+    width: 48.5%;
+}
+
+.reward-point-container .reward-point-right{
+    float: right;
+    height: 500px;
+    width: 48.5%;
+}
+
+.reward-point-container .title{
+    text-align: left;
+    padding: 10px;
+    background: #53A07D;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.reward-point-container .reward-point-left p{
+    text-align: justify;
+}
+
+.reward-point-container .reward-point-left table{
+    width: 100%;
+}
+
+
+.reward-point-container .reward-point-left th{
+    background: #E8E8E8;
+    
+}
+
+.reward-point-container .reward-point-left th, td{
+    text-align: center;
+    font-size: 16px;
+}
+
+.reward-point-container .reward-point-right .notification{
+    background: #D9EDF7;
+    border-radius: 10px;
+}
+
+.reward-point-container .reward-point-right p{
+    text-align: justify;
+    padding: 10px;
+    font-size: 16px;
+    color: #1ca0e2;
+}
+
+.reward-point-container  .reward-point-right .level{
+    margin-top: 20px;
+    height: 310px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.reward-point-container  .reward-point-right .level .level-item{
+    height: 60px;
+    width: 100%;
+    border: 1px solid rgb(110, 106, 106);
+}
+
+.reward-point-container  .reward-point-right .level .first{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.reward-point-container  .reward-point-right .level .last{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.reward-point-container  .reward-point-right .level .level-item .level-item-left{
+    float: left;
+    width: 50%;
+    height: 59px;
+}
+.reward-point-container  .reward-point-right .level .level-item .level-item-right{
+    float: right;
+    width: 40%;
+    height: 59px;
+}
+
+.reward-point-container  .reward-point-right .level .level-item .level-item-left p{
+    color: black;
+    margin-top: 10px;
+}
+
+.reward-point-container  .reward-point-right .level .level-item .level-item-right p{
+    padding: 10px 20px;
+    text-align: center;
+    width: 40%;
+    color: black;
+    float: right;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+    font-weight: bold;
+    background: #777777;
+    color: white;
+}
+/* ========================================== */
+/* Infor LogIn  */
+.infor-login-container{
+    margin: 20px auto ;
+    width: 75%;
+    height: 300px;
+}
+
+.infor-login-container .infor-login{
+    width: 40%;
+    height: 200px;
+    float: left;
+}
+
+.infor-login-container .title{
+    text-align: left;
+    padding: 10px;
+    background: #53A07D;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.infor-login-container .infor-login .infor-login-left{
+    float: left;
+    height: 100px;
+    width: 60%;
+
+}
+
+.infor-login-container .infor-login .infor-login-right{
+    float: right;
+    height: 100px;
+    width: 30%;
+}
+
+.infor-login-container .infor-login .infor-login-right .edit-password:hover{
+    cursor: pointer;
+}
+
+.infor-login-container .infor-login .infor-login-left .item-left{
+    float: left;
+    width: 30%;
+    height: 100px;
+  
+}
+.infor-login-container .infor-login .infor-login-left .item-right{
+    float: left;
+    width: 65%;
+    height: 100px;
+ 
+}
+
+.infor-login-container .infor-login /* .infor-login-left */ p{
+    text-align: left;
+    font-size: 14px;
+  
+}
+
+.infor-login-container .infor-login .infor-login-right p{
+    text-align: right;
+    color: #EF5222;
+}
+
+.infor-login-container .edit-infor-login{
+    float: right;
+    width: 55%;
+    height: 200px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor{
+    width: 100%;
+    height: 200px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor .infor-item{
+    padding: 30px 0px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor p{
+    color: black;
+    margin: 10px 0px;
+    float: left;
+    font-size: 14px;
+    width: 30%;
+    text-align: left;
+}
+
+.infor-login-container .edit-infor-login .edit-infor input{
+    float: right;
+    width: 60%;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid rgb(121, 116, 116);
+    outline: none;
+    padding: 10px 0px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor .infor-item .btn-infor-item{
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #EF5222;
+    color: white;
+}
+
+.infor-login-container .edit-infor-login .edit-infor .infor-item .btn-infor-item:hover{
+    cursor: pointer;
+}
+
+.show-edit-infor{
+    display: none;
+}
+
+/* ========================================== */
+/* Infor Personal */
+.infor-personal-container{
+    width: 75%;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.infor-personal-container .infor-personal{
+    float: left;
+    width: 48%;
+    height: 299px;
+
+}
+
+.infor-personal-container .infor-address{
+    float: right;
+    width: 48%;
+    height: 299px;
+   
+}
+
+.infor-personal-container .title{
+    text-align: left;
+    padding: 10px;
+    background: #53A07D;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.infor-personal-container .item{
+    width: 100%;
+}
+
+.infor-personal-container .item p{
+    text-align: left;
+    font-size: 14px;
+}
+
+.infor-personal-container .item .item-left{
+    float: left;
+    width: 25%;
+    height: 50px;
+
+}
+.infor-personal-container .item .item-center{
+    float: left;
+    width: 55%;
+    height: 50px;
+    border-bottom: 1px solid rgb(107, 103, 103);
+  
+}
+.infor-personal-container .item .item-right{
+    float: right;
+    width: 20%;
+    height: 50px;
+   
+}
+
+.infor-personal-container .item .item-center input{
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+}
+
+.infor-personal-container .item .item-right .edit-password:hover{
+    cursor: pointer;
+}
+
+.infor-personal-container .item .item-infor-address{
+    float: right;
+    width: 70%;
+    height: 50px;
+
+}
+.infor-personal-container .item .item-infor-address .item-select{
+    margin: 0px;
+    border-bottom: 1px solid rgb(128, 122, 122);
+}
+
+.infor-personal-container .item .item-infor-address select{
+    margin: 0px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+   
+}
+
+.infor-personal-container .infor-address .item-infor-address input{
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+}
+
+.infor-personal-container .item .button-item-update{
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #EF5222;
+    color: white;
+}
+
+.infor-personal-container .item .button-item-update:hover{
+    cursor: pointer;
+}
+
+/* ========================================== */
+/* Viewport less then or equal to 750px */
+@media only screen and (max-width: 1350px){
+
+    .nav .nav-menu, .nav .nav-items {
+        flex-direction: column;
+    }
+
+    .nav .personal_items{
+        margin-right: 0px;
+        
+    }
+    .nav .toogle-collapse{
+        display: initial;
+    }
+
+    .auth-context div{
+        display: block;
+    }
+
+    .text-input{
+        display: block;
+        font-size: 1.8em;
+        margin: 1.1rem;
+        width: 90%;
+        
+    }
+
+    .text-radio{
+        display: block;
+    }
+
+    .btn-big{
+        margin-top: 2px;
+    }    
+    .blog .container{
+        width: 100%;
+        display: block;
+
+    }
+    .blog .container .section{
+        width: 90%;
+        margin-left: 10%;
+    }
+    .blog .container .section .section-info i{
+        font-size: 16px;
+       
+    }
+
+    footer.footer .footer-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .register .cont{
+        width:90%;
+    }
+
+    .register .other-infor .infor{
+        margin-left: 25%;
+    }
+    
+    .content .main-content{
+        width: 90%;
+    }
+
+    .content .sidebar1{
+        width: 90%;
+        margin-top: 20px;
+    
+    }
+
+    .content .popular .post img{
+        height: 30%;
+        width: 50%;
+        
+    }
+
+    .content .popular .post .title{
+        font-size: 20px;
+      
+       
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .container .search span{
+       background: none;
+        padding: 3px;
+    }
+
+}
+
+@media only screen and (max-width: 1440px){
+
+    .route-container .route-input .time{
+        width: 100%; 
+    }
+
+    .route-container .route-input .time .point{
+        width: 12%;
+    }
+
+    .route-container .route-input .point-date{
+
+        width: 45%;
+    }
+
+    .route-container .search{
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 1298px){
+    .route-container .route-input .time{
+        width: 100%;
+        margin-left: 0px;
+    }
+    .route-container .route-input .time .point{
+        width: 8%;
+    }
+    .route-container .route-input .time .point label{
+        margin-left: 10px;
+    }
+    .route-container .route-input .point-date{
+        width: 50%;
+    }
+}
+
+
+
+@media only screen and (max-width: 1167px){
+    .register .other-infor .infor{
+        margin-left: 15%;
+    }
+}
+
+
+@media only screen and (max-width: 1063px){
+    .register .cont{
+        width:80%;
+    }
+
+    .content .sidebar .section{
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    footer.footer .footer-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    footer.footer .footer-container > div{
+        padding:  1rem .9rem !important;
+    }
+
+    footer .rights{
+        padding: 0 1.4rem;
+        text-align: center;
+    }
+
+    .register .cont{
+        height: 200%;
+    }
+
+    .register .other-infor .infor{
+        display: block;
+     
+    }
+
+    .content .main-content .post{
+        margin-bottom: 250px;
+    }
+
+    .content .main-content .post .post-img{
+        width: 100%;
+        display: inline-block;
+        float: none;
+    }
+
+    .content .main-content .post .post-preview{
+        display: block;
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        
+    }
+
+    .content .sidebar{
+        display: none;
+    }
+
+    .container .search span{
+        padding: 0px;
+    }
+}

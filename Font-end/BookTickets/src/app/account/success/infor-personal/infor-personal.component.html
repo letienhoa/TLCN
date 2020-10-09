@@ -1,0 +1,97 @@
+<section>
+    <div class="infor-personal-container">
+        <div class="infor-personal">
+            <div class="title">
+                Thông tin cá nhân
+            </div>
+            <form action="">
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Họ tên</p>
+                    </div>
+                    <div class="item-center">
+                        <p *ngIf='!isEdit'>Lê Kim Đỉnh</p>
+                        <p *ngIf='isEdit'> <input type="text" placeholder="Lê Kim Đỉnh"></p>
+                    </div>
+                    <div class="item-right">
+                        <p *ngIf="!isEdit" class="edit-password" style="text-align: right; color: #EF5222;" (click)='onEdit()'><i class="far fa-edit"></i> Cập nhật</p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Email</p>
+                    </div>
+                    <div class="item-center">
+                        <p>lekimdinh@gmail.com</p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Điện thoại</p>
+                    </div>
+                    <div class="item-center">
+                        <p>0337006601</p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>CMND</p>
+                    </div>
+                    <div class="item-center">
+                        <p *ngIf='!isEdit'>221478172</p>
+                        <p *ngIf='isEdit'> <input type="text" placeholder="221478172"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="infor-address">
+            <div class="title">
+                Thông tin địa chỉ
+            </div>
+            <form action="">
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Địa chỉ</p>
+                    </div>
+                    <div class="item-infor-address">
+                        <p *ngIf='!isEdit'>Khu phố 3, phường Phú Thạnh, thành phố Tuy Hòa, tỉnh Phú Yên</p>
+                        <p *ngIf='isEdit'><input type="text" placeholder="Khu phố 3, phường Phú Thạnh, thành phố Tuy Hòa, tỉnh Phú Yên"></p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Thành phố</p>
+                    </div>
+                    <div class="item-infor-address">
+                        <p class="item-select" style="padding-top: 0px;">
+                            <select name="" id="list-item-city" disabled>
+                                <option value="value">Phú Yên</option>
+                                <option value="value">Phú Yên</option>
+                                <option value="value">Phú Yên</option>
+                             </select>
+                        </p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p>Quận huyện</p>
+                    </div>
+                    <div class="item-infor-address">
+                        <p class="item-select" style="padding-top: 0px;">
+                            <select name="" id="list-item-district" disabled>
+                                <option value="value">Phú Yên</option>
+                                <option value="value">Phú Yên</option>
+                                <option value="value">Phú Yên</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+                <div class="item clear">
+                    <div class="item-left">
+                        <p *ngIf='isEdit' (click)='onEdit()'><button class="button-item-update">Cập nhật</button></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
