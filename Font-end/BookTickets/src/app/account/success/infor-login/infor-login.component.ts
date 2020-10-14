@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class InforLoginComponent implements OnInit {
-
+  isShow = false
   constructor() { }
 
   ngOnInit(): void {
@@ -16,9 +16,11 @@ export class InforLoginComponent implements OnInit {
 
   load(){
     this.onShowEditInfor()
+    this.isShow = false
   }
 
   onShowEditInfor(){
+    this.isShow == true?this.isShow=false:this.isShow=true
     var ei = document.getElementsByClassName('edit-infor-login')
     ei[0].classList.toggle('show-edit-infor')
   }

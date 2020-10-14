@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="infor-login-right">
-                <p (click)='onShowEditInfor()' class="edit-password"><i class="far fa-edit"></i> Đổi mật khẩu</p>
+                <p *ngIf='!isShow' (click)='onShowEditInfor()' class="edit-password"><i class="far fa-edit"></i> Đổi mật khẩu</p>
             </div>
         </div>
         <div class="edit-infor-login">

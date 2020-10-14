@@ -19,7 +19,7 @@ export class BookTicketComponent implements OnInit {
     this.seat = this.service.seat
     console.log(this.seat)
     this.select_floor('floor-1')
-   
+    this.load()
 
   }
 
@@ -56,12 +56,14 @@ export class BookTicketComponent implements OnInit {
     for(let i of this.seat){
       if(i.status == Number(1)){
         document.getElementsByClassName(i.name)[0].classList.add('disable');
+       
       }
       else {
         document.getElementsByClassName(i.name)[0].classList.add('active');
       }
     }
-    this.onSubmitBook()
+    var bpa = document.getElementsByClassName('book-pay-accept')
+    bpa[0].classList.add('show-book')
   }
 
   onBook(item: any, index:any){
@@ -94,7 +96,9 @@ export class BookTicketComponent implements OnInit {
   }
 
   onSubmitBook(){
-/*     var b = document.getElementsByClassName('book-pay')
-    b[0].classList.toggle('show-book') */
+    var b = document.getElementsByClassName('book-pay')
+    b[0].classList.toggle('show-book')
+    b = document.getElementsByClassName('book-pay-accept')
+    b[0].classList.remove('show-book')
   }
 }
