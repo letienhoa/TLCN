@@ -1,0 +1,15 @@
+package carbook.entity;
+
+import javax.persistence.Id;
+
+@Emtity
+public class TuyenXeModelData {
+
+	@Id
+	private int id;
+	
+	public TuyenXeModelData() {
+		
+	}
+	
+}

@@ -1,0 +1,16 @@
+package carbook.dao;
+
+import java.util.List;
+
+import carbook.entity.Ben;
+
+public interface BenDao {
+
+	Ben create(Ben entity)
+	
+	List<Ben> findAll();
+	
+	List<String> spGetBenToi(int benDiId);
+	
+	
+}

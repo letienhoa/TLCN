@@ -1,0 +1,10 @@
+package carbook.dao;
+
+import carbook.entity.Xe;
+
+public interface XeDao {
+
+	Xe getXeByGio(int gio);
+	
+	List<Integer> spGetGioChay();
+}

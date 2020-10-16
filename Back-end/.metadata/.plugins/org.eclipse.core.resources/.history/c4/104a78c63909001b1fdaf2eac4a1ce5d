@@ -1,0 +1,6 @@
+package carbook.dao;
+
+public interface TuyenXeDao {
+
+	List<TuyenXe> spGetByDiemDiDiemToi(String DiemDi,String DiemToi);
+}

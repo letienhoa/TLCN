@@ -1,0 +1,8 @@
+package carbook.entity;
+
+@Entity
+
+public class TuyenXe {
+
+	
+}

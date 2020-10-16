@@ -1,0 +1,8 @@
+package carbook.dao;
+
+import java.util.List;
+
+public interface BenXeDao {
+
+	List<BenXe> findAll();
+}

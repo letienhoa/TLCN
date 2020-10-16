@@ -1,0 +1,10 @@
+package carbook.dao;
+
+import java.util.List;
+
+import carbook.entity.Ben;
+
+public interface BenXeDao {
+
+	List<Ben> findAll();
+}

@@ -1,0 +1,14 @@
+package carbook.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Table(name="noi_don")
+@Entity
+public class DiemDon {
+
+	@Id
+	private int id;
+	
+	@C
+}

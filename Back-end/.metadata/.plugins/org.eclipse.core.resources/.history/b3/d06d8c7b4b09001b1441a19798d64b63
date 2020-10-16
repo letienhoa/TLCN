@@ -1,0 +1,12 @@
+package carbook.entity;
+
+@Emtity
+public class TuyenXeModelData {
+
+	@Id
+	private int id;
+	
+	public TuyenXeModelData() {
+		
+	}
+}

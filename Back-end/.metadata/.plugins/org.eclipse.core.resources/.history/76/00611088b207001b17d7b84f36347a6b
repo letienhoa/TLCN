@@ -1,0 +1,20 @@
+package carbook.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tram_dung")
+public class TramDung {
+
+	private int id;
+	
+	private String tenTram;
+	
+	private String diaChi;
+	
+	public TramDung() {
+		
+		
+	}
+}

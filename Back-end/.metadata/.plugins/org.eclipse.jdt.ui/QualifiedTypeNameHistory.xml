@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="com.mysql.cj.xdevapi.SessionFactory"/>
+<fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
+<fullyQualifiedTypeName name="org.hibernate.ejb.HibernateEntityManagerFactory"/>
+<fullyQualifiedTypeName name="org.hibernate.jpa.HibernateEntityManagerFactory"/>
+<fullyQualifiedTypeName name="carbook.dao.BenXeDao"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="org.hibernate.procedure.ProcedureCall"/>
+<fullyQualifiedTypeName name="javax.persistence.ParameterMode"/>
+<fullyQualifiedTypeName name="carbook.dao.GiuongDao"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="carbook.entity.GiuongModelData"/>
+<fullyQualifiedTypeName name="carbook.dao.BenDao"/>
+<fullyQualifiedTypeName name="carbook.entity.Ben"/>
+<fullyQualifiedTypeName name="javax.persistence.Entity"/>
+<fullyQualifiedTypeName name="javax.persistence.Table"/>
+<fullyQualifiedTypeName name="javax.persistence.Id"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+<fullyQualifiedTypeName name="carbook.dao.DiemDonDao"/>
+<fullyQualifiedTypeName name="carbook.entity.DiemDon"/>
+<fullyQualifiedTypeName name="carbook.dao.TuyenXeDao"/>
+<fullyQualifiedTypeName name="carbook.entity.TuyenXe"/>
+<fullyQualifiedTypeName name="carbook.dao.AbstractDao"/>
+<fullyQualifiedTypeName name="carbook.controller.TramDungDao"/>
+<fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="carbook.dao.TramDungDao"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="carbook.entity.TramDung"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,9 @@
+package carbook.daoimpl;
+
+import carbook.dao.AbstractDao;
+import carbook.dao.BenXeDao;
+import carbook.entity.Ben;
+
+public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenXeDao {
+
+}

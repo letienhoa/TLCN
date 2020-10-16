@@ -1,0 +1,10 @@
+package carbook.dao;
+
+import java.util.List;
+
+import carbook.entity.TuyenXe;
+
+public interface TuyenXeDao {
+
+	List<TuyenXe> spGetByDiemDiDiemToi(String DiemDi,String DiemToi);
+}

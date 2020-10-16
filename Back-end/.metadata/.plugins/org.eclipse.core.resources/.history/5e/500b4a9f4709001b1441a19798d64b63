@@ -1,0 +1,7 @@
+package carbook.daoimpl;
+
+import carbook.dao.AbstractDao;
+
+public class GiuongDaoImpl extends AbstractDao<Integer,GiuongModelData>  implements GiuongDao {
+
+}

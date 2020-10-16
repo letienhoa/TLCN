@@ -1,0 +1,23 @@
+package carbook.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tuyen_xe")
+public class TuyenXe {
+
+	private int id;
+	
+	private String diemDi;
+	
+	private String diemToi;
+	
+	private int khoangCach;
+	
+	private String giaCa;
+	
+	public TuyenXe() {
+		
+	}
+}
