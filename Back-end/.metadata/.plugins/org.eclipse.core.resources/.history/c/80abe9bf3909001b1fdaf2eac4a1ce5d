@@ -1,5 +1,0 @@
-package carbook.dao;
-
-public interface TuyenXeDao {
-
-}

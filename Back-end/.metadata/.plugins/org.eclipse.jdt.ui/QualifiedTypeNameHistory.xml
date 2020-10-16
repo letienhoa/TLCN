@@ -31,4 +31,5 @@
 <fullyQualifiedTypeName name="carbook.dao.TramDungDao"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="carbook.entity.TramDung"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
 </qualifiedTypeNameHistroy>

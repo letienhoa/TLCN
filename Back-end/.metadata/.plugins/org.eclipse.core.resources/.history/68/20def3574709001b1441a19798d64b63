@@ -1,8 +1,0 @@
-package carbook.dao;
-
-import java.util.List;
-
-public interface GiuongDao {
-
-	List<Giuong> spGetGiuongByTuyenXeId(int tuyenXeId,int gio);
-}

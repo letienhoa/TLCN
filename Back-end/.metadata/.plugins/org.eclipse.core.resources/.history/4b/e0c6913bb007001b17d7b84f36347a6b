@@ -1,8 +1,0 @@
-package carbook.entity;
-
-@Entity
-@Table(name="tuyen_xe")
-public class TuyenXe {
-
-	
-}

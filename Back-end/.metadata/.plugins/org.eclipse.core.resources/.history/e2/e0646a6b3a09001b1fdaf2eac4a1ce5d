@@ -1,7 +1,0 @@
-package carbook.daoimpl;
-
-import carbook.dao.AbstractDao;
-
-public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements TuyenXeDao {
-
-}

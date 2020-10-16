@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\Git\TLCN\Back-end\Carbook"/>
 			<item value="C:\Users\Hoa Le\Documents\TLCN\Carbook"/>
 		</list>
 		<list key="projectNameTemplate">

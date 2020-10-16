@@ -1,7 +1,0 @@
-package carbook.daoimpl;
-
-import carbook.dao.AbstractDao;
-
-public class XeDaoImpl extends AbstractDao<Integer, Xe>  implements XeDao{
-
-}

@@ -1,7 +1,0 @@
-package carbook.entity;
-
-@Emtity
-public class TuyenXeModelData {
-
-	
-}

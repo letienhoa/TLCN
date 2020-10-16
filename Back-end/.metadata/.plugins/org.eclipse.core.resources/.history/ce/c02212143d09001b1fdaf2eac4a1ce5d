@@ -1,6 +1,0 @@
-package carbook.dao;
-
-public interface XeDao {
-
-	
-}
