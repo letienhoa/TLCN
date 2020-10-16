@@ -1,0 +1,34 @@
+package carbook.response;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class BenToiResponse {
+ 
+	@JsonProperty("id")
+	private int id;
+	
+	@JsonProperty("ben_toi")
+	private String tenBen;
+	
+	public BenToiResponse() {
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTenBen() {
+		return tenBen;
+	}
+
+	public void setTenBen(String tenBen) {
+		this.tenBen = tenBen;
+	}
+	
+	
+}

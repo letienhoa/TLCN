@@ -14,6 +14,7 @@ import carbook.dao.BenDao;
 import carbook.dao.DiemDonDao;
 import carbook.entity.Ben;
 import carbook.entity.DiemDon;
+import carbook.response.BenToiResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -27,11 +28,11 @@ public class BenController {
 	private DiemDonDao diemDonDao;
 	
 	@RequestMapping(value ="/get-list-ben-toi", method = RequestMethod.GET)
-	public List<String> spGetBenToi(
+	public List<BenToiResponse> spGetBenToi(
 			@RequestParam(name = "ben_di_id", required = false, defaultValue = "0") int benDiId){
-		List<String> data = benDao.spGetBenToi(benDiId);
-		
-        return data;
+		List<Ben> data = benDao.spGetBenToi(benDiId);
+		List<BenToiResponse> dataResponse = new BenToiResponse().mapTolist(data);
+        return dataResponse;
 	}
 	
 	@RequestMapping(value ="", method = RequestMethod.GET)

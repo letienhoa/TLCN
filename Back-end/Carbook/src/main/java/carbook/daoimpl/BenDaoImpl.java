@@ -28,10 +28,10 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 	}
 
 	@Override
-	public List<String> spGetBenToi(int benDiId) {
-		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_ben_toi");
+	public List<Ben> spGetBenToi(int benDiId) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_ben_toi",Ben.class);
 		procedureCall.registerParameter("benDiId",Integer.class,ParameterMode.IN).bindValue(benDiId);
-		List<String> list =procedureCall.getResultList();
+		List<Ben> list =procedureCall.getResultList();
 		return list;
 	}
 

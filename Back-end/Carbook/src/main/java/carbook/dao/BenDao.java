@@ -14,7 +14,7 @@ public interface BenDao {
 	
 	List<Ben> findAll();
 	
-	List<String> spGetBenToi(int benDiId);
+	List<Ben> spGetBenToi(int benDiId);
 	
 	
 }
