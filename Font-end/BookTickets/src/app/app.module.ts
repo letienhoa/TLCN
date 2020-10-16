@@ -18,7 +18,6 @@ import { InforCustomerComponent } from './book-tickets/infor-customer/infor-cust
 import { PayComponent } from './book-tickets/pay/pay.component';
 import { RulesComponent } from './policy/rules/rules.component';
 import { InvoiceComponent } from './invoice/invoice.component';
-
 import { BookTicketsService } from "../../src/app/shared/book-tickets.service";
 import { SuccessComponent } from './account/success/success.component';
 import { BookTicketComponent } from './account/success/book-ticket/book-ticket.component';
@@ -27,7 +26,7 @@ import { RewardPointComponent } from './account/success/reward-point/reward-poin
 import { InforLoginComponent } from './account/success/infor-login/infor-login.component';
 import { InforPersonalComponent } from './account/success/infor-personal/infor-personal.component';
 import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.component';
-
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -59,7 +58,8 @@ import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
    
   ],
   providers: [BookTicketsService],
