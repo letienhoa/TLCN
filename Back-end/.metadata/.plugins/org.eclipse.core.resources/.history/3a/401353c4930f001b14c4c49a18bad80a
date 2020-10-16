@@ -1,0 +1,12 @@
+package carbook.response;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class BenToiResponse {
+ 
+	@JsonProperty("id")
+	private int id;
+	
+	
+	
+}

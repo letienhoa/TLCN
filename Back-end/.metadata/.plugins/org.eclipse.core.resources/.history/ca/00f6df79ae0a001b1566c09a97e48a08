@@ -1,0 +1,6 @@
+package carbook.dao;
+
+public interface NoiDonDao {
+
+	NoiDom
+}
