@@ -38,10 +38,7 @@ public class DatasourceConfig {
 	@Autowired
 	private Environment environment;
 
-//	@Bean  
-//	public SessionFactory sessionFactory(HibernateEntityManagerFactory hemf){  
-//	    return hemf.getSessionFactory();  
-//	}
+
 
 	@Bean
 	public DataSource dataSource() {
@@ -59,7 +56,8 @@ public class DatasourceConfig {
 			throws PropertyVetoException {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setDataSource(ds);
-		entityManagerFactory.setPackagesToScan(new String[] { "carbook.entity" });
+		entityManagerFactory.setPackagesToScan(new String[] { "carbook.entity"});
+		
 		JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
 		return entityManagerFactory;

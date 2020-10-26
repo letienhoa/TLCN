@@ -1,0 +1,9 @@
+package carbook.request;
+
+public class BenRequest {
+private String tenBen;
+
+private String diaChi;
+
+
+}

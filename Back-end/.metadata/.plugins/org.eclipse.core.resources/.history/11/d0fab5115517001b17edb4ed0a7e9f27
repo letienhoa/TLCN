@@ -1,0 +1,24 @@
+package carbook.request;
+
+public class BenRequest {
+private String tenBen;
+
+private String diaChi;
+
+public String getTenBen() {
+	return tenBen;
+}
+
+public void setTenBen(String tenBen) {
+	this.tenBen = tenBen;
+}
+
+public String getDiaChi() {
+	return diaChi;
+}
+
+public void setDiaChi(String diaChi) {
+	this.diaChi = diaChi;
+}
+
+}
