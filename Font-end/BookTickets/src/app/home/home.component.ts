@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { async } from 'rxjs/internal/scheduler/async';
 import { BookTicketsService } from "../shared/book-tickets.service";
+import {BookService} from '../shared/book.service';
+
 declare var $:any
 @Component({
   selector: 'app-home',
@@ -11,21 +14,29 @@ declare var $:any
 export class HomeComponent implements OnInit {
 
   items = ['oneway','round']
+  list_ben_di = []
+  list_ben_den: any
+  
 
   list_departure: any
   list_destiantion: any
   today:any
-  constructor(public service: BookTicketsService, private route: Router) { 
+  constructor(public service: BookTicketsService, private route: Router, private bookService: BookService) { 
    
   }
 
 
   ngOnInit(): void {
     this.load();
-    (<HTMLInputElement>document.getElementById("return-date")).disabled = true
-    
+    (<HTMLInputElement>document.getElementById("return-date")).disabled = true;
   }
 
+  onGetListStation(){
+    this.bookService.getAllBen().subscribe(res=>{this.list_ben_di=res
+    this.service.list_departure=this.list_ben_di[0].tenBen
+    console.log(this.service.list_departure)
+    })
+  }
 
 
   onItemChange(x){
@@ -43,6 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   load(){
+    this.onGetListStation();
     this.list_departure = this.service.getListAdd()
     this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
     this.getDate()
@@ -87,6 +99,7 @@ export class HomeComponent implements OnInit {
         }
       ]
     });
+  
   }
 
   submit(){
@@ -123,6 +136,7 @@ export class HomeComponent implements OnInit {
   }
 
   cityChanged(obj:any){
+    console.log(obj.value)
     this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
   }
 }

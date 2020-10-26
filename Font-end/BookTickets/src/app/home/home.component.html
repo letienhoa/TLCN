@@ -5,13 +5,13 @@
         <h2 class="form-title">Book Tickets Online</h2>
         <form #inforRouteForm="ngForm" (ngSubmit)="submit()">
             <div>
-                <label for="" class="label-title">Điểm Đi</label>
-                <select class="text-input" [(ngModel)]="service.select_route.departure" [ngModelOptions]="{standalone: true}" name="departure" (change)="cityChanged($event.target)" required>
-                    <option *ngFor="let item of list_departure" [Value]="item">{{item}}</option>
+                <label for="" class="label-title">Điểm Đi</label>             
+                <select class="text-input" [(ngModel)]="service.select_route.departure" [ngModelOptions]="{standalone: true}" name="departure" (change)="cityChanged($event.target)" required style="font-weight: bold; font-size: 25px;">
+                    <option *ngFor="let item of list_ben_di" [value]="item.id" >{{item.tenBen}}</option>
                 </select>
                 <label for=""  class="label-title">Điểm Đến</label>
                 <select class="text-input" [(ngModel)]="service.select_route.destination" [ngModelOptions]="{standalone: true}" name="destination" required>
-                    <option *ngFor="let item of list_destiantion" [Value]="item.name">{{item.name}}</option>
+                    <option *ngFor="let item of list_destiantion" [value]="item.id">{{item.name}}</option>
                 </select>
 
             </div>

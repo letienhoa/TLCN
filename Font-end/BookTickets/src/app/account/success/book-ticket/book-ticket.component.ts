@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookTicketsService } from 'src/app/shared/book-tickets.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { BookTicketsService } from 'src/app/shared/book-tickets.service';
 })
 export class BookTicketComponent implements OnInit {
 
+  form: FormGroup;
+  isAccept = false;
   seat = []
   listitem = []
   price = 0
+  today : any
 
-  constructor(public service: BookTicketsService) { }
+  constructor(public service: BookTicketsService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.seat = this.service.seat
@@ -64,6 +68,8 @@ export class BookTicketComponent implements OnInit {
     }
     var bpa = document.getElementsByClassName('book-pay-accept')
     bpa[0].classList.add('show-book')
+    this.getDate();
+    this.setForm();
   }
 
   onBook(item: any, index:any){
@@ -100,5 +106,39 @@ export class BookTicketComponent implements OnInit {
     b[0].classList.toggle('show-book')
     b = document.getElementsByClassName('book-pay-accept')
     b[0].classList.remove('show-book')
+  }
+
+  getDate(){
+    var today = new Date();
+    var x = (<HTMLInputElement>document.getElementById("item-date"))
+    x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
+    this.today = x.value
+  }
+
+  setForm(){
+    this.form = this.fb.group({
+      router: ['',[Validators.required]],
+      date:[this.today,[Validators.required]],
+      time:['',[Validators.required]],
+      number:['1',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(5), Validators.minLength(1)]],
+      point:['',[Validators.required]]
+    });
+  }
+
+  onSubmit(){
+    if(this.form.invalid){
+      window.alert('Nhung thong tin duoc danh (*) phai duoc thuc hien');
+      return;
+    }
+    if(!this.isAccept){
+      window.alert('Ban chua chap nhan dieu khoan');
+      return;
+    }
+    this.onSubmitBook()
+  }
+
+  onAccept(){
+    this.isAccept?this.isAccept=false:this.isAccept=true;
+    
   }
 }

@@ -311,7 +311,7 @@ ul{
 .blog .container .section .section-info:hover{
     transition: all .3s;
     margin-left: 4%;
-    
+    cursor: pointer;
 }
 
 .blog .container .section .section-info img{
@@ -345,6 +345,10 @@ ul{
     position: relative;
     text-align: center;
     color: white;
+}
+
+.for_slick_slider .items:hover{
+    cursor: pointer;
 }
 
 .for_slick_slider .items .item-text{
@@ -1394,10 +1398,13 @@ footer.footer .move-up span:hover{
 .floor-seat .select{
     border: 1px solid #e05c30;
     background-color: #e05c30;
+    color: white;
+    
 }
 .route-container .container-right .select{
     border: 1px solid #e05c30;
     background-color: #e05c30;
+    color: white;
 }
 
 .disable{
