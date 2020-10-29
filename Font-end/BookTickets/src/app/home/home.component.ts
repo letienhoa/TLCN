@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { async } from 'rxjs/internal/scheduler/async';
 import { BookTicketsService } from "../shared/book-tickets.service";
@@ -13,15 +14,16 @@ declare var $:any
 })
 export class HomeComponent implements OnInit {
 
+  form:FormGroup;
+
   items = ['oneway','round']
   list_ben_di = []
   list_ben_den: any
   
-
   list_departure: any
   list_destiantion: any
   today:any
-  constructor(public service: BookTicketsService, private route: Router, private bookService: BookService) { 
+  constructor(public service: BookTicketsService, private route: Router, private bookService: BookService, private fb:FormBuilder) { 
    
   }
 
@@ -54,6 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   load(){
+    this.setForm();
     this.onGetListStation();
     this.list_departure = this.service.getListAdd()
     this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
@@ -103,7 +106,7 @@ export class HomeComponent implements OnInit {
   }
 
   submit(){
-    if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
+/*     if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
       window.alert("xin hay chon ngay ve")
       return
     }
@@ -112,6 +115,8 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('b1',JSON.stringify(this.service.select_route))
     console.log(sessionStorage.getItem('b1'))
     this.route.navigate(['/booktickets/select-seat'])
+ */  
+      console.log(this.form.value.departure.tenBen)
   }
 
     
@@ -136,7 +141,18 @@ export class HomeComponent implements OnInit {
   }
 
   cityChanged(obj:any){
-    console.log(obj.value)
+/*     console.log(this.service.select_route.departure)
+    console.log(obj.tenBen) */
     this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
+  }
+
+  setForm(){
+    this.form = this.fb.group({
+      departure:['',[Validators.required]],
+      destiantion:['',[Validators.required]],
+      go_day:['',[Validators.required]],
+      return_day:['',[Validators.required]],
+      isOneWay:[Boolean,[Validators.required]]
+    })
   }
 }
