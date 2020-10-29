@@ -24,7 +24,7 @@ public class XeDaoImpl extends AbstractDao<Integer, Xe>  implements XeDao{
 		CriteriaQuery<Xe> criteria= this.getBuilder().createQuery(Xe.class);
 		
 		Root<Xe> root= criteria.from(Xe.class);
-		criteria.select(root).where(this.getBuilder().equal(root.get("tuyen_san_sang_id"), tuyenXeId));
+		criteria.select(root).where(this.getBuilder().equal(root.get("tuyenSanSangId"), tuyenXeId));
 		return this.getSession().createQuery(criteria).getResultList();
 	}
 

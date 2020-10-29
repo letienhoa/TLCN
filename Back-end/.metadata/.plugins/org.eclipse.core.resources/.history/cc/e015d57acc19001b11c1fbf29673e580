@@ -1,0 +1,25 @@
+package carbook.response;
+
+import carbook.entity.Xe;
+
+public class GioChayResponse {
+
+	private int giochay;
+	
+	public GioChayResponse() {
+		
+	}
+	public GioChayResponse(Xe entity) {
+		this.giochay= entity.getGioChay();
+	}
+	public int getGiochay() {
+		return giochay;
+	}
+	public void setGiochay(int giochay) {
+		this.giochay = giochay;
+	}
+	
+	List<GioChayResponse> mapToList(List<Xe>){
+		
+	}
+}

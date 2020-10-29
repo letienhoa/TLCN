@@ -1,0 +1,46 @@
+package carbook.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import carbook.dao.TuyenXeDao;
+import carbook.entity.TuyenXe;
+import carbook.response.BaseResponse;
+
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@RequestMapping("/api/web/tuyenxe")
+public class TuyenXeController {
+
+	@Autowired
+	private TuyenXeDao tuyenXeDao;
+	
+	@Autowired
+	private XeDao xeDao;
+	
+	@RequestMapping(value ="/get-tuyen-xe", method = RequestMethod.GET)
+	public TuyenXe sptuyenxe(
+			@RequestParam(name = "diem_di", required = false, defaultValue = "f") String diemdi,
+			@RequestParam(name = "diem_toi", required = false, defaultValue = "7") String diemtoi) {
+		
+		TuyenXe data = tuyenXeDao.spGetByDiemDiDiemToi(diemdi, diemtoi);
+		
+        return data;
+	}
+	
+	@RequestMapping(value ="/gio-chay", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> spgetAll(){
+		BaseResponse response = new BaseResponse();
+		List<Xe> list =
+		List<GioChayResponse> list =
+		response.setData(data);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+}

@@ -57,9 +57,10 @@ public class BenController {
 	@RequestMapping(value ="", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> getAll(){
 		List<Ben> data = benDao.findAll();
+		List<BenToiResponse> dataResponse = new BenToiResponse().mapTolist(data);
 		BaseResponse response = new BaseResponse();
 		
-		response.setData(data);
+		response.setData(dataResponse);
         return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	

@@ -1,6 +1,8 @@
 package carbook.dao;
 
 
+import java.util.List;
+
 import carbook.entity.TuyenXe;
 
 public interface TuyenXeDao {
@@ -10,4 +12,5 @@ public interface TuyenXeDao {
 	void update(TuyenXe entity);
 	
 	TuyenXe spGetByDiemDiDiemToi(String DiemDi,String DiemToi);
+	
 }

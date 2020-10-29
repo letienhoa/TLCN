@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;carbook.response.GiochayResponse&apos; to &apos;GioChayResponse&apos;&#x0D;&#x0A;- Original project: &apos;Carbook&apos;&#x0D;&#x0A;- Original element: &apos;carbook.response.GiochayResponse&apos;&#x0D;&#x0A;- Renamed element: &apos;carbook.response.GioChayResponse&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;GiochayResponse&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;carbook.response{GiochayResponse.java[GiochayResponse" matchStrategy="1" name="GioChayResponse" qualified="false" references="true" similarDeclarations="false" stamp="1603964984477" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,13 @@
+package carbook.response;
+
+public class GioChayResponse {
+
+	private int giochay;
+	
+	public void GioChayResponse() {
+		
+	}
+	public void GioChayResponse(Xe entity) {
+		
+	}
+}
