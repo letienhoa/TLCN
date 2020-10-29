@@ -11,6 +11,7 @@ export class SelectPayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

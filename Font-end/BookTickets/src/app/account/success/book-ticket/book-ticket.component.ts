@@ -12,6 +12,7 @@ export class BookTicketComponent implements OnInit {
 
   form: FormGroup;
   isAccept = false;
+  isPay = false;
   seat = []
   listitem = []
   price = 0
@@ -126,19 +127,23 @@ export class BookTicketComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.form.invalid){
+/*     if(this.form.invalid){
       window.alert('Nhung thong tin duoc danh (*) phai duoc thuc hien');
       return;
     }
     if(!this.isAccept){
       window.alert('Ban chua chap nhan dieu khoan');
       return;
-    }
+    } */
     this.onSubmitBook()
   }
 
   onAccept(){
     this.isAccept?this.isAccept=false:this.isAccept=true;
-    
   }
+
+  onPay(){
+    this.isPay= true
+  }
+
 }

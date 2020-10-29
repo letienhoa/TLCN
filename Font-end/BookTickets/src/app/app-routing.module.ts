@@ -30,6 +30,7 @@ const routes: Routes = [
   {path:'policy/rules', component:RulesComponent},
   {path:'invoice', component:InvoiceComponent},
   {path:'login/:email', component:SuccessComponent},
+  
 ];
 
 @NgModule({

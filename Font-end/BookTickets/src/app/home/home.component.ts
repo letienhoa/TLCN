@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
   }
 
   submit(){
-/*     if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
+     if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
       window.alert("xin hay chon ngay ve")
       return
     }
@@ -115,8 +115,6 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('b1',JSON.stringify(this.service.select_route))
     console.log(sessionStorage.getItem('b1'))
     this.route.navigate(['/booktickets/select-seat'])
- */  
-      console.log(this.form.value.departure.tenBen)
   }
 
     
