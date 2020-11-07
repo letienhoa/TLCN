@@ -1,5 +1,7 @@
 package carbook.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +19,7 @@ public class Giuong {
 	private int idTuyenXe;
 	
 	@Column(name="ngay")
-	private String ngay;
+	private Date ngay;
 	
 	@Column(name="gio")
 	private int gio;
@@ -53,11 +55,11 @@ public class Giuong {
 		this.idTuyenXe = idTuyenXe;
 	}
 
-	public String getNgay() {
+	public Date getNgay() {
 		return ngay;
 	}
 
-	public void setNgay(String ngay) {
+	public void setNgay(Date ngay) {
 		this.ngay = ngay;
 	}
 

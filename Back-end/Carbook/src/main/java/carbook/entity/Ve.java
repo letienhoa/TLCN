@@ -1,5 +1,7 @@
 package carbook.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ve")
-public class Ve {
+public class Ve extends BaseEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int id;
@@ -18,12 +25,20 @@ public class Ve {
 	@Column(name="gio_ket_thuc")
 	private String gioKetThuc;
 	
-	@Column(name="id_xe")
-	private int idXe;
+	@Column(name="id_tuyen_xe")
+	private int idTuyenXe;
 	
 	@Column(name="sdt_khach_hang")
 	private String sdtKhachHang;
 	
+	@Column(name="gia_ve")
+	private int giaVe;
+	
+	@Column(name="date")
+	private Date date;
+	
+	@Column(name="trang_thai")
+	private int trangThai;
 
 	private String email;
 	
@@ -57,12 +72,12 @@ public class Ve {
 		this.gioKetThuc = gioKetThuc;
 	}
 
-	public int getIdXe() {
-		return idXe;
+	public int getIdTuyenXe() {
+		return idTuyenXe;
 	}
 
-	public void setIdXe(int idXe) {
-		this.idXe = idXe;
+	public void setIdTuyenXe(int idTuyenXe) {
+		this.idTuyenXe = idTuyenXe;
 	}
 
 	public String getSdtKhachHang() {
@@ -87,6 +102,22 @@ public class Ve {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public int getGiaVe() {
+		return giaVe;
+	}
+
+	public void setGiaVe(int giaVe) {
+		this.giaVe = giaVe;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	
