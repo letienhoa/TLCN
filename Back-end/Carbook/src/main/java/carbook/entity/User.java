@@ -1,13 +1,21 @@
 package carbook.entity;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value = { "roles", "authorities" })
 @Entity
-@Table(name="khach_hang")
-public class KhachHang extends BaseEntity {
+@Table(name="user")
+public class User extends BaseEntity {
 
 	/**
 	 * 
@@ -21,7 +29,7 @@ public class KhachHang extends BaseEntity {
 	private String taiKhoan;
 	
 	@Column(name= "mat_khau")
-	private String matKhau;
+	private String Password;
 	
 	@Column(name= "ten_kh")
 	private String tenKh;
@@ -29,10 +37,12 @@ public class KhachHang extends BaseEntity {
 	@Column(name= "sdt")
 	private String sdt;
 	
-	public KhachHang() {
+	public User() {
 		
 	}
+	
 
+	
 	public int getId() {
 		return id;
 	}
@@ -49,12 +59,12 @@ public class KhachHang extends BaseEntity {
 		this.taiKhoan = taiKhoan;
 	}
 
-	public String getMatKhau() {
-		return matKhau;
+	public String getPassword() {
+		return Password;
 	}
 
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
+	public void setPassword(String matKhau) {
+		this.Password = matKhau;
 	}
 
 	public String getTenKh() {
@@ -72,6 +82,7 @@ public class KhachHang extends BaseEntity {
 	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
+
 	
 	
 }

@@ -23,7 +23,7 @@ import carbook.response.BenToiResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/web/ben")
+@RequestMapping("/api/ben")
 public class BenController {
 
 	@Autowired
@@ -77,10 +77,16 @@ public class BenController {
 	
 	@RequestMapping(value ="/get-all-diem-don", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> spgetAll(){
-		BaseResponse response = new BaseResponse();
+		BaseResponse response = new BaseResponse();	
 		List<DiemDon> data = diemDonDao.findAll();
 		
 		response.setData(data);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/get", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> test() {
+		BaseResponse response= new BaseResponse();
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 }

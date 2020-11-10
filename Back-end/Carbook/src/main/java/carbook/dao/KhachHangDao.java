@@ -3,7 +3,8 @@ package carbook.dao;
 import java.util.List;
 
 import carbook.entity.BaseEntity;
-import carbook.entity.KhachHang;
+import carbook.entity.User;
+import carbook.entity.UserToken;
 
 public interface KhachHangDao  {
 
@@ -11,9 +12,13 @@ public interface KhachHangDao  {
 	
 	public void update(BaseEntity entity);
 	
-	public List<KhachHang> findAll();
+	public List<User> findAll();
 	
 	public BaseEntity getById(int id);
 	
-	public KhachHang getByTaiKhoanMatKhau(String taiKhoan,String matKhau);
+	public UserToken getByTaiKhoanMatKhau(String taiKhoan,String matKhau);
+	
+	public UserToken loadUserByUsername(String username);
+	
+	public User findByUsername(String name);
 }

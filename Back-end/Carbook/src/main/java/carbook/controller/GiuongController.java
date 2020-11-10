@@ -24,7 +24,6 @@ public class GiuongController {
 	private GiuongDao giuongDao;
 	
 	
-	
 	@RequestMapping(value ="/get-list-giuong-for-xe", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> spGetGiuongByTuyenXeId(
 			@RequestParam(name = "tuyen_xe_id", required = false, defaultValue = "1") int tuyenXeId,
