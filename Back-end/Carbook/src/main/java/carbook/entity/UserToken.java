@@ -3,8 +3,6 @@ package carbook.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

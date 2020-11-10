@@ -1,8 +1,5 @@
 package carbook.dao;
 
-
-import java.util.List;
-
 import carbook.entity.TuyenXe;
 
 public interface TuyenXeDao {

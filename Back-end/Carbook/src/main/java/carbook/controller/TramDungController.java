@@ -23,15 +23,15 @@ public class TramDungController {
 	@Autowired
 	private TramDungDao tramDungDao;
 	
-	//@RequestMapping(value ="/get-list-tram-dung-tuyen-xe", method = RequestMethod.GET)
-	//public ResponseEntity<BaseResponse> sptuyenxe(
-		//	@RequestParam(name = "diem_di", required = false, defaultValue = "f") int diemdi,
-		//	@RequestParam(name = "diem_toi", required = false, defaultValue = "7") int diemtoi) {
-		//BaseResponse response= new BaseResponse();
-		//List<TramDung> data = tramDungDao.spGetTramDungForTuyenXe(diemdi, diemtoi);
-		//response.setData(data);
-		//return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
-	//}
+	@RequestMapping(value ="/get-list-tram-dung-tuyen-xe", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> sptuyenxe(
+			@RequestParam(name = "diem_di", required = false, defaultValue = "f") int diemdi,
+			@RequestParam(name = "diem_toi", required = false, defaultValue = "7") int diemtoi) {
+		BaseResponse response= new BaseResponse();
+		List<TramDung> data = tramDungDao.spGetTramDungForTuyenXe(diemdi, diemtoi);
+		response.setData(data);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
 	
 
 	@RequestMapping(value ="/get", method = RequestMethod.GET)
