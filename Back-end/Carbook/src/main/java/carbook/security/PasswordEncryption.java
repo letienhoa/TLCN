@@ -11,9 +11,6 @@ public class PasswordEncryption {
 		
 	}
 	
-	private String changeSDT(String sdt) {
-		return sdt;
-	}
 	
 	public String convertHashToString(String text) throws NoSuchAlgorithmException {
 	        MessageDigest md = MessageDigest.getInstance("MD5");

@@ -70,6 +70,7 @@ public class KhachHangController {
 	public ResponseEntity<TokenResponse> login(HttpServletRequest request ,@RequestBody KhachHangRequest wrapper) {
 		TokenResponse respnse;
 		String result = "hihihihi";
+		@SuppressWarnings("unused")
 		HttpStatus httpStatus=null;
 		String matKhauMK = null;
 		UserToken khachHang =new UserToken();
