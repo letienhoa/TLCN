@@ -14,6 +14,8 @@ import { PayComponent } from './book-tickets/pay/pay.component';
 import { RulesComponent } from './policy/rules/rules.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SuccessComponent } from './account/success/success.component';
+import { AddminComponent } from './account/addmin/addmin.component';
+import { CrudAccountComponent } from './account/addmin/crud-account/crud-account.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -29,8 +31,9 @@ const routes: Routes = [
   {path:'booktickets/pay', component:PayComponent},
   {path:'policy/rules', component:RulesComponent},
   {path:'invoice', component:InvoiceComponent},
-  {path:'login/:email', component:SuccessComponent},
-  
+  {path:'login/customer/:email', component:SuccessComponent},
+  {path:'login/admin/:email', component:AddminComponent},
+  {path:'login/admin/account', component:CrudAccountComponent},
 ];
 
 @NgModule({

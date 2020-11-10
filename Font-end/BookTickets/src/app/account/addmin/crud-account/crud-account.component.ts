@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-select-pay',
-  templateUrl: './select-pay.component.html',
+  selector: 'app-crud-account',
+  templateUrl: './crud-account.component.html',
   styles: [
   ]
 })
-export class SelectPayComponent implements OnInit {
+export class CrudAccountComponent implements OnInit {
 
   constructor() { }
 

@@ -1,0 +1,203 @@
+<app-header success=1 ></app-header>
+<section class='adminContainer'> 
+    <div class="menu-left">
+        <div class="menu-item">
+            <button>Tài Khoản</button>
+        </div>
+        <div class="menu-item">
+            <button>Tuyến Đường</button>
+        </div>
+        <div class="menu-item">
+            <button>Tài Khoản</button>
+        </div>
+        <div class="menu-item">
+            <button>Tài Khoản</button>
+        </div>
+        <div class="menu-item">
+            <button>Tài Khoản</button>
+        </div>
+    </div>
+    <div class="menu-content">
+        <div class="menu-content-item">
+            <div class="menu-content-title">
+                <p>Danh sách tài khoản</p> 
+            </div>
+            <div class="menu-content-item-content">
+                <div style="height:300px; overflow:auto; ">
+                    <table style="width:90%;">
+                        <tr>
+                            <th>Email</th>
+                            <th>Mật khẩu</th>
+                            <th>Vai trò</th>
+                          </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                        <tr>
+                          <td>lekimdinh1412@gmail.com</td>
+                          <td>0337006601</td>
+                          <td>Khách Hàng</td>
+                        </tr>
+                    </table>
+                </div>  
+                <div class="menu-action">
+                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Tạo tài khoản</p>
+                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa tài khoản</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="menu-item-right" *ngIf='isCreateAccount==1'>
+            <div class="item-account">
+                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );                   ">
+                    <p>Thông tin tài khoản</p> 
+                </div>
+                <form action="">
+                    <div class="infor-item" style="padding-top: 5px;">
+                        <p for="">Họ tên</p>
+                        <input type="password" placeholder="Nhập mật khẩu cũ">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Email</p>
+                        <input type="password" placeholder="Nhập mật khẩu mới">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Mật khẩu</p>
+                        <input type="password" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Nhập lại mật khẩu</p>
+                        <input type="password" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+                </form>
+            </div>
+            <div class="item-account" style="margin-left: 25px;">
+                <div class="menu-content-title" style="border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;">
+                    <p>Thông tin khác</p> 
+                </div>
+                <form action="">
+                    <div class="infor-item" style="padding-top: 5px;">
+                        <p for="">SĐT</p>
+                        <input type="password" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">CMND</p>
+                        <input type="password" placeholder="Nhập số CMND">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Địa chỉ</p>
+                        <input type="password" placeholder="Nhập địa chỉ thường trú">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Vai trò</p>
+                        <div style="float: left;">
+                            <input type="checkbox" class="checkbox"> <span>Quản lý</span>
+                        </div>
+                        <div style="float: left; margin-left: 30px;">
+                            <input type="checkbox" class="checkbox"> <span>Nhân viên</span>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="infor-item">
+                        <button class="btn-submit" (click)="onShow(1,0)">Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="menu-item-right" *ngIf='isCreateAccount==2'>
+            <div class="item-account">
+                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );                   ">
+                    <p>Thông tin tài khoản</p> 
+                </div>
+                <form action="">
+                    <div class="infor-item" style="padding-top: 5px;">
+                        <p for="">Họ tên</p>
+                        <input type="password" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Email</p>
+                        <input type="password" placeholder="Nhập email">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Mật khẩu cũ</p>
+                        <input type="password" placeholder="Nhập mật khẩu cũ">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Mật khẩu mới</p>
+                        <input type="password" placeholder="Nhập mật khẩu mới">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Mật lại khẩu mới</p>
+                        <input type="password" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+                </form>
+            </div>
+            <div class="item-account" style="margin-left: 25px;">
+                <div class="menu-content-title" style="border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;">
+                    <p>Thông tin khác</p> 
+                </div>
+                <form action="">
+                    <div class="infor-item" style="padding-top: 5px;">
+                        <p for="">SĐT</p>
+                        <input type="password" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">CMND</p>
+                        <input type="password" placeholder="Nhập số CMND">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Địa chỉ</p>
+                        <input type="password" placeholder="Nhập địa chỉ thường trú">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Thành phố</p>
+                        <input type="password" placeholder="Nhập thành phố">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Quận huyện</p>
+                        <input type="password" placeholder="Nhập quận huyện">
+                    </div>
+                    <div class="infor-item">
+                        <p for="">Vai trò</p>
+                        <div style="float: left;">
+                            <input type="checkbox" class="checkbox"> <span>Khách Hàng</span>
+                        </div>
+                        <div style="float: left; margin-left: 30px;">
+                            <input type="checkbox" class="checkbox"> <span>Nhân viên</span>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="infor-item">
+                        <button class="btn-submit" (click)="onShow(2,0)">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="clear: both;"></div>
+<app-footer></app-footer>

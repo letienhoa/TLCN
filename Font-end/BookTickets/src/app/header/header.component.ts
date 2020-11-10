@@ -54,7 +54,6 @@ export class HeaderComponent implements OnInit {
       if( i != index ){
         this.nav[i].classList.remove('pick')
       }
-      
     }
   }
 
@@ -64,15 +63,22 @@ export class HeaderComponent implements OnInit {
       p.style.display = 'none'
       var per = (<HTMLInputElement>document.getElementById("personal"))
       per.style.display = 'inital'
+      p = (<HTMLInputElement>document.getElementById("addmin"))
+      p.style.display = 'none'
     }
-    else{
-/*       var per = (<HTMLInputElement>document.getElementById("personal"))
-      console.log(per)
-      per.style.display = 'none'
-      var p = (<HTMLInputElement>document.getElementById("popular"))
-      p.style.display = 'inital' */
+    else if(this.success==2){
       var per = (<HTMLInputElement>document.getElementById("personal"))
       per.style.display = 'none'
+      var p = (<HTMLInputElement>document.getElementById("people"))
+      p.style.display = 'none'
+      p = (<HTMLInputElement>document.getElementById("addmin"))
+      p.style.display = 'inital'
+    }
+    else{
+      var p = (<HTMLInputElement>document.getElementById("personal"))
+      p.style.display = 'none'
+      p = (<HTMLInputElement>document.getElementById("addmin"))
+      p.style.display = 'none'
     }
   }
 
@@ -80,6 +86,4 @@ export class HeaderComponent implements OnInit {
     var nav = document.getElementsByClassName('logOut')
     nav[0].classList.toggle('display_logout')
   }
-
-  
 }
