@@ -2,27 +2,31 @@
     <div class="container-book-ticket">
         <div class="ticket-item-left">
             <div class="title">Thông tin chuyến đi</div>
-            <form action="" [formGroup]='form'>
+            <form action="">
                 <div class="item-left">
-                    <label for="">Tuyến đường <span style="color: #EF5222;">(*)</span></label>
+                    <label for="">Tuyến đường</label>
                     <i class="fas fa-bus"></i>
-                    <select formControlName='router'>                    
-                        <option *ngFor="let i of seat" [ngValue]="i.name">{{i.name}}</option>
+                    <select>                    
+                        <option value="1">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="2">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="3">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="4">Đà Nẵng => TP Hồ Chí Minh</option>
+                        <option value="5">Đà Nẵng => TP Hồ Chí Minh</option>
                     </select>
                 </div>
                 <div class="clear"></div>
-                <hr>
+                <hr style="width: 100%;">
                 <div class="item-left">
-                    <label for="">Ngày đi <span style="color: #EF5222;">(*)</span></label>
+                    <label for="">Ngày đi</label>
                     <i class="fas fa-calendar-alt"></i>
-                    <input id="item-date" type="date" min="{{today}}" formControlName='date'>
+                    <input type="text" value="6/10/2020" disabled>
                 </div>
                 <div class="clear"></div>
-                <hr>
+                <hr style="width: 100%;">
                 <div class="item-left">
-                    <label for="">Giời khởi hành <span style="color: #EF5222;">(*)</span></label>
+                    <label for="">Giời khởi hành</label>
                     <i class="fas fa-clock"></i>
-                    <select formControlName='time'>                    
+                    <select>                    
                         <option value="1">6h</option>
                         <option value="2">7h</option>
                         <option value="3">8h</option>
@@ -31,18 +35,18 @@
                     </select>
                 </div>
                 <div class="clear"></div>
-                <hr>
+                <hr style="width: 100%;">
                 <div class="item-left">
-                    <label for="">Số vé <span style="color: #EF5222;">(*)</span></label>
+                    <label for="">Số vé</label>
                     <i class="fas fa-ticket-alt"></i>
-                    <input type="number" min="1" max="5" formControlName='number'>
+                    <input type="number" min="1" max="5">
                 </div>
                 <div class="clear"></div>
-                <hr>
+                <hr style="width: 100%;">
                 <div class="item-left">
-                    <label for="">Điểm lên xe <span style="color: #EF5222;">(*)</span></label>
+                    <label for="">Điểm lên xe</label>
                     <i class="fas fa-map-marker-alt"></i>
-                    <select formControlName='point'>                    
+                    <select>                    
                         <option value="1">Địa điểm A</option>
                         <option value="2">Địa điểm B</option>
                         <option value="3">Địa điểm C</option>
@@ -51,9 +55,9 @@
                     </select>
                 </div>
                 <div class="clear"></div>
-                <hr>
+                <hr style="width: 100%;">
                 <div class="accept-policy">
-                    <input type="checkbox" (click)='onAccept()'><label for="" style="color: black; margin-left: 0px;">Chấp nhận điều khoản <span style="color: #EF5222;">đặt vé</span> của chúng tôi.<!-- <span style="color: #EF5222;"> (*)</span> --></label>
+                    <input type="checkbox"><label for="" style="color: black; margin-left: 0px;">Chấp nhận điều khoản <span style="color: #EF5222;">đặt vé</span> của chúng tôi.</label>
                 </div>
             </form>
         </div>
@@ -185,7 +189,7 @@
                     </div>
                 </div>
                 <div class="btn-book-ticket">
-                    <button (click)='onSubmit()'>Đặt vé</button>
+                    <button (click)='onSubmitBook()'>Đặt vé</button>
                 </div>
             </div>
         </div>
@@ -204,78 +208,74 @@
     </div>
 </section>
 <section class="book-pay-accept">
-    <div *ngIf='!isPay'>
-        <div class="container-pay-item">
-            <div class="pay-item-left">
-                <div class="title">
-                    Chọn loại thanh toán
+    <div class="container-pay-item">
+        <div class="pay-item-left">
+            <div class="title">
+                Chọn loại thanh toán
+            </div>
+            <div class="select-type-pay">
+               <p>Pay Pal</p>
+            </div>
+            <div class="button-pay">
+                <div class="button-pay-left">
+                    <button class="btn-pay" style="background: #53A07D;"><i class="fas fa-chevron-left"></i> Quay lại</button>
                 </div>
-                <div class="select-type-pay">
-                    <img src="../../../../assets/paypal.png" style="width: 100%; height: 100%;">
-                </div>
-                <div class="button-pay">
-                    <div class="button-pay-left">
-                        <button class="btn-pay" style="background: #009344;"><i class="fas fa-chevron-left"></i> Quay lại</button>
-                    </div>
-                    <div class="button-pay-right">
-                        <button class="btn-pay" style="background: #EF5222;" (click)="onPay()">Thanh toán <i class="fas fa-chevron-right"></i></button>
-                    </div>
+                <div class="button-pay-right">
+                    <button class="btn-pay" style="background: #EF5222;">Thanh toán <i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-            <div class="pay-item-right">
-                <div class="title">
-                    Thông tin cá nhân
-                </div>
-                <form action="">
-                    <div class="pay-item-infor">
-                        <label for="" class="pay-item-infor-left">Email</label>
-                        <input type="text" class="pay-item-infor-right">
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Họ và tên</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Số điện thoại</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">CMND</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Địa chỉ</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                </form>
-                <div class="title">
-                    Thông tin vé
-                </div>
-                <form action="">
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Tuyến</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Ngày giờ</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Ghế</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Số lượng</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                    <div class="pay-item-infor clear">
-                        <label for="" class="pay-item-infor-left">Tổng tiền</label>
-                        <input type="text" class="pay-item-infor-right" disabled>
-                    </div>
-                </form>
+        </div>
+        <div class="pay-item-right">
+            <div class="title">
+                Thông tin cá nhân
             </div>
+            <form action="">
+                <div class="pay-item-infor">
+                    <label for="" class="pay-item-infor-left">Email</label>
+                    <input type="text" class="pay-item-infor-right">
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Họ và tên</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Số điện thoại</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">CMND</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Địa chỉ</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+            </form>
+            <div class="title">
+                Thông tin vé
+            </div>
+            <form action="">
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Tuyến</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Ngày giờ</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Ghế</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Số lượng</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+                <div class="pay-item-infor clear">
+                    <label for="" class="pay-item-infor-left">Tổng tiền</label>
+                    <input type="text" class="pay-item-infor-right" disabled>
+                </div>
+            </form>
         </div>
     </div>
 </section>
-<app-select-pay *ngIf='isPay'>
-</app-select-pay>

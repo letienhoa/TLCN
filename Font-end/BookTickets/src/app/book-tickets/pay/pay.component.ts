@@ -23,10 +23,8 @@ export class PayComponent implements OnInit {
   }
 
   onPay(){
-    if(this.isSelect==false){
-      window.alert('Xin hãy chọn thẻ thanh toán')
-      return
-    }
+
+
 /*     var index = 0
     for(let i of this.service.seat){
       index ++

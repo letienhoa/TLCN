@@ -25,13 +25,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.form.invalid){
-      window.alert('Nhập email sai qui định')
-      return
+      return window.alert('Nhập email sai qui định')
     }
     if(this.form.value.email=='admin@gmail.com' && this.form.value.password=='admin'){
       window.alert('success')
-      this.router.navigate(['login', this.form.value.email])
-      return
+      return this.router.navigate(['login/admin', this.form.value.email])
     }
     window.alert("Nhập sai tài khoản mật khẩu")
   }
