@@ -28,7 +28,8 @@ import { InforLoginComponent } from './account/success/infor-login/infor-login.c
 import { InforPersonalComponent } from './account/success/infor-personal/infor-personal.component';
 import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.component';
 import { AddminComponent } from './account/addmin/addmin.component';
-import { CrudAccountComponent } from './account/addmin/crud-account/crud-account.component';
+import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-schedule.component';
+
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { CrudAccountComponent } from './account/addmin/crud-account/crud-account
     InforPersonalComponent,
     SelectPayComponent,
     AddminComponent,
-    CrudAccountComponent,
+    CurdScheduleComponent,
+
   ],
   imports: [
     BrowserModule,

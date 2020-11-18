@@ -1503,7 +1503,7 @@ footer.footer .move-up span:hover{
     width: 45%;
     background: #f6f6f6;
     border-radius: 10px;
-    height: 300px;
+    height: 315px;
     margin-left: 3%;
     margin-bottom: 20px;
    
@@ -1541,9 +1541,8 @@ footer.footer .move-up span:hover{
 .route-container .infor-left .form-group input, select{
     width: 90%;
     margin-left: 20px;
-    padding: 3px;
+    padding: 5px;
     border-radius: 5px;
-    font-size: 18px;
     font-size: 16px;
     color: #797373;
     border:1px solid black;
@@ -1813,6 +1812,53 @@ footer.footer .move-up span:hover{
     border: 2px solid black;
     cursor: pointer;
 }
+
+.infor-invoice{
+    margin: 50px auto;
+    width: 90%;
+    height: 300px;
+    display: flex;
+}
+
+.infor-invoice .title{
+    border-radius: 50px;
+    background: -webkit-linear-gradient(left, #F2754E,#009344  );   
+}
+
+.infor-invoice p{
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif; 
+    color: white;
+    padding: 10px;
+    margin-top: 0px;
+}
+
+.infor-invoice .infor-invoice-item{
+    display: flex; 
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.infor-invoice .infor-invoice-item input{
+    font-size: 16px;
+    padding: 5px 0px;
+    margin-left: 10px; 
+    width: 60%;
+}
+
+.infor-invoice  .btn-function p{
+    margin: 0px;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif; 
+    padding: 0px;
+    text-align: right;
+}
+
+.infor-invoice  .btn-function p:hover{
+    cursor: pointer;
+}
+
+
 
 /* ========================================== */
 /* Success */
@@ -2638,19 +2684,19 @@ footer.footer .move-up span:hover{
     width: 85%;
     display: flex;
 }
-.adminContainer .menu-content .menu-content-item{
+.adminContainer  .menu-content-item{
     width: 40%;
     height: 100%;
 }
 
-.adminContainer .menu-content .menu-content-title{
+.adminContainer  .menu-content-title{
     width: 100%;
     height: 50px;
     background: -webkit-linear-gradient(right, #F2754E,#009344  );   
     
 }
 
-.adminContainer .menu-content .menu-content-title p{
+.adminContainer  .menu-content-title p{
     margin-top: 0px;
     color: white;
     font-size: 20px;
@@ -2673,7 +2719,11 @@ footer.footer .move-up span:hover{
 }
 
 .menu-content-item-content table td{
-    width: 33%;
+    text-align: center;
+}
+
+.menu-content-item-content table td:hover{
+    cursor: pointer;
 }
 
 .menu-action p {
@@ -2705,13 +2755,18 @@ footer.footer .move-up span:hover{
     margin-top: 12px;
 }
 
-.menu-content .menu-item-right .item-account .infor-item input{
-    border:none;
+.menu-content .menu-item-right .item-account .infor-item input,select{
+/*     border:none;
     outline: none;
-    background: none;
+    background: none; */
     font-size: 16px;
     font-family: 'Oswald', sans-serif;
     width: 100%;
+    border-bottom:1px solid black;
+}
+.menu-content .menu-item-right .item-account .infor-item select{
+    margin-left: 0px;
+    border-radius: 0px;
     border-bottom:1px solid black;
 }
 
@@ -2746,6 +2801,56 @@ footer.footer .move-up span:hover{
     background: -webkit-linear-gradient(left, #F2754E,#009344  );   
 
 }
+
+.add-button{
+    background: -webkit-linear-gradient(right, #F2754E,#009344  );   
+}
+
+.adminContainer .menu-content .search-infor{
+    width: 100%; 
+    height: 110px; 
+    margin-bottom: 10px; 
+    display: flex;
+}
+
+.adminContainer .menu-content-1 .search-infor{
+    width: 100%; 
+    height: 110px; 
+    margin-bottom: 10px; 
+    display: flex;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left{
+    width: 49%; 
+    height: 110px;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left input{
+    width: 70%; 
+    height: 30px; 
+    margin-top: 10px; 
+    border-radius: 5px;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left button{
+    width: 27%; 
+    height: 34px; 
+    margin-left: 5px; 
+    border-radius: 5px;
+    color: white;
+    font-family: 'Oswald', sans-serif;  
+    background: -webkit-linear-gradient(left, #F2754E,#009344  );   
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left button:hover{
+    cursor: pointer;
+}
+
+
+
+
+/* ========================================== */
+/* CRUD Schedule */
 
 /* ========================================== */
 /* Viewport less then or equal to 750px */
