@@ -32,7 +32,7 @@ public class BenController {
 	@Autowired
 	private DiemDonDao diemDonDao;
 	
-	@RequestMapping(value="create",method= RequestMethod.POST)
+	@RequestMapping(value="/create",method= RequestMethod.POST)
 	public ResponseEntity<BaseResponse>create(@RequestBody BenRequest wrraper){
 		BaseResponse response= new BaseResponse();
 		Ben ben= new Ben();
@@ -42,6 +42,26 @@ public class BenController {
 		benDao.create(ben);
 		response.setData(ben);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}/update",method= RequestMethod.POST)
+	public ResponseEntity<BaseResponse>update(
+			@PathVariable (name="id") int id,
+			@RequestBody BenRequest wrraper){
+		BaseResponse response= new BaseResponse();
+		Ben ben= benDao.findOne(id);
+		if(ben==null)
+		{
+			response.setMessageError("Không tìm thấy bến =((");
+			return new ResponseEntity<BaseResponse>(response,HttpStatus.BAD_REQUEST);
+		} else {
+			ben.setTenBen(wrraper.getTenBen());
+			ben.setDiaChi(wrraper.getDiaChi());
+			benDao.update(ben);
+			response.setData(ben);
+			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+		}
+		
 	}
 	
 	@RequestMapping(value ="/get-list-ben-toi", method = RequestMethod.GET)

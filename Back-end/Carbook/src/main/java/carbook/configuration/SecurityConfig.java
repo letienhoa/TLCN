@@ -75,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		   http.antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 	      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 	      .antMatchers(HttpMethod.POST,"/api/ben/**").access("hasRole('ROLE_ADMIN')")
+	      .antMatchers(HttpMethod.POST,"/api/tuyenxe/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/ben/get").access("hasRole('ROLE_USER')")
 	      .antMatchers( "/api/ben/get-all-diem-don").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers( "/api/tram-dung/get").access("hasRole('ROLE_USER')")

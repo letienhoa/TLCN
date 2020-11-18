@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import carbook.dao.AbstractDao;
 import carbook.dao.BenDao;
 import carbook.entity.Ben;
+import carbook.entity.TuyenXe;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -48,8 +49,18 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 
 	@Override
 	public Ben findOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaQuery<Ben> criteria = this.getBuilder().createQuery(Ben.class);
+		Root<Ben> root = criteria.from(Ben.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
+		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
+	@Override
+	public Ben findOne(String name) {
+		CriteriaQuery<Ben> criteria = this.getBuilder().createQuery(Ben.class);
+		Root<Ben> root = criteria.from(Ben.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("tenBen"), name));
+		return this.getSession().createQuery(criteria).getSingleResult();
 	}
 
 }

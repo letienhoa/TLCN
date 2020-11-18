@@ -8,6 +8,8 @@ public interface TuyenXeDao {
 	
 	void update(TuyenXe entity);
 	
+	TuyenXe findOne(int id);
+	
 	TuyenXe spGetByDiemDiDiemToi(String DiemDi,String DiemToi);
 	
 }

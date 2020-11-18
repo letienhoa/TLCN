@@ -1,40 +1,26 @@
-package carbook.entity;
+package carbook.request;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name="tuyen_xe")
-public class TuyenXe {
+public class TuyenXeRequest {
 
-	@Id
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="diem_di")
+	@JsonProperty("diem_di")
 	private String diemDi;
 	
-	@Column(name="diem_toi")
+	@JsonProperty("diem_toi")
 	private String diemToi;
 	
-	@Column(name="khoang_cach")
+	@JsonProperty("khoang_cach")
 	private int khoangCach;
 	
-	@Column(name="gia_ca")
+	@JsonProperty("gia_ca")
 	private int giaCa;
 	
-	public TuyenXe() {
+	@JsonProperty("thoi_gian_hanh_trinh")
+	private int thoiGianChay;
+	
+	public TuyenXeRequest() {
 		
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getDiemDi() {
@@ -67,6 +53,14 @@ public class TuyenXe {
 
 	public void setGiaCa(int giaCa) {
 		this.giaCa = giaCa;
+	}
+
+	public int getThoiGianChay() {
+		return thoiGianChay;
+	}
+
+	public void setThoiGianChay(int thoiGianChay) {
+		this.thoiGianChay = thoiGianChay;
 	}
 	
 	

@@ -36,4 +36,12 @@ public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements Tuye
 		
 	}
 
+	@Override
+	public TuyenXe findOne(int id) {
+		CriteriaQuery<TuyenXe> criteria = this.getBuilder().createQuery(TuyenXe.class);
+		Root<TuyenXe> root = criteria.from(TuyenXe.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
+		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
 }
