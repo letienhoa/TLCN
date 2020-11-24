@@ -91,7 +91,7 @@ public String getUsernameFromToken(String token) {
     }
     int check=0;
     for(int i=0; i<=JwtService.listToken.size();i++) {
-		if(JwtService.listToken.get(i)== token)
+		if(JwtService.listToken!=null && token !=null &&  JwtService.listToken.get(i)== token)
 		{
 			check =1;
 			break;

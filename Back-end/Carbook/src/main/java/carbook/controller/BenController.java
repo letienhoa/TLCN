@@ -66,7 +66,7 @@ public class BenController {
 	
 	@RequestMapping(value ="/get-list-ben-toi", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> spGetBenToi(
-			@RequestParam(name = "", required = false, defaultValue = "0") int benDiId){
+			@RequestParam(name = "ben_di_id", required = false, defaultValue = "0") int benDiId){
 		BaseResponse response = new BaseResponse();
 		List<Ben> data = benDao.spGetBenToi(benDiId);
 		List<BenToiResponse> dataResponse = new BenToiResponse().mapTolist(data);
