@@ -58,7 +58,7 @@ public class KhachHangController {
 				e.printStackTrace();
 			}
 			khachHang.setTaiKhoan(wrapper.getTaiKhoan());
-			khachHang.setSdt(wrapper.getTaiKhoan());
+			khachHang.setSdt(wrapper.getSdt());
 			khachHang.setPassword(matKhauMK);
 			khachHang.setTenKh(wrapper.getTen());
 			khachHangdao.create(khachHang);
