@@ -10,6 +10,6 @@ public interface TuyenXeDao {
 	
 	TuyenXe findOne(int id);
 	
-	TuyenXe spGetByDiemDiDiemToi(String DiemDi,String DiemToi);
+	TuyenXe spGetByDiemDiDiemToi(int DiemDi,int DiemToi);
 	
 }

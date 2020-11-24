@@ -3,6 +3,8 @@ package carbook.daoimpl;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.procedure.ProcedureCall;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import carbook.dao.AbstractDao;
 import carbook.dao.TramDungDao;
+import carbook.entity.Ben;
 import carbook.entity.TramDung;
 
 @Transactional
@@ -38,6 +41,22 @@ public class TramDungDaoImpl extends AbstractDao<Integer, TramDung>  implements 
 	    
 		List<TramDung> list =procedureCall.getResultList();
 		return list;
+	}
+
+	@Override
+	public TramDung findOne(int id) {
+		CriteriaQuery<TramDung> criteria = this.getBuilder().createQuery(TramDung.class);
+		Root<TramDung> root = criteria.from(TramDung.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
+		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
+	@Override
+	public List<TramDung> findAll() {
+		CriteriaQuery<TramDung> criteria = this.getBuilder().createQuery(TramDung.class);
+		Root<TramDung> root = criteria.from(TramDung.class);
+		criteria.select(root).orderBy(this.getBuilder().asc(root.get("id")));
+		return this.getSession().createQuery(criteria).getResultList();
 	}
 
 }

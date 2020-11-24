@@ -9,11 +9,11 @@ public class TuyenXeCustomerResponse {
 
 	private int id;
 	
-	@JsonProperty("diem_di")
-	private String diemDi;
+	@JsonProperty("diem_di_id")
+	private int diemDi;
 	
-	@JsonProperty("diem_toi")
-	private String diemToi;
+	@JsonProperty("diem_toi_id")
+	private int diemToi;
 	
 	@JsonProperty("khoang_cach")
 	private int khoangCach;
@@ -29,26 +29,28 @@ public class TuyenXeCustomerResponse {
 	
 	public TuyenXeCustomerResponse(Ben ben,TuyenXe tuyenXe) {
 		this.id= tuyenXe.getId();
-		this.diemDi= tuyenXe.getDiemDi();
-		this.diemToi=tuyenXe.getDiemToi();
+		this.diemDi= tuyenXe.getDiemDiId();
+		this.diemToi=tuyenXe.getDiemToiId();
 		this.giaCa=tuyenXe.getGiaCa();
 		this.khoangCach=tuyenXe.getKhoangCach();
 		this.picture= ben.getPicture();
 	}
 
-	public String getDiemDi() {
+
+
+	public int getDiemDi() {
 		return diemDi;
 	}
 
-	public void setDiemDi(String diemDi) {
+	public void setDiemDi(int diemDi) {
 		this.diemDi = diemDi;
 	}
 
-	public String getDiemToi() {
+	public int getDiemToi() {
 		return diemToi;
 	}
 
-	public void setDiemToi(String diemToi) {
+	public void setDiemToi(int diemToi) {
 		this.diemToi = diemToi;
 	}
 

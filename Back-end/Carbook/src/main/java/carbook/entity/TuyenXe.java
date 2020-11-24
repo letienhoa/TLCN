@@ -13,11 +13,11 @@ public class TuyenXe {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="diem_di")
-	private String diemDi;
+	@Column(name="diem_di_id")
+	private int diemDiId;
 	
-	@Column(name="diem_toi")
-	private String diemToi;
+	@Column(name="diem_toi_id")
+	private int diemToiId;
 	
 	@Column(name="khoang_cach")
 	private int khoangCach;
@@ -37,20 +37,20 @@ public class TuyenXe {
 		this.id = id;
 	}
 
-	public String getDiemDi() {
-		return diemDi;
+	public int getDiemDiId() {
+		return diemDiId;
 	}
 
-	public void setDiemDi(String diemDi) {
-		this.diemDi = diemDi;
+	public void setDiemDiId(int diemDi) {
+		this.diemDiId = diemDi;
 	}
 
-	public String getDiemToi() {
-		return diemToi;
+	public int getDiemToiId() {
+		return diemToiId;
 	}
 
-	public void setDiemToi(String diemToi) {
-		this.diemToi = diemToi;
+	public void setDiemToiId(int diemToi) {
+		this.diemToiId = diemToi;
 	}
 
 	public int getKhoangCach() {
