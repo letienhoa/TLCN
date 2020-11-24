@@ -1,5 +1,6 @@
 package carbook.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,10 @@ public class GiuongController {
 	@RequestMapping(value ="/get-list-giuong-for-xe", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> spGetGiuongByTuyenXeId(
 			@RequestParam(name = "tuyen_xe_id", required = false, defaultValue = "1") int tuyenXeId,
-			@RequestParam(name = "gio", required = false, defaultValue = "7") int gio) {
+			@RequestParam(name = "gio", required = false, defaultValue = "7") int gio,
+			@RequestParam(name = "ngay", required = false, defaultValue = "2020-01-01") Date ngay) {
 		BaseResponse response= new BaseResponse();
-		List<GiuongModelData> data =giuongDao.spGetGiuongByTuyenXeId(tuyenXeId, gio);
+		List<GiuongModelData> data =giuongDao.spGetGiuongByTuyenXeId(tuyenXeId, gio,ngay);
 		response.setData(data);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 

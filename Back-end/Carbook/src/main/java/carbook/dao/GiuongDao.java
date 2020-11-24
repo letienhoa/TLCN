@@ -1,5 +1,6 @@
 package carbook.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import carbook.entity.Giuong;
@@ -11,5 +12,5 @@ public interface GiuongDao {
 	
 	void update(Giuong entity);
 
-	List<GiuongModelData> spGetGiuongByTuyenXeId(int tuyenXeId,int gio);
+	List<GiuongModelData> spGetGiuongByTuyenXeId(int tuyenXeId,int gio,Date ngay);
 }

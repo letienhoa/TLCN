@@ -1,5 +1,6 @@
 package carbook.daoimpl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
@@ -19,9 +20,10 @@ import carbook.entity.GiuongModelData;
 public class GiuongDaoImpl extends AbstractDao<Integer,GiuongModelData>  implements GiuongDao {
 
 	@Override
-	public List<GiuongModelData> spGetGiuongByTuyenXeId(int tuyenXeId, int gio) {
+	public List<GiuongModelData> spGetGiuongByTuyenXeId(int tuyenXeId, int gio,Date ngay) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_giuong_by_tuyen_xe_id",GiuongModelData.class);
 		procedureCall.registerParameter("tuyenXeId", Integer.class, ParameterMode.IN).bindValue(tuyenXeId);
+		procedureCall.registerParameter("ngay", Date.class, ParameterMode.IN).bindValue(ngay);
 		procedureCall.registerParameter("gio", Integer.class, ParameterMode.IN).bindValue(gio);
 	    
 		List<GiuongModelData> list =procedureCall.getResultList();
