@@ -1,6 +1,7 @@
 package carbook.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,10 @@ import com.nimbusds.jwt.SignedJWT;
 
 @Service
 public class JwtService {
+	public static List<String> listToken= null;
   public static final String USERNAME = "username";
   public static final String SECRET_KEY = "11111111111111111111111111111111";
-  public static final int EXPIRE_TIME = 86400000;
+  public static final int EXPIRE_TIME = 864000;
   public String generateTokenLogin(String username) {
     String token = null;
     try {
@@ -51,16 +53,19 @@ public class JwtService {
     }
     return claims;
   }
-  private Date generateExpirationDate() {
+  
+private Date generateExpirationDate() {
     return new Date(System.currentTimeMillis() + EXPIRE_TIME);
   }
-  private Date getExpirationDateFromToken(String token) {
+
+private Date getExpirationDateFromToken(String token) {
     Date expiration = null;
     JWTClaimsSet claims = getClaimsFromToken(token);
     expiration = claims.getExpirationTime();
     return expiration;
   }
-  public String getUsernameFromToken(String token) {
+  
+public String getUsernameFromToken(String token) {
     String username = null;
     try {
       JWTClaimsSet claims = getClaimsFromToken(token);
@@ -83,6 +88,18 @@ public class JwtService {
   public Boolean validateTokenLogin(String token) {
     if (token == null || token.trim().length() == 0) {
       return false;
+    }
+    int check=0;
+    for(int i=0; i<=JwtService.listToken.size();i++) {
+		if(JwtService.listToken.get(i)== token)
+		{
+			check =1;
+			break;
+		}
+	}
+    if(check==1)
+    {
+    	return false;
     }
     String username = getUsernameFromToken(token);
     if (username == null || username.isEmpty()) {
