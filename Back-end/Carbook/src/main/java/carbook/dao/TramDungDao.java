@@ -5,6 +5,10 @@ import java.util.List;
 import carbook.entity.TramDung;
 
 public interface TramDungDao {
+	
+	TramDung findOne(int id);
+	
+	List<TramDung> findAll();
 
 	TramDung create(TramDung entity);
 	

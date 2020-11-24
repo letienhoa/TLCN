@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TuyenXeRequest {
 
-	@JsonProperty("diem_di")
-	private String diemDi;
+	@JsonProperty("diem_di_id")
+	private int diemDiId;
 	
-	@JsonProperty("diem_toi")
-	private String diemToi;
+	@JsonProperty("diem_toi_id")
+	private int diemToiId;
 	
 	@JsonProperty("khoang_cach")
 	private int khoangCach;
@@ -23,21 +23,23 @@ public class TuyenXeRequest {
 		
 	}
 
-	public String getDiemDi() {
-		return diemDi;
+
+	public int getDiemDiId() {
+		return diemDiId;
 	}
 
-	public void setDiemDi(String diemDi) {
-		this.diemDi = diemDi;
+	public void setDiemDiId(int diemDiId) {
+		this.diemDiId = diemDiId;
 	}
 
-	public String getDiemToi() {
-		return diemToi;
+	public int getDiemToiId() {
+		return diemToiId;
 	}
 
-	public void setDiemToi(String diemToi) {
-		this.diemToi = diemToi;
+	public void setDiemToiId(int diemToiId) {
+		this.diemToiId = diemToiId;
 	}
+
 
 	public int getKhoangCach() {
 		return khoangCach;

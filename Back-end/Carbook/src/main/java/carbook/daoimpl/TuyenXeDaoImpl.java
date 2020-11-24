@@ -15,12 +15,12 @@ import carbook.entity.TuyenXe;
 public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements TuyenXeDao {
 
 	@Override
-	public TuyenXe spGetByDiemDiDiemToi(String DiemDi, String DiemToi) {
+	public TuyenXe spGetByDiemDiDiemToi(int DiemDi, int DiemToi) {
 		CriteriaQuery<TuyenXe> criteria = this.getBuilder().createQuery(TuyenXe.class);
 
 		Root<TuyenXe> root = criteria.from(TuyenXe.class);
-		criteria.select(root).where(this.getBuilder().equal(root.get("diemDi"), DiemDi));
-		criteria.select(root).where(this.getBuilder().equal(root.get("diemToi"),DiemToi));
+		criteria.select(root).where(this.getBuilder().equal(root.get("diemDiId"), DiemDi));
+		criteria.select(root).where(this.getBuilder().equal(root.get("diemToiId"),DiemToi));
 		return this.getSession().createQuery(criteria).uniqueResult();
 	}
 

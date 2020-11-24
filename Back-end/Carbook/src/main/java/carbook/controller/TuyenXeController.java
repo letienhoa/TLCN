@@ -43,8 +43,8 @@ public class TuyenXeController {
 			@RequestBody TuyenXeRequest wrapper){
 		BaseResponse response = new BaseResponse();
 		TuyenXe tuyenXe= new TuyenXe();
-		tuyenXe.setDiemDi(wrapper.getDiemDi());
-		tuyenXe.setDiemToi(wrapper.getDiemToi());
+		tuyenXe.setDiemDiId(wrapper.getDiemDiId());
+		tuyenXe.setDiemToiId(wrapper.getDiemToiId());
 		tuyenXe.setGiaCa(wrapper.getGiaCa());
 		tuyenXe.setKhoangCach(wrapper.getThoiGianChay());
 		
@@ -66,8 +66,8 @@ public class TuyenXeController {
 			
 		} else {
 			
-			tuyenXe.setDiemDi(wrapper.getDiemDi());
-			tuyenXe.setDiemToi(wrapper.getDiemToi());
+			tuyenXe.setDiemDiId(wrapper.getDiemDiId());
+			tuyenXe.setDiemToiId(wrapper.getDiemToiId());
 			tuyenXe.setGiaCa(wrapper.getGiaCa());
 			tuyenXe.setKhoangCach(wrapper.getThoiGianChay());
 			tuyenXeDao.update(tuyenXe);
@@ -79,11 +79,11 @@ public class TuyenXeController {
 	
 	@RequestMapping(value ="/get-tuyen-xe", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> sptuyenxe(
-			@RequestParam(name = "diem_di", required = false, defaultValue = "f") String diemdi,
-			@RequestParam(name = "diem_toi", required = false, defaultValue = "7") String diemtoi) {
+			@RequestParam(name = "diem_di_id", required = false, defaultValue = "f") int diemDiId,
+			@RequestParam(name = "diem_toi_id", required = false, defaultValue = "7") int diemToiId) {
 		BaseResponse response= new BaseResponse();
-		TuyenXe tuyenXe = tuyenXeDao.spGetByDiemDiDiemToi(diemdi, diemtoi);
-		Ben ben = benDao.findOne(diemtoi);
+		TuyenXe tuyenXe = tuyenXeDao.spGetByDiemDiDiemToi(diemDiId, diemToiId);
+		Ben ben = benDao.findOne(diemToiId);
 		TuyenXeCustomerResponse responsedate = new TuyenXeCustomerResponse(ben,tuyenXe);
 		response.setData(responsedate);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
