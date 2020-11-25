@@ -57,8 +57,6 @@ export class BookTicketsService {
     {time:'0:45',city:'Bến Xe Miền Tây',address:'Trạm 4 Trạm 4 Trạm 4 Trạm 4 Trạm 4 Trạm 4 Trạm 4'},
   ]
 
-
-
   city_go = ['Hà Nội', 'Đà Nẵng', 'Phú Yên', 'TP Hồ Chí Minh']
 
   city_arrived = [
@@ -144,7 +142,6 @@ export class BookTicketsService {
         return i.TP
       }
     }
-
   }
 
 

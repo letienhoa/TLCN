@@ -19,7 +19,8 @@ import { PayComponent } from './book-tickets/pay/pay.component';
 import { RulesComponent } from './policy/rules/rules.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
-import { BookTicketsService } from "../../src/app/shared/book-tickets.service";
+import {HttpClientModule} from '@angular/common/http'; 
+
 import { SuccessComponent } from './account/success/success.component';
 import { BookTicketComponent } from './account/success/book-ticket/book-ticket.component';
 import { HistoryComponent } from './account/success/history/history.component';
@@ -29,6 +30,9 @@ import { InforPersonalComponent } from './account/success/infor-personal/infor-p
 import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.component';
 import { AddminComponent } from './account/addmin/addmin.component';
 import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-schedule.component';
+
+import { BookTicketsService } from "../../src/app/shared/book-tickets.service";
+import { BookService } from '../../src/app/shared/book.service';
 
 
 
@@ -65,10 +69,11 @@ import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-sched
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
    
   ],
-  providers: [BookTicketsService],
+  providers: [BookTicketsService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

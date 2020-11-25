@@ -31,7 +31,7 @@
                 <h3>Thông tin vé</h3>   
                 <div class="customer-infor">
                     <div class="customer-name">
-                        Tuyến xe: <label for="">{{infor_router.departure}} => {{infor_router.destination}}</label>
+                        Tuyến xe: <label for="">{{infor_router.departure.ben_toi}} => {{infor_router.destination.ben_toi}}</label>
                     </div>
                     <div class="customer-phone">
                         Số lượng ghế: <label for="">{{infor_seat.number}}</label>
@@ -42,10 +42,10 @@
                 </div>
                 <div class="customer-infor">
                     <div class="customer-name">
-                        Thời gian: <label for="" style="color: #00613D;">{{infor_seat.time}} {{infor_router.daygo}}</label>
+                        Thời gian: <label for="" style="color: #00613D;">{{infor_seat.time}}:00h - {{infor_router.daygo}}</label>
                     </div>
                     <div class="customer-phone">
-                        Điểm lên xe: <label for="">{{infor_seat.boarding_point}}</label>
+                        Điểm lên xe: <label for="">{{infor_seat.boardingPoint.name}}</label>
                     </div>
                     <div class="customer-email">
                     </div>
