@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import carbook.dao.GiuongDao;
 import carbook.entity.GiuongModelData;
 import carbook.response.BaseResponse;
+import carbook.service.ChangeDateService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -29,8 +30,10 @@ public class GiuongController {
 	public ResponseEntity<BaseResponse> spGetGiuongByTuyenXeId(
 			@RequestParam(name = "tuyen_xe_id", required = false, defaultValue = "1") int tuyenXeId,
 			@RequestParam(name = "gio", required = false, defaultValue = "7") int gio,
-			@RequestParam(name = "ngay", required = false, defaultValue = "2020-01-01") Date ngay) {
+			@RequestParam(name = "ngay", required = false, defaultValue = "01/01/2001") Date ngay) {
 		BaseResponse response= new BaseResponse();
+		ngay=ChangeDateService.changeFormatDate(ngay);
+		
 		List<GiuongModelData> data =giuongDao.spGetGiuongByTuyenXeId(tuyenXeId, gio,ngay);
 		response.setData(data);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
