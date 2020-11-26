@@ -14,6 +14,7 @@ import carbook.dao.TuyenXeDao;
 
 import carbook.entity.TuyenXe;
 import carbook.entity.TuyenXeModelData;
+import carbook.entity.TuyenXePhoBienDataModel;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -55,6 +56,15 @@ public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements Tuye
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_list_tuyen_xe",TuyenXeModelData.class);
 	    
 		List<TuyenXeModelData> list =procedureCall.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<TuyenXePhoBienDataModel> spGetListTuyenXePhoBien() {
+		
+ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_list_tuyen_xe_pho_bien",TuyenXePhoBienDataModel.class);
+	    
+		List<TuyenXePhoBienDataModel> list =procedureCall.getResultList();
 		return list;
 	}
 

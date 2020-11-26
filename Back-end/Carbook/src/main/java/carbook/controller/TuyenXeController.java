@@ -19,6 +19,7 @@ import carbook.dao.XeDao;
 import carbook.entity.Ben;
 import carbook.entity.TuyenXe;
 import carbook.entity.TuyenXeModelData;
+import carbook.entity.TuyenXePhoBienDataModel;
 import carbook.entity.Xe;
 import carbook.request.TuyenXeRequest;
 import carbook.response.BaseResponse;
@@ -109,5 +110,12 @@ public class TuyenXeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-	
+	@RequestMapping(value ="/get-tuyen-xe-pho-bien", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> spGetListTuyenXePhoBien(){
+		
+		BaseResponse response = new BaseResponse();
+		List<TuyenXePhoBienDataModel> list = tuyenXeDao.spGetListTuyenXePhoBien();
+		response.setData(list);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
 }

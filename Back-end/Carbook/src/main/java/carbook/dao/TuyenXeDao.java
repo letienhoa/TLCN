@@ -4,6 +4,7 @@ import java.util.List;
 
 import carbook.entity.TuyenXe;
 import carbook.entity.TuyenXeModelData;
+import carbook.entity.TuyenXePhoBienDataModel;
 
 public interface TuyenXeDao {
 
@@ -14,6 +15,8 @@ public interface TuyenXeDao {
 	TuyenXe findOne(int id);
 	
 	List<TuyenXeModelData> findAll();
+	
+	List<TuyenXePhoBienDataModel> spGetListTuyenXePhoBien();
 	
 	TuyenXe spGetByDiemDiDiemToi(int DiemDi,int DiemToi);
 	
