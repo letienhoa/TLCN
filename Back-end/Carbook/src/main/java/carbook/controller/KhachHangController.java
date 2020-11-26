@@ -90,6 +90,7 @@ public class KhachHangController {
 				result = "Wrong userId and password";
 				httpStatus = HttpStatus.BAD_REQUEST;
 			} else {
+				
 				result = jwtService.generateTokenLogin(khachHang.getTaiKhoan());
 				JwtService.listToken.add(result);
 		      	 httpStatus = HttpStatus.OK;
@@ -99,6 +100,7 @@ public class KhachHangController {
 		      httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		respnse= new TokenResponse(result);
+		respnse.setRoles(khachHang.getRoles());
 		return new ResponseEntity<TokenResponse>(respnse,HttpStatus.OK);
 
 	}

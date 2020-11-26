@@ -1,5 +1,6 @@
 package carbook.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import com.nimbusds.jwt.SignedJWT;
 
 @Service
 public class JwtService {
-	public static List<String> listToken= null;
+	public static List<String> listToken= new ArrayList<String>();
   public static final String USERNAME = "username";
   public static final String SECRET_KEY = "11111111111111111111111111111111";
   public static final int EXPIRE_TIME = 864000;

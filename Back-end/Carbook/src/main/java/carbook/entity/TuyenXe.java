@@ -25,6 +25,9 @@ public class TuyenXe {
 	@Column(name="gia_ca")
 	private int giaCa;
 	
+	@Column(name="khoang_thoi_gian")
+	private int khoangThoiGian;
+	
 	public TuyenXe() {
 		
 	}
@@ -67,6 +70,14 @@ public class TuyenXe {
 
 	public void setGiaCa(int giaCa) {
 		this.giaCa = giaCa;
+	}
+
+	public int getKhoangThoiGian() {
+		return khoangThoiGian;
+	}
+
+	public void setKhoangThoiGian(int khoangThoiGian) {
+		this.khoangThoiGian = khoangThoiGian;
 	}
 	
 	
