@@ -16,15 +16,12 @@ export class PayComponent implements OnInit {
   constructor(private service: BookTicketsService) { }
 
   ngOnInit(): void {
-    this.infor = JSON.parse(sessionStorage.getItem('b3'))
-    this.infor_seat = JSON.parse(sessionStorage.getItem('b2'))
-    this.infor_router = JSON.parse(sessionStorage.getItem('b1'))
-    console.log(this.infor)
+    this.infor = JSON.parse(sessionStorage.getItem('b3'));
+    this.infor_seat = JSON.parse(sessionStorage.getItem('b2'));
+    this.infor_router = JSON.parse(sessionStorage.getItem('b1'));
   }
 
   onPay(){
-
-
 /*     var index = 0
     for(let i of this.service.seat){
       index ++
