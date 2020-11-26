@@ -6,13 +6,16 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.hibernate.procedure.ProcedureCall;
 import org.springframework.stereotype.Repository;
 
 import carbook.dao.AbstractDao;
 import carbook.dao.TuyenXeDao;
-import carbook.entity.DiemDon;
-import carbook.entity.TuyenXe;
 
+import carbook.entity.TuyenXe;
+import carbook.entity.TuyenXeModelData;
+
+@SuppressWarnings("unchecked")
 @Transactional
 @Repository("tuyenXeDao")
 public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements TuyenXeDao {
@@ -48,11 +51,11 @@ public class TuyenXeDaoImpl extends AbstractDao<Integer,TuyenXe> implements Tuye
 	}
 
 	@Override
-	public List<TuyenXe> findAll() {
-		CriteriaQuery<TuyenXe> criteria = this.getBuilder().createQuery(TuyenXe.class);
-		Root<TuyenXe> root = criteria.from(TuyenXe.class);
-		criteria.select(root).orderBy(this.getBuilder().asc(root.get("id")));
-		return this.getSession().createQuery(criteria).getResultList();
+	public List<TuyenXeModelData> findAll() {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_list_tuyen_xe",TuyenXeModelData.class);
+	    
+		List<TuyenXeModelData> list =procedureCall.getResultList();
+		return list;
 	}
 
 }

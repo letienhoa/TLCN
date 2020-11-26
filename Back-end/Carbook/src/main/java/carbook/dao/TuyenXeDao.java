@@ -3,6 +3,7 @@ package carbook.dao;
 import java.util.List;
 
 import carbook.entity.TuyenXe;
+import carbook.entity.TuyenXeModelData;
 
 public interface TuyenXeDao {
 
@@ -12,7 +13,7 @@ public interface TuyenXeDao {
 	
 	TuyenXe findOne(int id);
 	
-	List<TuyenXe> findAll();
+	List<TuyenXeModelData> findAll();
 	
 	TuyenXe spGetByDiemDiDiemToi(int DiemDi,int DiemToi);
 	

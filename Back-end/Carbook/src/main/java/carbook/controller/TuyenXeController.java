@@ -18,6 +18,7 @@ import carbook.dao.TuyenXeDao;
 import carbook.dao.XeDao;
 import carbook.entity.Ben;
 import carbook.entity.TuyenXe;
+import carbook.entity.TuyenXeModelData;
 import carbook.entity.Xe;
 import carbook.request.TuyenXeRequest;
 import carbook.response.BaseResponse;
@@ -96,6 +97,15 @@ public class TuyenXeController {
 		List<Xe> list = xeDao.getXeByTuyenXe(id);
 		List<GioChayResponse> listData = new GioChayResponse().mapToList(list);
 		response.setData(listData);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> getAll(){
+		
+		BaseResponse response = new BaseResponse();
+		List<TuyenXeModelData> list = tuyenXeDao.findAll();
+		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
