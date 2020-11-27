@@ -98,6 +98,14 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         
+        <!-- thêm phần email -->
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		    <version>2.2.6.RELEASE</version>
+		</dependency>
+        
+        
     </dependencies>
 
 
