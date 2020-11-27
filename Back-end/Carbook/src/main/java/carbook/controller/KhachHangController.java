@@ -109,15 +109,14 @@ public class KhachHangController {
 	public ResponseEntity<BaseResponse> logout(HttpServletRequest req) {
 		BaseResponse response= new BaseResponse();
 		String authorization = req.getHeader("Authorization"); 
-		String matKhauMK = null;
-		User khachHang =new User();
-		for(int i=0; i<=JwtService.listToken.size();i++) {
-			if(JwtService.listToken.get(i)== authorization)
+		for(int i=0; i<JwtService.listToken.size();i++) {
+			if(JwtService.listToken.get(i).equals(authorization))
 			{
 				JwtService.listToken.remove(i);
 			}
 		}
-			response.setData(khachHang);
+		response.setMessageError("Đăng xuất thành công");
+			response.setData(null);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 

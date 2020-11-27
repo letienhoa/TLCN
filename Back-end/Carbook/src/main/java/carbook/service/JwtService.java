@@ -17,7 +17,7 @@ import com.nimbusds.jwt.SignedJWT;
 
 @Service
 public class JwtService {
-	public static List<String> listToken= new ArrayList<String>();
+  public static List<String> listToken= new ArrayList<String>();
   public static final String USERNAME = "username";
   public static final String SECRET_KEY = "11111111111111111111111111111111";
   public static final int EXPIRE_TIME = 864000;
@@ -86,19 +86,20 @@ public String getUsernameFromToken(String token) {
     Date expiration = getExpirationDateFromToken(token);
     return expiration.before(new Date());
   }
+  
   public Boolean validateTokenLogin(String token) {
+	  int check=0;
     if (token == null || token.trim().length() == 0) {
       return false;
     }
-    int check=0;
-    for(int i=0; i<=JwtService.listToken.size();i++) {
-		if(JwtService.listToken!=null && token !=null &&  JwtService.listToken.get(i)== token)
+    for(int i=0; i<JwtService.listToken.size();i++) {
+		if(JwtService.listToken.get(i).equals(token))
 		{
-			check =1;
-			break;
+		check=1;
+		break;
 		}
 	}
-    if(check==1)
+    if(check==0)
     {
     	return false;
     }
