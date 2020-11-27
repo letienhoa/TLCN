@@ -3,6 +3,7 @@ package carbook.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,9 @@ public class KhachHangController {
 	@Autowired
 	private EmailService emailService; 
 	
+	public static List<String> listCode = new ArrayList<String>();
 	
+	@SuppressWarnings("static-access")
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public ResponseEntity<BaseResponse> create(@RequestBody KhachHangRequest wrapper) {
 		BaseResponse response= new BaseResponse();
@@ -74,24 +77,43 @@ public class KhachHangController {
 			khachHang.setQuanHuyen(wrapper.getQuanHuyen());
 			khachHang.setThanhPho(wrapper.getThanhPho());
 			String code=GenerateCode.generateString();
+			this.listCode.add(code);
 			khachHangdao.create(khachHang);
-			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản:"+"https://www.google.com/");
+			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
+			+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
 			response.setData(khachHang);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 
 	}
 	
-	@RequestMapping(value ="/confirm", method = RequestMethod.POST)
-	public ResponseEntity<BaseResponse> spGetBenToi(
+	@RequestMapping(value ="/confirm", method = RequestMethod.GET)
+	public String spGetBenToi(
 			@RequestParam(name = "user_name", required = false, defaultValue = "0") String userName,
 			@RequestParam(name = "code", required = false, defaultValue = "0") String code){
-		BaseResponse response = new BaseResponse();
+		
+		int h=0;
+		String m= new String();
+		for(String x: listCode) {
+			if(x.equals(code)) {
+				h=1;
+				m=x;
+			} 
+		}
+		listCode.remove(m);
 		User user= khachHangdao.findByUsername(userName);
-		user.setConfirm(1);
-		khachHangdao.update(user);
-        response.setData(null);
-        return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+		String responses= new String("");
+		if(user!=null && h==1)
+		{
+			user.setConfirm(1);
+			user.setStatus(1);
+			khachHangdao.update(user);
+			responses ="Bạn đã xác thực thành công. \n"+"Bấm vào đây để đăng nhập:  "+"http://localhost:4200/login";
+	        h=0;
+		} else {
+			responses="Đừng cố xâm nhập vào trang web của mình nhé, ahihi";
+		}
+        return responses;
 	}
 	
 	@RequestMapping(value ="/login", method = RequestMethod.POST)
