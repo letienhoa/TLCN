@@ -16,9 +16,17 @@ public class TuyenXeModelData {
 	@Column(name="ben_xe_di")
 	private String benXeDi;
 	
+	@JsonProperty("ben_xe_di_id")
+	@Column(name="ben_xe_di_id")
+	private int benXeDiId;
+	
 	@JsonProperty("ben_xe_toi")
 	@Column(name="ben_xe_toi")
 	private String benXeToi;
+	
+	@JsonProperty("ben_xe_toi_id")
+	@Column(name="ben_xe_toi_id")
+	private int benXeToiId;
 	
 	@JsonProperty("gia_ca")
 	@Column(name="gia_ca")

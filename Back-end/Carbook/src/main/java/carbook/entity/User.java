@@ -34,14 +34,29 @@ public class User extends BaseEntity {
 	@Column(name= "ten_kh")
 	private String tenKh;
 	
+	private String email;
+	
 	@Column(name= "sdt")
 	private String sdt;
+	
+	private String cmnd;
+	
+	@Column(name= "dia_chi")
+	private String diaChi;
+	
+	@Column(name= "thanh_pho")
+	private String thanhPho;
+	
+	@Column(name= "quan_huyen")
+	private String quanHuyen;
+	
+	private int confirm;
+	
+	private int status;
 	
 	public User() {
 		
 	}
-	
-
 	
 	public int getId() {
 		return id;
@@ -83,6 +98,61 @@ public class User extends BaseEntity {
 		this.sdt = sdt;
 	}
 
-	
+	public String getCmnd() {
+		return cmnd;
+	}
+
+	public void setCmnd(String cmnd) {
+		this.cmnd = cmnd;
+	}
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
+
+	public String getThanhPho() {
+		return thanhPho;
+	}
+
+	public void setThanhPho(String thanhPho) {
+		this.thanhPho = thanhPho;
+	}
+
+	public String getQuanHuyen() {
+		return quanHuyen;
+	}
+
+	public void setQuanHuyen(String quanHuyen) {
+		this.quanHuyen = quanHuyen;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(int confirm) {
+		this.confirm = confirm;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	
 }

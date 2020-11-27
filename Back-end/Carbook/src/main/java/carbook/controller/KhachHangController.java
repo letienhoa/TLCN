@@ -3,7 +3,7 @@ package carbook.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import java.security.NoSuchAlgorithmException;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.KhachHangDao;
+import carbook.entity.Ben;
 import carbook.entity.ResponseStatusEnum;
 import carbook.entity.TokenResponse;
 import carbook.entity.User;
 import carbook.entity.UserToken;
 import carbook.request.KhachHangRequest;
 import carbook.response.BaseResponse;
+import carbook.response.BenToiResponse;
 import carbook.security.PasswordEncryption;
+import carbook.service.EmailService;
+import carbook.service.GenerateCode;
 import carbook.service.JwtService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,6 +39,9 @@ public class KhachHangController {
 	
 	@Autowired
 	  private JwtService jwtService;
+	
+	@Autowired
+	private EmailService emailService; 
 	
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
@@ -61,11 +68,30 @@ public class KhachHangController {
 			khachHang.setSdt(wrapper.getSdt());
 			khachHang.setPassword(matKhauMK);
 			khachHang.setTenKh(wrapper.getTen());
+			khachHang.setDiaChi(wrapper.getDiaChi());
+			khachHang.setCmnd(wrapper.getCmnd());
+			khachHang.setEmail(wrapper.getEmail());
+			khachHang.setQuanHuyen(wrapper.getQuanHuyen());
+			khachHang.setThanhPho(wrapper.getThanhPho());
+			String code=GenerateCode.generateString();
 			khachHangdao.create(khachHang);
+			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản:"+"https://www.google.com/");
 			response.setData(khachHang);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 
+	}
+	
+	@RequestMapping(value ="/confirm", method = RequestMethod.POST)
+	public ResponseEntity<BaseResponse> spGetBenToi(
+			@RequestParam(name = "user_name", required = false, defaultValue = "0") String userName,
+			@RequestParam(name = "code", required = false, defaultValue = "0") String code){
+		BaseResponse response = new BaseResponse();
+		User user= khachHangdao.findByUsername(userName);
+		user.setConfirm(1);
+		khachHangdao.update(user);
+        response.setData(null);
+        return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value ="/login", method = RequestMethod.POST)
