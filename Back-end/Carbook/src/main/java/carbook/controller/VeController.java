@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
+import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.response.BaseResponse;
 
@@ -45,5 +46,15 @@ public class VeController {
 		List<ThongKeDoanhThuModelData> list = veDao.spGetTotalRevenueTiket(time, selecter);
 		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
-	}	
+	}
+	
+	@RequestMapping(value ="thong-ke-theo-khach-hang", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> spGetVeForCustomer(
+			@RequestParam(name = "khach_hang_id", required = false) Integer khachHang){
+		BaseResponse response = new BaseResponse();
+		List<VeCustomerDataModel> list = veDao.spGetVeForCustomer(khachHang);
+		response.setData(list);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
 }

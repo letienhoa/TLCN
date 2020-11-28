@@ -5,6 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TokenResponse {
 
+	private int id;
+	
+	@JsonProperty("ten_khach_hang")
+	private String name;
+	
+	@JsonProperty("email")
+	private String email;
+	
 	@JsonProperty("Token")
 	private final String jwttoken;
 	
@@ -25,6 +33,30 @@ public class TokenResponse {
 
 	public void setRoles(String [] roles) {
 		this.roles = roles;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
 	
 	

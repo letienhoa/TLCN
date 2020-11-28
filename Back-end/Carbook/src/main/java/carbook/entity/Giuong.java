@@ -18,6 +18,9 @@ public class Giuong {
 	@Column(name="id_tuyen_xe")
 	private int idTuyenXe;
 	
+	@Column(name="id_ve")
+	private int idVe;
+	
 	@Column(name="ngay")
 	private Date ngay;
 	
@@ -69,6 +72,14 @@ public class Giuong {
 
 	public void setGio(int gio) {
 		this.gio = gio;
+	}
+
+	public int getIdVe() {
+		return idVe;
+	}
+
+	public void setIdVe(int idVe) {
+		this.idVe = idVe;
 	}
 	
 	

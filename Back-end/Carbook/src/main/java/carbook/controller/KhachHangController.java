@@ -184,11 +184,17 @@ public class KhachHangController {
 		      result = "Server Error";
 		      httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
+	
 		respnse= new TokenResponse(result);
+		respnse.setId(khachHang.getId());
+		respnse.setName(khachHang.getName());
+		respnse.setEmail(khachHang.getEmail());
 		respnse.setRoles(khachHang.getRoles());
 		return new ResponseEntity<TokenResponse>(respnse,HttpStatus.OK);
 
 	}
+	
+	
 	
 	@RequestMapping(value ="/logout", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> logout(HttpServletRequest req) {
@@ -205,6 +211,8 @@ public class KhachHangController {
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 
+	
+	
 	@RequestMapping(value ="/change-password", method = RequestMethod.POST)
 	public ResponseEntity<BaseResponse> changepassword(
 			HttpServletRequest req,
@@ -223,12 +231,13 @@ public class KhachHangController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			for(int i=0; i<=JwtService.listToken.size();i++) {
-				if(JwtService.listToken.get(i)== authorization)
+			for(int i=0; i<JwtService.listToken.size();i++) {
+				if(JwtService.listToken.get(i).equals(authorization))
 				{
 					JwtService.listToken.remove(i);
 				}
 			}
+			
 			khachHang.setPassword(matKhauMK);
 			khachHangdao.update(khachHang);
 			response.setMessageError("Đổi mật khẩu thành công");
