@@ -133,7 +133,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-cityChanged  (obj:any,index:any){
+cityChanged(obj:any,index:any){
     if(index==0){
       this.ser.getBenById(obj).subscribe(
         data => {
