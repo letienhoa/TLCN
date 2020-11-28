@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Ben } from "../models/Ben";
 import { Observable, of } from "rxjs";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +33,19 @@ export class BookService {
     number:0,
     totalMoney:0
   };
+
+  bookTicket = {
+    routerId:0,
+    daygo:"",
+    time:0,
+    boardingPoint:{
+      id:'',
+      name:''
+    },
+    seats:[],
+    number:0,
+    totalMoney:0
+  }
 
   listDeparture: Ben[];
 
@@ -66,6 +78,14 @@ export class BookService {
 
   getStatusSeat(tuyen_xe_id:any, gio:any, ngay:any):Observable<any>{
     return this.http.get<any>(this.urlGiuong+"/get-list-giuong-for-xe?tuyen_xe_id="+tuyen_xe_id+"&gio="+gio+"&ngay="+ngay);
+  }
+
+  getRoterPopular():Observable<any>{
+    return this.http.get<any>(this.urlTuyen+"/get-tuyen-xe-pho-bien");
+  }
+
+  getRouter():Observable<any>{
+    return this.http.get<any>(`${this.urlTuyen}/`);
   }
 
 }

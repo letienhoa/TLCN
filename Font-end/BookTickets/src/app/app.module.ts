@@ -31,8 +31,8 @@ import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.
 import { AddminComponent } from './account/addmin/addmin.component';
 import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-schedule.component';
 
-import { BookTicketsService } from "../../src/app/shared/book-tickets.service";
 import { BookService } from '../../src/app/shared/book.service';
+import {LogInService} from '../../src/app/shared/log-in.service';
 
 
 
@@ -73,7 +73,7 @@ import { BookService } from '../../src/app/shared/book.service';
     HttpClientModule
    
   ],
-  providers: [BookTicketsService, BookService],
+  providers: [LogInService,BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

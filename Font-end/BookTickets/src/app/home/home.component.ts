@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ben } from '../models/Ben';
-import { BookTicketsService } from "../shared/book-tickets.service";
+
 
 declare var $:any
 
@@ -20,8 +20,9 @@ export class HomeComponent implements OnInit {
   today:any;
   listDeparture:Ben[];
   listDestiantion: any;
+  listRoterPoppular: [];
 
-  constructor(public service: BookTicketsService, private route: Router, private ser: BookService) { 
+  constructor( private route: Router, public ser: BookService) { 
   }
 
   ngOnInit(): void {
@@ -94,10 +95,12 @@ export class HomeComponent implements OnInit {
     });
     this.ser.step1.isOneWay = true;
 
+    this.ser.getRoterPopular().subscribe(
+      data => this.listRoterPoppular = data.data
+    )
   }
 
   submit(){
-
     if(this.ser.step1.isOneWay == false && this.ser.step1.returnday == ""){
       window.alert("xin hay chon ngay ve");
       return;
@@ -108,7 +111,6 @@ export class HomeComponent implements OnInit {
 
     this.route.navigate(['/booktickets/select-seat']);
   }
-
     
   getDate(){
     var today = new Date();
@@ -131,7 +133,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  cityChanged(obj:any,index:any){
+cityChanged  (obj:any,index:any){
     if(index==0){
       this.ser.getBenById(obj).subscribe(
         data => {
@@ -150,4 +152,6 @@ export class HomeComponent implements OnInit {
       this.ser.step1.destination.id = item.id.toString();
     }
   }
+
+
 }

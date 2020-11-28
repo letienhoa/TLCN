@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookTicketsService } from 'src/app/shared/book-tickets.service';
+
 
 @Component({
   selector: 'app-pay',
@@ -13,7 +13,7 @@ export class PayComponent implements OnInit {
   infor_router:any
   infor_seat:any
   
-  constructor(private service: BookTicketsService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.infor = JSON.parse(sessionStorage.getItem('b3'));

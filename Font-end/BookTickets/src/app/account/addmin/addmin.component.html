@@ -26,48 +26,54 @@
                 <p>Danh sách tài khoản</p> 
             </div>
             <div class="menu-content-item-content">
-                <div style="height:300px; overflow:auto; ">
-                    <table style="width:90%;">
+                <div style="height:300px; overflow:auto;">
+                    <table style="width:100%;">
                         <tr>
                             <th>Email</th>
                             <th>Mật khẩu</th>
                             <th>Vai trò</th>
+                            <th></th>
                           </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color:#F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                     </table>
                 </div>  
                 <div class="menu-action">
                     <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Tạo tài khoản</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa tài khoản</p>
                 </div>
             </div>
 
@@ -218,48 +224,66 @@
                           <td style="text-align: left; color: white;">TP Hồ Chí Minh</td>
                           <td></td>
                           <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                         <tr>
                           <td>Bảo Lộc</td>
                           <td>286 KM</td>
                           <td>250000 đ</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
                         </tr>
                         <tr>
                             <td>Bảo Lộc</td>
                             <td>286 KM</td>
                             <td>250000 đ</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
+
                         </tr>
                         <tr>
                             <td>Bảo Lộc</td>
                             <td>286 KM</td>
                             <td>250000 đ</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
+
                         </tr>
                         <tr style="background: #eb8287;">
                             <td style="text-align: left; color: white;">TP Hồ Chí Minh</td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                           </tr>
                           <tr>
                             <td>Bảo Lộc</td>
                             <td>286 KM</td>
                             <td>250000 đ</td>
+                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
+
                           </tr>
                           <tr>
                               <td>Bảo Lộc</td>
                               <td>286 KM</td>
                               <td>250000 đ</td>
+                              <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                              <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
+    
                           </tr>
                           <tr>
                               <td>Bảo Lộc</td>
                               <td>286 KM</td>
                               <td>250000 đ</td>
-                          </tr>
+                              <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
+                              <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
+                            </tr>
                     </table>
                 </div>  
                 <div class="menu-action">
                     <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm tuyến đường</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa tuyến đường</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa tuyến đường</p>
                 </div>
             </div>
 

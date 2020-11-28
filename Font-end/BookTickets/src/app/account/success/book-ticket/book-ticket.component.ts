@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookTicketsService } from 'src/app/shared/book-tickets.service';
+import { BookService } from "../../../shared/book.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-ticket',
@@ -13,14 +14,19 @@ export class BookTicketComponent implements OnInit {
   listitem = []
   price = 0
 
-  constructor(public service: BookTicketsService) { }
+  items = ['oneway','round'];
+
+  today:any;
+  listDeparture:any;
+  listRoterPoppular: [];
+
+  constructor(private route: Router, public service: BookService) { }
 
   ngOnInit(): void {
-    this.seat = this.service.seat
-    console.log(this.seat)
-    this.select_floor('floor-1')
-    this.load()
-
+   
+    console.log(this.seat);
+    this.select_floor('floor-1');
+    this.load();
   }
 
   select_floor(floor:any){
@@ -56,14 +62,16 @@ export class BookTicketComponent implements OnInit {
     for(let i of this.seat){
       if(i.status == Number(1)){
         document.getElementsByClassName(i.name)[0].classList.add('disable');
-       
       }
       else {
         document.getElementsByClassName(i.name)[0].classList.add('active');
       }
     }
-    var bpa = document.getElementsByClassName('book-pay-accept')
-    bpa[0].classList.add('show-book')
+    var bpa = document.getElementsByClassName('book-pay-accept');
+    bpa[0].classList.add('show-book');
+
+    this.getAllDeparture();
+    this.getDate();
   }
 
   onBook(item: any, index:any){
@@ -101,4 +109,30 @@ export class BookTicketComponent implements OnInit {
     b = document.getElementsByClassName('book-pay-accept')
     b[0].classList.remove('show-book')
   }
+
+  getAllDeparture(){
+    this.service.getRouter().subscribe(
+      data => this.listDeparture = data.data
+    )
+  }
+
+  cityChanged(obj:any){
+    this.service.bookTicket.routerId = obj;
+  }
+
+  getDate(){
+    var today = new Date();
+    var x = (<HTMLInputElement>document.getElementById("date"));
+    x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
+    this.service.bookTicket.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+    this.today = x.value;
+  }
+
+  dateChanged(obj:any){
+    var dd = new Date(obj.value);
+    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear();
+    this.service.bookTicket.daygo = value;
+
+  }
+
 }

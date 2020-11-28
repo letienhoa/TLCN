@@ -6,12 +6,8 @@
                 <div class="item-left">
                     <label for="">Tuyến đường</label>
                     <i class="fas fa-bus"></i>
-                    <select>                    
-                        <option value="1">Đà Nẵng => TP Hồ Chí Minh</option>
-                        <option value="2">Đà Nẵng => TP Hồ Chí Minh</option>
-                        <option value="3">Đà Nẵng => TP Hồ Chí Minh</option>
-                        <option value="4">Đà Nẵng => TP Hồ Chí Minh</option>
-                        <option value="5">Đà Nẵng => TP Hồ Chí Minh</option>
+                    <select name="departure" (change)="cityChanged($event.target.value)" required>                    
+                        <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_xe_di}} -- Bến xe {{item.ben_xe_toi}}</option>
                     </select>
                 </div>
                 <div class="clear"></div>
@@ -19,7 +15,7 @@
                 <div class="item-left">
                     <label for="">Ngày đi</label>
                     <i class="fas fa-calendar-alt"></i>
-                    <input type="text" value="6/10/2020" disabled>
+                    <input type="date" id="date"  min="{{today}}" (change)="dateChanged($event.target)" required>
                 </div>
                 <div class="clear"></div>
                 <hr style="width: 100%;">

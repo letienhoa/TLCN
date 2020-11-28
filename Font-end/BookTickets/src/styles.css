@@ -2686,7 +2686,7 @@ footer.footer .move-up span:hover{
     display: flex;
 }
 .adminContainer  .menu-content-item{
-    width: 40%;
+    width: 50%;
     height: 100%;
 }
 
@@ -2739,7 +2739,7 @@ footer.footer .move-up span:hover{
 }
 
 .menu-content .menu-item-right{
-    width: 60%;
+    width: 50%;
     margin-left: 25px;
     display: flex;
 }

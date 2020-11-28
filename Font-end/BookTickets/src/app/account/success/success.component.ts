@@ -20,7 +20,7 @@ export class SuccessComponent implements OnInit {
 
   load(){
     this.loadChange(0)
-
+    console.log(JSON.parse(sessionStorage.getItem('login')));
   }
 
   loadChange(index:any){

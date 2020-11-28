@@ -15,7 +15,7 @@ export class AddminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    this.onShowMenu(0);
   }
 
   onShow(show:any,type:any){

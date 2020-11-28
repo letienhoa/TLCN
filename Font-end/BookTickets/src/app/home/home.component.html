@@ -13,7 +13,6 @@
                 <select class="text-input" name="destination" (change)="cityChanged($event.target.value,1)" required>
                     <option *ngFor="let item of listDestiantion" value='{{item.id}}'>{{item.ben_toi}}</option>
                 </select>
-
             </div>
             <div >
                 <label for="" class="label-title">Ngày Đi</label>
@@ -38,65 +37,17 @@
         <div class="blog" style="margin-left: 25px;">
             <h2 class="section-title">Tuyến Phố Biến</h2>
             <div class="container">
-                <div class="section">
+                <div class="section" *ngFor="let i of listRoterPoppular">
                     <div class="section-info">
                        <img src="../../assets/1.jpg" alt="">
                        <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/2.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/3.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/4.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
+                        <i class="fas fa-map-marker-alt"> {{i.khoang_cach}}KM</i>
+                        <i class="fas fa-clock"> {{i.khoang_thoi_gian}}h</i>
+                        <i class="fas fa-tags price" > {{i.gia_ca}}đ</i>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="section-info">
-                       <img src="../../assets/5.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/6.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/7.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
-                    <div class="section-info">
-                       <img src="../../assets/8.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
-                        <i class="fas fa-map-marker-alt"> 850KM</i>
-                        <i class="fas fa-clock"> 8h</i>
-                        <i class="fas fa-tags price" > 250000đ</i>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookTicketsService } from 'src/app/shared/book-tickets.service';
+
 
 import { BookService } from 'src/app/shared/book.service';
 
@@ -19,7 +19,7 @@ export class SelectSeatComponent implements OnInit {
   listTime: any;
   day: any;
 
-  constructor(public service: BookTicketsService, private router: Router, public ser: BookService) { }
+  constructor( private router: Router, public ser: BookService) { }
 
   ngOnInit(): void {
  
