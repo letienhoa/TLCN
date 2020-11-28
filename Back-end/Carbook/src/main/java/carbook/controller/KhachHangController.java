@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -247,6 +248,20 @@ public class KhachHangController {
 		}	
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
+	
+	
+	@RequestMapping(value ="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> index(
+			@PathVariable(name="id")int id) {
+		BaseResponse response= new BaseResponse();
+		User user = khachHangdao.getById(id);
+		if(user!=null) {
+		response.setData(user);
+		} else {
+			response.setMessageError("Không tồn tại tài khoản này!");
+		}
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
 	
 	
 }

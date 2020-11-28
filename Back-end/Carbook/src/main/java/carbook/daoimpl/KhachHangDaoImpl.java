@@ -41,9 +41,9 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 	}
 
 	@Override
-	public BaseEntity getById(int id) {
-		CriteriaQuery<BaseEntity> criteria = this.getBuilder().createQuery(BaseEntity.class);
-		Root<BaseEntity> root = criteria.from(BaseEntity.class);
+	public User getById(int id) {
+		CriteriaQuery<User> criteria = this.getBuilder().createQuery(User.class);
+		Root<User> root = criteria.from(User.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
 		return this.getSession().createQuery(criteria).getSingleResult();
 	}

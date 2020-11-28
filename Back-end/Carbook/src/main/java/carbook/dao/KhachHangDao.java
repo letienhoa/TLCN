@@ -14,7 +14,7 @@ public interface KhachHangDao  {
 	
 	public List<User> findAll();
 	
-	public BaseEntity getById(int id);
+	public User getById(int id);
 	
 	public UserToken getByTaiKhoanMatKhau(String taiKhoan,String matKhau);
 	
