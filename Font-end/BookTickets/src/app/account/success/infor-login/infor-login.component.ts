@@ -60,7 +60,7 @@ export class InforLoginComponent implements OnInit {
     }
     else{
       var token = JSON.parse(sessionStorage.getItem('login')).Token;
-      this.service.postChangePassword(token,this.taiKhoan,this.form.value.newPassword).subscribe(
+      this.service.postChangePassword(token,this.taiKhoan,this.form.value.oldPassword,this.form.value.newPassword).subscribe(
         data => {
           if(data.status==200){
             return this.router.navigate(['/login'])    

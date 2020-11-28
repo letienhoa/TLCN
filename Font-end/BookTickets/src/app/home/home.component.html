@@ -7,11 +7,11 @@
             <div>
                 <label for="" class="label-title">Điểm Đi</label>
                 <select class="text-input" name="departure" (change)="cityChanged($event.target.value,0)" required>
-                    <option *ngFor="let item of listDeparture" value='{{item.id}}'>{{item.ben_toi}}</option>
+                    <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                 </select>
                 <label for=""  class="label-title">Điểm Đến</label>
                 <select class="text-input" name="destination" (change)="cityChanged($event.target.value,1)" required>
-                    <option *ngFor="let item of listDestiantion" value='{{item.id}}'>{{item.ben_toi}}</option>
+                    <option *ngFor="let item of listDestiantion" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                 </select>
             </div>
             <div >

@@ -30,7 +30,7 @@ export class LogInService {
     return this.http.get(this.url+"/logout", httpOptions);
   }
 
-  postChangePassword(token:any,userName:any,passWord:any):Observable<any>{
+  postChangePassword(token:any,userName:any,passWordOld:any,passWord:any):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json',      
@@ -38,7 +38,7 @@ export class LogInService {
         'Authorization': token })
     };
     
-    return this.http.post(this.url+"/change-password?user_name="+userName.toString()+"&password="+passWord.toString()+"",null,httpOptions);
+    return this.http.post(this.url+"/change-password?user_name="+userName.toString()+"&password_old="+passWordOld.toString()+"&password="+passWord.toString()+"",null,httpOptions);
   }
 
 }
