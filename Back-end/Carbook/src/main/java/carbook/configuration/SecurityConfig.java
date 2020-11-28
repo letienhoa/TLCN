@@ -20,6 +20,12 @@ import carbook.service.RestAuthenticationEntryPoint;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
   @Bean
   public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() throws Exception {
     JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter = new JwtAuthenticationTokenFilter();
@@ -41,34 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
   protected void configure(HttpSecurity http) throws Exception {
 	  
-	    //trạm dừng 
-	  //  http.csrf().ignoringAntMatchers("/api/tram-dung/**");
-	    
-	  //  http.antMatcher("/api/tram-dung/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
-      //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-      //.antMatchers( "/api/tram-dung/get").access("hasRole('ROLE_USER')")
-	  //  .and()
-      //.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-      //.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
-	  
 
-	  
-	  
-	    // Disable crsf cho đường dẫn /khach hanb/**
-	 //  http.csrf().ignoringAntMatchers("/api/khach-hang/**");
-	  
-	 //   http.authorizeRequests().antMatchers("/api/khach-hang/login").permitAll();
-	 //   http.authorizeRequests().antMatchers("/api/khach-hang/create").permitAll();
-	    
-	 //   http.antMatcher("/api/khach-hang/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
-     //   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-      //  .antMatchers( "/api/khach-hang/test").access("hasRole('ROLE_USER')")
-	   // .and()
-       // .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-       // .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
-	    
-	    
-		//Bến xe
 	    
 		  http.csrf().ignoringAntMatchers("/api/**");
 		  

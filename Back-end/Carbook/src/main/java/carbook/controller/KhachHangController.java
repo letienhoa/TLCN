@@ -78,6 +78,23 @@ public class KhachHangController {
 			khachHang.setThanhPho(wrapper.getThanhPho());
 			String code=GenerateCode.generateString();
 			this.listCode.add(code);
+			String links ="http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code;
+			
+			String linksFull="<a href=\""+links+"\">";
+			
+			String Button ="<button style=\"vertical-align:middle;position: relative;display: inline-block;\r\n" + 
+					"  border-radius: 4px;\r\n" + 
+					"  background-color: #f4511e;\r\n" + 
+					"  border: none;\r\n" + 
+					"  color: #FFFFFF;\r\n" + 
+					"  text-align: center;\r\n" + 
+					"  font-size: 22px;\r\n" + 
+					"  padding: 20px;\r\n" + 
+					"  width: 700px;\r\n" + 
+					"  transition: all 0.5s;\r\n" + 
+					"  cursor: pointer;\r\n" + 
+					"  margin-left: 350px;\">"+"Nhấn vào đây để xác thực"
+				+ "</button>"+"</a>";
 			khachHangdao.create(khachHang);
 			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
 			+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
@@ -108,10 +125,30 @@ public class KhachHangController {
 			user.setConfirm(1);
 			user.setStatus(1);
 			khachHangdao.update(user);
-			responses ="Bạn đã xác thực thành công. \n"+"Bấm vào đây để đăng nhập:  "+"http://localhost:4200/login";
+			String button="<a href=\"http://localhost:4200/login\">"+
+							"<button style=\"vertical-align:middle;position: relative;display: inline-block;\r\n" + 
+								"  border-radius: 4px;\r\n" + 
+								"  background-color: #f4511e;\r\n" + 
+								"  border: none;\r\n" + 
+								"  color: #FFFFFF;\r\n" + 
+								"  text-align: center;\r\n" + 
+								"  font-size: 22px;\r\n" + 
+								"  padding: 20px;\r\n" + 
+								"  width: 700px;\r\n" + 
+								"  transition: all 0.5s;\r\n" + 
+								"  cursor: pointer;\r\n" + 
+								"  margin-left: 350px;\">"+"Nhấn vào đây để đăng nhập"
+							+ "</button>"+
+							"</a>";
+			
+			
+			 //String link= "<div style=\"\"></div><a href=\"http://localhost:4200/login\">"+button+"</a></br></br>";
+			 
+			 
+			responses ="<div><h1 style=\"margin-left:500px;	\">Bạn đã xác thực thành công</h1></div>"+button;
 	        h=0;
 		} else {
-			responses="Đừng cố xâm nhập vào trang web của mình nhé, ahihi";
+			responses="<div><h1 style=\" margin-left: 350px;\">Đừng cố xâm nhập vào trang web của mình nhé, ahihi</h1></div>";
 		}
         return responses;
 	}
