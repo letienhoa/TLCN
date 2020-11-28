@@ -1,6 +1,6 @@
 package carbook.configuration;
 
-import javax.servlet.Filter;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.session.SessionManagementFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import carbook.service.CustomAccessDeniedHandler;
 import carbook.service.JwtAuthenticationTokenFilter;
@@ -20,15 +22,11 @@ import carbook.service.RestAuthenticationEntryPoint;
 
 
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Bean
-    CorsFilter corsFilter() {
-        CorsFilter filter = new CorsFilter();
-        return filter;
-    }
+
   @Bean
   public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() throws Exception {
     JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter = new JwtAuthenticationTokenFilter();
@@ -48,13 +46,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected AuthenticationManager authenticationManager() throws Exception {
     return super.authenticationManager();
   }
+
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+      return new WebMvcConfigurerAdapter() {
+          @Override
+          public void addCorsMappings(CorsRegistry registry) {
+              registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+          }
+      };
+  }
+  
   protected void configure(HttpSecurity http) throws Exception {
 	  
 
 	    
 		  http.csrf().ignoringAntMatchers("/api/**");
 		  
-		   http.addFilterBefore(corsFilter(), SessionManagementFilter.class)
+		   http   //.cors().and()
 		   .antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 	      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 	      .antMatchers(HttpMethod.POST,"/api/ben/**").access("hasRole('ROLE_ADMIN')")
