@@ -13,6 +13,7 @@ import carbook.dao.AbstractDao;
 import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.Ve;
+import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeThongKeModelDate;
 
 @SuppressWarnings("unchecked")
@@ -37,6 +38,15 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 		procedureCall.registerParameter("selectTime",Integer.class,ParameterMode.IN).bindValue(selectTime);
 		
 		List<ThongKeDoanhThuModelData> list =procedureCall.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<VeCustomerDataModel> spGetVeForCustomer(int khachHang) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_ve_xe_for_customer",VeCustomerDataModel.class);
+		procedureCall.registerParameter("khachHangId",Integer.class,ParameterMode.IN).bindValue(khachHang);
+		
+		List<VeCustomerDataModel> list =procedureCall.getResultList();
 		return list;
 	}
 
