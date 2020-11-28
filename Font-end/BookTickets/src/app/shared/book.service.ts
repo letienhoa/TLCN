@@ -34,18 +34,6 @@ export class BookService {
     totalMoney:0
   };
 
-  bookTicket = {
-    routerId:0,
-    daygo:"",
-    time:0,
-    boardingPoint:{
-      id:'',
-      name:''
-    },
-    seats:[],
-    number:0,
-    totalMoney:0
-  }
 
   listDeparture: Ben[];
 

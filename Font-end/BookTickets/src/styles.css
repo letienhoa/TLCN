@@ -2124,6 +2124,7 @@ footer.footer .move-up span:hover{
     height: 30px;
     background: #009344;
     color: white;
+    font-size: 20px;
 }
 
 .container-pay-item .select-type-pay{
@@ -2188,6 +2189,7 @@ footer.footer .move-up span:hover{
     float: left;
     margin-left: 0px;
     font-size: 14px;
+    margin-top: 16px;
 }
 
 .container-pay-item .pay-item-right .pay-item-infor .pay-item-infor-right{
@@ -2198,6 +2200,7 @@ footer.footer .move-up span:hover{
     outline: none;
     border-bottom: 1px solid black;
     font-size: 14px;
+    font-weight: bold;
 }
 
 
@@ -2498,25 +2501,31 @@ footer.footer .move-up span:hover{
 
 .infor-login-container .edit-infor-login .edit-infor .infor-item{
     padding: 30px 0px;
+    display: flex;
 }
 
 .infor-login-container .edit-infor-login .edit-infor p{
     color: black;
     margin: 10px 0px;
-    float: left;
-    font-size: 14px;
-    width: 30%;
+    font-size: 18px;
+    width: 40%;
     text-align: left;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor p:hover{
+    cursor: pointer;
 }
 
 .infor-login-container .edit-infor-login .edit-infor input{
-    float: right;
-    width: 60%;
+    width: 100%;
     font-size: 16px;
     border: none;
     border-bottom: 1px solid rgb(121, 116, 116);
     outline: none;
     padding: 10px 0px;
+    margin-left: 20px;
 }
 
 .infor-login-container .edit-infor-login .edit-infor .infor-item .btn-infor-item{

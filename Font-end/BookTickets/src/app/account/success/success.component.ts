@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SuccessComponent implements OnInit {
 
+  taiKhoan = "";
   index:any
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const itemId = this.route.snapshot.params['email'];
+    this.taiKhoan = this.route.snapshot.params['email'];
     this.load()
   }
 

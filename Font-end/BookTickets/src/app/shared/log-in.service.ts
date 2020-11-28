@@ -17,7 +17,7 @@ export class LogInService {
   constructor(public http: HttpClient) { }
 
   postLogIn(account:any):Observable<any>{
-    return this.http.post("http://localhost:8082/api/khach-hang/login",account);
+    return this.http.post( this.url+"/login",account);
   }
 
   getLogOut(token:any):Observable<any>{
@@ -27,7 +27,18 @@ export class LogInService {
         "Access-Control-Allow-Origin": "*",
         'Authorization': token })
     };
-    return this.http.get("http://localhost:8082/api/khach-hang/logout", httpOptions);
+    return this.http.get(this.url+"/logout", httpOptions);
+  }
+
+  postChangePassword(token:any,userName:any,passWord:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    
+    return this.http.post(this.url+"/change-password?user_name="+userName.toString()+"&password="+passWord.toString()+"",null,httpOptions);
   }
 
 }

@@ -29,10 +29,6 @@ export class LoginComponent implements OnInit {
     this.serveice.account.tai_khoan = this.form.value.email;
     this.serveice.account.mat_khau = this.form.value.password;
     
-/*  if(this.form.invalid){
-      return window.alert('Nhập email sai qui định')
-    } */
-
     this.serveice.postLogIn(this.serveice.account).subscribe(
       data => {
         sessionStorage.setItem('login',JSON.stringify(data));
