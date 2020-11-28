@@ -1,5 +1,7 @@
 package carbook.configuration;
 
+import javax.servlet.Filter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.SessionManagementFilter;
 
 import carbook.service.CustomAccessDeniedHandler;
 import carbook.service.JwtAuthenticationTokenFilter;
@@ -51,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    
 		  http.csrf().ignoringAntMatchers("/api/**");
 		  
-		   http.antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+		   http.addFilterBefore(corsFilter(), (Class<? extends Filter>) SessionManagementFilter.class)
+		   .antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 	      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 	      .antMatchers(HttpMethod.POST,"/api/ben/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers(HttpMethod.POST,"/api/tuyenxe/**").access("hasRole('ROLE_ADMIN')")
