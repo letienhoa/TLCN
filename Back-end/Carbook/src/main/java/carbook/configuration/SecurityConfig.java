@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  http.csrf().ignoringAntMatchers("/api/**");
 		  
 		   http.addFilterBefore(corsFilter(), (Class<? extends Filter>) SessionManagementFilter.class)
-		   .antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+		   //.antMatcher("/api/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 	      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 	      .antMatchers(HttpMethod.POST,"/api/ben/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers(HttpMethod.POST,"/api/tuyenxe/**").access("hasRole('ROLE_ADMIN')")
