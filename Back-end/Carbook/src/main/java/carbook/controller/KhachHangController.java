@@ -221,12 +221,19 @@ public class KhachHangController {
 			@RequestParam(name = "password_old", required = false, defaultValue = "") String pass,
 			@RequestParam(name = "password", required = false, defaultValue = "") String passWord) {
 		BaseResponse response= new BaseResponse();
-		String authorization = req.getHeader("Authorization"); 
+		String authorization = req.getHeader("Authorization");
 		String matKhauMK = null;
-		User khachHang =khachHangdao.findByUsernameAndPassword(userName, pass);
+		PasswordEncryption pe = new PasswordEncryption();
+		try {
+			matKhauMK= pe.convertHashToString(pass);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		User khachHang =khachHangdao.findByUsernameAndPassword(userName, matKhauMK);
 		if(khachHang!=null)
 		{
-			PasswordEncryption pe = new PasswordEncryption();
 			try {
 				matKhauMK= pe.convertHashToString(passWord);
 			} catch (NoSuchAlgorithmException e) {
