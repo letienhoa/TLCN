@@ -217,11 +217,12 @@ public class KhachHangController {
 	public ResponseEntity<BaseResponse> changepassword(
 			HttpServletRequest req,
 			@RequestParam(name = "user_name", required = false, defaultValue = "") String userName,
+			@RequestParam(name = "password_old", required = false, defaultValue = "") String pass,
 			@RequestParam(name = "password", required = false, defaultValue = "") String passWord) {
 		BaseResponse response= new BaseResponse();
 		String authorization = req.getHeader("Authorization"); 
 		String matKhauMK = null;
-		User khachHang =khachHangdao.findByUsername(userName);
+		User khachHang =khachHangdao.findByUsernameAndPassword(userName, pass);
 		if(khachHang!=null)
 		{
 			PasswordEncryption pe = new PasswordEncryption();

@@ -21,4 +21,6 @@ public interface KhachHangDao  {
 	public UserToken loadUserByUsername(String username);
 	
 	public User findByUsername(String name);
+	
+	public User findByUsernameAndPassword(String name,String mk);
 }
