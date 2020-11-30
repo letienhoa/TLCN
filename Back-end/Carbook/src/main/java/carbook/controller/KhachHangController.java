@@ -162,6 +162,7 @@ public class KhachHangController {
 		HttpStatus httpStatus=null;
 		String matKhauMK = null;
 		UserToken khachHang =new UserToken();
+		User khachHang1 =new User();
 		PasswordEncryption pe = new PasswordEncryption();
 		try {
 			matKhauMK= pe.convertHashToString(wrapper.getMatKhau());
@@ -170,11 +171,16 @@ public class KhachHangController {
 			e.printStackTrace();
 		}
 		try {
+			khachHang1=khachHangdao.findByUsernameAndPassword(wrapper.getTaiKhoan(), matKhauMK);
 			khachHang=khachHangdao.getByTaiKhoanMatKhau(wrapper.getTaiKhoan(),matKhauMK);
 			if(khachHang==null)
 			{
 				result = "Wrong userId and password";
 				httpStatus = HttpStatus.BAD_REQUEST;
+			} else if(khachHang1.getStatus()==0) {
+				
+				result = "Tài khoản này đã vô hiệu hóa,liên lạc với Admin để giải quyết.";
+			
 			} else {
 				
 				result = jwtService.generateTokenLogin(khachHang.getTaiKhoan());
@@ -192,7 +198,6 @@ public class KhachHangController {
 		respnse.setEmail(khachHang.getEmail());
 		respnse.setRoles(khachHang.getRoles());
 		return new ResponseEntity<TokenResponse>(respnse,HttpStatus.OK);
-
 	}
 	
 	

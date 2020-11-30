@@ -1,4 +1,4 @@
-package carbook.configuration;
+package carbook.config;
 
 import java.io.IOException;
 

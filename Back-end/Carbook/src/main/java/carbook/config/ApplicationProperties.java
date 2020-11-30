@@ -1,7 +1,7 @@
 /**
  * 
  */
-package carbook.configuration;
+package carbook.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,6 +22,9 @@ public class ApplicationProperties {
 	
 	@Value("${spring.datasource.password}")
 	private String datasourcePassword;
+	
+	
+	
 	
 //	@Value("${security.oauth2-endpoint}")
 	//private String oauthEndpoint;
