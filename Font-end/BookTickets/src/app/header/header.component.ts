@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LogInService } from '../shared/log-in.service';
-
 
 @Component({
   selector: 'app-header',
@@ -14,14 +12,13 @@ export class HeaderComponent implements OnInit {
   email=''
   nav: any
 
-  constructor(private route: Router, private ac: ActivatedRoute, private service: LogInService) { }
+  constructor(private route: Router, private ac: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.onChange(this.index);
-    this.onPersonal();
-    this.email = this.ac.snapshot.params['email'];
-    this.onShowDown();
+    this.onChange(this.index)
+    this.onPersonal()
+    this.email = this.ac.snapshot.params['email']
+    this.onShowDown()
   }
 
   onClick(){   
@@ -88,15 +85,5 @@ export class HeaderComponent implements OnInit {
   onShowDown(){
     var nav = document.getElementsByClassName('logOut')
     nav[0].classList.toggle('display_logout')
-  }
-
-  onLogOut(){
-   const token = JSON.parse(sessionStorage.getItem('login')).Token;
-   this.service.getLogOut(token).subscribe(
-     data => {
-       if(data.status == 200)
-        this.route.navigate(['/'])
-     }
-   )
   }
 }

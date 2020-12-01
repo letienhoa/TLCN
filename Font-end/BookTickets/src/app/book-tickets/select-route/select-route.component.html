@@ -22,14 +22,14 @@
                 <div class="time">
                     <div class="point" style="margin-left: 20px;">
                         <label>Nơi đi</label>
-                        <select name="departure" (change)="cityChanged($event.target,0)" required >
-                              <option *ngFor="let item of listDeparture">{{item.ben_toi}}</option>
+                        <select [(ngModel)]="service.select_route.departure" [ngModelOptions]="{standalone: true}" name="departure" (change)="cityChanged($event.target)" required >
+                              <option *ngFor="let item of list_departure" [Value]="item">{{item}}</option>
                         </select>
                     </div>
                     <div class="point">
                         <label>Nơi đến</label>
-                        <select name="destination" (change)="cityChanged($event.target,1)" required>
-                            <option *ngFor="let item of listDestiantion">{{item.ben_toi}}</option>
+                        <select [(ngModel)]="service.select_route.destination" [ngModelOptions]="{standalone: true}" name="destination" (change)="cityChanged_A($event.target.value)" required>
+                            <option *ngFor="let item of list_destination" [Value]="item.name">{{item.name}}</option>
                         </select>
                     </div>
                     <div class="point-date">
@@ -56,9 +56,9 @@
                 Thông tin chung
             </div>
             <div class="route-infor">
-                <h2></h2>
-                <p>Khoảng cách: <span>{{range}} KM</span></p>
-                <p>Thời gian: <span>{{time}} h</span></p>
+                <h2>{{service.select_route.departure}} => {{service.select_route.destination}}</h2>
+                <p>Khoảng cách: <span>{{range}}</span></p>
+                <p>Thời gian: <span>{{time}}</span></p>
                 <p>*Lưu ý: thời gian đón và trung chuyển xe có thể thay đổi phụ thuộc vào mật độ giao thông tại từng thời điểm. Kính mong quý hành khách thông cảm !</p>
             </div>
         </div>

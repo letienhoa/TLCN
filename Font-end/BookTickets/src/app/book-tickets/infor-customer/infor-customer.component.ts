@@ -53,4 +53,5 @@ export class InforCustomerComponent implements OnInit {
     this.router.navigate(['policy/rules'])
   }
 
+
 }

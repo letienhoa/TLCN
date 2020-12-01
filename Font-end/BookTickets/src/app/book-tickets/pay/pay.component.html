@@ -31,7 +31,7 @@
                 <h3>Thông tin vé</h3>   
                 <div class="customer-infor">
                     <div class="customer-name">
-                        Tuyến xe: <label for="">{{infor_router.departure.ben_toi}} => {{infor_router.destination.ben_toi}}</label>
+                        Tuyến xe: <label for="">{{infor_router.departure}} => {{infor_router.destination}}</label>
                     </div>
                     <div class="customer-phone">
                         Số lượng ghế: <label for="">{{infor_seat.number}}</label>
@@ -42,10 +42,10 @@
                 </div>
                 <div class="customer-infor">
                     <div class="customer-name">
-                        Thời gian: <label for="" style="color: #00613D;">{{infor_seat.time}}:00h - {{infor_router.daygo}}</label>
+                        Thời gian: <label for="" style="color: #00613D;">{{infor_seat.time}} {{infor_router.daygo}}</label>
                     </div>
                     <div class="customer-phone">
-                        Điểm lên xe: <label for="">{{infor_seat.boardingPoint.name}}</label>
+                        Điểm lên xe: <label for="">{{infor_seat.boarding_point}}</label>
                     </div>
                     <div class="customer-email">
                     </div>
@@ -58,12 +58,26 @@
                 </div>
             </div>
         </div>
+        <div class="select-pay">
+            <p>Cách chọn thanh toán</p>
+            <div class="pay-type">
+                <div class="pay-items">
+                    <button (click)="onSelect(1)"><img src="../../../assets/visa.png" alt="" ><p>Thẻ Quốc tế Visa/Master/JCB</p></button>
+                </div>
+                <div class="pay-items">
+                    <button (click)="onSelect(2)"><img src="../../../assets/napas.png" alt="" ><p>Thẻ ATM Nội địa</p></button>
+                </div>
+                <div class="pay-items">
+                    <button (click)="onSelect(3)"><img src="" alt="" ><p>PayPal</p></button>
+                </div>
+            </div>
+        </div>
 
         <div class="back" style="margin-left: 32px;">
             <button class="button" [routerLink]="['/booktickets/infor-customer']"><i class="fas fa-chevron-left"></i> Quay Lại</button>
         </div>
         <div class="cont">
-            <button class="button" (click)="onPay()">Thanh toán<i class="fas fa-chevron-right"></i></button>
+            <button class="button" (click)="onPay()">Tiếp Tục<i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
