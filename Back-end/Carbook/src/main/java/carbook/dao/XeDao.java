@@ -13,4 +13,8 @@ public interface XeDao {
 	List<Xe> getXeByTuyenXe(int tuyenXeId);
 	
 	List<Integer> spGetGioChay(int tuyenXeId);
+	
+	List<Xe> findAll();
+	
+	Xe findOne(int id);
 }

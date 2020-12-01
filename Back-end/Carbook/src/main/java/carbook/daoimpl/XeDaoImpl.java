@@ -49,4 +49,20 @@ public class XeDaoImpl extends AbstractDao<Integer, Xe>  implements XeDao{
 		
 	}
 
+	@Override
+	public List<Xe> findAll() {
+		CriteriaQuery<Xe> criteria = this.getBuilder().createQuery(Xe.class);
+		Root<Xe> root = criteria.from(Xe.class);
+		criteria.select(root).orderBy(this.getBuilder().asc(root.get("id")));
+		return this.getSession().createQuery(criteria).getResultList();
+	}
+
+	@Override
+	public Xe findOne(int id) {
+		CriteriaQuery<Xe> criteria = this.getBuilder().createQuery(Xe.class);
+		Root<Xe> root = criteria.from(Xe.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
+		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
 }

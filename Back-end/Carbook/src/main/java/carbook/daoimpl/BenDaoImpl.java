@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import carbook.dao.AbstractDao;
 import carbook.dao.BenDao;
 import carbook.entity.Ben;
-import carbook.entity.TuyenXe;
 
 @SuppressWarnings("unchecked")
 @Transactional
