@@ -4,23 +4,26 @@ import java.util.List;
 
 import carbook.entity.BaseEntity;
 import carbook.entity.User;
+import carbook.entity.UserRoleDataModel;
 import carbook.entity.UserToken;
 
 public interface KhachHangDao  {
 
-	public BaseEntity create(BaseEntity entity);
+	 BaseEntity create(BaseEntity entity);
 	
-	public void update(BaseEntity entity);
+	 void update(BaseEntity entity);
 	
-	public List<User> findAll();
+	 List<User> findAll();
 	
-	public User getById(int id);
+	 User getById(int id);
 	
-	public UserToken getByTaiKhoanMatKhau(String taiKhoan,String matKhau);
+	 UserToken getByTaiKhoanMatKhau(String taiKhoan,String matKhau);
 	
-	public UserToken loadUserByUsername(String username);
+	 UserToken loadUserByUsername(String username);
 	
-	public User findByUsername(String name);
+	 User findByUsername(String name);
 	
-	public User findByUsernameAndPassword(String name,String mk);
+	 User findByUsernameAndPassword(String name,String mk);
+	
+	 List<UserRoleDataModel> spGetAllUser();
 }

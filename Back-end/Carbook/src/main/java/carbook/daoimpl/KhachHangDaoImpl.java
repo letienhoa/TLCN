@@ -14,6 +14,7 @@ import carbook.dao.AbstractDao;
 import carbook.dao.KhachHangDao;
 import carbook.entity.BaseEntity;
 import carbook.entity.User;
+import carbook.entity.UserRoleDataModel;
 import carbook.entity.UserToken;
 
 @SuppressWarnings("unchecked")
@@ -104,6 +105,13 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 									this.getSession().getCriteriaBuilder().equal(root.get("Password"), mk));
 		User user= this.getSession().createQuery(criteria).getSingleResult();
 		return user;
+	}
+
+	@Override
+	public List<UserRoleDataModel> spGetAllUser() {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_all_user",UserRoleDataModel.class);
+		List<UserRoleDataModel> list =procedureCall.getResultList();
+		return list;
 	}
 
 	

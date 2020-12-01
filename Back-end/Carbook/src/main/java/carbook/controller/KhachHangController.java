@@ -24,6 +24,7 @@ import carbook.entity.ResponseStatusEnum;
 import carbook.entity.RoleDetal;
 import carbook.entity.TokenResponse;
 import carbook.entity.User;
+import carbook.entity.UserRoleDataModel;
 import carbook.entity.UserToken;
 import carbook.request.KhachHangRequest;
 import carbook.request.KhachHangUpdateRequest;
@@ -296,5 +297,14 @@ public class KhachHangController {
 			response.setData(khachHang);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
+	}
+
+	
+	@RequestMapping(value ="/get-all-user", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> spGetAllUser(){
+		BaseResponse response= new BaseResponse();
+		List<UserRoleDataModel> list =khachHangdao.spGetAllUser();
+		response.setData(list);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 }

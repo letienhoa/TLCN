@@ -47,8 +47,9 @@ public class TuyenXeController {
 		TuyenXe tuyenXe= new TuyenXe();
 		tuyenXe.setDiemDiId(wrapper.getDiemDiId());
 		tuyenXe.setDiemToiId(wrapper.getDiemToiId());
+		tuyenXe.setKhoangCach(wrapper.getKhoangCach());
 		tuyenXe.setGiaCa(wrapper.getGiaCa());
-		tuyenXe.setKhoangCach(wrapper.getThoiGianChay());
+		tuyenXe.setKhoangThoiGian(wrapper.getThoiGianChay());
 		
 		tuyenXeDao.create(tuyenXe);
 		response.setData(tuyenXe);
@@ -70,8 +71,9 @@ public class TuyenXeController {
 			
 			tuyenXe.setDiemDiId(wrapper.getDiemDiId());
 			tuyenXe.setDiemToiId(wrapper.getDiemToiId());
+			tuyenXe.setKhoangCach(wrapper.getKhoangCach());
 			tuyenXe.setGiaCa(wrapper.getGiaCa());
-			tuyenXe.setKhoangCach(wrapper.getThoiGianChay());
+			tuyenXe.setKhoangThoiGian(wrapper.getThoiGianChay());
 			tuyenXeDao.update(tuyenXe);
 			response.setData(tuyenXe);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
