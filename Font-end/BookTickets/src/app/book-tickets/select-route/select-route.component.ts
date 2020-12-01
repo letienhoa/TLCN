@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookTicketsService } from "../../shared/book-tickets.service";
+import { Ben } from 'src/app/models/Ben';
+import { BookService } from "../../shared/book.service";
+
 @Component({
   selector: 'app-select-route',
   templateUrl: './select-route.component.html',
@@ -10,10 +12,17 @@ import { BookTicketsService } from "../../shared/book-tickets.service";
 export class SelectRouteComponent implements OnInit {
 
   items = ['oneway','round']
-  list_departure: any
-  list_destination: any
+  listDeparture = [];
+  listDestiantion = [];
+
   today:any
-  constructor(public service: BookTicketsService, private router: Router) { }
+
+  schedule:any;
+  range:any;
+  time:any;
+
+
+  constructor( private router: Router, public service: BookService) { }
 
   ngOnInit(): void {
     this.load();
@@ -24,43 +33,83 @@ export class SelectRouteComponent implements OnInit {
     var today = new Date();
     var x = (<HTMLInputElement>document.getElementById("date"))
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
-    this.today = x.value
+    this.service.step1.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+    this.today = x.value;
   }
 
   onItemChange(x){
     if(x==this.items[0]){
       (<HTMLInputElement>document.getElementById("return-date")).value = "";
       (<HTMLInputElement>document.getElementById("return-date")).disabled = true
-      this.service.select_route.isOneWay = true
-      this.service.select_route.returnday = ""
+      this.service.step1.isOneWay = true
+      this.service.step1.returnday = ""
     }
     else{
       (<HTMLInputElement>document.getElementById("return-date")).disabled = false
-      this.service.select_route.isOneWay = false
+      this.service.step1.isOneWay = false
     }
   }
 
   load(){
-    this.list_departure = this.service.getListAdd()
-    this.list_destination = this.service.getListAdd_A(this.service.select_route.departure)
+  
+    this.schedule = JSON.parse(sessionStorage.getItem('schedule'));
+    console.log("schedule: "+this.schedule);
+    
+    this.service.step1.departure.id = this.schedule.ben_xe_di_id;
+    this.service.step1.departure.ben_toi = this.schedule.ben_xe_di;
+    this.service.step1.destination.id = this.schedule.ben_xe_toi_id;
+    this.service.step1.destination.ben_toi = this.schedule.ben_xe_toi;
+
+    this.range = this.schedule.khoang_cach;
+    this.time = this.schedule.khoang_thoi_gian;
+ 
+    this.service.getAllBen().subscribe(data => {
+
+      this.listDeparture.push(this.service.step1.departure);
+      for(let i of data.data){
+        if(i.ben_toi != this.listDeparture[0].ben_toi)
+          this.listDeparture.push(i);
+      }
+      this.listDestiantion.push(this.service.step1.destination);
+      this.cityChanged(this.listDeparture[0].id,0);
+      console.log(this.listDeparture);
+    });
+    this.service.step1.isOneWay = true;
+
     this.getDate()
-    this.cityChanged_A(this.service.select_route.destination)
   }
 
 
-  cityChanged(obj:any){
-    this.list_destination = this.service.getListAdd_A(this.service.select_route.departure)
+  cityChanged(obj:any,index:any){
+    if(index==0){
+      this.service.getBenById(obj).subscribe(
+        data => {
+          for(let i of data.data){
+            if(i.ben_toi != this.listDestiantion[0].ben_toi)
+              this.listDestiantion.push(i);
+          }
+          this.service.step1.destination.ben_toi = this.listDestiantion[0].ben_toi.replace('Bến xe','');
+          this.service.step1.destination.id = this.listDestiantion[0].id;
+        }
+      )
+      const item = this.listDeparture.find(departure => departure.id == obj);
+      this.service.step1.departure.ben_toi = item.ben_toi.replace('Bến xe','');
+      this.service.step1.departure.id = item.id.toString();
+    }
+    else{
+      const item = this.listDestiantion.find(destination => destination.id == obj);
+      this.service.step1.destination.ben_toi = item.ben_toi.replace('Bến xe','');
+      this.service.step1.destination.id = item.id.toString();
+    }
   }
 
   submit(){
-    if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
+    if(this.service.step1.isOneWay == false && this.service.step1.returnday == ""){
       window.alert("xin hay chon ngay ve")
       return
     }
    
-    var dd = new Date(this.service.select_route.daygo)
-    this.service.select_route.daygo = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear()
-    sessionStorage.setItem('b1',JSON.stringify(this.service.select_route))
+    sessionStorage.setItem('b1',JSON.stringify(this.service.step1))
     console.log(sessionStorage.getItem('b1'))
     this.router.navigate(['/booktickets/select-seat'])
   }
@@ -68,27 +117,12 @@ export class SelectRouteComponent implements OnInit {
   dateChanged(obj:any){
     var dd = new Date(obj.value)
     var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear()
-    if(this.service.select_route.isOneWay==true){
-      this.service.select_route.daygo = value;
-      this.service.select_route.returnday = "";
+    if(this.service.step1.isOneWay==true){
+      this.service.step1.daygo = value;
+      this.service.step1.returnday = "";
     }
     else{
-      this.service.select_route.returnday=value
+      this.service.step1.returnday=value
     }
   }
-  range:any 
-  time:any
-  cityChanged_A(obj:any){
-    for(let i of this.list_destination)
-    {
-      if(i.name == obj)
-      {
-        this.range = i.range
-        this.time = i.time
-        return
-      }
-    }
-  }
-
-
 }

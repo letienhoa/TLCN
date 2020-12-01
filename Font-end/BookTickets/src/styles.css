@@ -36,7 +36,7 @@ ul{
 }
 
 .h1{
-    font-family: 'Candal', 'serif';
+    font-family: 'Oswald', sans-serif; 
     color: #444;
     margin-top: 20px;
 }
@@ -103,7 +103,7 @@ ul{
     font-size: 1.6rem;
     padding: 1rem 0;
     display: block;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Oswald', sans-serif; 
     
 }
 
@@ -118,7 +118,7 @@ ul{
     font-size: 1.1rem;
     padding: 1rem 1rem;
     position: relative;
-    font-family: 'Commissioner', sans-serif;
+    font-family: 'Oswald', sans-serif; 
 }
 
 /* .nav .nav-items .nav-link:hover{
@@ -207,7 +207,7 @@ ul{
     outline: none;
     color: #444;
     line-height: 1.5rem;
-    font-family: 'Lora', 'serif';
+    font-family: 'Oswald', sans-serif; 
     border: 1px solid #e0e0e0;
     font-size: 1.2em;
     margin-left: -70px;
@@ -240,12 +240,13 @@ ul{
     background: -webkit-linear-gradient(left, #009344,  #F2754E );
     border-radius: .25rem;
     font-size: 1.08em;
-    font-family: 'Lora','serif';
+    font-family: 'Oswald', sans-serif; 
     color: #ffffff !important;
 }
 
 .btn:hover{
     background: -webkit-linear-gradient(left, #F2754E,#009344  );
+    cursor: pointer;
 }
 
 .btn-big{
@@ -478,7 +479,7 @@ footer.footer .follow i{
 
 footer.footer .rights{
     justify-content: center;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Oswald', sans-serif; 
 }
 
 footer.footer .rights h4 a{
@@ -627,7 +628,7 @@ footer.footer .move-up span:hover{
 
 .content .main-content .recent-post-title{
     margin: 30px 30px 0px;
-    font-family: 'Candal', 'serif';
+    font-family: 'Oswald', sans-serif; 
     color: #444;
 }
 
@@ -690,7 +691,7 @@ footer.footer .move-up span:hover{
     outline: none;
     color: #444;
     line-height: 1.5rem;
-    font-family: 'Lora', 'serif';
+    font-family: 'Oswald', sans-serif; 
     border: 1px solid #e0e0e0;
     font-size: 1.2em;
 }
@@ -705,7 +706,7 @@ footer.footer .move-up span:hover{
     padding: .6rem .9rem;
     border-radius: 2rem;
     margin: 0 .3rem;
-    font-family: var(--Lexend);
+    font-family: 'Oswald', sans-serif; 
 }
 
 .pagination .pages{
@@ -1503,7 +1504,7 @@ footer.footer .move-up span:hover{
     width: 45%;
     background: #f6f6f6;
     border-radius: 10px;
-    height: 300px;
+    height: 315px;
     margin-left: 3%;
     margin-bottom: 20px;
    
@@ -1541,9 +1542,8 @@ footer.footer .move-up span:hover{
 .route-container .infor-left .form-group input, select{
     width: 90%;
     margin-left: 20px;
-    padding: 3px;
+    padding: 5px;
     border-radius: 5px;
-    font-size: 18px;
     font-size: 16px;
     color: #797373;
     border:1px solid black;
@@ -1725,7 +1725,7 @@ footer.footer .move-up span:hover{
 .rules .title{
     font-size: 36px;
     text-align: center;
-    font-family: SFProText!important;
+    font-family: 'Oswald', sans-serif; 
     display: block;
     
 }
@@ -1813,6 +1813,53 @@ footer.footer .move-up span:hover{
     border: 2px solid black;
     cursor: pointer;
 }
+
+.infor-invoice{
+    margin: 50px auto;
+    width: 90%;
+    height: 300px;
+    display: flex;
+}
+
+.infor-invoice .title{
+    border-radius: 50px;
+    background: -webkit-linear-gradient(left, #F2754E,#009344  );   
+}
+
+.infor-invoice p{
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif; 
+    color: white;
+    padding: 10px;
+    margin-top: 0px;
+}
+
+.infor-invoice .infor-invoice-item{
+    display: flex; 
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.infor-invoice .infor-invoice-item input{
+    font-size: 16px;
+    padding: 5px 0px;
+    margin-left: 10px; 
+    width: 60%;
+}
+
+.infor-invoice  .btn-function p{
+    margin: 0px;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif; 
+    padding: 0px;
+    text-align: right;
+}
+
+.infor-invoice  .btn-function p:hover{
+    cursor: pointer;
+}
+
+
 
 /* ========================================== */
 /* Success */
@@ -2077,6 +2124,7 @@ footer.footer .move-up span:hover{
     height: 30px;
     background: #009344;
     color: white;
+    font-size: 20px;
 }
 
 .container-pay-item .select-type-pay{
@@ -2141,6 +2189,7 @@ footer.footer .move-up span:hover{
     float: left;
     margin-left: 0px;
     font-size: 14px;
+    margin-top: 16px;
 }
 
 .container-pay-item .pay-item-right .pay-item-infor .pay-item-infor-right{
@@ -2151,6 +2200,7 @@ footer.footer .move-up span:hover{
     outline: none;
     border-bottom: 1px solid black;
     font-size: 14px;
+    font-weight: bold;
 }
 
 
@@ -2451,25 +2501,31 @@ footer.footer .move-up span:hover{
 
 .infor-login-container .edit-infor-login .edit-infor .infor-item{
     padding: 30px 0px;
+    display: flex;
 }
 
 .infor-login-container .edit-infor-login .edit-infor p{
     color: black;
     margin: 10px 0px;
-    float: left;
-    font-size: 14px;
-    width: 30%;
+    font-size: 18px;
+    width: 40%;
     text-align: left;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.infor-login-container .edit-infor-login .edit-infor p:hover{
+    cursor: pointer;
 }
 
 .infor-login-container .edit-infor-login .edit-infor input{
-    float: right;
-    width: 60%;
+    width: 100%;
     font-size: 16px;
     border: none;
     border-bottom: 1px solid rgb(121, 116, 116);
     outline: none;
     padding: 10px 0px;
+    margin-left: 20px;
 }
 
 .infor-login-container .edit-infor-login .edit-infor .infor-item .btn-infor-item{
@@ -2638,19 +2694,19 @@ footer.footer .move-up span:hover{
     width: 85%;
     display: flex;
 }
-.adminContainer .menu-content .menu-content-item{
-    width: 40%;
+.adminContainer  .menu-content-item{
+    width: 50%;
     height: 100%;
 }
 
-.adminContainer .menu-content .menu-content-title{
+.adminContainer  .menu-content-title{
     width: 100%;
     height: 50px;
     background: -webkit-linear-gradient(right, #F2754E,#009344  );   
     
 }
 
-.adminContainer .menu-content .menu-content-title p{
+.adminContainer  .menu-content-title p{
     margin-top: 0px;
     color: white;
     font-size: 20px;
@@ -2673,7 +2729,11 @@ footer.footer .move-up span:hover{
 }
 
 .menu-content-item-content table td{
-    width: 33%;
+    text-align: center;
+}
+
+.menu-content-item-content table td:hover{
+    cursor: pointer;
 }
 
 .menu-action p {
@@ -2688,7 +2748,7 @@ footer.footer .move-up span:hover{
 }
 
 .menu-content .menu-item-right{
-    width: 60%;
+    width: 50%;
     margin-left: 25px;
     display: flex;
 }
@@ -2705,13 +2765,18 @@ footer.footer .move-up span:hover{
     margin-top: 12px;
 }
 
-.menu-content .menu-item-right .item-account .infor-item input{
-    border:none;
+.menu-content .menu-item-right .item-account .infor-item input,select{
+/*     border:none;
     outline: none;
-    background: none;
+    background: none; */
     font-size: 16px;
     font-family: 'Oswald', sans-serif;
     width: 100%;
+    border-bottom:1px solid black;
+}
+.menu-content .menu-item-right .item-account .infor-item select{
+    margin-left: 0px;
+    border-radius: 0px;
     border-bottom:1px solid black;
 }
 
@@ -2746,6 +2811,56 @@ footer.footer .move-up span:hover{
     background: -webkit-linear-gradient(left, #F2754E,#009344  );   
 
 }
+
+.add-button{
+    background: -webkit-linear-gradient(right, #F2754E,#009344  );   
+}
+
+.adminContainer .menu-content .search-infor{
+    width: 100%; 
+    height: 110px; 
+    margin-bottom: 10px; 
+    display: flex;
+}
+
+.adminContainer .menu-content-1 .search-infor{
+    width: 100%; 
+    height: 110px; 
+    margin-bottom: 10px; 
+    display: flex;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left{
+    width: 49%; 
+    height: 110px;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left input{
+    width: 70%; 
+    height: 30px; 
+    margin-top: 10px; 
+    border-radius: 5px;
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left button{
+    width: 27%; 
+    height: 34px; 
+    margin-left: 5px; 
+    border-radius: 5px;
+    color: white;
+    font-family: 'Oswald', sans-serif;  
+    background: -webkit-linear-gradient(left, #F2754E,#009344  );   
+}
+
+.adminContainer .menu-content-1  .search-infor .search-left button:hover{
+    cursor: pointer;
+}
+
+
+
+
+/* ========================================== */
+/* CRUD Schedule */
 
 /* ========================================== */
 /* Viewport less then or equal to 750px */

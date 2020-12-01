@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { LogInService } from "../../shared/log-in.service";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private fb:FormBuilder, private router: Router) { }
+  constructor(private fb:FormBuilder, private router: Router, private serveice: LogInService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -24,13 +26,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.form.invalid){
-      return window.alert('Nhập email sai qui định')
-    }
-    if(this.form.value.email=='admin@gmail.com' && this.form.value.password=='admin'){
-      window.alert('success')
-      return this.router.navigate(['login/admin', this.form.value.email])
-    }
-    window.alert("Nhập sai tài khoản mật khẩu")
+    this.serveice.account.tai_khoan = this.form.value.email;
+    this.serveice.account.mat_khau = this.form.value.password;
+    
+    this.serveice.postLogIn(this.serveice.account).subscribe(
+      data => {
+        sessionStorage.setItem('login',JSON.stringify(data));
+        if(data.Roles == "ROLE_USER"){
+          window.alert('success')
+          return this.router.navigate(['login/customer', this.form.value.email])    
+        }
+        else if(data.Roles == "ROLE_ADMIN"){
+          window.alert('success')
+          return this.router.navigate(['login/admin', this.form.value.email])    
+        }
+        else{
+          window.alert("Sai tai khoan mat khau");
+        }
+        
+        
+      }
+    )
   }
 }

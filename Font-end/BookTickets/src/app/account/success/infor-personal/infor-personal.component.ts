@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogInService } from "../../../shared/log-in.service";
 
 @Component({
   selector: 'app-infor-personal',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InforPersonalComponent implements OnInit {
 
-  isEdit = false
-  constructor() { }
+  isEdit = false;
+  inforCustomer;
+  constructor(private service: LogInService) { }
 
   ngOnInit(): void {
+    this.load();
   }
 
   onEdit(){
@@ -30,8 +33,16 @@ export class InforPersonalComponent implements OnInit {
       ad.disabled = true
       ad = (<HTMLInputElement>document.getElementById('list-item-district')) 
       ad.disabled = true
-     
     }
+  }
 
+  load(){
+    var customer = JSON.parse(sessionStorage.getItem('login'));
+    this.service.getInforCustomer(customer.Token,customer.id).subscribe(
+      data => {
+        this.inforCustomer = data.data;
+        console.log(this.inforCustomer);
+      }
+    );
   }
 }
