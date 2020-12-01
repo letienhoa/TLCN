@@ -85,13 +85,16 @@ public class KhachHangController {
 			khachHang.setThanhPho(wrapper.getThanhPho());
 			String code=GenerateCode.generateString();
 			this.listCode.add(code);
+			khachHangdao.create(khachHang);
+			
+			khachHang= khachHangdao.findByUsername(khachHang.getTaiKhoan());
 			
 			RoleDetal role =new RoleDetal(); 
 			role.setIdUser(khachHang.getId());
 			role.setRoleId("ROLE_USER");
 			roleDetalDaol.create(role);
 			
-			khachHangdao.create(khachHang);
+			
 			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
 			+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
 			response.setData(khachHang);

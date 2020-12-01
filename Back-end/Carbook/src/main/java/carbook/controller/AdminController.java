@@ -72,6 +72,7 @@ public class AdminController {
 			admin.setStatus(1);
 			admin.setConfirm(1);
 			khachHangdao.create(admin);
+			admin= khachHangdao.findByUsername(admin.getTaiKhoan());
 			
 			RoleDetal role =new RoleDetal(); 
 			role.setIdUser(admin.getId());
