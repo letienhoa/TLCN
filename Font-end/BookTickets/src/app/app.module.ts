@@ -19,8 +19,7 @@ import { PayComponent } from './book-tickets/pay/pay.component';
 import { RulesComponent } from './policy/rules/rules.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
-import {HttpClientModule} from '@angular/common/http'; 
-
+import { BookTicketsService } from "../../src/app/shared/book-tickets.service";
 import { SuccessComponent } from './account/success/success.component';
 import { BookTicketComponent } from './account/success/book-ticket/book-ticket.component';
 import { HistoryComponent } from './account/success/history/history.component';
@@ -29,11 +28,7 @@ import { InforLoginComponent } from './account/success/infor-login/infor-login.c
 import { InforPersonalComponent } from './account/success/infor-personal/infor-personal.component';
 import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.component';
 import { AddminComponent } from './account/addmin/addmin.component';
-import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-schedule.component';
-
-import { BookService } from '../../src/app/shared/book.service';
-import {LogInService} from '../../src/app/shared/log-in.service';
-
+import { CrudAccountComponent } from './account/addmin/crud-account/crud-account.component';
 
 
 @NgModule({
@@ -62,18 +57,16 @@ import {LogInService} from '../../src/app/shared/log-in.service';
     InforPersonalComponent,
     SelectPayComponent,
     AddminComponent,
-    CurdScheduleComponent,
-
+    CrudAccountComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
    
   ],
-  providers: [LogInService,BookService],
+  providers: [BookTicketsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

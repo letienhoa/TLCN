@@ -1,79 +1,70 @@
 <app-header success=1 ></app-header>
-<section class='adminContainer' > 
+<section class='adminContainer'> 
     <div class="menu-left">
         <div class="menu-item">
-            <button id='0' (click)='onShowMenu(0)'>Tài Khoản</button>
+            <button>Tài Khoản</button>
         </div>
         <div class="menu-item">
-            <button id='1' (click)='onShowMenu(1)'>Tuyến Đường</button>
+            <button>Tuyến Đường</button>
         </div>
         <div class="menu-item">
-            <button id='2' (click)='onShowMenu(2)'>Bến</button>
+            <button>Tài Khoản</button>
         </div>
         <div class="menu-item">
-            <button id='3' (click)='onShowMenu(3)'>Xe</button>
+            <button>Tài Khoản</button>
         </div>
         <div class="menu-item">
-            <button id='4' (click)='onShowMenu(4)'>Qui đổi điểm</button>
-        </div>
-        <div class="menu-item">
-            <button id='5' (click)='onShowMenu(5)'>Thống kê</button>
+            <button>Tài Khoản</button>
         </div>
     </div>
-    <div class="menu-content" *ngIf='isShow == 0'>
+    <div class="menu-content">
         <div class="menu-content-item">
             <div class="menu-content-title">
                 <p>Danh sách tài khoản</p> 
             </div>
             <div class="menu-content-item-content">
-                <div style="height:300px; overflow:auto;">
-                    <table style="width:100%;">
+                <div style="height:300px; overflow:auto; ">
+                    <table style="width:90%;">
                         <tr>
                             <th>Email</th>
                             <th>Mật khẩu</th>
                             <th>Vai trò</th>
-                            <th></th>
                           </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color:#F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                         <tr>
                           <td>lekimdinh1412@gmail.com</td>
                           <td>0337006601</td>
                           <td>Khách Hàng</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
                         </tr>
                     </table>
                 </div>  
                 <div class="menu-action">
                     <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Tạo tài khoản</p>
+                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa tài khoản</p>
                 </div>
             </div>
 
@@ -207,528 +198,6 @@
             </div>
         </div>
     </div>
-    <div class="menu-content" *ngIf='isShow == 1'>
-        <div class="menu-content-item">
-            <div class="menu-content-title">
-                <p>Danh sách tuyến đường</p> 
-            </div>
-            <div class="menu-content-item-content schedule">
-                <div style="height:300px; overflow:auto; ">
-                    <table style="width:100%; border-collapse: collapse;">
-                        <tr>
-                            <th>Tuyến đường</th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">TP Hồ Chí Minh</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Bảo Lộc</td>
-                          <td>286 KM</td>
-                          <td>250000 đ</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-                        </tr>
-                        <tr>
-                            <td>Bảo Lộc</td>
-                            <td>286 KM</td>
-                            <td>250000 đ</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-
-                        </tr>
-                        <tr>
-                            <td>Bảo Lộc</td>
-                            <td>286 KM</td>
-                            <td>250000 đ</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-
-                        </tr>
-                        <tr style="background: #eb8287;">
-                            <td style="text-align: left; color: white;">TP Hồ Chí Minh</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Bảo Lộc</td>
-                            <td>286 KM</td>
-                            <td>250000 đ</td>
-                          <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                          <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-
-                          </tr>
-                          <tr>
-                              <td>Bảo Lộc</td>
-                              <td>286 KM</td>
-                              <td>250000 đ</td>
-                              <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                              <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-    
-                          </tr>
-                          <tr>
-                              <td>Bảo Lộc</td>
-                              <td>286 KM</td>
-                              <td>250000 đ</td>
-                              <td style="color: #F2754E;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Chinh sua </td>
-                              <td style="color: #f54b17;" (click)="onShow(0,2)"><i class="far fa-edit"></i> Xoa</td>
-                            </tr>
-                    </table>
-                </div>  
-                <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm tuyến đường</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="menu-item-right" *ngIf='isCreateAccount!=0'>
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );                   ">
-                    <p>Thông tin tuyến đường</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Nơi đi</p>
-                        <select name="placego" id="">
-                            <option value="volvo">TP Hồ Chí Minh</option>
-                            <option value="saab">Đà Nẵng</option>
-                            <option value="mercedes">Hà Nội</option>
-                            <option value="audi">Quãng Trị</option>
-                        </select>
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Nơi đến</p>
-                        <select name="placego" id="">
-                            <option value="volvo">TP Hồ Chí Minh</option>
-                            <option value="saab">Đà Nẵng</option>
-                            <option value="mercedes">Hà Nội</option>
-                            <option value="audi">Quãng Trị</option>
-                        </select>
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Quãng đường</p>
-                        <input type="text" placeholder="Nhập quãng đường">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Thời gian hành trình</p>
-                        <input type="text" placeholder="Nhập thời gian hành trình">
-                    </div>
-                </form>
-            </div>
-            <div class="item-account" style="margin-left: 25px;">
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin vé</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Giá vé</p>
-                        <input type="text" placeholder="Nhập giá vé">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Thời gian chạy</p>
-                        <input type="text" placeholder="Nhập thời gian chạy">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Lưu lý: <span>Nhập những thời gian mà tuyến có thể chạy là những con số.</span> </p>
-                        <p for="">Ví dụ: <span>8, 10.5, 17 nghĩ là 8:00, 10:50, 17:00.</span> </p> 
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="menu-content" *ngIf='isShow == 2'>
-        <div class="menu-content-item">
-            <div class="menu-content-title">
-                <p>Danh sách bến</p> 
-            </div>
-            <div class="menu-content-item-content schedule">
-                <div style="height:300px; overflow:auto; ">
-                    <table style="width:100%; border-collapse: collapse;">
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">Phú Yên</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Bến xe Phú Lâm</td>
-                          <td>Khu phố 3 phường Phú Thạnh, Tp Tuy Hòa</td>
-                        </tr>
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">Nha Trang - Khánh Hòa</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Bến xe Cam Ranh</td>
-                          <td></td>
-                        </tr>
-                    </table>
-                </div>  
-                <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm bến</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa bến</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa bến</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="menu-item-right" *ngIf='isCreateAccount!=0'>
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
-                    <p>Thông tin thành phố</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Thành Phố</p>
-                        <input type="text" placeholder="Nhập thành phố">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Hình ảnh của thành phố</p>
-                        <input type="file" accept="image/*" capture="camera">
-                        
-                    </div>
-                </form>
-            </div>
-            <div class="item-account" style="margin-left: 25px;">
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin chi tiết bến</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Tên bến</p>
-                        <input type="text" placeholder="Nhập tên bến">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Địa chỉ</p>
-                        <input type="text" placeholder="Nhập địa chỉ">
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="menu-content" *ngIf='isShow == 3'>
-        <div class="menu-content-item">
-            <div class="menu-content-title">
-                <p>Danh sách xe</p> 
-            </div>
-            <div class="menu-content-item-content schedule">
-                <div style="height:300px; overflow:auto; ">
-                    <table style="width:100%; border-collapse: collapse;">
-                        <tr>
-                            <th>Tên xe</th>
-                            <th>Biển số</th>
-                            <th>Thời gian</th>
-                          </tr>
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">TP Hồ Chí Minh</td>
-                          <td style="color: white;">đến</td>
-                          <td style="text-align: right; color: white;">Phú Yên</td>
-                        </tr>
-                        <tr>
-                          <td>PY 01</td>
-                          <td>78-56123</td>
-                          <td>6:00</td>
-                        </tr>
-                        <tr>
-                            <td>PY 01</td>
-                            <td>78-56123</td>
-                            <td>6:00</td>
-                        </tr>
-                        <tr style="background: #eb8287;">
-                            <td style="text-align: left; color: white;">Phú Yên</td>
-                            <td style="color: white;">đến</td>
-                            <td style="text-align: right; color: white;">TP Hồ Chí Minh</td>
-                          </tr>
-                          <tr>
-                            <td>PY 01</td>
-                            <td>78-56123</td>
-                            <td>6:00</td>
-                          </tr>
-                          <tr>
-                              <td>PY 01</td>
-                              <td>78-56123</td>
-                              <td>6:00</td>
-                          </tr>
-                    </table>
-                </div>  
-                <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm xe</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa xe</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa xe</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="menu-item-right" *ngIf='isCreateAccount!=0'>
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
-                    <p>Thông tin tuyến xe chạy</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Nơi đi</p>
-                        <select name="placego" id="">
-                            <option value="volvo">TP Hồ Chí Minh</option>
-                            <option value="saab">Đà Nẵng</option>
-                            <option value="mercedes">Hà Nội</option>
-                            <option value="audi">Quãng Trị</option>
-                        </select>
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Nơi đến</p>
-                        <select name="placego" id="">
-                            <option value="volvo">TP Hồ Chí Minh</option>
-                            <option value="saab">Đà Nẵng</option>
-                            <option value="mercedes">Hà Nội</option>
-                            <option value="audi">Quãng Trị</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="item-account" style="margin-left: 25px;">
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin chi tiết xe</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">Tên xe</p>
-                        <input type="text" placeholder="Nhập tên xe">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Biển số</p>
-                        <input type="text" placeholder="Nhập biển số">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Hãng xe</p>
-                        <input type="text" placeholder="Nhập hãng xe">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Thời gian chạy</p>
-                        <input type="text" placeholder="Nhập thời gian chạy">
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="menu-content" *ngIf='isShow == 4'>
-        <div class="menu-content-item">
-            <div class="menu-content-title">
-                <p>Bảng qui đổi điểm</p> 
-            </div>
-            <div class="menu-content-item-content schedule">
-                <div style="height:310px; overflow:auto; ">
-                    <table style="width:90%; border-collapse: collapse;">
-                        <tr>
-                            <th>ID</th>
-                            <th>Điểm</th>
-                            <th>Giảm giá (%)</th>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>200</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>400</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>600</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>800</td>
-                            <td>8</td>
-                        </tr>
-                    </table>
-                </div>  
-                <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm qui đổi điểm</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa bảng qui đổi</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa qui đổi</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="menu-item-right">
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
-                    <p>Bảng cộng điểm</p> 
-                </div>
-                <div class="menu-content-item-content schedule">
-                    <div style="height:310px; overflow:auto; ">
-                        <table style="width:90%; border-collapse: collapse;">
-                            <tr>
-                                <th>ID</th>
-                                <th>Số tiền VNĐ</th>
-                                <th>Điểm cộng</th>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td>100</td>
-                              <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>200</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>400</td>
-                                <td>40</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>600</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>800</td>
-                                <td>80</td>
-                            </tr>
-                        </table>
-                    </div>  
-                    <div class="menu-action">
-                        <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm qui định điểm cộng</p>
-                        <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa điểm cộng</p>
-                        <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa điểm cộng</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item-account" style="margin-left: 25px;" *ngIf='isCreateAccount!=0'>
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin chi tiết</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">ID</p>
-                        <input type="text" placeholder="Nhập tên xe">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Điểm</p>
-                        <input type="text" placeholder="Nhập biển số">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Qui đổi</p>
-                        <input type="text" placeholder="Nhập hãng xe">
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="menu-content-1" *ngIf='isShow == 5' style="width: 85%;">
-         <div class="menu-content-item" style="width: 100%;">
-            <div class="search-infor">
-                <div class="search-left">
-                    <div class="menu-content-title" style="margin-bottom: 10px;">
-                        <p>Tìm kiếm theo ngày tháng năm</p> 
-                    </div>
-                    <input type="date">
-                    <button (click)="onShow(0,1)">Search</button>
-                </div>
-                <div class="search-left" style="margin-left: 2%;">
-                    <div class="menu-content-title" style="margin-bottom: 10px;">
-                        <p>Tìm kiếm theo tháng năm</p> 
-                    </div>
-                    <input type="text" style="height: 28px;">
-                    <button (click)="onShowChart(0,1)">Search</button>
-                </div>
-            </div>
-            <div class="menu-content-title">
-                <p>Bảng thống kê</p> 
-            </div>
-            <div class="menu-content-item-content">
-                <div style="height:310px; overflow:auto; ">
-                    <table style="width:100%; border-collapse: collapse;">
-                        <tr>
-                            <th>Ngày</th>
-                            <th>Tuyến</th>
-                            <th>Số lượng vé</th>
-                            <th>Tổng tiền</th>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                          <td>10000</td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                          <td>10000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>200</td>
-                            <td>2</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>400</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>600</td>
-                            <td>6</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>800</td>
-                            <td>8</td>
-                            <td>8</td>
-                        </tr>
-                    </table>
-                </div>  
-            </div>
-            <div style="width: 100%; margin-top: 30px;">
-                <div class="menu-content-title" *ngIf='isCreateAccount!=0'>
-                    <p>Biểu đồ thống kê</p> 
-                </div>
-                <div style="height: 600px;">
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <div style="clear: both;"></div>
-<app-footer style="margin-bottom: 0px;"></app-footer>
+<app-footer></app-footer>

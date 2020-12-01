@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ben } from '../models/Ben';
-
-
+import { BookTicketsService } from "../shared/book-tickets.service";
 declare var $:any
-
-import { BookService } from "../shared/book.service";
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,35 +10,41 @@ import { BookService } from "../shared/book.service";
 })
 export class HomeComponent implements OnInit {
 
-  items = ['oneway','round'];
+  items = ['oneway','round']
 
-  today:any;
-  listDeparture:Ben[];
-  listDestiantion: any;
-  listRoterPoppular: [];
-
-  constructor( private route: Router, public ser: BookService) { 
+  list_departure: any
+  list_destiantion: any
+  today:any
+  constructor(public service: BookTicketsService, private route: Router) { 
+   
   }
+
 
   ngOnInit(): void {
     this.load();
-    (<HTMLInputElement>document.getElementById("return-date")).disabled = true;
+    (<HTMLInputElement>document.getElementById("return-date")).disabled = true
+    
   }
+
+
 
   onItemChange(x){
     if(x==this.items[0]){
       (<HTMLInputElement>document.getElementById("return-date")).value = "";
       (<HTMLInputElement>document.getElementById("return-date")).disabled = true
-      this.ser.step1.isOneWay = true;
-      this.ser.step1.returnday = "";
+      this.service.select_route.isOneWay = true
+      this.service.select_route.returnday = ""
     }
     else{
       (<HTMLInputElement>document.getElementById("return-date")).disabled = false
-      this.ser.step1.isOneWay = false;
+      this.service.select_route.isOneWay = false
+
     }
   }
 
   load(){
+    this.list_departure = this.service.getListAdd()
+    this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
     this.getDate()
     $('.multiple-items').slick({
       infinites:true,
@@ -86,72 +87,42 @@ export class HomeComponent implements OnInit {
         }
       ]
     });
-  
-    this.ser.getAllBen().subscribe(data => {
-      this.listDeparture = data.data;
-      this.cityChanged(this.listDeparture[0].id,0);
-      this.ser.step1.departure.ben_toi = this.listDeparture[0].ben_toi.replace('Bến xe','');
-      this.ser.step1.departure.id = this.listDeparture[0].id.toString();
-    });
-    this.ser.step1.isOneWay = true;
-
-    this.ser.getRoterPopular().subscribe(
-      data => this.listRoterPoppular = data.data
-    )
   }
 
   submit(){
-    if(this.ser.step1.isOneWay == false && this.ser.step1.returnday == ""){
-      window.alert("xin hay chon ngay ve");
-      return;
+    if(this.service.select_route.isOneWay == false && this.service.select_route.returnday == ""){
+      window.alert("xin hay chon ngay ve")
+      return
     }
-
-    sessionStorage.setItem('b1',JSON.stringify(this.ser.step1));
-    console.log('Step1: '+sessionStorage.getItem('b1'));
-
-    this.route.navigate(['/booktickets/select-seat']);
+    var dd = new Date(this.service.select_route.daygo)
+    this.service.select_route.daygo = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear()
+    sessionStorage.setItem('b1',JSON.stringify(this.service.select_route))
+    console.log(sessionStorage.getItem('b1'))
+    this.route.navigate(['/booktickets/select-seat'])
   }
+
     
   getDate(){
     var today = new Date();
-    var x = (<HTMLInputElement>document.getElementById("date"));
+    var x = (<HTMLInputElement>document.getElementById("date"))
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
-    this.ser.step1.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
-    this.today = x.value;
+    this.today = x.value
   }
 
+  
   dateChanged(obj:any){
-    var dd = new Date(obj.value);
-    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear();
-    
-    if(this.ser.step1.isOneWay == true){
-      this.ser.step1.daygo = value;
-      this.ser.step1.returnday = "";
+    var dd = new Date(obj.value)
+    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear()
+    if(this.service.select_route.isOneWay==true){
+      this.service.select_route.daygo = value;
+      this.service.select_route.returnday = "";
     }
     else{
-      this.ser.step1.returnday = value;
+      this.service.select_route.returnday=value
     }
   }
 
-cityChanged(obj:any,index:any){
-    if(index==0){
-      this.ser.getBenById(obj).subscribe(
-        data => {
-          this.listDestiantion = data.data;
-          this.ser.step1.destination.ben_toi = this.listDestiantion[0].ben_toi.replace('Bến xe','');
-          this.ser.step1.destination.id = this.listDestiantion[0].id;
-        }
-      )
-      const item = this.listDeparture.find(departure => departure.id == obj);
-      this.ser.step1.departure.ben_toi = item.ben_toi.replace('Bến xe','');
-      this.ser.step1.departure.id = item.id.toString();
-    }
-    else{
-      const item = this.listDestiantion.find(destination => destination.id == obj);
-      this.ser.step1.destination.ben_toi = item.ben_toi.replace('Bến xe','');
-      this.ser.step1.destination.id = item.id.toString();
-    }
+  cityChanged(obj:any){
+    this.list_destiantion = this.service.getListAdd_A(this.service.select_route.departure)
   }
-
-
 }
