@@ -72,9 +72,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .antMatchers( "/api/tram-dung/get").access("hasRole('ROLE_USER')")
 	      .antMatchers( "/api/khach-hang/logout").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	      .antMatchers( "/api/khach-hang/change-password").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	      .antMatchers( "/api/khach-hang/update/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	      .antMatchers(HttpMethod.GET,"/api/khach-hang/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	      .antMatchers( "/api/khach-hang/test").access("hasRole('ROLE_USER')")
 	      .antMatchers( "/api/ve/thong-ke-theo-khach-hang").access("hasRole('ROLE_USER')or hasRole('ROLE_ADMIN')")
+	      .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
 	      .and()
 	      .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 	      

@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.KhachHangDao;
+import carbook.dao.RoleDetalDao;
 import carbook.entity.Ben;
 import carbook.entity.ResponseStatusEnum;
+import carbook.entity.RoleDetal;
 import carbook.entity.TokenResponse;
 import carbook.entity.User;
 import carbook.entity.UserToken;
 import carbook.request.KhachHangRequest;
+import carbook.request.KhachHangUpdateRequest;
 import carbook.response.BaseResponse;
 import carbook.response.BenToiResponse;
 import carbook.security.PasswordEncryption;
@@ -38,6 +41,9 @@ public class KhachHangController {
 
 	@Autowired
 	private KhachHangDao khachHangdao;
+	
+	@Autowired
+	private RoleDetalDao roleDetalDaol;
 	
 	@Autowired
 	  private JwtService jwtService;
@@ -79,23 +85,12 @@ public class KhachHangController {
 			khachHang.setThanhPho(wrapper.getThanhPho());
 			String code=GenerateCode.generateString();
 			this.listCode.add(code);
-			String links ="http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code;
 			
-			String linksFull="<a href=\""+links+"\">";
+			RoleDetal role =new RoleDetal(); 
+			role.setIdUser(khachHang.getId());
+			role.setRoleId("ROLE_USER");
+			roleDetalDaol.create(role);
 			
-			String Button ="<button style=\"vertical-align:middle;position: relative;display: inline-block;\r\n" + 
-					"  border-radius: 4px;\r\n" + 
-					"  background-color: #f4511e;\r\n" + 
-					"  border: none;\r\n" + 
-					"  color: #FFFFFF;\r\n" + 
-					"  text-align: center;\r\n" + 
-					"  font-size: 22px;\r\n" + 
-					"  padding: 20px;\r\n" + 
-					"  width: 700px;\r\n" + 
-					"  transition: all 0.5s;\r\n" + 
-					"  cursor: pointer;\r\n" + 
-					"  margin-left: 350px;\">"+"Nhấn vào đây để xác thực"
-				+ "</button>"+"</a>";
 			khachHangdao.create(khachHang);
 			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
 			+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
@@ -141,9 +136,6 @@ public class KhachHangController {
 								"  margin-left: 350px;\">"+"Nhấn vào đây để đăng nhập"
 							+ "</button>"+
 							"</a>";
-			
-			
-			 //String link= "<div style=\"\"></div><a href=\"http://localhost:4200/login\">"+button+"</a></br></br>";
 			 
 			 
 			responses ="<div><h1 style=\"margin-left:500px;	\">Bạn đã xác thực thành công</h1></div>"+button;
@@ -275,38 +267,31 @@ public class KhachHangController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value ="/update", method = RequestMethod.POST)
-	public ResponseEntity<BaseResponse> update(@RequestBody KhachHangRequest wrapper) {
+	@RequestMapping(value ="/update/{id}/", method = RequestMethod.POST)
+	public ResponseEntity<BaseResponse> update(
+			@PathVariable(name="id")int id,
+			@RequestBody KhachHangUpdateRequest wrapper) {
 		BaseResponse response= new BaseResponse();
-		String matKhauMK = null;
 		User khachHang =new User();
-		khachHang = khachHangdao.findByUsername(wrapper.getTaiKhoan());
+		khachHang = khachHangdao.getById(id);
 		
-		if(khachHang!=null) {
-			response.setMessageError("Tên tài khoản đã tồn tại, vui lòng nhập lại tên khác <3.");
+		if(khachHang==null) {
+			response.setMessageError("Tài khoản không tồn tại, vui lòng nhập lại.");
 			response.setStatus(ResponseStatusEnum.DATA_INVALID);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.BAD_REQUEST);
 		} else {
-			khachHang= new User();
-			PasswordEncryption pe = new PasswordEncryption();
-			try {
-				matKhauMK= pe.convertHashToString(wrapper.getMatKhau());
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			khachHang.setTaiKhoan(wrapper.getTaiKhoan());
+			
 			khachHang.setSdt(wrapper.getSdt());
-			khachHang.setPassword(matKhauMK);
 			khachHang.setTenKh(wrapper.getTen());
 			khachHang.setDiaChi(wrapper.getDiaChi());
 			khachHang.setCmnd(wrapper.getCmnd());
 			khachHang.setEmail(wrapper.getEmail());
 			khachHang.setQuanHuyen(wrapper.getQuanHuyen());
 			khachHang.setThanhPho(wrapper.getThanhPho());
-			String code=GenerateCode.generateString();
-			this.listCode.add(code);
+			
+			khachHangdao.update(khachHang);
+			response.setData(khachHang);
+			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
-		return null;
-		}
+	}
 }

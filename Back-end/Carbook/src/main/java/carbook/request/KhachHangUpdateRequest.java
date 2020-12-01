@@ -1,15 +1,8 @@
 package carbook.request;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class KhachHangRequest {
-
-	@JsonProperty("tai_khoan")
-	private String taiKhoan;
-	
-	@JsonProperty("mat_khau")
-	private String matKhau;
+public class KhachHangUpdateRequest {
 	
 	private String email;
 	
@@ -28,20 +21,16 @@ public class KhachHangRequest {
 	@JsonProperty("quan_huyen")
 	private String quanHuyen;
 	
-	public String getTaiKhoan() {
-		return taiKhoan;
+	public KhachHangUpdateRequest() {
+		
 	}
 
-	public void setTaiKhoan(String taiKhoan) {
-		this.taiKhoan = taiKhoan;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getMatKhau() {
-		return matKhau;
-	}
-
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getTen() {
@@ -91,14 +80,5 @@ public class KhachHangRequest {
 	public void setQuanHuyen(String quanHuyen) {
 		this.quanHuyen = quanHuyen;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	
 }
