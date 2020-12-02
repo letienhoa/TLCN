@@ -43,6 +43,17 @@ public class VeController {
 			@RequestParam(name = "time", required = false, defaultValue = "f") Date time,
 			@RequestParam(name = "selecter", required = false, defaultValue = "7") Integer selecter){
 		BaseResponse response = new BaseResponse();
+		if(selecter==1)
+		{
+			time.setDate(1);
+		}
+		else if(selecter==2) {
+			time.setMonth(1);
+		}
+		else {
+			response.setMessageError("yêu cầu lỗi khi nhập mốc chọn, mời chọn lại");
+			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+		}
 		List<ThongKeDoanhThuModelData> list = veDao.spGetTotalRevenueTiket(time, selecter);
 		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
