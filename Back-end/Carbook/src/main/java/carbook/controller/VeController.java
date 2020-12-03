@@ -1,5 +1,6 @@
 package carbook.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,8 +18,11 @@ import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeThongKeModelDate;
+import carbook.request.VeRequest;
 import carbook.response.BaseResponse;
 import carbook.response.VeCustomerDataModelResponse;
+import carbook.service.GenerateCode;
+import carbook.service.UtilsService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -38,23 +43,27 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}	
 	
+	
 	@RequestMapping(value ="thong-ke-doanh-thu", method = RequestMethod.GET )
 	public ResponseEntity<BaseResponse> spGetTotalRevenueTiket(
-			@RequestParam(name = "time", required = false, defaultValue = "f") Date time,
+			@RequestParam(name = "time", required = false, defaultValue = "2020/01/01") Date time,
 			@RequestParam(name = "selecter", required = false, defaultValue = "7") Integer selecter){
 		BaseResponse response = new BaseResponse();
+		Calendar times= Calendar.getInstance();
+		times.setTime(time);
 		if(selecter==1)
 		{
-			time.setDate(1);
+			times.set(Calendar.DAY_OF_MONTH,1);
 		}
 		else if(selecter==2) {
-			time.setMonth(1);
-		}
-		else {
+			 times.set(Calendar.MONTH,1);
+			 times.set(Calendar.DAY_OF_MONTH,1);
+			 times.add(Calendar.MONTH, -1);
+		} else {
 			response.setMessageError("yêu cầu lỗi khi nhập mốc chọn, mời chọn lại");
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
-		List<ThongKeDoanhThuModelData> list = veDao.spGetTotalRevenueTiket(time, selecter);
+		List<ThongKeDoanhThuModelData> list = veDao.spGetTotalRevenueTiket(times, selecter);
 		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
@@ -69,4 +78,27 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value ="/create", method = RequestMethod.POST )
+	public ResponseEntity<BaseResponse> create(
+			@RequestBody VeRequest wrapper){
+		BaseResponse response = new BaseResponse();
+		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
+		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
+		veDao.create(wrapper, slots,code);
+		
+		response.setData(wrapper);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/creates", method = RequestMethod.POST )
+	public ResponseEntity<BaseResponse> test(
+			@RequestBody VeRequest wrapper){
+		BaseResponse response = new BaseResponse();
+		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
+		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
+		
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	
+	}
+
 }

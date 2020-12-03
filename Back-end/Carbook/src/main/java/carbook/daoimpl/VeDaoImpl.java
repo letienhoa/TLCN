@@ -1,5 +1,6 @@
 package carbook.daoimpl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeThongKeModelDate;
+import carbook.request.VeRequest;
+import carbook.service.UtilsService;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -32,9 +35,9 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 	}
 
 	@Override
-	public List<ThongKeDoanhThuModelData> spGetTotalRevenueTiket(Date time, int selectTime) {
+	public List<ThongKeDoanhThuModelData> spGetTotalRevenueTiket(Calendar time, int selectTime) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_total_revenue_ticket",ThongKeDoanhThuModelData.class);
-		procedureCall.registerParameter("startTime",Date.class,ParameterMode.IN).bindValue(time);
+		procedureCall.registerParameter("startTime",Calendar.class,ParameterMode.IN).bindValue(time);
 		procedureCall.registerParameter("selectTime",Integer.class,ParameterMode.IN).bindValue(selectTime);
 		
 		List<ThongKeDoanhThuModelData> list =procedureCall.getResultList();
@@ -48,6 +51,21 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 		
 		List<VeCustomerDataModel> list =procedureCall.getResultList();
 		return list;
+	}
+
+	@Override
+	public void create(VeRequest wrapper, String slot,String code) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_insert_ve_giuong_map");
+		procedureCall.registerParameter("gioChay", Integer.class, ParameterMode.IN).bindValue(wrapper.getGioChay());
+		procedureCall.registerParameter("gioKetThuc", Integer.class, ParameterMode.IN).bindValue(wrapper.getGioKetThuc());
+		procedureCall.registerParameter("idTuyenXe", Integer.class, ParameterMode.IN).bindValue(wrapper.getIdTuyenXe());
+		procedureCall.registerParameter("sdt", String.class, ParameterMode.IN).bindValue(wrapper.getSdt());
+		procedureCall.registerParameter("email", String.class, ParameterMode.IN).bindValue(wrapper.getEmail());
+		procedureCall.registerParameter("date", Date.class, ParameterMode.IN).bindValue(UtilsService.changeStringToDate(wrapper.getDate()));
+		procedureCall.registerParameter("giaVe", Integer.class, ParameterMode.IN).bindValue(wrapper.getGiaVe().intValue());
+		procedureCall.registerParameter("code", String.class, ParameterMode.IN).bindValue(code);
+		procedureCall.registerParameter("slot", String.class, ParameterMode.IN).bindValue(slot);
+		procedureCall.execute();
 	}
 
 }

@@ -23,7 +23,7 @@ import carbook.config.PaypalPaymentIntent;
 import carbook.config.PaypalPaymentMethod;
 
 
-@Service
+//@Service
 //@Repository("paypalServices")
 public class PaypalServices {
 

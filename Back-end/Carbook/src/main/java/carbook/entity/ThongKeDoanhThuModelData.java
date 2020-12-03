@@ -29,8 +29,8 @@ public class ThongKeDoanhThuModelData {
 		return time;
 	}
 
-	public void setTime(String month) {
-		this.time = month;
+	public void setTime(String time) {
+		this.time = time;
 	}
 	
 }

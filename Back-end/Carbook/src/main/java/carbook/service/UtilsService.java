@@ -1,10 +1,15 @@
 package carbook.service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-public class ChangeDateService {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class UtilsService {
 
 	public static Date changeStringToDate(String chuoiDate) {
 		
@@ -69,5 +74,18 @@ public class ChangeDateService {
 		} else {
 			return (new SimpleDateFormat("dd/MM/yyyy").format(date));
 		}
+	}
+	
+	public static String convertListObjectToJsonArrayt(List<?> objects) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			final ByteArrayOutputStream out = new ByteArrayOutputStream();
+			mapper.writeValue(out, objects);
+			final byte[] data = out.toByteArray();
+			return new String(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

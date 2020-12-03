@@ -79,6 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/xe/**").access("hasRole('ROLE_ADMIN')")
 	      
+	      
 	      .and()
 	      .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 	      

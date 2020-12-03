@@ -23,52 +23,43 @@ import carbook.service.PaypalServices;
 @RequestMapping("/api/paypal")
 public class Paypalcontroller {
 
-	public static final String URL_PAYPAL_SUCCESS = "/api/paypal/pay/success";
-	public static final String URL_PAYPAL_CANCEL = "/api/paypal/pay/cancel";
-	
-	@Autowired
-    private PaypalServices paypalService;
-	
-	
-	@RequestMapping(value ="/pay", method = RequestMethod.POST)
-	public String pay(HttpServletRequest request,@RequestParam("price") double price ){
-		String cancelUrl = Utils.getBaseURL(request)  + URL_PAYPAL_CANCEL;
-		String successUrl = Utils.getBaseURL(request) + URL_PAYPAL_SUCCESS;
-		try {
-			Payment payment = paypalService.createPayment(
-					price, 
-					"USD", 
-					PaypalPaymentMethod.paypal, 
-					PaypalPaymentIntent.sale,
-					"payment description", 
-					cancelUrl, 
-					successUrl);
-			for(Links links : payment.getLinks()){
-				if(links.getRel().equals("approval_url")){
-					return "redirect:" + links.getHref();
-				}
-			}
-		} catch (PayPalRESTException e) {
-			
-		}
-		return "redirect:/";
-	}
-	
-	@RequestMapping(value ="/pay/cancel", method = RequestMethod.GET)
-	public String cancelPay(){
-		return "cancel";
-	}
-
-	@RequestMapping(value ="/pay/success", method = RequestMethod.GET)
-	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
-		try {
-			Payment payment = paypalService.executePayment(paymentId, payerId);
-			if(payment.getState().equals("approved")){
-				return "success";
-			}
-		} catch (PayPalRESTException e) {
-			
-		}
-		return "redirect:/";
-	}
+	/*
+	 * public static final String URL_PAYPAL_SUCCESS =
+	 * "/api/paypal/pay/success?email="; public static final String
+	 * URL_PAYPAL_CANCEL = "/api/paypal/pay/cancel";
+	 * 
+	 * @Autowired private PaypalServices paypalService;
+	 * 
+	 * 
+	 * @RequestMapping(value ="/pay", method = RequestMethod.POST) public String
+	 * pay(HttpServletRequest request,@RequestParam("price") double price,
+	 * 
+	 * @RequestParam("email") String email){ String cancelUrl =
+	 * Utils.getBaseURL(request) + URL_PAYPAL_CANCEL; String successUrl =
+	 * Utils.getBaseURL(request) + URL_PAYPAL_SUCCESS+email; try { Payment payment =
+	 * paypalService.createPayment( price, "USD", PaypalPaymentMethod.paypal,
+	 * PaypalPaymentIntent.sale, "payment description", cancelUrl, successUrl);
+	 * for(Links links : payment.getLinks()){
+	 * if(links.getRel().equals("approval_url")){ return "redirect:/" +
+	 * links.getHref(); } } } catch (PayPalRESTException e) {
+	 * 
+	 * } return "redirect:/"; }
+	 * 
+	 * @RequestMapping(value ="/pay/cancel", method = RequestMethod.GET) public
+	 * String cancelPay(){ return "cancel"; }
+	 * 
+	 * @RequestMapping(value ="/pay/success", method = RequestMethod.GET) public
+	 * String successPay(
+	 * 
+	 * @RequestParam("paymentId") String paymentId,
+	 * 
+	 * @RequestParam("PayerID") String payerId,
+	 * 
+	 * @RequestParam("email") String email){ try { Payment payment =
+	 * paypalService.executePayment(paymentId, payerId);
+	 * if(payment.getState().equals("approved")){ System.out.print(email); return
+	 * "success"; } } catch (PayPalRESTException e) {
+	 * 
+	 * } return "redirect:/"; }
+	 */
 }

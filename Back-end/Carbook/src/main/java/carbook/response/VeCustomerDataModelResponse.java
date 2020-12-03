@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import carbook.entity.VeCustomerDataModel;
-import carbook.service.ChangeDateService;
+import carbook.service.UtilsService;
 
 public class VeCustomerDataModelResponse {
 
@@ -53,15 +53,15 @@ public class VeCustomerDataModelResponse {
 	public VeCustomerDataModelResponse(VeCustomerDataModel e) {
 		this.id=e.getId();
 		this.gioChay=e.getGioChay();
-		this.ngayChay= ChangeDateService.getDateFormatVN(e.getNgayChay());
+		this.ngayChay= UtilsService.getDateFormatVN(e.getNgayChay());
 		this.count=e.getCount();
 		this.giaVe=e.getGiaVe();
 		this.code=e.getCode();
 		this.idTuyenXe=e.getIdTuyenXe();
 		this.benDi=e.getBenDi();
 		this.benToi=e.getBenToi();
-		this.ngayDat=ChangeDateService.getDateHourFormatVN(e.getNgayDat());
-		this.ngayThanhToan =ChangeDateService.getDateHourFormatVN(e.getNgayThanhToan());
+		this.ngayDat=UtilsService.getDateHourFormatVN(e.getNgayDat());
+		this.ngayThanhToan =UtilsService.getDateHourFormatVN(e.getNgayThanhToan());
 		this.trangThai=e.getTrangThai();
 	}
 
