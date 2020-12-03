@@ -54,7 +54,7 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 	}
 
 	@Override
-	public void create(VeRequest wrapper, String slot,String code) {
+	public Long create(VeRequest wrapper, String slot,String code) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_insert_ve_giuong_map");
 		procedureCall.registerParameter("gioChay", Integer.class, ParameterMode.IN).bindValue(wrapper.getGioChay());
 		procedureCall.registerParameter("gioKetThuc", Integer.class, ParameterMode.IN).bindValue(wrapper.getGioKetThuc());
@@ -65,7 +65,21 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 		procedureCall.registerParameter("giaVe", Integer.class, ParameterMode.IN).bindValue(wrapper.getGiaVe().intValue());
 		procedureCall.registerParameter("code", String.class, ParameterMode.IN).bindValue(code);
 		procedureCall.registerParameter("slot", String.class, ParameterMode.IN).bindValue(slot);
+		procedureCall.registerParameter("message", Long.class, ParameterMode.OUT);
 		procedureCall.execute();
+		return (Long) procedureCall.getOutputParameterValue("message");
+	}
+
+	@Override
+	public Long spUpdateVe(int id, String sdt, String email) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_update_ve");
+		procedureCall.registerParameter("idUser", Integer.class, ParameterMode.IN).bindValue(id);
+		procedureCall.registerParameter("newSdt", String.class, ParameterMode.IN).bindValue(sdt);
+		procedureCall.registerParameter("newEmail", String.class, ParameterMode.IN).bindValue(email);
+		procedureCall.registerParameter("message", Long.class, ParameterMode.OUT);
+		procedureCall.execute();
+		return (Long) procedureCall.getOutputParameterValue("message");
+		
 	}
 
 }

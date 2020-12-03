@@ -10,8 +10,9 @@ import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 
 public interface VeDao {
-
-	void create(VeRequest wrapper, String slot,String code);
+	Long spUpdateVe(int id,String sdt,String email);
+	
+	Long create(VeRequest wrapper, String slot,String code);
 	
 	List<VeThongKeModelDate> spGetTotalRevenueTuyenXe(Date time,int selectTime);
 	

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.KhachHangDao;
 import carbook.dao.RoleDetalDao;
+import carbook.dao.VeDao;
 import carbook.entity.Ben;
 import carbook.entity.ResponseStatusEnum;
 import carbook.entity.RoleDetal;
@@ -45,6 +46,9 @@ public class KhachHangController {
 	
 	@Autowired
 	private RoleDetalDao roleDetalDaol;
+	
+	@Autowired
+	private VeDao veDao;
 	
 	@Autowired
 	  private JwtService jwtService;
@@ -292,9 +296,13 @@ public class KhachHangController {
 			khachHang.setEmail(wrapper.getEmail());
 			khachHang.setQuanHuyen(wrapper.getQuanHuyen());
 			khachHang.setThanhPho(wrapper.getThanhPho());
-			
-			khachHangdao.update(khachHang);
-			response.setData(khachHang);
+			Long mesageSQL=	veDao.spUpdateVe(id, wrapper.getSdt(), wrapper.getEmail());
+			if(mesageSQL==1){
+				response.setMessageError("Lỗi chỉnh sửa dữ liệu");
+			} else {
+				khachHangdao.update(khachHang);
+				response.setData(khachHang);
+			}
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 	}

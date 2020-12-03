@@ -21,6 +21,7 @@ import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 import carbook.response.BaseResponse;
 import carbook.response.VeCustomerDataModelResponse;
+import carbook.service.EmailService;
 import carbook.service.GenerateCode;
 import carbook.service.UtilsService;
 
@@ -29,6 +30,9 @@ import carbook.service.UtilsService;
 @RequestMapping("/api/ve")
 public class VeController {
 
+	@Autowired
+	private EmailService emailService; 
+	
 	
 	@Autowired
 	private VeDao veDao;
@@ -84,9 +88,20 @@ public class VeController {
 		BaseResponse response = new BaseResponse();
 		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
 		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
-		veDao.create(wrapper, slots,code);
+		String ngay=UtilsService.getDateFormatVN(UtilsService.changeStringToDate(wrapper.getDate()));
+		emailService.sendEmail(wrapper.getEmail(),"MÃ CODE XÁC THỰC","QUÝ KHÁCH VUI LÒNG GIỮ MÃ CODE NÀY ĐỂ XÁC THỰC KHI XUẤT PHÁT TẠI BẾN: "
+				+"Mã Code: "+code+"                                    "
+				+"Mã tuyến xe: "+wrapper.getIdTuyenXe()
+				+"       ---      "+"Giờ xuất phát: "+wrapper.getGioChay()+"giờ"
+				+"    ---   "+"Vị trí giường nằm: "+slots
+				+"       ---     "+"Giá tiền :"+wrapper.getGiaVe()+"vnd"+"     ---     "+"Ngày khởi hành: "+ngay);
 		
-		response.setData(wrapper);
+		Long messageSQL=veDao.create(wrapper, slots,code);
+		if(messageSQL==1) {
+			response.setMessageError("Lỗi khi thêm dữ liệu dưới database");
+		} else {
+			response.setData(wrapper);
+		}
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
