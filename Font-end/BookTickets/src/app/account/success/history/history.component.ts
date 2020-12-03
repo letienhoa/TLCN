@@ -61,8 +61,6 @@ export class HistoryComponent implements OnInit {
     this.history = [];
    
     for(let i of this.tempHistory){
-      alert(i.ngay_chay.toString());
-      alert(value.toString());
       if(i.ngay_chay.toString() == value.toString()){
         this.history.push(i);
       }

@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.serveice.account.tai_khoan = this.form.value.email;
-    this.serveice.account.mat_khau = this.form.value.password;
+    this.serveice.account.tai_khoan = this.form.value.email.toString();
+    this.serveice.account.mat_khau = this.form.value.password.toString();
     
     this.serveice.postLogIn(this.serveice.account).subscribe(
       data => {

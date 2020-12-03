@@ -29,12 +29,11 @@ import { InforLoginComponent } from './account/success/infor-login/infor-login.c
 import { InforPersonalComponent } from './account/success/infor-personal/infor-personal.component';
 import { SelectPayComponent } from './account/success/pay/select-pay/select-pay.component';
 import { AddminComponent } from './account/addmin/addmin.component';
-import { CurdScheduleComponent } from './account/addmin/curd-schedule/curd-schedule.component';
 
 import { BookService } from '../../src/app/shared/book.service';
 import {LogInService} from '../../src/app/shared/log-in.service';
 import {AdminService  } from "../../src/app/shared/admin.service";
-import { PaymeComponent } from './payme/payme.component';
+
 
 
 
@@ -64,8 +63,7 @@ import { PaymeComponent } from './payme/payme.component';
     InforPersonalComponent,
     SelectPayComponent,
     AddminComponent,
-    CurdScheduleComponent,
-    PaymeComponent,
+
 
   ],
   imports: [

@@ -63,5 +63,15 @@ export class LogInService {
     return this.http.get(this.urlTicket+"/thong-ke-theo-khach-hang?khach_hang_id="+customerId,httpOptions);
   }
 
+  postChangeInforPersional(token:any,customerID:any,customerInfor:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token
+      })
+    };
+    return this.http.post(this.url+"/update/"+customerID+"/",customerInfor,httpOptions);
+  }
   
 }
