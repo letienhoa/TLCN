@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.load();
     (<HTMLInputElement>document.getElementById("return-date")).disabled = true;
+  
   }
 
   onItemChange(x){
@@ -92,6 +93,7 @@ export class HomeComponent implements OnInit {
       this.cityChanged(this.listDeparture[0].id,0);
       this.ser.step1.departure.ben_toi = this.listDeparture[0].ben_toi.replace('Bến xe','');
       this.ser.step1.departure.id = this.listDeparture[0].id.toString();
+      sessionStorage.setItem('lBenDi', JSON.stringify(this.listDeparture));
     });
     this.ser.step1.isOneWay = true;
 
@@ -122,7 +124,7 @@ export class HomeComponent implements OnInit {
 
   dateChanged(obj:any){
     var dd = new Date(obj.value);
-    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear();
+    var value = ('0' + dd.getDate()).slice(-2)+'/'+('0' + (dd.getMonth() + 1)).slice(-2) +"/"+dd.getFullYear();
     
     if(this.ser.step1.isOneWay == true){
       this.ser.step1.daygo = value;
@@ -140,6 +142,7 @@ cityChanged(obj:any,index:any){
           this.listDestiantion = data.data;
           this.ser.step1.destination.ben_toi = this.listDestiantion[0].ben_toi.replace('Bến xe','');
           this.ser.step1.destination.id = this.listDestiantion[0].id;
+          sessionStorage.setItem('lBenToi', JSON.stringify(this.listDestiantion));
         }
       )
       const item = this.listDeparture.find(departure => departure.id == obj);

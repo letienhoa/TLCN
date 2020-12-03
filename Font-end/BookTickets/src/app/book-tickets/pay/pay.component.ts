@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class PayComponent implements OnInit {
   infor_router:any
   infor_seat:any
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.infor = JSON.parse(sessionStorage.getItem('b3'));
@@ -33,6 +34,8 @@ export class PayComponent implements OnInit {
         }
       }
     } */
+
+    this.router.navigate(['paypall']);
     
   }
 
