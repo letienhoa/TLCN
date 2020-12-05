@@ -37,8 +37,8 @@ public class AdminController {
 	@Autowired
 	private RoleDetalDao roleDetalDaol;
 	
-	@Autowired
-	  private JwtService jwtService;
+	//@Autowired
+	  //private JwtService jwtService;
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public ResponseEntity<BaseResponse> create(@RequestBody KhachHangRequest wrapper) {

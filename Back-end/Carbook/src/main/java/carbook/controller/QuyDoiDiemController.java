@@ -29,6 +29,7 @@ public class QuyDoiDiemController {
 	public ResponseEntity<BaseResponse>create(@RequestBody QuyDoiDiemRequest wrapper){
 		BaseResponse response= new BaseResponse();
 		QuyDoiDiem qdd= new QuyDoiDiem();
+		qdd.setTitle(wrapper.getTitle());
 		qdd.setPoint(wrapper.getPoint());
 		qdd.setDiscount(wrapper.getDiscount());
 		quyDoiDiemDao.create(qdd);
@@ -44,6 +45,7 @@ public class QuyDoiDiemController {
 		QuyDoiDiem qdd= quyDoiDiemDao.findOne(id);
 		qdd.setPoint(wrapper.getPoint());
 		qdd.setDiscount(wrapper.getDiscount());
+		qdd.setTitle(wrapper.getTitle());
 		quyDoiDiemDao.update(qdd);
 		response.setData(qdd);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);

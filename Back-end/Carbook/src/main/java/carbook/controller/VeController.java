@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import carbook.dao.PointDao;
+import carbook.dao.QuyDoiDiemDao;
 import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
@@ -37,6 +39,12 @@ public class VeController {
 	@Autowired
 	private VeDao veDao;
 	
+	@Autowired
+	private PointDao pointDao;
+	
+	@Autowired
+	private QuyDoiDiemDao quyDoiDiemDao;
+	
 	@RequestMapping(value ="thong-ke-theo-tuyen", method = RequestMethod.GET )
 	public ResponseEntity<BaseResponse> spGetTotalRevenueTuyenXe(
 			@RequestParam(name = "time", required = false) Date time,
@@ -46,7 +54,6 @@ public class VeController {
 		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}	
-	
 	
 	@RequestMapping(value ="thong-ke-doanh-thu", method = RequestMethod.GET )
 	public ResponseEntity<BaseResponse> spGetTotalRevenueTiket(
@@ -95,9 +102,11 @@ public class VeController {
 				+"       ---      "+"Giờ xuất phát: "+wrapper.getGioChay()+"giờ"
 				+"    ---   "+"Vị trí giường nằm: "+slots
 				+"       ---     "+"Giá tiền :"+wrapper.getGiaVe()+"vnd"+"     ---     "+"Ngày khởi hành: "+ngay);
-		
+		Double parde =wrapper.getGiaVe()/4000;
+		int point =parde.intValue();
+		Long message1=pointDao.spCreateHistoryPoint(wrapper.getEmail(), point, 0);
 		Long messageSQL=veDao.create(wrapper, slots,code);
-		if(messageSQL==1) {
+		if(messageSQL==1||message1==1) {
 			response.setMessageError("Lỗi khi thêm dữ liệu dưới database");
 		} else {
 			response.setData(wrapper);
@@ -109,8 +118,7 @@ public class VeController {
 	public ResponseEntity<BaseResponse> test(
 			@RequestBody VeRequest wrapper){
 		BaseResponse response = new BaseResponse();
-		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
-		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
+		
 		
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	

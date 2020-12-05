@@ -6,6 +6,8 @@ public class QuyDoiDiemRequest {
 	
 	private int discount;
 	
+	private String title;
+	
 	public QuyDoiDiemRequest() {
 		
 	}
@@ -24,6 +26,14 @@ public class QuyDoiDiemRequest {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

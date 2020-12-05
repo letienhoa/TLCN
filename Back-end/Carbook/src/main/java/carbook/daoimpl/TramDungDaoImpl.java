@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import carbook.dao.AbstractDao;
 import carbook.dao.TramDungDao;
-import carbook.entity.Ben;
 import carbook.entity.TramDung;
 
 @Transactional

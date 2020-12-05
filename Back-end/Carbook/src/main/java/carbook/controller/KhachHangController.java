@@ -18,19 +18,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.KhachHangDao;
+import carbook.dao.PointDao;
 import carbook.dao.RoleDetalDao;
 import carbook.dao.VeDao;
-import carbook.entity.Ben;
+
 import carbook.entity.ResponseStatusEnum;
 import carbook.entity.RoleDetal;
 import carbook.entity.TokenResponse;
 import carbook.entity.User;
+import carbook.entity.UserPointDataModel;
 import carbook.entity.UserRoleDataModel;
 import carbook.entity.UserToken;
 import carbook.request.KhachHangRequest;
 import carbook.request.KhachHangUpdateRequest;
 import carbook.response.BaseResponse;
-import carbook.response.BenToiResponse;
+import carbook.response.UserPointResponse;
 import carbook.security.PasswordEncryption;
 import carbook.service.EmailService;
 import carbook.service.GenerateCode;
@@ -49,6 +51,9 @@ public class KhachHangController {
 	
 	@Autowired
 	private VeDao veDao;
+	
+	@Autowired
+	private PointDao pointDao;
 	
 	@Autowired
 	  private JwtService jwtService;
@@ -88,6 +93,9 @@ public class KhachHangController {
 			khachHang.setEmail(wrapper.getEmail());
 			khachHang.setQuanHuyen(wrapper.getQuanHuyen());
 			khachHang.setThanhPho(wrapper.getThanhPho());
+			khachHang.setDiemTichLuy(0);
+			khachHang.setDiscount(0);
+			khachHang.setTongDiem(0);
 			String code=GenerateCode.generateString();
 			this.listCode.add(code);
 			khachHangdao.create(khachHang);
@@ -199,9 +207,7 @@ public class KhachHangController {
 		respnse.setRoles(khachHang.getRoles());
 		return new ResponseEntity<TokenResponse>(respnse,HttpStatus.OK);
 	}
-	
-	
-	
+		
 	@RequestMapping(value ="/logout", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> logout(HttpServletRequest req) {
 		BaseResponse response= new BaseResponse();
@@ -217,8 +223,6 @@ public class KhachHangController {
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 
-	
-	
 	@RequestMapping(value ="/change-password", method = RequestMethod.POST)
 	public ResponseEntity<BaseResponse> changepassword(
 			HttpServletRequest req,
@@ -260,7 +264,6 @@ public class KhachHangController {
 		}	
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
-	
 	
 	@RequestMapping(value ="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> index(
@@ -307,12 +310,20 @@ public class KhachHangController {
 		}
 	}
 
-	
 	@RequestMapping(value ="/get-all-user", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> spGetAllUser(){
 		BaseResponse response= new BaseResponse();
 		List<UserRoleDataModel> list =khachHangdao.spGetAllUser();
 		response.setData(list);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/get-detail-point/{id}", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> spGetAllUser(@PathVariable(name="id")int id){
+		BaseResponse response= new BaseResponse();
+		UserPointDataModel user =pointDao.spGetDetailPointCustomer(id);
+		UserPointResponse data =new UserPointResponse(user);
+		response.setData(data);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 }

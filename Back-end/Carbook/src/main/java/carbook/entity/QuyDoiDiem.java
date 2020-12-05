@@ -16,6 +16,8 @@ public class QuyDoiDiem {
 	
 	private int discount;
 	
+	private String title;
+	
 	public QuyDoiDiem() {
 		
 	}
@@ -42,6 +44,14 @@ public class QuyDoiDiem {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

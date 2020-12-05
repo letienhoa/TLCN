@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(value = { "roles", "authorities" })
@@ -53,6 +53,14 @@ public class User extends BaseEntity {
 	private int confirm;
 	
 	private int status;
+	
+	@Column(name= "diem_tich_luy")
+	private int diemTichLuy;
+	
+	private int discount;
+	
+	@Column(name= "tong_diem")
+	private int tongDiem;
 	
 	public User() {
 		
@@ -152,6 +160,30 @@ public class User extends BaseEntity {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public int getDiemTichLuy() {
+		return diemTichLuy;
+	}
+
+	public void setDiemTichLuy(int diemTichLuy) {
+		this.diemTichLuy = diemTichLuy;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public int getTongDiem() {
+		return tongDiem;
+	}
+
+	public void setTongDiem(int tongDiem) {
+		this.tongDiem = tongDiem;
 	}
 
 	

@@ -34,6 +34,8 @@ public class Ve extends BaseEntity {
 	@Column(name="gia_ve")
 	private int giaVe;
 	
+	private int point;
+	
 	@Column(name="date")
 	private Date date;
 	
@@ -119,6 +121,21 @@ public class Ve extends BaseEntity {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
+	}
 	
 }
