@@ -33,6 +33,7 @@ import { AddminComponent } from './account/addmin/addmin.component';
 import { BookService } from '../../src/app/shared/book.service';
 import {LogInService} from '../../src/app/shared/log-in.service';
 import {AdminService  } from "../../src/app/shared/admin.service";
+import { PaypallComponent } from './paypall/paypall.component';
 
 
 
@@ -63,6 +64,7 @@ import {AdminService  } from "../../src/app/shared/admin.service";
     InforPersonalComponent,
     SelectPayComponent,
     AddminComponent,
+    PaypallComponent,
 
 
   ],

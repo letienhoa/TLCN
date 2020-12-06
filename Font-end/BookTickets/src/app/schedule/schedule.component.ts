@@ -12,9 +12,6 @@ export class ScheduleComponent implements OnInit {
 
   allRouter = [];
 
-
- 
-
   constructor(private service: BookService, private route: Router) { }
 
   ngOnInit(): void {

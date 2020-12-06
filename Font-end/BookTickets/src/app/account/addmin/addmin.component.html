@@ -29,18 +29,17 @@
                 <div style="height:300px; overflow:auto;">
                     <table style="width:100%;">
                         <tr>
-                            <th>Email</th>
+                            <th>Tài khoản</th>
                             <th>Mật khẩu</th>
                             <th>Vai trò</th>
                             <th></th>
                         </tr>
                         <ng-container *ngFor="let item of listUser">
                             <tr>
-                                <td>{{item.ten_kh}}</td>
+                                <td>{{item.tai_khoan}}</td>
                                 <td>********************</td>
                                 <td>{{item.role}}</td>
-<!--                                 <td style="color: #F2754E;" (click)="onShow(0,2)">Chỉnh sửa tài khoản</td>
- -->                        </tr>
+                            </tr>
                         </ng-container>
                     </table>
                 </div>  
@@ -203,25 +202,27 @@
                 <form [formGroup]="formRoute">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Nơi đi</p>
-                        <select name="departure" class="form-control" formControlName="diem_di_id" *ngIf='isCreateAccount==1'>
+                        <select name="departure" class="form-control" formControlName="diem_di_id" *ngIf='isCreateAccount==1' (change)="onChangeRoute($event.target.value)">
                             <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                         </select>
-                        <input type="text" placeholder="Bến xe {{route.ben_xe_di}}" class="form-control" formControlName="diem_di_id" *ngIf='isCreateAccount==2' disabled>
+                        <input type="text" placeholder="Bến xe {{route.ben_xe_di}}" *ngIf='isCreateAccount==2' disabled>
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Nơi đến</p>
                         <select name="placego" id="" class="form-control" formControlName="diem_toi_id" *ngIf='isCreateAccount==1'>
-                            <option *ngFor="let item of listDestination" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
+                            <option *ngFor="let item of listDestinationForRoute" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                         </select>
-                        <input type="text" placeholder="Bến xe {{route.ben_xe_toi}}" class="form-control" formControlName="diem_toi_id" *ngIf='isCreateAccount==2' disabled>
+                        <input type="text" placeholder="Bến xe {{route.ben_xe_toi}}" *ngIf='isCreateAccount==2' disabled>
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Quãng đường</p>
-                        <input type="text" placeholder="Nhập quãng đường" class="form-control" formControlName="khoang_cach">
+                        <input type="text" placeholder="Nhập quãng đường" *ngIf='isCreateAccount==1' class="form-control" formControlName="khoang_cach">
+                        <input type="text" placeholder="{{route.khoang_cach}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="khoang_cach">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Thời gian hành trình</p>
-                        <input type="text" placeholder="Nhập thời gian hành trình" class="form-control" formControlName="thoi_gian_hanh_trinh">
+                        <input type="text" placeholder="Nhập thời gian hành trình" *ngIf='isCreateAccount==1' class="form-control" formControlName="thoi_gian_hanh_trinh">
+                        <input type="text" placeholder="{{route.thoi_gian_hanh_trinh}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="thoi_gian_hanh_trinh">
                     </div>
                 </form>
             </div>
@@ -233,11 +234,12 @@
                 <form [formGroup]="formRoute">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Giá vé</p>
-                        <input type="text" placeholder="Nhập giá vé" class="form-control" formControlName="gia_ca">
+                        <input type="text" placeholder="Nhập giá vé" *ngIf='isCreateAccount==1' class="form-control" formControlName="gia_ca">
+                        <input type="text" placeholder="{{route.gia_ca}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="gia_ca">
                     </div>
                     <div style="clear: both;"></div>
                     <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)" *ngIf='isCreateAccount==1'>Thêm vé</button>
+                        <button class="btn-submit" (click)="onShow(1,0)" *ngIf='isCreateAccount==1'>Thêm tuyến</button>
                         <button class="btn-submit" (click)="onShow(2,0)" *ngIf='isCreateAccount==2'>Lưu</button>
                     </div>
                 </form>
@@ -362,14 +364,14 @@
                         <select name="placego" class="form-control" formControlName="diem_di_id" (change)="cityChanged($event.target.value,0)" *ngIf='isCreateAccount==1'>
                             <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                         </select>
-                        <input type="text" placeholder="{{route.ben_xe_di}}" class="form-control" formControlName="diem_di_id" disabled *ngIf='isCreateAccount==2'>
+                        <input type="text" placeholder="{{route.ben_xe_di}}" disabled *ngIf='isCreateAccount==2'>
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Nơi đến</p>
                         <select name="placego" class="form-control" formControlName="diem_toi_id" (change)="cityChanged($event.target.value,1)" *ngIf='isCreateAccount==1'>
                             <option *ngFor="let item of listDestination" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
                         </select>
-                        <input type="text" placeholder="{{route.ben_xe_toi}}" class="form-control" formControlName="diem_di_id" disabled *ngIf='isCreateAccount==2'>
+                        <input type="text" placeholder="{{route.ben_xe_toi}}" disabled *ngIf='isCreateAccount==2'>
                     </div>
                 </form>
             </div>
@@ -381,15 +383,18 @@
                 <form [formGroup]="formCar">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Tên xe</p>
-                        <input type="text" placeholder="{{route.tenXe}}" class="form-control" formControlName="ten_xe">
+                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập tên xe" class="form-control" formControlName="ten_xe">
+                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.tenXe}}" class="form-control" formControlName="ten_xe">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Hãng xe</p>
-                        <input type="text" placeholder="{{route.hangXe}}" class="form-control" formControlName="hang_xe">
+                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập hãng xe" class="form-control" formControlName="hang_xe">
+                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.hangXe}}" class="form-control" formControlName="hang_xe">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Thời gian chạy</p>
-                        <input type="text" placeholder="{{route.gioChay}}" class="form-control" formControlName="gio_chay">
+                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập thời gian chạy" class="form-control" formControlName="gio_chay">
+                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.gioChay}}" class="form-control" formControlName="gio_chay">
                     </div>
                     <div style="clear: both;"></div>
                     <div class="infor-item">
@@ -545,11 +550,10 @@
                     </div>
                     <div style="display: flex;">
                         <div style="width: 50%;">
-                            <input type="radio" style="height: 28px; float: left;" name="type" (change)="onItemChange(1,1)">
-                            <label style="line-height: 50px; margin-left: -10px;"> Ngày</label>    
+                            <input type="radio" style="height: 28px; float: left;" name="type" (change)="onItemChange(1,1)" checked>                            <label style="line-height: 50px; margin-left: -10px;"> Ngày</label>    
                         </div>
                         <div style="width: 50%;">
-                            <input type="radio" style="height: 28px; float: left;" name="type" checked (change)="onItemChange(2,1)">
+                            <input type="radio" style="height: 28px; float: left;" name="type"  (change)="onItemChange(2,1)">
                             <label style="line-height: 50px; margin-left: -10px;"> Tháng</label>    
                         </div>
                     </div>
@@ -559,7 +563,7 @@
                     <div class="menu-content-title" style="margin-bottom: 10px;">
                         <p>Chọn ngày tháng năm</p> 
                     </div>
-                    <input type="date" style="height: 28px;" value="{{today}}">
+                    <input type="date" style="height: 28px;" value="{{today}}" (change)="dateChanged($event.target)">
                     <button (click)="onShowChart(isRoute,isDate)">Search</button>
                 </div>
             </div>
@@ -570,56 +574,29 @@
                 <div style="height:310px; overflow:auto; ">
                     <table style="width:100%; border-collapse: collapse;">
                         <tr>
-                            <th>Ngày</th>
+                            <th>Thời gian</th>
                             <th>Tuyến</th>
                             <th>Số lượng vé</th>
                             <th>Tổng tiền</th>
                         </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                          <td>10000</td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                          <td>10000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>200</td>
-                            <td>2</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>400</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>600</td>
-                            <td>6</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>800</td>
-                            <td>8</td>
-                            <td>8</td>
-                        </tr>
+                        <ng-container *ngFor="let i of listStatistic">
+                            <tr>
+                                <td>{{i.time}}</td>
+                                <td>{{i.route}}</td>
+                                <td>{{i.number}}</td>
+                                <td>{{i.totalMoney}}</td>
+                              </tr>
+                        </ng-container>
                     </table>
                 </div>  
             </div>
-            <div style="width: 100%; margin-top: 30px;">
-                <div class="menu-content-title" *ngIf='isCreateAccount!=0'>
-                    <p>Biểu đồ thống kê</p> 
+            <div style="width: 100%; margin-top: 30px;" *ngIf='isChart != 0'>
+                <div class="menu-content-title">
+                    <p>Biểu đồ thống kê doanh thu</p> 
                 </div>
                 <div style="height: 600px;">
-                    <canvas id="myChart2" *ngIf="isDate==2"></canvas>
-                    <canvas id="myChart1" *ngIf="isDate==1"></canvas>
+                    <canvas id="myChart3" *ngIf="typeChart==3"></canvas>
+                    <canvas id="myChart4" *ngIf="typeChart==4"></canvas>
                 </div>
             </div>
         </div>

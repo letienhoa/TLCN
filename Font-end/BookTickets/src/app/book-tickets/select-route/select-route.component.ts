@@ -53,7 +53,7 @@ export class SelectRouteComponent implements OnInit {
   load(){
   
     this.schedule = JSON.parse(sessionStorage.getItem('schedule'));
-    console.log("schedule: "+this.schedule);
+  
     
     this.service.step1.departure.id = this.schedule.ben_xe_di_id;
     this.service.step1.departure.ben_toi = this.schedule.ben_xe_di;

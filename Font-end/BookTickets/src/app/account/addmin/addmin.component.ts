@@ -18,13 +18,17 @@ export class AddminComponent implements OnInit {
   isShow = 0;
   isCreateAccount = 1;
 
+  typeChart = 1;
+
+  isChart = 0;
+
   srcImage;
   fileSelected: File = null;
   today;
   date;
 
   isRoute = false;
-  isDate = 2;
+  isDate = 1;
 
   form: FormGroup;
   formRoute: FormGroup;
@@ -37,6 +41,7 @@ export class AddminComponent implements OnInit {
   listDestination;
   listUser;
   listRoute;
+  listDestinationForRoute;
   route;
 
   listCar=[];
@@ -45,8 +50,8 @@ export class AddminComponent implements OnInit {
   listDate = ["Ngày 1","Ngày 2","Ngày 3","Ngày 4","Ngày 5","Ngày 6","Ngày 7","Ngày 8","Ngày 9","Ngày 10","Ngày 11","Ngày 12","Ngày 13","Ngày 14","Ngày 15","Ngày 16","Ngày 17"
   ,"Ngày 18","Ngày 19","Ngày 20","Ngày 21","Ngày 22","Ngày 23","Ngày 24","Ngày 25","Ngày 26","Ngày 27","Ngày 28","Ngày 29","Ngày 30"];
 
-  listDataDate = [12, 19, 3, 5, 2,  5, 2, 3,12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2,  5, 2, 3,12, 19, 3, 5, 2, 3,12, 19, 3];
-  listDataMonth = [12, 19, 3, 5, 2,  5, 2, 3,12, 19, 3, 5];
+  listDataDate = [];
+  listDataMonth = [];
 
   listColorMonth = ['rgba(255, 99, 132, 0.2)',
   'rgba(54, 162, 235, 0.2)',
@@ -96,6 +101,8 @@ export class AddminComponent implements OnInit {
   constructor(private fb:FormBuilder, private service: AdminService,public ser: BookService, private routerr: Router) { }
 
   ngOnInit(): void {
+    this.isCreateAccount = 1;
+    console.log(this.listDate);
     this.onShowMenu(0);
 
     this.form = this.fb.group({
@@ -159,8 +166,7 @@ export class AddminComponent implements OnInit {
   getDate(){
     var date = new Date();
     this.today = date.getFullYear()+ '-' + ('0' + (date.getMonth() + 1)).slice(-2)  + '-' + ('0' + date.getDate()).slice(-2);
-    this.date = date.getFullYear()+'/'+('0' + (date.getMonth() + 1)).slice(-2)+"/"+('0' + date.getDate()).slice(-2);
-  }
+    this.date = date.getFullYear()+'/'+('0' + (date.getMonth())).slice(-2)+"/"+('0' + date.getDate()).slice(-2);  }
 
   dateChanged(obj:any){
     var dd = new Date(obj.value);
@@ -169,7 +175,7 @@ export class AddminComponent implements OnInit {
 
   onShow(show:any,type:any,optArg = "qqqq"){
     if(show == 2){
-      this.isCreateAccount = 0;
+      /* this.isCreateAccount = 0; */
       switch(this.isShow){
         case 0:
           break;
@@ -185,7 +191,7 @@ export class AddminComponent implements OnInit {
       }
     }
     else if(show == 1){
-      this.isCreateAccount = 0;
+      /* this.isCreateAccount = 0; */
 
       switch(this.isShow) {
         case 0:
@@ -207,74 +213,189 @@ export class AddminComponent implements OnInit {
       alert('đăng ký')
     }
     else{
-      this.isCreateAccount = 2;
       this.route = optArg;
+      this.SwapData(this.route);
+      this.isCreateAccount = 2;
       console.log(this.route)
       alert('chỉnh sửa')
     }
     
   }
 
+  SwapData(data:any){
+    switch(this.isShow){
+      case 0:
+        break;
+      case 1:
+        this.formRoute.value.khoang_cach = data.khoang_cach;
+        this.formRoute.value.gia_ca = data.gia_ca;
+        this.formRoute.value.thoi_gian_hanh_trinh = data.thoi_gian_hanh_trinh;
+        break;
+      case 2:
+        break;
+      case 3:
+        this.formCar.value.ten_xe = data.tenXe;
+        this.formCar.value.hang_xe = data.hangXe;
+        this.formCar.value.gio_chay = data.gioChay;
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      default:
+        break;
+    }
+  }
+  listStatistic = [];
+  
+
+
   onShowChart(show:any,type:any){
-    alert(type);
-    alert(show);
+    this.onChangeTypeChart(show,type);
 
-    alert(this.date)
-/*  this.service.getStatisticByDateRoute(this.date,type).subscribe(
-      data => console.log(data)
-    ); */
-
+    if(show==false){
+      this.isChart = 0;
+      if(type==1){
+        this.service.getStatisticByDateRoute(this.date,type).subscribe(
+          data => {
+            console.log(this.listRoute);
+            this.listStatistic = [];
+            for(let i of data.data){
+              for(let j of this.listRoute){
+                if(i.idTuyenXe == j.id){
+                  var item = {
+                    time:i.time,
+                    route:j.ben_xe_di + " => "+j.ben_xe_toi,
+                    number:i.tongVe,
+                    totalMoney:i.doanhThu
+                  }
+                  this.listStatistic.push(item);
+                }
+              }
+            }
+            console.log(this.listStatistic);
+          }
+        );
+      }
+      else{
+        this.service.getStatisticsByMonthRoute(this.date,type).subscribe(
+          data => {
+            this.listStatistic = [];
+            console.log(this.listRoute);
+            for(let i of data.data){
+              for(let j of this.listRoute){
+                if(i.idTuyenXe == j.id){
+                  var item = {
+                    time:i.time,
+                    route:j.ben_xe_di + " => "+j.ben_xe_toi,
+                    number:i.tongVe,
+                    totalMoney:i.doanhThu
+                  }
+                  this.listStatistic.push(item);
+                }
+              }
+            }
+            console.log(this.listStatistic);
+          }
+        );
+      }
+    }
+    else{
+      this.isChart = 1;
+      if(type==1){
+        this.service.getStatisticsByDateRevenue(this.date,type).subscribe(
+          data => {
+            var length = data.data.length;
+            var listData = data.data;
+            console.log("data");
+            console.log(data.data);
+            if(length == 31){
+              if(this.listDate.length == 30)
+                this.listDate.push("Ngày 31");
+            }
+            else{
+              if(this.listDate.length == 31)
+                this.listDate.pop();
+  
+            }
+            console.log("list date");
+            console.log(this.listDate)
+            this.listDataDate = [];
+  
+            for(let i =0;i<length;i++){
+              this.listDataDate.push(listData[i].totalAmount);
+            }
+            console.log("date of revenue")
+            console.log(data);
+            console.log(this.listDataDate);
+            this.drawChart(type);
+          }
+        );
+      }
+      else{
+        this.service.getStatisticsByMonthRevenue(this.date,type).subscribe(
+          data => {
+            var length = data.data.length;
+            var listData = data.data;
+            console.log('data')
+            console.log(data.data)
+            
+            this.listDataMonth = [];
+  
+            for(let i=0;i<length;i++){
+              this.listDataMonth.push(listData[i].totalAmount);
+            }
+            console.log("month of route")
+            console.log(this.listDataMonth);
+            this.drawChart(type);
+          }
+        );
+      }
+     
+    }
 
     this.isCreateAccount = 1;
+    
+  }
+
+  drawChart(type:any){
     if(type==2){
-      this.chart = new Chart('myChart2', {
+      
+      this.chart = new Chart(this.myChart, {
         type: 'bar',
         data: {
             labels: this.listMonth,
-            datasets: [{
-                label: '# Tổng tiền',
-                data: this.listDataMonth,
-                backgroundColor: this.listColorMonth,
-                borderColor: this.listColorMonth,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-      });
+          }
+        });
     }
     else{
-      this.chart = new Chart('myChart1', {
+
+      this.chart = new Chart(this.myChart, {
         type: 'bar',
         data: {
             labels: this.listDate,
-            datasets: [{
-                label: '# Tổng tiền',
-                data: this.listDataDate,
-                backgroundColor: this.listColorDate,
-                borderColor: this.listColorDate,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
         }
       });
     }
+  }
 
+  myChart;
+  onChangeTypeChart(show:any, type:any){
+    if(show==true){
+      this.typeChart = type==1?3:4;
+      this.myChart = type==1?"myChart3":"myChart4";
+    }
+  }
+
+  onChangeRoute(obj:any){
+    this.listDestinationForRoute = JSON.parse(sessionStorage.getItem('lBenDi'));
+    var length = this.listDestinationForRoute.length;
+    for(var i = 0; i<length; i++){
+      if(this.listDestinationForRoute[i].id == obj){
+        this.listDestinationForRoute.splice(i,1);
+        break;
+      }
+    }
   }
 
   onShowMenu(index:any){
@@ -372,9 +493,9 @@ export class AddminComponent implements OnInit {
     var route = {
       diem_di_id:this.route.ben_xe_di_id,
       diem_toi_id:this.route.ben_xe_toi_id,
-      khoang_cach:this.formRoute.value.khoang_cach,
-      gia_ca:this.formRoute.value.gia_ca,
-      thoi_gian_hanh_trinh:this.formRoute.value.thoi_gian_hanh_trinh
+      khoang_cach:this.formRoute.value.khoang_cach==""?this.route.khoang_cach:this.formRoute.value.khoang_cach,
+      gia_ca:this.formRoute.value.gia_ca==""?this.route.gia_ca:this.formRoute.value.gia_ca,
+      thoi_gian_hanh_trinh:this.formRoute.value.thoi_gian_hanh_trinh==""?this.route.thoi_gian_hanh_trinh:this.formRoute.value.thoi_gian_hanh_trinh
     }
 
     this.service.postUpdateRoute(this.logIn.Token,routerId,route).subscribe(
@@ -393,6 +514,7 @@ export class AddminComponent implements OnInit {
   getAllRoute(){
     this.listDeparture = JSON.parse(sessionStorage.getItem('lBenDi'));
     this.listDestination = JSON.parse(sessionStorage.getItem('lBenToi'));
+    this.listDestinationForRoute = JSON.parse(sessionStorage.getItem('lBenDi'));
     this.service.getAllRoute().subscribe(
       data => this.listRoute =  data.data
     );
@@ -458,7 +580,10 @@ export class AddminComponent implements OnInit {
     }
     this.service.postCreateCar(this.logIn.Token,this.formCar.value).subscribe(
       data => {
-        if(data.status == 200) return alert("Thêm thành công");
+        if(data.status == 200) {
+          this.getAllCar();
+          return alert("Thêm thành công");
+        }
         else return alert("Thêm thất bại");
       }
     );
@@ -466,14 +591,14 @@ export class AddminComponent implements OnInit {
 
   updateCar(){
     var car = {
-      ten_xe : this.formCar.value.ten_xe,
-      hang_xe : this.formCar.value.hang_xe,
+      ten_xe : this.formCar.value.ten_xe==""?this.route.tenXe:this.formCar.value.ten_xe,
+      hang_xe : this.formCar.value.hang_xe==""?this.route.hangXe:this.formCar.value.hangXe,
       tuyen_san_sang_id:this.route.tuyenSanSangId,
       tuyen_off_id:this.route.tuyenOffId,
-      gio_chay:this.formCar.value.gio_chay
+      gio_chay:this.formCar.value.gio_chay==""?this.route.gioChay:this.formCar.value.gio_chay
     }
 
-    this.service.postUpdateCar(this.route.xeId, car).subscribe(
+    this.service.postUpdateCar(this.logIn.Token,this.route.xeId, car).subscribe(
       data => {
         if(data.status == 200){
           this.getAllCar();

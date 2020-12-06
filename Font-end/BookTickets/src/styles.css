@@ -2098,22 +2098,13 @@ footer.footer .move-up span:hover{
 
 .container-pay-item{
     width: 75%;
-    height: 500px;
     margin: 20px auto;
 }
 
-.container-pay-item .pay-item-left{
-    float: left;
-    width: 50%;
-    height: 500px;
-    
-}
 
 .container-pay-item .pay-item-right{
-    float: right;
     width: 40%;
-    height: 500px;
-
+    margin: 0px auto;
 }
  
 .container-pay-item .title{
@@ -2145,28 +2136,24 @@ footer.footer .move-up span:hover{
     padding-top: 80px;
 }
 
-.container-pay-item .button-pay{
-    width: 100%;
-    height: 100px;
-    margin-top: 10px;
+.button-pay{
+    width: 75%;  
+    margin: 0px auto;
 }
 
-.container-pay-item .button-pay .button-pay-left{
+.button-pay .button-pay-left{
     width: 30%;
     height: 50px;
     float: left;
-    margin-top: 20px;
-
 }
-.container-pay-item .button-pay .button-pay-right{
+
+button-pay .button-pay-right{
     width: 30%;
     height: 50px;
     float: right;
-    margin-top: 20px;
-
 }
 
-.container-pay-item .button-pay .btn-pay{
+.button-pay .btn-pay{
     width: 100%;
     height: 50px;
     font-weight: bold;
@@ -2175,14 +2162,24 @@ footer.footer .move-up span:hover{
     color: white;
 }
 
-.container-pay-item .button-pay .btn-pay:hover{
+.button-pay .btn-pay:hover{
     cursor: pointer;
 }
 
 .container-pay-item .pay-item-right .pay-item-infor{
     padding: 10px 0px;
     margin-bottom: 20px;
+}
 
+.payment-container{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;  
+    margin-bottom: 50px;
+}
+.payment-container .item-infor{
+    width: 50%;
 }
 
 .container-pay-item .pay-item-right .pay-item-infor .pay-item-infor-left{

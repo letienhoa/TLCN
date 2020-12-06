@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BookService } from "../../../shared/book.service";
 import { Router } from '@angular/router';
+import { LogInService } from 'src/app/shared/log-in.service';
+declare var paypal;
 
 @Component({
   selector: 'app-book-ticket',
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
   ]
 })
 export class BookTicketComponent implements OnInit {
+
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
   seat = [];
   listitem = [];
@@ -22,7 +26,15 @@ export class BookTicketComponent implements OnInit {
   listDeparture:any;
   listRoterPoppular: [];
 
-  constructor(private route: Router, public service: BookService) { }
+  logIn;
+  customer;
+  isCheck = false;
+
+  ticket = {};
+  customerInfor = {};
+  paidFor = false;
+
+  constructor(private route: Router, public service: BookService, private serviceCustomer:LogInService) { }
 
   ngOnInit(): void {
    
@@ -64,8 +76,11 @@ export class BookTicketComponent implements OnInit {
     var bpa = document.getElementsByClassName('book-pay-accept');
     bpa[0].classList.add('show-book');
 
+
+    this.logIn = JSON.parse(sessionStorage.getItem("login"));
     this.getAllDeparture();
     this.getDate();
+    this.getInforCustomerById();
 
     this.service.getStatusSeat(this.service.step2.routerId,this.service.step2.time,this.service.step1.daygo).subscribe(
       data => {
@@ -143,6 +158,9 @@ export class BookTicketComponent implements OnInit {
       window.alert('Xin hãy chọn giường.')
       return
     }
+    if(this.isCheck == false){
+      return alert("Xin hãy chận nhận điều khoản đặt vé");
+    }
     sessionStorage.setItem('b2',JSON.stringify(this.service.step2));
     console.log(sessionStorage.getItem('b2'));
 
@@ -150,7 +168,11 @@ export class BookTicketComponent implements OnInit {
     b[0].classList.toggle('show-book')
     b = document.getElementsByClassName('book-pay-accept')
     b[0].classList.remove('show-book')
+    this.onPay();
+  }
 
+  onCheck(){
+    this.isCheck = this.isCheck == false?true:false;
   }
 
   getAllDeparture(){
@@ -256,6 +278,64 @@ export class BookTicketComponent implements OnInit {
     b[0].classList.toggle('show-book')
     b = document.getElementsByClassName('book-pay-accept')
     b[0].classList.add('show-book')
+  }
+
+  getInforCustomerById(){
+    this.serviceCustomer.getInforCustomer(this.logIn.Token,this.logIn.id).subscribe(
+      data => this.customer= data.data
+    );
+  }
+
+  onPay(){
+   this.customerInfor = {
+    name:this.customer.tenKh,
+    sdt:this.customer.sdt,
+    email:this.customer.email,
+    city:this.customer.diaChi
+   }
+
+   this.ticket ={
+    route:this.service.step2.routerId,
+    dateGo:this.service.step1.daygo,
+    timeGo:this.service.step2.time,
+    seats:this.service.step2.seats,
+    number:this.service.step2.number,
+    totalMoney:this.service.step2.totalMoney,
+    range:"",
+    time:"",
+    }
+    var description = "Book ticket" + this.service.step1.departure.ben_toi + " -- "+this.service.step1.destination.ben_toi;
+    var price = this.service.step2.totalMoney/22000;
+    this.payMent(description,price);
+  }
+
+  payMent(description:any, price:any){
+    paypal
+    .Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [
+            {
+              description: description,
+              amount: {
+                currency_code: 'USD',
+                value: price.toFixed(2)
+              }
+            }
+          ]
+        });
+      },
+      onApprove: async (data, actions) => {
+        const order = await actions.order.capture();
+        this.paidFor = true;
+        console.log(order);
+        //
+      },
+      onError: err => {
+        console.log(err);
+      }
+    })
+    .render(this.paypalElement.nativeElement);
   }
 
 }

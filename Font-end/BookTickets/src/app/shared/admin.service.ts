@@ -93,19 +93,29 @@ export class AdminService {
     return this.http.post(this.urlCar+"/create",car,httpOptions);
   }
 
-  postUpdateCar(carId:any,car:any):Observable<any>{
-    return this.http.post(this.urlCar+"/update/"+carId,car);
+  postUpdateCar(token:any,carId:any,car:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    return this.http.post(this.urlCar+"/update/"+carId,car,httpOptions);
   }
 
-  getRevenueStatistics(date:any,selecter:any):Observable<any>{
+  getStatisticsByDateRevenue(date:any,selecter:any):Observable<any>{
     return this.http.get(this.urlTicket+"/thong-ke-doanh-thu?time="+date+"&selecter="+selecter);
   }
 
-  getRouteStatistics(date:any,selecter:any):Observable<any>{
-    return this.http.get(this.urlTicket+"/thong-ke-theo-tuyen?time="+date+"&selecter="+selecter);
+  getStatisticsByMonthRevenue(date:any,selecter:any):Observable<any>{
+    return this.http.get(this.urlTicket+"/thong-ke-doanh-thu?time="+date+"&selecter="+selecter);
   }
 
   getStatisticByDateRoute(date:any,selecter:any):Observable<any>{
+    return this.http.get(this.urlTicket+"/thong-ke-theo-tuyen?time="+date+"&selecter="+selecter);
+  }
+
+  getStatisticsByMonthRoute(date:any,selecter:any):Observable<any>{
     return this.http.get(this.urlTicket+"/thong-ke-theo-tuyen?time="+date+"&selecter="+selecter);
   }
 
@@ -117,4 +127,5 @@ export class AdminService {
         return res;
     }));
   }
+
 }
