@@ -87,9 +87,13 @@ public class TuyenXeController {
 			@RequestParam(name = "diem_toi_id", required = false, defaultValue = "7") int diemToiId) {
 		BaseResponse response= new BaseResponse();
 		TuyenXe tuyenXe = tuyenXeDao.spGetByDiemDiDiemToi(diemDiId, diemToiId);
+		if(tuyenXe!=null) {
 		Ben ben = benDao.findOne(diemToiId);
 		TuyenXeCustomerResponse responsedate = new TuyenXeCustomerResponse(ben,tuyenXe);
 		response.setData(responsedate);
+		}else {
+			response.setMessageError("Không tìm thấy tuyến xe phù hợp");
+		}
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
