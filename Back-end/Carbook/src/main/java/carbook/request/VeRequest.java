@@ -1,5 +1,6 @@
 package carbook.request;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +23,7 @@ public class VeRequest {
 	private String email;
 	
 
-	private String date;
+	private Date date;
 	
 	@JsonProperty("gia_ve")
 	private Double giaVe;
@@ -74,11 +75,11 @@ public class VeRequest {
 		this.email = email;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
