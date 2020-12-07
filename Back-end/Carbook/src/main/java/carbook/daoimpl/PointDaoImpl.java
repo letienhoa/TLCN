@@ -32,7 +32,7 @@ public class PointDaoImpl extends AbstractDao<Integer,HistoryPoint> implements P
 	public UserPointDataModel spGetDetailPointCustomer(int id) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_detail_point_customer",UserPointDataModel.class);
 		procedureCall.registerParameter("idUser", Integer.class, ParameterMode.IN).bindValue(id);
-		UserPointDataModel user =(UserPointDataModel) procedureCall.getOutputs();
+		UserPointDataModel user =(UserPointDataModel) procedureCall.getSingleResult();
 		return user;
 	}
 

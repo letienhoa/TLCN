@@ -12,7 +12,7 @@ public class UserPointResponse {
 	
 	private String capDo;
 	
-	@JsonProperty("tong_tien_tich_luy")
+	@JsonProperty("tien_tich_luy")
 	private int tongTienTichLuy;
 	
 	@JsonProperty("tong_diem")

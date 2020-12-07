@@ -14,14 +14,15 @@ public class UserPointDataModel {
 	@Column(name="cap_do")
 	private String capDo;
 	
-	@Column(name="tong_tien_tich_luy")
-	private int tongTienTichLuy;
-	
 	@Column(name="tong_diem")
 	private int tongDiem;
 	
-	@Column(name="diem_tich_luy_kha_dung")
+	@Column(name="tich_luy_kha_dung")
 	private int diemTichLuyKhaDung;
+
+	
+	@Column(name="tien_tich_luy")
+	private int tongTienTichLuy;
 	
 	public UserPointDataModel() {
 		
