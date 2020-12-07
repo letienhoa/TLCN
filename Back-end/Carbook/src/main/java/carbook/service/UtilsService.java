@@ -13,10 +13,10 @@ public class UtilsService {
 
 	public static Date changeStringToDate(String chuoiDate) {
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		
 		Date ngay = null;
 		try {
-			ngay = formatter.parse(chuoiDate);
+			ngay = new SimpleDateFormat("dd/MM/yyyy").parse(chuoiDate);
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
