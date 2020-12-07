@@ -24,7 +24,7 @@ public class UtilsService {
 		return ngay;
 	}
 	
-	public String changeDateToString(Date ngay) {
+	public static String changeDateToString(Date ngay) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		String chuoiNgay = formatter.format(ngay);
 		return chuoiNgay;

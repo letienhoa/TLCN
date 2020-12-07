@@ -96,7 +96,7 @@ public class VeController {
 		BaseResponse response = new BaseResponse();
 		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
 		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
-		String ngay=UtilsService.getDateFormatVN(UtilsService.changeStringToDate(wrapper.getDate()));
+		String ngay=UtilsService.changeDateToString(UtilsService.changeStringToDate(wrapper.getDate()));
 		emailService.sendEmail(wrapper.getEmail(),"MÃ CODE XÁC THỰC","QUÝ KHÁCH VUI LÒNG GIỮ MÃ CODE NÀY ĐỂ XÁC THỰC KHI XUẤT PHÁT TẠI BẾN: "
 				+"Mã Code: "+code+"                                    "
 				+"Mã tuyến xe: "+wrapper.getIdTuyenXe()
