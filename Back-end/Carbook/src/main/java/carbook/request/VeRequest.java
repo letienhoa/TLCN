@@ -23,7 +23,7 @@ public class VeRequest {
 	private String email;
 	
 
-	private Date date;
+	private String date;
 	
 	@JsonProperty("gia_ve")
 	private Double giaVe;
@@ -75,11 +75,11 @@ public class VeRequest {
 		this.email = email;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
