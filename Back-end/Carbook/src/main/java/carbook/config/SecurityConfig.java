@@ -78,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .antMatchers( "/api/ve/thong-ke-theo-khach-hang").access("hasRole('ROLE_USER')or hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/xe/**").access("hasRole('ROLE_ADMIN')")
+	      .antMatchers("/api/khach-hang/get-detail-point/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	      
 	      
 	      .and()
