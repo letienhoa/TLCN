@@ -15,6 +15,7 @@ import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
+import carbook.entity.VeExcelDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 import carbook.service.UtilsService;
@@ -80,6 +81,25 @@ public class VeDaoImpl extends AbstractDao<Integer,Ve> implements VeDao {
 		procedureCall.execute();
 		return (Long) procedureCall.getOutputParameterValue("message");
 		
+	}
+
+	@Override
+	public List<VeExcelDataModel> spXuatFileExcel(int id) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_xuat_file_excel",VeExcelDataModel.class);
+		procedureCall.registerParameter("idTuyenXe",Integer.class,ParameterMode.IN).bindValue(id);
+		
+		List<VeExcelDataModel> veEDM = procedureCall.getResultList();
+		return veEDM;
+	}
+
+	@Override
+	public Long spUpdateVeXeTrangThai(int idTuyenXe) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_update_ve_xe_trang_thai",VeExcelDataModel.class);
+		procedureCall.registerParameter("idTuyenXe",Integer.class,ParameterMode.IN).bindValue(idTuyenXe);
+		procedureCall.registerParameter("message", Long.class, ParameterMode.OUT);
+		
+		procedureCall.execute();
+		return (Long) procedureCall.getOutputParameterValue("message");
 	}
 
 }

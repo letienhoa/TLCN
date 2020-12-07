@@ -101,13 +101,11 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 	public User findByUsernameAndPassword(String name, String mk) {
 		CriteriaQuery<User> criteria = this.getBuilder().createQuery(User.class);
 		Root<User> root = criteria.from(User.class);
-		
-		criteria.select(root).where(this.getBuilder().equal(root.get("taiKhoan"), name));
-		//criteria.select(root).where(this.getBuilder().equal(root.get("Password"), mk));
-		User u =  this.getSession().createQuery(criteria).getSingleResult();
-
-			return u;
-}
+		criteria.select(root).where(this.getSession().getCriteriaBuilder().equal(root.get("taiKhoan"),name),
+									this.getSession().getCriteriaBuilder().equal(root.get("Password"), mk));
+		User user= this.getSession().createQuery(criteria).getSingleResult();
+		return user;
+	}
 
 	@Override
 	public List<UserRoleDataModel> spGetAllUser() {

@@ -19,6 +19,7 @@ import carbook.dao.QuyDoiDiemDao;
 import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
+import carbook.entity.VeExcelDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 import carbook.response.BaseResponse;
@@ -114,9 +115,9 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value ="/creates", method = RequestMethod.POST )
+	@RequestMapping(value ="/xuat-file", method = RequestMethod.POST )
 	public ResponseEntity<BaseResponse> test(
-			@RequestBody VeRequest wrapper){
+			@RequestParam("id_tuyen_xe")int idTuyenXe ){
 		BaseResponse response = new BaseResponse();
 		
 		

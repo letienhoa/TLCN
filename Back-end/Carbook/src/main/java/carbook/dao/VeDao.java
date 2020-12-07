@@ -6,6 +6,7 @@ import java.util.List;
 
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
+import carbook.entity.VeExcelDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 
@@ -19,4 +20,8 @@ public interface VeDao {
 	List<VeCustomerDataModel> spGetVeForCustomer(int khachHang);
 	
 	List<ThongKeDoanhThuModelData> spGetTotalRevenueTiket(Calendar time,int selectTime);
+	
+	List<VeExcelDataModel> spXuatFileExcel(int id);
+	
+	Long spUpdateVeXeTrangThai(int idTuyenXe);
 }
