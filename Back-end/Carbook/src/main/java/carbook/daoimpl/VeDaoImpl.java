@@ -93,10 +93,11 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 	}
 
 	@Override
-	public List<VeExcelDataModel> spXuatFileExcel(int id) {
+	public List<VeExcelDataModel> spXuatFileExcel(int id,int hour) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_xuat_file_excel",
 				VeExcelDataModel.class);
 		procedureCall.registerParameter("idTuyenXe", Integer.class, ParameterMode.IN).bindValue(id);
+		procedureCall.registerParameter("hour", Integer.class, ParameterMode.IN).bindValue(hour);
 
 		List<VeExcelDataModel> veEDM = procedureCall.getResultList();
 		return veEDM;
@@ -115,13 +116,15 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 
 	
 	  @Override 
-	  public List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe) { 
+	  public List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe,int hour) { 
 		  ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_thong_tin_xuat_ve",ThongTinVeDataModel.class); 
 		  procedureCall.registerParameter("idTuyenXe", Integer.class, ParameterMode.IN).bindValue(idTuyenXe);
+			procedureCall.registerParameter("hour", Integer.class, ParameterMode.IN).bindValue(hour);
 		  List<ThongTinVeDataModel> list1 =procedureCall.getResultList();
 
 		  ProcedureCall procedureCall1 = this.getSession().createStoredProcedureCall("sp_get_thong_tin_giuong",GiuongMapDataModel.class); 
 		  procedureCall1.registerParameter("idTuyenXe", Integer.class, ParameterMode.IN).bindValue(idTuyenXe);
+		  procedureCall1.registerParameter("hour", Integer.class, ParameterMode.IN).bindValue(hour);
 		  List<GiuongMapDataModel> list2 = procedureCall1.getResultList();
 		  
 		  List<VeExcelVer1Response> listData = new VeExcelVer1Response().mapToList(list1);

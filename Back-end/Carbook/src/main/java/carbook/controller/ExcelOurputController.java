@@ -38,11 +38,12 @@ public class ExcelOurputController {
 	
 	@RequestMapping(value ="/xuat-file", method = RequestMethod.POST )
 	public ResponseEntity<BaseResponse> test(
-			@RequestParam("id_tuyen_xe")int idTuyenXe ){
+			@RequestParam("id_tuyen_xe")int idTuyenXe,
+			@RequestParam("gio")int hour){
 		BaseResponse response = new BaseResponse();
 		
 		//lấy thông tin list vé 
-		List<VeExcelVer1Response> listVe= veDao.spGetThongTinVe(idTuyenXe);
+		List<VeExcelVer1Response> listVe= veDao.spGetThongTinVe(idTuyenXe,hour);
 		
 		XSSFWorkbook workbook = new XSSFWorkbook();
 	    XSSFSheet sheet = workbook.createSheet("Customer_Info");
@@ -50,7 +51,7 @@ public class ExcelOurputController {
 	    Row firstRow = sheet.createRow(rowNum++);
 	    Cell firstCell = (Cell) firstRow.createCell(0);
 	    firstCell.setCellValue("Danh Sách vé xe");
-	    List<VeExcelDataModel> list = veDao.spXuatFileExcel(idTuyenXe);
+	    List<VeExcelDataModel> list = veDao.spXuatFileExcel(idTuyenXe,hour);
 	    
 	    //List danh sách thogno tin cơ bản của tuyến xe
 	    List<VeExcelResponse> listData = new VeExcelResponse().mapToList(list);

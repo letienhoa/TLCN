@@ -22,9 +22,9 @@ public interface VeDao {
 	
 	List<ThongKeDoanhThuModelData> spGetTotalRevenueTiket(Calendar time,int selectTime);
 	
-	List<VeExcelDataModel> spXuatFileExcel(int id);
+	List<VeExcelDataModel> spXuatFileExcel(int id,int hour);
 	
 	Long spUpdateVeXeTrangThai(int idTuyenXe);
 	
-	List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe);
+	List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe,int hour);
 }
