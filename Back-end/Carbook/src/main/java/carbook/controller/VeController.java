@@ -115,14 +115,6 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value ="/xuat-file", method = RequestMethod.POST )
-	public ResponseEntity<BaseResponse> test(
-			@RequestParam("id_tuyen_xe")int idTuyenXe ){
-		BaseResponse response = new BaseResponse();
-		
-		
-		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
-	
-	}
+
 
 }

@@ -18,6 +18,7 @@ import carbook.entity.ThongTinVeDataModel;
 import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
+import carbook.entity.VeOverviewDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 import carbook.response.VeExcelVer1Response;
@@ -152,6 +153,14 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 				  	} 
 			  } 
 		  } return listData; 
+	}
+
+	@Override
+	public List<VeOverviewDataModel> spGetTuyenXeTrongNgay() {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_tuyen_xe_trong_ngay",VeOverviewDataModel.class); 
+		  
+		  List<VeOverviewDataModel> list1 =procedureCall.getResultList();
+		  return list1;
 	}
 	 
 

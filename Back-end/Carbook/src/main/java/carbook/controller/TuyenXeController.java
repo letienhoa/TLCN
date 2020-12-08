@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.BenDao;
 import carbook.dao.TuyenXeDao;
+import carbook.dao.VeDao;
 import carbook.dao.XeDao;
 import carbook.entity.Ben;
 import carbook.entity.TuyenXe;
 import carbook.entity.TuyenXeModelData;
 import carbook.entity.TuyenXePhoBienDataModel;
+import carbook.entity.VeOverviewDataModel;
 import carbook.entity.Xe;
 import carbook.request.TuyenXeRequest;
 import carbook.response.BaseResponse;
@@ -39,6 +41,9 @@ public class TuyenXeController {
 	
 	@Autowired
 	private XeDao xeDao;
+	
+	@Autowired
+	private VeDao veDao;
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST )
 	public ResponseEntity<BaseResponse> create(
@@ -123,5 +128,15 @@ public class TuyenXeController {
 		List<TuyenXePhoBienDataModel> list = tuyenXeDao.spGetListTuyenXePhoBien();
 		response.setData(list);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value ="/list-tuyen-xe-theo-ve", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> spGetTuyenXeTrongNgay(
+			 ){
+		BaseResponse response = new BaseResponse();
+		List<VeOverviewDataModel> list= veDao.spGetTuyenXeTrongNgay();
+		response.setData(list);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	
 	}
 }

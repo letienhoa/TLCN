@@ -79,7 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/xe/**").access("hasRole('ROLE_ADMIN')")
 	      .antMatchers("/api/khach-hang/get-detail-point/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-	      
+	      .antMatchers("/api/tuyenxe/list-tuyen-xe-theo-ve").access("hasRole('ROLE_ADMIN')")
+	      .antMatchers("/api/excel//xuat-file").access("hasRole('ROLE_ADMIN')")
 	      
 	      .and()
 	      .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)

@@ -7,6 +7,7 @@ import java.util.List;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
+import carbook.entity.VeOverviewDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
 import carbook.response.VeExcelVer1Response;
@@ -27,4 +28,6 @@ public interface VeDao {
 	Long spUpdateVeXeTrangThai(int idTuyenXe);
 	
 	List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe,int hour);
+	
+	List<VeOverviewDataModel> spGetTuyenXeTrongNgay();
 }
