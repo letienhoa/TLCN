@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -24,6 +25,7 @@ import carbook.entity.VeExcelDataModel;
 import carbook.response.BaseResponse;
 import carbook.response.VeExcelResponse;
 import carbook.response.VeExcelVer1Response;
+import carbook.response.VeTraVeChoDinhResponse;
 import carbook.service.UtilsService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -53,6 +55,13 @@ public class ExcelOurputController {
 	    
 	    //List danh sách thogno tin cơ bản của tuyến xe
 	    List<VeExcelResponse> listData = new VeExcelResponse().mapToList(list);
+	    
+	    VeTraVeChoDinhResponse listDinh= new VeTraVeChoDinhResponse();
+	    listDinh.setTuyenXe(listData.get(0).getTuyenXe());
+	    listDinh.setTongVe(listData.size());
+	    listDinh.setDate(listData.get(0).getDate());
+	    listDinh.setGioChay(String.valueOf(listData.get(0).getGioChay())+"h");
+	    listDinh.setListVe(listVe);
 	    Cell cell;
         Row row;
         row = sheet.createRow(rowNum);
@@ -112,11 +121,11 @@ public class ExcelOurputController {
 	      }
 	    
 	    try {
-	    	 File file = new File("D:/employee.xls");
-	         file.getParentFile().mkdirs();
+	    	// File file = new File("D:/employee.xls");
+	         //file.getParentFile().mkdirs();
 	    	
-	        FileOutputStream outputStream = new FileOutputStream(file);
-	        workbook.write(outputStream);
+	        //FileOutputStream outputStream = new FileOutputStream(file);
+	        //workbook.write(outputStream);
 	        workbook.close();
 	      } catch (FileNotFoundException e) {
 	        e.printStackTrace();
@@ -128,7 +137,7 @@ public class ExcelOurputController {
 	    if(messageSql==1) {
 	    	response.setMessageError("Lỗi cập nhập trạng thái của vé xe !!!");
 	    }
-	    response.setData(listVe);
+	    response.setData(listDinh);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	
 	}

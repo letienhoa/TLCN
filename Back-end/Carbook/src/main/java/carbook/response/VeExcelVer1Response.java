@@ -4,20 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import carbook.entity.ThongTinVeDataModel;
 
 
 public class VeExcelVer1Response {
 
 	
-	
+	@JsonProperty("ten_khach_hang")
 	private String tenKh;
 	
+	@JsonProperty("so_dien_thoai")
 	private String sdt;
 	
+	@JsonProperty("ma_ve")
 	private String code;
 	
-
+	@JsonProperty("vi_tri_giuong")
 	private List<String> slotss;
 	
 	public VeExcelVer1Response() {
