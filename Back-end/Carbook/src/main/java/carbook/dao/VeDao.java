@@ -9,6 +9,7 @@ import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
+import carbook.response.VeExcelVer1Response;
 
 public interface VeDao {
 	Long spUpdateVe(int id,String sdt,String email);
@@ -24,4 +25,6 @@ public interface VeDao {
 	List<VeExcelDataModel> spXuatFileExcel(int id);
 	
 	Long spUpdateVeXeTrangThai(int idTuyenXe);
+	
+	List<VeExcelVer1Response> spGetThongTinVe(int idTuyenXe);
 }

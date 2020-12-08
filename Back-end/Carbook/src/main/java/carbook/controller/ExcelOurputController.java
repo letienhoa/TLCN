@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import carbook.dao.VeDao;
+import carbook.entity.ThongTinVeDataModel;
 import carbook.entity.VeExcelDataModel;
 import carbook.response.BaseResponse;
 import carbook.response.VeExcelResponse;
+import carbook.response.VeExcelVer1Response;
+import carbook.service.UtilsService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -38,6 +41,8 @@ public class ExcelOurputController {
 			@RequestParam("id_tuyen_xe")int idTuyenXe ){
 		BaseResponse response = new BaseResponse();
 		
+		//lấy thông tin list vé 
+		List<VeExcelVer1Response> listVe= veDao.spGetThongTinVe(idTuyenXe);
 		
 		XSSFWorkbook workbook = new XSSFWorkbook();
 	    XSSFSheet sheet = workbook.createSheet("Customer_Info");
@@ -47,67 +52,64 @@ public class ExcelOurputController {
 	    firstCell.setCellValue("Danh Sách vé xe");
 	    List<VeExcelDataModel> list = veDao.spXuatFileExcel(idTuyenXe);
 	    
+	    //List danh sách thogno tin cơ bản của tuyến xe
 	    List<VeExcelResponse> listData = new VeExcelResponse().mapToList(list);
 	    Cell cell;
         Row row;
         row = sheet.createRow(rowNum);
-	    
-        // EmpNo
         cell = row.createCell(0, CellType.STRING);
-        cell.setCellValue("id");
+        cell.setCellValue("Tuyến");
         cell = row.createCell(1, CellType.STRING);
-        cell.setCellValue("tuyen_xe");
+        cell.setCellValue("Tổng vé");
         cell = row.createCell(2, CellType.STRING);
-        cell.setCellValue("gio_chay");
+        cell.setCellValue("Ngày");
         cell = row.createCell(3 ,CellType.STRING);
-        cell.setCellValue("gio_ket_thuc");
-        cell = row.createCell(4, CellType.STRING);
-        cell.setCellValue("sdt_khach_hang");
-        cell = row.createCell(5, CellType.STRING);
-        cell.setCellValue("email");
-        cell = row.createCell(6, CellType.STRING);
-        cell.setCellValue("code");
-        cell = row.createCell(7, CellType.STRING);
-        cell.setCellValue("gia_ve");
-        cell = row.createCell(8, CellType.STRING);
-        cell.setCellValue("point");
-        cell = row.createCell(9, CellType.STRING);
-        cell.setCellValue("date");
+        cell.setCellValue("Giờ chạy");
+        rowNum++;
+        row = sheet.createRow(rowNum);
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue(listData.get(0).getTuyenXe());
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue(listData.size());
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue(listData.get(0).getDate());
+        cell = row.createCell(3 ,CellType.STRING);
+        cell.setCellValue(String.valueOf(listData.get(0).getGioChay())+"h");
+        rowNum++;
+        rowNum++;
+        row = sheet.createRow(rowNum);
+	    
+
+        
+        
+        // danh sách
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("Tên Khách Hàng");
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Số điện thoại");
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue("Mã vé");
+        cell = row.createCell(3 ,CellType.STRING);
+        cell.setCellValue("Vị trí giường");
+
 
         
 	    
-	    for (VeExcelResponse veExcel : listData) {
+	    for (VeExcelVer1Response ve : listVe) {
 	    	rowNum++;
 	         row = sheet.createRow(rowNum);
 	        Cell cell1 = row.createCell(0);
-	        cell1.setCellValue(veExcel.getId());
+	        cell1.setCellValue(ve.getTenKh());
 	        
 	        Cell cell2 = row.createCell(1);
-	        cell2.setCellValue(veExcel.getTuyenXe());
+	        cell2.setCellValue(ve.getSdt());
 	        
 	        Cell cell3 = row.createCell(2);
-	        cell3.setCellValue(veExcel.getGioChay());
+	        cell3.setCellValue(ve.getCode());
 	        
 	        Cell cell4 = row.createCell(3);
-	        cell4.setCellValue(veExcel.getGioKetThuc());
+	        cell4.setCellValue(UtilsService.convertListObjectToJsonArrayt(ve.getSlotss()));
 	        
-	        Cell cell5 = row.createCell(4);
-	        cell5.setCellValue(veExcel.getSdt());
-	        
-	        Cell cell6 = row.createCell(5);
-	        cell6.setCellValue(veExcel.getEmail());
-	        
-	        Cell cell7 = row.createCell(6);
-	        cell7.setCellValue(veExcel.getCode());
-	        
-	        Cell cell8 = row.createCell(7);
-	        cell8.setCellValue(veExcel.getGiaVe());
-	        
-	        Cell cell9 = row.createCell(8);
-	        cell9.setCellValue(veExcel.getPoint());
-	        
-	        Cell cell10 = row.createCell(9);
-	        cell10.setCellValue(veExcel.getDate());
 	      }
 	    
 	    try {
@@ -127,7 +129,7 @@ public class ExcelOurputController {
 	    if(messageSql==1) {
 	    	response.setMessageError("Lỗi cập nhập trạng thái của vé xe !!!");
 	    }
-	    response.setData(listData);
+	    response.setData(listVe);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	
 	}
