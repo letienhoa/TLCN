@@ -3,7 +3,6 @@ package carbook.response;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.Column;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,7 +13,7 @@ public class BenResponse {
 	@JsonProperty("id")
 	private int id;
 	
-	@JsonProperty("ten_ben")
+	@JsonProperty("ben_toi")
 	private String tenBen;
 	
 	@JsonProperty("dia_chi")
