@@ -19,6 +19,9 @@ public class Ben {
 	@Column(name="dia_chi")
 	private String diaChi;
 	
+	@Column(name="thanh_pho")
+	private String thanhPho;
+	
 	@Column(name="picture")
 	private String picture;
 	
@@ -57,7 +60,14 @@ public class Ben {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
+
+	public String getThanhPho() {
+		return thanhPho;
+	}
+
+	public void setThanhPho(String thanhPho) {
+		this.thanhPho = thanhPho;
+	}
 	
 	
 }

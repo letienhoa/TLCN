@@ -104,9 +104,15 @@ public class BenController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value ="/get", method = RequestMethod.GET)
-	public ResponseEntity<BaseResponse> test() {
+	@RequestMapping(value ="/get-detail/{id}", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> findOne(@PathVariable(name="id")int id) {
 		BaseResponse response= new BaseResponse();
+		Ben ben= benDao.findOne(id);
+		if(ben==null) {
+			response.setMessageError("Bến không tồn tại !!!");
+		} else {
+			response.setData(ben);
+		}
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 }
