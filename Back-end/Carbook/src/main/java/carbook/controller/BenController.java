@@ -19,6 +19,7 @@ import carbook.entity.Ben;
 import carbook.entity.DiemDon;
 import carbook.request.BenRequest;
 import carbook.response.BaseResponse;
+import carbook.response.BenResponse;
 import carbook.response.BenToiResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -77,7 +78,7 @@ public class BenController {
 	@RequestMapping(value ="", method = RequestMethod.GET)
 	public ResponseEntity<BaseResponse> getAll(){
 		List<Ben> data = benDao.findAll();
-		List<BenToiResponse> dataResponse = new BenToiResponse().mapTolist(data);
+		List<BenResponse> dataResponse = new BenResponse().mapToList(data);
 		BaseResponse response = new BaseResponse();
 		
 		response.setData(dataResponse);
