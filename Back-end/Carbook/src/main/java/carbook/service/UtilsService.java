@@ -88,4 +88,12 @@ public class UtilsService {
 		}
 		return null;
 	}
+	
+	public static String getHour(Date date) {
+		if (date == null) {
+			return "";
+		} else {
+			return (new SimpleDateFormat("HH").format(date));
+		}
+	}
 }

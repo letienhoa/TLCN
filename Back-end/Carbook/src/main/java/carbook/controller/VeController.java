@@ -20,7 +20,9 @@ import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
+import carbook.entity.VeForCustomerByCodeDataModelFinal;
 import carbook.entity.VeThongKeModelDate;
+import carbook.request.VeHoiKhuRequest;
 import carbook.request.VeRequest;
 import carbook.response.BaseResponse;
 import carbook.response.VeCustomerDataModelResponse;
@@ -115,6 +117,41 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
-
+	@RequestMapping(value ="/create2", method = RequestMethod.POST )
+	public ResponseEntity<BaseResponse> create2(
+			@RequestBody VeHoiKhuRequest wrapper){
+		BaseResponse response = new BaseResponse();
+		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
+		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
+		String ngay=UtilsService.changeDateToString(UtilsService.changeStringToDate(wrapper.getDate()));
+		emailService.sendEmail(wrapper.getEmail(),"MÃ CODE XÁC THỰC","QUÝ KHÁCH VUI LÒNG GIỮ MÃ CODE NÀY ĐỂ XÁC THỰC KHI XUẤT PHÁT TẠI BẾN: "
+				+"Mã Code: "+code+"                                    "
+				+"Mã tuyến xe: "+wrapper.getIdTuyenXe()
+				+"       ---      "+"Giờ xuất phát: "+wrapper.getGioChay()+"giờ"
+				+"    ---   "+"Vị trí giường nằm: "+slots
+				+"       ---     "+"Giá tiền :"+wrapper.getGiaVe()+"vnd"+"     ---     "+"Ngày khởi hành: "+ngay);
+		Double parde =wrapper.getGiaVe()/4000;
+		int point =parde.intValue();
+		Long message1=pointDao.spCreateHistoryPoint(wrapper.getEmail(), point, 0);
+		Long messageSQL=veDao.create(wrapper, slots,code);
+		if(messageSQL==1||message1==1) {
+			response.setMessageError("Lỗi khi thêm dữ liệu dưới database");
+		} else {
+			response.setData(wrapper);
+		}
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
+	
+	
+	
+	
+	@RequestMapping(value ="get-ve-by-code", method = RequestMethod.GET )
+	public ResponseEntity<BaseResponse> spGetVeForCustomerByCode(
+			@RequestParam(name = "code", required = false) String code){
+		BaseResponse response = new BaseResponse();
+		VeForCustomerByCodeDataModelFinal datas= veDao.spGetVeForCustomerByCode(code);
+		response.setData(datas);
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
 
 }

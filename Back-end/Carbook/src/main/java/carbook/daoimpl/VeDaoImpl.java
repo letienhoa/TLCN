@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.procedure.ProcedureCall;
@@ -15,9 +16,12 @@ import carbook.dao.VeDao;
 import carbook.entity.GiuongMapDataModel;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.ThongTinVeDataModel;
+import carbook.entity.User;
 import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
+import carbook.entity.VeForCustomerByCodeDataModel;
+import carbook.entity.VeForCustomerByCodeDataModelFinal;
 import carbook.entity.VeOverviewDataModel;
 import carbook.entity.VeThongKeModelDate;
 import carbook.request.VeRequest;
@@ -161,6 +165,30 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 		  
 		  List<VeOverviewDataModel> list1 =procedureCall.getResultList();
 		  return list1;
+	}
+
+	@Override
+	public VeForCustomerByCodeDataModelFinal spGetVeForCustomerByCode(String code) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_ve_for_customer_by_code",VeForCustomerByCodeDataModel.class); 
+		procedureCall.registerParameter("code", String.class, ParameterMode.IN).bindValue(code);  
+		VeForCustomerByCodeDataModel veCustomer = (VeForCustomerByCodeDataModel) procedureCall.getSingleResult();
+		
+		VeForCustomerByCodeDataModelFinal listData =new VeForCustomerByCodeDataModelFinal(veCustomer);
+		if(veCustomer!=null) {
+			ProcedureCall procedureCall1 = this.getSession().createStoredProcedureCall("sp_get_thong_tin_giuong_detail_ve",GiuongMapDataModel.class); 
+			procedureCall1.registerParameter("idVe", Integer.class, ParameterMode.IN).bindValue(veCustomer.getId());
+			procedureCall1.registerParameter("hour", Integer.class, ParameterMode.IN).bindValue(veCustomer.getGioChay());
+			List<GiuongMapDataModel> list2 = procedureCall1.getResultList();
+			
+			if(list2!=null) {
+				for(GiuongMapDataModel x: list2) {
+					listData.getSlots().add(String.valueOf(x.getStt()));
+				}
+				
+				return listData;
+			} else return null;
+		} else return null;
+
 	}
 	 
 

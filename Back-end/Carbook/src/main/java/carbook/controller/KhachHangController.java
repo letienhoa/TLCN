@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ import carbook.security.PasswordEncryption;
 import carbook.service.EmailService;
 import carbook.service.GenerateCode;
 import carbook.service.JwtService;
+import carbook.service.UtilsService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -62,6 +64,18 @@ public class KhachHangController {
 	private EmailService emailService; 
 	
 	public static List<String> listCode = new ArrayList<String>();
+	
+	@RequestMapping(value ="/test", method = RequestMethod.GET)
+	public ResponseEntity<BaseResponse> tesst(HttpServletRequest req) {
+		BaseResponse response= new BaseResponse();
+		Date d = new Date();
+		String h =UtilsService.getHour(d);
+			response.setData(null);
+			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+		}
+	
+	
+	
 	
 	@SuppressWarnings("static-access")
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
