@@ -3,6 +3,7 @@ package carbook.dao;
 import java.util.List;
 
 import carbook.entity.Ben;
+import carbook.entity.QuyTacIdBenXe;
 
 public interface BenDao {
 
@@ -17,6 +18,8 @@ public interface BenDao {
 	List<Ben> findAll();
 	
 	List<Ben> spGetBenToi(int benDiId);
+	
+	List<QuyTacIdBenXe> getAllQuyTacId();
 	
 	
 }

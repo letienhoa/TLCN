@@ -17,6 +17,7 @@ import carbook.dao.BenDao;
 import carbook.dao.DiemDonDao;
 import carbook.entity.Ben;
 import carbook.entity.DiemDon;
+import carbook.entity.QuyTacIdBenXe;
 import carbook.request.BenRequest;
 import carbook.response.BaseResponse;
 import carbook.response.BenResponse;
@@ -37,7 +38,14 @@ public class BenController {
 	public ResponseEntity<BaseResponse>create(@RequestBody BenRequest wrraper){
 		BaseResponse response= new BaseResponse();
 		Ben ben= new Ben();
-		ben.setId(wrraper.getId());
+		List<QuyTacIdBenXe> listQuyTac= benDao.getAllQuyTacId();
+		for(QuyTacIdBenXe x: listQuyTac) {
+			if(x.getThanhPho()==wrraper.getThanhPho()){
+				ben.setId(x.getId());
+			}
+		}
+		ben.setPicture(wrraper.getPicture());
+		ben.setThanhPho(wrraper.getThanhPho());
 		ben.setTenBen(wrraper.getTenBen());
 		ben.setDiaChi(wrraper.getDiaChi());
 		benDao.create(ben);
@@ -56,6 +64,7 @@ public class BenController {
 			response.setMessageError("Không tìm thấy bến =((");
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.BAD_REQUEST);
 		} else {
+			ben.setPicture(wrraper.getPicture());
 			ben.setTenBen(wrraper.getTenBen());
 			ben.setDiaChi(wrraper.getDiaChi());
 			benDao.update(ben);

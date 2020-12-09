@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import carbook.dao.AbstractDao;
 import carbook.dao.BenDao;
 import carbook.entity.Ben;
+import carbook.entity.QuyTacIdBenXe;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -60,6 +61,14 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 		Root<Ben> root = criteria.from(Ben.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("tenBen"), name));
 		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
+	@Override
+	public List<QuyTacIdBenXe> getAllQuyTacId() {
+		CriteriaQuery<QuyTacIdBenXe> criteria = this.getBuilder().createQuery(QuyTacIdBenXe.class);
+		Root<QuyTacIdBenXe> root = criteria.from(QuyTacIdBenXe.class);
+		criteria.select(root).orderBy(this.getBuilder().asc(root.get("id")));
+		return this.getSession().createQuery(criteria).getResultList();
 	}
 
 }
