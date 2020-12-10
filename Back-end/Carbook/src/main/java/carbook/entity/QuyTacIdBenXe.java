@@ -1,10 +1,12 @@
 package carbook.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="quy_tac_id_ben_xe")
+@Entity
 public class QuyTacIdBenXe {
 
 	@Id

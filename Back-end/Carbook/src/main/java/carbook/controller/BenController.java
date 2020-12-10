@@ -40,7 +40,7 @@ public class BenController {
 		Ben ben= new Ben();
 		List<QuyTacIdBenXe> listQuyTac= benDao.getAllQuyTacId();
 		for(QuyTacIdBenXe x: listQuyTac) {
-			if(x.getThanhPho()==wrraper.getThanhPho()){
+			if(x.getThanhPho().equals(wrraper.getThanhPho())){
 				ben.setId(x.getId());
 			}
 		}

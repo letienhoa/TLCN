@@ -121,6 +121,19 @@ public class VeController {
 	public ResponseEntity<BaseResponse> create2(
 			@RequestBody VeHoiKhuRequest wrapper){
 		BaseResponse response = new BaseResponse();
+		VeRequest wrapper1 = new VeRequest();
+		
+		//Ve 1
+		
+		// Đổ dữ liệu cho vé 1
+		wrapper1.setGioChay(wrapper.getGioChay());
+		wrapper1.setGioKetThuc(wrapper.getGioKetThuc());
+		wrapper1.setIdTuyenXe(wrapper.getGioKetThuc());
+		wrapper1.setSdt(wrapper.getSdt());
+		wrapper1.setEmail(wrapper.getEmail());
+		wrapper1.setDate(wrapper.getDate());
+		wrapper1.setGiaVe(wrapper.getGiaVe());
+		wrapper1.setSlot(wrapper.getSlot());
 		String code = GenerateCode.generateStringToEmail(wrapper.getEmail());
 		String slots =UtilsService.convertListObjectToJsonArrayt(wrapper.getSlot());
 		String ngay=UtilsService.changeDateToString(UtilsService.changeStringToDate(wrapper.getDate()));
@@ -133,12 +146,16 @@ public class VeController {
 		Double parde =wrapper.getGiaVe()/4000;
 		int point =parde.intValue();
 		Long message1=pointDao.spCreateHistoryPoint(wrapper.getEmail(), point, 0);
-		Long messageSQL=veDao.create(wrapper, slots,code);
+		Long messageSQL=veDao.create(wrapper1, slots,code);
 		if(messageSQL==1||message1==1) {
 			response.setMessageError("Lỗi khi thêm dữ liệu dưới database");
 		} else {
 			response.setData(wrapper);
 		}
+		
+		// Vé 2
+		
+		
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	
