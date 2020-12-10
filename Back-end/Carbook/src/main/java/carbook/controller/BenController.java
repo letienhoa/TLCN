@@ -42,18 +42,27 @@ public class BenController {
 			response.setMessageError("Bến này đã tồn tại, vui lòng chọn thành phố khác !!!");
 		} else {
 			Ben ben= new Ben();
+			ben.setId(-1);
 			List<QuyTacIdBenXe> listQuyTac= benDao.getAllQuyTacId();
 			for(QuyTacIdBenXe x: listQuyTac) {
 				if(x.getThanhPho().equals(wrraper.getThanhPho())){
 					ben.setId(x.getId());
 				}
+				
 			}
-			ben.setPicture(wrraper.getPicture());
-			ben.setThanhPho(wrraper.getThanhPho());
-			ben.setTenBen(wrraper.getTenBen());
-			ben.setDiaChi(wrraper.getDiaChi());
-			benDao.create(ben);
-			response.setData(ben);
+			if(ben.getId()==-1)
+			{
+				response.setMessageError("Không có thành phố này ,vui lòng nhập lại !!!");
+				response.setData(null);
+			} else {
+				ben.setPicture(wrraper.getPicture());
+				ben.setThanhPho(wrraper.getThanhPho());
+				ben.setTenBen(wrraper.getTenBen());
+				ben.setDiaChi(wrraper.getDiaChi());
+				benDao.create(ben);
+				response.setData(ben);
+			}
+			
 		}
 		
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
@@ -64,19 +73,26 @@ public class BenController {
 			@PathVariable (name="id") int id,
 			@RequestBody BenRequest wrraper){
 		BaseResponse response= new BaseResponse();
-		Ben ben= benDao.findOne(id);
-		if(ben==null)
-		{
-			response.setMessageError("Không tìm thấy bến =((");
+		Ben ben =new Ben();
+		try {
+			ben= benDao.findOne(id);
+			if(ben==null)
+			{
+				response.setMessageError("Không tìm thấy bến =((");
+				return new ResponseEntity<BaseResponse>(response,HttpStatus.BAD_REQUEST);
+			} else {
+				ben.setPicture(wrraper.getPicture());
+				ben.setTenBen(wrraper.getTenBen());
+				ben.setDiaChi(wrraper.getDiaChi());
+				benDao.update(ben);
+				response.setData(ben);
+				return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+			}
+		}catch (Exception e) {
+			ben=null;
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.BAD_REQUEST);
-		} else {
-			ben.setPicture(wrraper.getPicture());
-			ben.setTenBen(wrraper.getTenBen());
-			ben.setDiaChi(wrraper.getDiaChi());
-			benDao.update(ben);
-			response.setData(ben);
-			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
+		
 		
 	}
 	
