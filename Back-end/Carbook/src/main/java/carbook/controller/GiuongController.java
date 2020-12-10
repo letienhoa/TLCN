@@ -30,11 +30,11 @@ public class GiuongController {
 	public ResponseEntity<BaseResponse> spGetGiuongByTuyenXeId(
 			@RequestParam(name = "tuyen_xe_id", required = false, defaultValue = "1") int tuyenXeId,
 			@RequestParam(name = "gio", required = false, defaultValue = "7") int gio,
-			@RequestParam(name = "ngay", required = false, defaultValue = "01/01/2001") Date ngay) {
+			@RequestParam(name = "ngay", required = false, defaultValue = "01/01/2001") String ngay) {
 		BaseResponse response= new BaseResponse();
-		ngay=UtilsService.changeFormatDate(ngay);
+		Date ngay1 =UtilsService.changeStringToDate(ngay);
 		
-		List<GiuongModelData> data =giuongDao.spGetGiuongByTuyenXeId(tuyenXeId, gio,ngay);
+		List<GiuongModelData> data =giuongDao.spGetGiuongByTuyenXeId(tuyenXeId, gio,ngay1);
 		response.setData(data);
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 
