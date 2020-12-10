@@ -41,6 +41,7 @@ export class HistoryComponent implements OnInit {
             this.history[i].trangThai = "Chưa chạy";
           }
         }
+        console.log(data);
       }
     )
   }

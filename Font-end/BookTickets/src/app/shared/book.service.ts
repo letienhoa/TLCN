@@ -34,6 +34,8 @@ export class BookService {
     totalMoney:0
   };
 
+  
+
 
   listDeparture: Ben[];
 
@@ -41,6 +43,8 @@ export class BookService {
   private urlTuyen = "http://localhost:8082/api/tuyenxe";
   private urlTram = "http://localhost:8082/api/tram-dung";
   private urlGiuong = "http://localhost:8082/api/web/giuong";
+  private urlTicket = "http://localhost:8082/api/ve";
+
 
   constructor(public http: HttpClient) { }
 
@@ -74,6 +78,18 @@ export class BookService {
 
   getRouter():Observable<any>{
     return this.http.get<any>(`${this.urlTuyen}/`);
+  }
+
+  postCreateTicket(ticket:any):Observable<any>{
+    return this.http.post(this.urlTicket+"/create",ticket);
+  }
+
+  postCreateTicket2(ticket:any):Observable<any>{
+    return this.http.post(this.urlTicket+"/create2",ticket);
+  }
+
+  getSearch(code:any):Observable<any>{
+    return this.http.get(this.urlTicket+"/get-ve-by-code?code="+code);
   }
 
 }

@@ -7,57 +7,63 @@
 </nav>
 <div class="register">
   <div class="cont">
-    <form class="form">
+    <form [formGroup]='form' class="form">
       <h2 class="" style="color: #6e6c6c;">Đăng ký</h2>
-      <div >
+      <div class="form-group">
           <label >Họ tên</label>
-          <input type="text" placeholder="" >
+          <input type="text" class="form-control" formControlName="tenKh">
       </div>
-      <div >
+      <div class="form-group">
+        <label >Tên tài khoản</label>
+        <input type="text" class="form-control" formControlName="tai_khoan">
+    </div>
+      <div class="form-group">
           <label for="" class="">Email</label>
-          <input type="password" class="" >
+          <input type="password" class="form-control" formControlName="email"  >
       </div>
-      <div >
+      <div class="form-group">
           <label for="" class="">Mật khẩu</label>
-          <input type="password" class="" >
+          <input type="password" class="form-control" formControlName="mat_khau" >
           
       </div>
-      <div >
+      <div class="form-group">
           <label for="" class="">Nhắc lại mật khẩu</label>
-          <input type="password" class="" >
+          <input type="password" class="form-control" formControlName="conf_mat_khau" >
       </div>
       <div class="other-infor">
-        <h2 style="color: #6e6c6c;">Những thông tin khác</h2>
+        <form [formGroup]='form'>
+          <h2 style="color: #6e6c6c;">Những thông tin khác</h2>
           <div class="infor">
-            <div >            
+            <div class="form-group">            
               <label for="" class="">SĐT</label>
-              <input type="text" class="">
+              <input type="text" class="form-control" formControlName="sdt">
             </div>
-            <div>
+            <div class="form-group">
               <label for="" class="">CMND</label>
-              <input type="text" class="" >
+              <input type="text" class="form-control" formControlName="cmnd" >
             </div>
           </div>
           <div class="infor">
-            <div>            
+            <div class="form-group">            
               <label for="" class="">Tỉnh/TP</label>
-              <input type="text" class="" >
+              <input type="text" class="form-control" formControlName="thanh_pho">
             </div>
-            <div>
+            <div class="form-group" >
               <label for="" class="">Quận/Huyện</label>
-              <input type="text" class="" >
+              <input type="text" class="form-control" formControlName="quan_huyen">
             </div>
           </div>
           <div>
-            <div >            
+            <div class="form-group">            
               <label>Địa Chỉ</label>
-              <input type="text">
+              <input type="text" class="form-control" formControlName="dia_chi">
             </div>
           </div>
+        </form>
       </div>
 
       <div>
-          <button type="submit" class="submit">
+          <button type="submit" class="submit" (click)="onSignUp()">
           Đăng ký</button>
       </div>
     </form>

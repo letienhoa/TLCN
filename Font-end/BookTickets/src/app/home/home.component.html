@@ -40,7 +40,7 @@
                 <div class="section" *ngFor="let i of listRoterPoppular">
                     <div class="section-info">
                        <img src="../../assets/1.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">SÀI GÒN => ĐÀ NẴNG</span>
+                       <span style="float: right; padding-top: 15px; margin-right: 10px;">{{i.ben_xe_di}} => {{i.ben_xe_toi}}</span>
                         <i class="fas fa-map-marker-alt"> {{i.khoang_cach}}KM</i>
                         <i class="fas fa-clock"> {{i.khoang_thoi_gian}}h</i>
                         <i class="fas fa-tags price" > {{i.gia_ca}}đ</i>
@@ -60,7 +60,39 @@
         </div>
         <div class="for_slick_slider multiple-items">
             <div class="items">
+                <img src="../../assets/sapa.png" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Lào Cai</i>
+                    <h3>SaPa</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
                 <img src="../../assets/dd1.jpg" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt"> Quảng Ninh</i>
+                    <h3>Vịnh Hạ Long</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/hoi_an.png" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Đà Nẵng</i>
+                    <h3>Hội An</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/hue.png" alt="">
+                <div class="item-text">
+                    <i class="fas fa-map-marker-alt">  Huế</i>
+                    <h3>Cố Đô Huế</h3>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div class="items">
+                <img src="../../assets/tphcm.png" alt="">
                 <div class="item-text">
                     <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
                     <h3>Sài Gòn</h3>
@@ -68,82 +100,58 @@
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/nam_cat_tien.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Nam Cát Tiên</i>
+                    <h3>Đồng Nai</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/da_lat.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Lâm Đồng</i>
+                    <h3>Đà Lạt</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/ha_tien.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Hà Tiên</i>
+                    <h3>Rạch Giá</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/da_nang.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Cầu Rồng</i>
+                    <h3>Đà Nẵng</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/ha_noi.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Hồ Gươm</i>
+                    <h3>Hà Nội</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/nha_trang.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Nha Trang</i>
+                    <h3>Khánh Hòa</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
+                <img src="../../assets/chau_doc.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
-                </div>
-                <div class="overlay"></div>
-            </div>
-            <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
-                <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
-                </div>
-                <div class="overlay"></div>
-            </div>
-            <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
-                <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
-                </div>
-                <div class="overlay"></div>
-            </div>
-            <div class="items">
-                <img src="../../assets/dd1.jpg" alt="">
-                <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Tp. Hồ Chí Minh</i>
-                    <h3>Sài Gòn</h3>
+                    <i class="fas fa-map-marker-alt">  Châu Đốc</i>
+                    <h3>Long Xuyên</h3>
                 </div>
                 <div class="overlay"></div>
             </div>

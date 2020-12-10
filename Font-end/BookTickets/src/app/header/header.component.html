@@ -12,7 +12,8 @@
             <ul class="nav-items">
                 <li class="nav-link"><a [routerLink]="['']"><div class="item">Trang chủ</div></a></li>
                 <li class="nav-link"><a [routerLink]="['/schedule']"><div class="item">Lịch trình</div></a></li>
-                <li class="nav-link"><a [routerLink]="['/news']"><div class="item">Tin tức</div></a></li>
+<!--                 <li class="nav-link"><a [routerLink]="['/news']"><div class="item">Tin tức</div></a></li>
+ -->                
                 <li class="nav-link"><a [routerLink]="['/policy/rules']"><div class="item">Điều khoản</div></a></li>
                 <li class="nav-link"><a [routerLink]="['/invoice']"><div class="item">Hóa đơn</div></a></li>
                 <li class="nav-link"><a [routerLink]="['/login']"><div class="item">Đăng nhập</div></a></li>
@@ -20,8 +21,8 @@
         </div>
         <div id="personal">
             <ul class="nav-items personal_items" style="margin-right:  -500px;">
-                <li class="nav-link"><a ><div class="item">Số dư</div></a></li>
-                <li class="nav-link"><a ><div class="item">Điểm thưởng</div></a></li>
+                <li class="nav-link"><a ><div class="item">Số dư {{pointAward}}</div></a></li>
+                <li class="nav-link"><a ><div class="item">Điểm thưởng {{totalPoint}}</div></a></li>
                 <li class="nav-link">
                     <a><div class="item" (click)='onShowDown()'>Xin chào, {{email}} <i class="fas fa-chevron-down" style="font-size: 10px;"></i></div></a>
                     <a class="logOut" (click)="onLogOut()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
@@ -32,8 +33,8 @@
             <ul class="nav-items">
                 <li class="nav-link"><div class="item">Tài Khoản</div></li>
                 <li class="nav-link"><div class="item">Lịch trình</div></li>
-                <li class="nav-link"><div class="item">Tin tức</div></li>
-                <li class="nav-link"><div class="item">Điều khoản</div></li>
+<!--                 <li class="nav-link"><div class="item">Tin tức</div></li>
+ -->                <li class="nav-link"><div class="item">Điều khoản</div></li>
                 <li class="nav-link"><div class="item">Hóa đơn</div></li>
                 <li class="nav-link"><div class="item">Đăng nhập</div></li>
             </ul>

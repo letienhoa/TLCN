@@ -25,7 +25,6 @@ export class SelectSeatComponent implements OnInit {
  
     this.ser.step1 = JSON.parse(sessionStorage.getItem('b1'));
     console.log(this.ser.step1);
-
     this.load();
     this.day = this.ser.step1.daygo;
   }
@@ -49,6 +48,7 @@ export class SelectSeatComponent implements OnInit {
         this.ser.step2.routerId = data.data.id;
         this.price = data.data.gia_ca;
         this.getTime(this.ser.step2.routerId);
+  
       }
     );
 
@@ -56,20 +56,10 @@ export class SelectSeatComponent implements OnInit {
     this.ser.getListStop(this.ser.step1.departure.id,this.ser.step1.destination.id).subscribe(
       data => this.schedule = data.data
     );
-      
-    this.ser.getStatusSeat(this.ser.step2.routerId,this.ser.step2.time,this.ser.step1.daygo).subscribe(
-      data => {
-        for(let i of data.data){
-          if(i.trangThai == Number(1)){
-            document.getElementsByClassName(i.stt)[0].classList.add('disable');
-          }
-          else{ 
-            document.getElementsByClassName(i.stt)[0].classList.add('active');
-          }
-        }
-        this.seat = data.data;
-      }
-    );
+
+   
+   
+
   }
 
   listSang = [];
@@ -88,6 +78,23 @@ export class SelectSeatComponent implements OnInit {
         }
         this.ser.step2.time = res.data[0].giochay;
       console.log(res.data);
+      this.ser.getStatusSeat(this.ser.step2.routerId,this.ser.step2.time,this.ser.step1.daygo).subscribe(
+        data => {
+          console.log("adaaa")
+          console.log(data.data);
+          for(let i of data.data){
+            if(i.trangThai == Number(1)){
+              document.getElementsByClassName(i.stt)[0].classList.add('disable');
+            }
+            else{ 
+              document.getElementsByClassName(i.stt)[0].classList.add('active');
+            }
+          }
+          this.seat = data.data;
+          console.log("jk")
+          console.log(this.seat);
+        }
+      );
     });
   }
 

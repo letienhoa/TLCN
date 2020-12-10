@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { flatMap } from 'rxjs/operators';
 import { LogInService } from '../shared/log-in.service';
 
 
@@ -11,8 +12,15 @@ import { LogInService } from '../shared/log-in.service';
 export class HeaderComponent implements OnInit {
   @Input() index = 0;
   @Input() success = 0;
+
+  @Input() pointAward = "";
+  @Input() totalPoint = "";
+
+  isShow = false;
+
   email=''
   nav: any
+  customerInfor;
 
   constructor(private route: Router, private ac: ActivatedRoute, private service: LogInService) { }
 
@@ -27,22 +35,7 @@ export class HeaderComponent implements OnInit {
   onClick(){   
     var nav = document.getElementsByClassName('nav')
     nav[0].classList.toggle('collapse')
-
   } 
-
-  onRouter(index: any){
-    switch(index){
-      case 1:{
-        this.onChange(1);
-        this.route.navigate(['/schedule']);
-      }
-      break;
-      default:{
-        this.onChange(0);
-        this.route.navigate(['']);
-      }
-    }
-  }
 
   onChange(index:any){
     this.nav = document.getElementsByClassName('item')
@@ -51,6 +44,9 @@ export class HeaderComponent implements OnInit {
         this.nav[i].classList.remove('pick')
       }
       return
+    }
+    if(index>2){
+      index = index -1;
     }
     this.nav[index].classList.add('pick')
     for(let i = 0; i< this.nav.length; i++){
@@ -68,6 +64,7 @@ export class HeaderComponent implements OnInit {
       per.style.display = 'inital'
       p = (<HTMLInputElement>document.getElementById("addmin"))
       p.style.display = 'none'
+
     }
     else if(this.success==2){
       var per = (<HTMLInputElement>document.getElementById("personal"))

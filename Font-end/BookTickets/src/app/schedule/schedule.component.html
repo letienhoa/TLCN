@@ -24,9 +24,9 @@
                 </tr>
                 <ng-container *ngFor="let item of allRouter">
                     <tr>
-                        <td style="text-align: left;">{{item.ben_xe_di}} => {{item.ben_xe_toi}}</td>
+                        <td style="text-align: left;"> <span style="color: #F15A61; font-weight: bold;">{{item.ben_xe_di}}</span> <span style="font-weight: bold;"> => </span><span style="color: #009344; font-weight: bold;">{{item.ben_xe_toi}}</span></td>
                         <td> Giường</td>
-                        <td> {{item.khoang_cach}} KM</td>
+                        <td>  {{item.khoang_cach}} KM</td>
                         <td> {{item.khoang_thoi_gian}} giờ</td>
                         <td><span class="detail" [routerLink]="['/schedule/detail']">Chi tiết <i class="fas fa-info-circle"></i></span></td>
                         <td (click)="onClick(item)"><span class="book">Đặt vé <i class="fas fa-calendar-check"></i></span></td>

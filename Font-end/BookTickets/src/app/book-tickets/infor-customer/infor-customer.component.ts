@@ -41,7 +41,17 @@ export class InforCustomerComponent implements OnInit {
       return
     }
     sessionStorage.setItem('b3',JSON.stringify(this.form.value))
-    this.router.navigate(['/booktickets/pay'])
+
+    var b1 = JSON.parse(sessionStorage.getItem("b1"));
+
+    if(b1.isOneWay==false){
+      this.router.navigate(['/booktickets/pay-two-way'])
+    }
+    else{
+      this.router.navigate(['/booktickets/pay'])
+    }
+
+    
   }
 
   isCheck = false;

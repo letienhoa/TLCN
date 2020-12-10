@@ -1,4 +1,3 @@
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -6,12 +5,12 @@ import { BookService } from '../shared/book.service';
 declare var paypal;
 
 @Component({
-  selector: 'app-paypall',
-  templateUrl: './paypall.component.html',
+  selector: 'app-paypall-two-way',
+  templateUrl: './paypall-two-way.component.html',
   styles: [
   ]
 })
-export class PaypallComponent implements OnInit {
+export class PaypallTwoWayComponent implements OnInit {
 
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
@@ -23,16 +22,38 @@ export class PaypallComponent implements OnInit {
   customer ={}
   listSeats = []
 
+  routeGo:any;
+  routeReturn:any;
+
+  numberGo:any;
+  numberReturn:any;
+
+  listSeatsGo = [];
+  listSeatsReturn = [];
+
+  totalMoney = 0;
 
   paidFor = false;
 
   constructor(private service: BookService) { }
 
   ngOnInit(): void {
-
     this.infor = JSON.parse(sessionStorage.getItem('b3'));
     this.infor_seat = JSON.parse(sessionStorage.getItem('b2'));
     this.infor_router = JSON.parse(sessionStorage.getItem('b1'));
+
+    this.routeGo = JSON.parse(sessionStorage.getItem("oneWay"));
+    this.routeReturn = JSON.parse(sessionStorage.getItem("twoWay"));
+
+    this.numberGo = this.routeGo.slot.length;
+    this.numberReturn = this.routeReturn.slot.length;
+
+    this.totalMoney = this.routeGo.gia_ve + this.routeReturn.gia_ve;
+
+    console.log(this.routeGo);
+
+    this.listSeatsGo = this.ConvertSeats(this.routeGo.slot);
+    this.listSeatsReturn = this.ConvertSeats(this.routeReturn.slot);
 
     this.customer = {
       name:this.infor.username,
@@ -41,25 +62,8 @@ export class PaypallComponent implements OnInit {
       city:this.infor.city
     }
 
-    this.ticket ={
-      route:this.infor_seat.routerId,
-      dateGo:this.infor_router.daygo,
-      timeGo:this.infor_seat.time,
-      seats:this.infor_seat.seats,
-      number:this.infor_seat.number,
-      totalMoney:this.infor_seat.totalMoney,
-      range:"",
-      time:"",
-    }
-
-    console.log(this.infor_router);
-    this.listSeats = this.ConvertSeats(this.infor_seat.seats)
-    console.log(this.listSeats)
-
-    var description = "Book ticket" + this.infor_router.departure.ben_toi + " -- "+this.infor_router.destination.ben_toi;
-    var price = this.infor_seat.totalMoney/22000;
-    alert(price);
-    alert(description);
+    var description = "Book ticket" + this.infor_router.departure.ben_toi + " -- "+this.infor_router.destination.ben_toi+" (thứ hồi)";
+    var price = this.totalMoney/22000;
     this.payMent(description,price);
   }
 
@@ -82,17 +86,23 @@ export class PaypallComponent implements OnInit {
       onApprove: async (data, actions) => {
         const order = await actions.order.capture();
 
-        var ticket ={
-          gio_chay:this.infor_seat.time,
-          gio_ket_thuc:this.infor_seat.time,
-          id_tuyen_xe:this.infor_seat.routerId,
-          sdt:this.infor.phone,
-          email:this.infor.email,
-          date:this.infor_router.daygo,
-          gia_ve:this.infor_seat.totalMoney,
-          slot:this.infor_seat.seats
-        }
-        this.service.postCreateTicket(ticket).subscribe(
+        var ticket = {
+          "gio_chay2":this.routeReturn.gio_chay,
+          "gio_ket_thuc2":this.routeReturn.gio_chay,
+          "id_tuyen_xe2":this.routeReturn.id_tuyen_xe,
+          "date2":this.routeReturn.date,
+          "gia_ve2":this.routeReturn.gia_ve,
+          "slot2":this.routeReturn.slot,
+          "gio_chay":this.routeGo.gio_chay,
+          "gio_ket_thuc":this.routeGo.gio_chay,
+          "id_tuyen_xe":this.routeGo.id_tuyen_xe,
+          "sdt":this.infor.phone,
+          "email":this.infor.email,
+          "date":this.routeGo.date,
+          "gia_ve":this.routeGo.gia_ve,
+          "slot":this.routeGo.slot
+      }
+        this.service.postCreateTicket2(ticket).subscribe(
           data => {
             if(data.status==200){
               alert("Thành công");
@@ -131,4 +141,5 @@ export class PaypallComponent implements OnInit {
     }
     return list;
   }
+
 }

@@ -53,7 +53,7 @@
                         <p><i class="fas fa-star"></i> Cấp độ thành viên</p>
                     </div>
                     <div class="level-item-right">
-                        <p>Thành viên</p>
+                        <p>{{point.cap_do}}</p>
                     </div>
                 </div>
                 <div class="level-item">
@@ -61,7 +61,7 @@
                         <p><i class="fas fa-heart"></i> Tổng số tiền tích lũy (đ/năm)</p>
                     </div>
                     <div class="level-item-right">
-                        <p>0</p>
+                        <p>{{point.tien_tich_luy}}</p>
                     </div>
                 </div>
                 <div class="level-item">
@@ -69,7 +69,7 @@
                         <p><i class="fas fa-gift"></i> Tổng số điểm tích lũy</p>
                     </div>
                     <div class="level-item-right">
-                        <p>0</p>
+                        <p>{{point.tong_diem}}</p>
                     </div>
                 </div>
                 <div class="level-item">
@@ -77,7 +77,7 @@
                         <p><i class="fas fa-bookmark"></i> Số điểm tích lũy khả dụng</p>
                     </div>
                     <div class="level-item-right">
-                        <p>0</p>
+                        <p>{{point.diem_tich_luy_kha_dung}}</p>
                     </div>
                 </div>
                 <div class="level-item last">
@@ -85,7 +85,7 @@
                         <p><i class="fas fa-cart-plus"></i> Số điểm tích lũy đã sử dụng</p>
                     </div>
                     <div class="level-item-right">
-                        <p>0</p>
+                        <p>{{point.tong_diem - point.diem_tich_luy_kha_dung}}</p>
                     </div>
                 </div>
             </div>

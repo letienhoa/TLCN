@@ -14,7 +14,7 @@
             <button id='3' (click)='onShowMenu(3)'>Xe</button>
         </div>
         <div class="menu-item">
-            <button id='4' (click)='onShowMenu(4)'>Qui đổi điểm</button>
+            <button id='4' (click)='onShowMenu(4)'>Xuất lịch trình</button>
         </div>
         <div class="menu-item">
             <button id='5' (click)='onShowMenu(5)'>Thống kê</button>
@@ -216,13 +216,13 @@
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Quãng đường</p>
-                        <input type="text" placeholder="Nhập quãng đường" *ngIf='isCreateAccount==1' class="form-control" formControlName="khoang_cach">
-                        <input type="text" placeholder="{{route.khoang_cach}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="khoang_cach">
+                        <input type="text" #khoang_cach placeholder="Nhập quãng đường" *ngIf='isCreateAccount==1' class="form-control" formControlName="khoang_cach">
+                        <input type="text" #khoang_cach placeholder="{{route.khoang_cach}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="khoang_cach">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Thời gian hành trình</p>
-                        <input type="text" placeholder="Nhập thời gian hành trình" *ngIf='isCreateAccount==1' class="form-control" formControlName="thoi_gian_hanh_trinh">
-                        <input type="text" placeholder="{{route.thoi_gian_hanh_trinh}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="thoi_gian_hanh_trinh">
+                        <input type="text" #khoang_thoi_gian placeholder="Nhập thời gian hành trình" *ngIf='isCreateAccount==1' class="form-control" formControlName="khoang_thoi_gian">
+                        <input type="text" #khoang_thoi_gian placeholder="{{route.khoang_thoi_gian}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="khoang_thoi_gian">
                     </div>
                 </form>
             </div>
@@ -234,8 +234,8 @@
                 <form [formGroup]="formRoute">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Giá vé</p>
-                        <input type="text" placeholder="Nhập giá vé" *ngIf='isCreateAccount==1' class="form-control" formControlName="gia_ca">
-                        <input type="text" placeholder="{{route.gia_ca}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="gia_ca">
+                        <input type="text" #gia_ca placeholder="Nhập giá vé" *ngIf='isCreateAccount==1' class="form-control" formControlName="gia_ca">
+                        <input type="text" #gia_ca placeholder="{{route.gia_ca}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="gia_ca">
                     </div>
                     <div style="clear: both;"></div>
                     <div class="infor-item">
@@ -254,28 +254,22 @@
             <div class="menu-content-item-content schedule">
                 <div style="height:300px; overflow:auto; ">
                     <table style="width:100%; border-collapse: collapse;">
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">Phú Yên</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Bến xe Phú Lâm</td>
-                          <td>Khu phố 3 phường Phú Thạnh, Tp Tuy Hòa</td>
-                        </tr>
-                        <tr style="background: #eb8287;">
-                          <td style="text-align: left; color: white;">Nha Trang - Khánh Hòa</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Bến xe Cam Ranh</td>
-                          <td></td>
-                        </tr>
+                        <ng-container *ngFor="let item of routeInfor">
+                            <tr style="background: #eb8287;">
+                                <td style="text-align: left; color: white;">{{item.thanh_pho}}</td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>Bến xe {{item.ben_toi}}</td>
+                                <td>{{item.dia_chi}}</td>
+                                <td style="color: #F2754E;" (click)="onShow(0,2,item)"><i class="far fa-edit"></i> Chỉnh sửa </td>
+                              </tr>
+                        </ng-container>
                     </table>
                 </div>  
                 <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm bến</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa bến</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa bến</p>
+                    <p style="color: #009344;"  (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm bến</p>
                 </div>
             </div>
 
@@ -288,11 +282,12 @@
                 <form [formGroup]="formPoint">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Thành Phố</p>
-                        <input type="text" placeholder="Nhập thành phố" class="form-control" formControlName="thanh_pho">
+                        <input type="text" #tenTP placeholder="Nhập thành phố" *ngIf='isCreateAccount==1' class="form-control" formControlName="thanh_pho">
+                        <input type="text" #tenTP placeholder="{{route.thanh_pho}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="thanh_pho" disabled>
                     </div>
-                    <div class="infor-item form-group">
+                    <div class="infor-item">
                         <p for="">Hình ảnh của thành phố</p>
-                        <input type="file" accept="image/*" capture="camera" (change)="imgeChanged($event)" class="form-control" formControlName="hinh_anh">
+                        <input type="file" accept="image/*" capture="camera" (change)="imgeChanged($event)">
                         <div *ngIf=retrievedImage>
                             <img [src]="srcImage">
                         </div>
@@ -310,16 +305,20 @@
                 <form [formGroup]="formPoint">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Tên bến</p>
-                        <input type="text" placeholder="Nhập tên bến" class="form-control" formControlName="ten_ben">
+                        <input type="text" #tenBen placeholder="Nhập tên bến" *ngIf='isCreateAccount==1' class="form-control" formControlName="ten_ben">
+                        <input type="text" #tenBen placeholder="Bến xe {{route.ben_toi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="ten_ben">
+
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Địa chỉ</p>
-                        <input type="text" placeholder="Nhập địa chỉ" class="form-control" formControlName="dia_chi">
+                        <input type="text" #diaChi placeholder="Nhập địa chỉ" *ngIf='isCreateAccount==1' class="form-control" formControlName="dia_chi">
+                        <input type="text" #diaChi placeholder="{{route.dia_chi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="dia_chi">
+
                     </div>
                     <div style="clear: both;"></div>
                     <div class="infor-item">
                         <button class="btn-submit" (click)="onShow(1,0)" *ngIf='isCreateAccount==1' >Thêm bến</button>
-                        <button class="btn-submit" (click)="onSubmit()">Lưu</button>
+                        <button class="btn-submit" (click)="onShow(2,0)" *ngIf='isCreateAccount==2'>Lưu</button>
                     </div>
                 </form>
             </div>
@@ -383,18 +382,18 @@
                 <form [formGroup]="formCar">
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Tên xe</p>
-                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập tên xe" class="form-control" formControlName="ten_xe">
-                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.tenXe}}" class="form-control" formControlName="ten_xe">
+                        <input type="text" #tenXe *ngIf='isCreateAccount==1' placeholder="Nhập tên xe" class="form-control" formControlName="ten_xe">
+                        <input type="text" #tenXe *ngIf='isCreateAccount==2' placeholder="{{route.tenXe}}" class="form-control" formControlName="ten_xe">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Hãng xe</p>
-                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập hãng xe" class="form-control" formControlName="hang_xe">
-                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.hangXe}}" class="form-control" formControlName="hang_xe">
+                        <input type="text" #hangXe *ngIf='isCreateAccount==1' placeholder="Nhập hãng xe" class="form-control" formControlName="hang_xe">
+                        <input type="text" #hangXe *ngIf='isCreateAccount==2' placeholder="{{route.hangXe}}" class="form-control" formControlName="hang_xe">
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Thời gian chạy</p>
-                        <input type="text" *ngIf='isCreateAccount==1' placeholder="Nhập thời gian chạy" class="form-control" formControlName="gio_chay">
-                        <input type="text" *ngIf='isCreateAccount==2' placeholder="{{route.gioChay}}" class="form-control" formControlName="gio_chay">
+                        <input type="text" #gioChay *ngIf='isCreateAccount==1' placeholder="Nhập thời gian chạy" class="form-control" formControlName="gio_chay">
+                        <input type="text" #gioChay *ngIf='isCreateAccount==2' placeholder="{{route.gioChay}}" class="form-control" formControlName="gio_chay">
                     </div>
                     <div style="clear: both;"></div>
                     <div class="infor-item">
@@ -406,123 +405,29 @@
         </div>
     </div>
     <div class="menu-content" *ngIf='isShow == 4'>
-        <div class="menu-content-item">
+        <div class="menu-content-item" style="width: 100%;">
             <div class="menu-content-title">
-                <p>Bảng qui đổi điểm</p> 
+                <p>Danh sách các tuyến chạy trong ngày {{dateValue}}</p> 
             </div>
-            <div class="menu-content-item-content schedule">
+            <div class="menu-content-item-content">
                 <div style="height:310px; overflow:auto; ">
-                    <table style="width:90%; border-collapse: collapse;">
+                    <table style="width:100%; border-collapse: collapse;">
                         <tr>
-                            <th>ID</th>
-                            <th>Điểm</th>
-                            <th>Giảm giá (%)</th>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>100</td>
-                          <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>200</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>400</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>600</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>800</td>
-                            <td>8</td>
-                        </tr>
+                            <th>Tuyến</th>
+                            <th>Số lượng vé</th>
+                            <th>Giờ khởi hành</th>
+                            <th></th>
+                        </tr> 
+                        <ng-container *ngFor="let item of listRouteExport">
+                            <tr>
+                                <td>{{item.ben_xe_di}} -- {{item.ben_xe_toi}}</td>
+                                <td>{{item.so_luong_ve}} vé</td>
+                                <td>{{item.gio_chay}}h</td>
+                                <td style="color: #F2754E;" (click)="onPostExcel(item)"><i class="fas fa-file-excel"></i> Xuất lịch</td>
+                            </tr> 
+                        </ng-container>
                     </table>
                 </div>  
-                <div class="menu-action">
-                    <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm qui đổi điểm</p>
-                    <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa bảng qui đổi</p>
-                    <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa qui đổi</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="menu-item-right">
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
-                    <p>Bảng cộng điểm</p> 
-                </div>
-                <div class="menu-content-item-content schedule">
-                    <div style="height:310px; overflow:auto; ">
-                        <table style="width:90%; border-collapse: collapse;">
-                            <tr>
-                                <th>ID</th>
-                                <th>Số tiền VNĐ</th>
-                                <th>Điểm cộng</th>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td>100</td>
-                              <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>200</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>400</td>
-                                <td>40</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>600</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>800</td>
-                                <td>80</td>
-                            </tr>
-                        </table>
-                    </div>  
-                    <div class="menu-action">
-                        <p style="color: #009344;" *ngIf='isCreateAccount==0' (click)="onShow(0,1)"><i class="far fa-edit"></i> Thêm qui định điểm cộng</p>
-                        <p style="color: #F2754E;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Chỉnh sửa điểm cộng</p>
-                        <p style="color: #f54b17;" *ngIf='isCreateAccount==0' (click)="onShow(0,2)"><i class="far fa-edit"></i> Xóa điểm cộng</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item-account" style="margin-left: 25px;" *ngIf='isCreateAccount!=0'>
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin chi tiết</p> 
-                </div>
-                <form action="">
-                    <div class="infor-item" style="padding-top: 5px;">
-                        <p for="">ID</p>
-                        <input type="text" placeholder="Nhập tên xe">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Điểm</p>
-                        <input type="text" placeholder="Nhập biển số">
-                    </div>
-                    <div class="infor-item">
-                        <p for="">Qui đổi</p>
-                        <input type="text" placeholder="Nhập hãng xe">
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)">Lưu</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

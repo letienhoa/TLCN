@@ -1,32 +1,57 @@
 <div class="payment-container" *ngIf="!paidFor">
     <h1>{{infor_router.departure.ben_toi}} -- {{infor_router.destination.ben_toi}}</h1>
-    <h2>{{ ticket.totalMoney }} VND</h2>
+    <h2>Tổng tiền cả đi lẫn về: {{ totalMoney }} VND</h2>
     <div style="display: flex;">
         <div class="item-infor">
-            <h2>Thông tin vé</h2>
+            <h2>Thông tin vé đi</h2>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Tuyến đường: </label>
                 <label for="" style="text-align: right;">{{infor_router.departure.ben_toi}} -- {{infor_router.destination.ben_toi}}</label>
             </div>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Ngày chạy: </label>
-                <label for="" style="text-align: right;">{{ticket.dateGo}}</label>
+                <label for="" style="text-align: right;">{{routeGo.date}}</label>
             </div>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Giờ chạy: </label>
-                <label for="" style="text-align: right;">{{ticket.timeGo}}h</label>
+                <label for="" style="text-align: right;">{{routeGo.gio_chay}}h</label>
             </div>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Giường: </label>
-                <label for="" style="text-align: right;" *ngFor="let i of listSeats">{{i}} </label>
+                <label for="" style="text-align: right;" *ngFor="let i of listSeatsGo">{{i}} </label>
             </div>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Số lượng: </label>
-                <label for="" style="text-align: right;">{{ticket.number}} vé</label>
+                <label for="" style="text-align: right;">{{numberGo}} vé</label>
             </div>
             <div style=" width: 80%;margin: auto;display: flex;">
                 <label for="">Tổng tiền: </label>
-                <label for="" style="text-align: right;">{{ticket.totalMoney}} vnđ</label>
+                <label for="" style="text-align: right;">{{routeGo.gia_ve}} vnđ</label>
+            </div>
+            <h2>Thông tin vé về</h2>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Tuyến đường: </label>
+                <label for="" style="text-align: right;">{{infor_router.destination.ben_toi}} -- {{infor_router.departure.ben_toi}}</label>
+            </div>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Ngày chạy: </label>
+                <label for="" style="text-align: right;">{{routeReturn.date}}</label>
+            </div>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Giờ chạy: </label>
+                <label for="" style="text-align: right;">{{routeReturn.gio_chay}}h</label>
+            </div>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Giường: </label>
+                <label for="" style="text-align: right;" *ngFor="let i of listSeatsReturn">{{i}} </label>
+            </div>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Số lượng: </label>
+                <label for="" style="text-align: right;">{{numberReturn}} vé</label>
+            </div>
+            <div style=" width: 80%;margin: auto;display: flex;">
+                <label for="">Tổng tiền: </label>
+                <label for="" style="text-align: right;">{{routeReturn.gia_ve}} vnđ</label>
             </div>
         </div>
         <div class="item-infor">

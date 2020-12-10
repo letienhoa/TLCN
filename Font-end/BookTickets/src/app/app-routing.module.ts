@@ -15,6 +15,8 @@ import { RulesComponent } from './policy/rules/rules.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SuccessComponent } from './account/success/success.component';
 import { AddminComponent } from './account/addmin/addmin.component';
+import { SelectSeatReturnAwayComponent } from './book-tickets/select-seat-return-away/select-seat-return-away.component';
+import { PayTwoWayComponent } from './book-tickets/pay-two-way/pay-two-way.component';
 
 
 const routes: Routes = [
@@ -33,7 +35,8 @@ const routes: Routes = [
   {path:'invoice', component:InvoiceComponent},
   {path:'login/customer/:email', component:SuccessComponent},
   {path:'login/admin/:email', component:AddminComponent},
-
+  {path:'booktickets/select-seat-two-way', component:SelectSeatReturnAwayComponent},
+  {path:'booktickets/pay-two-way', component:PayTwoWayComponent},
 ];
 
 @NgModule({

@@ -41,7 +41,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="schedule">
                 <h2>LỊCH TRÌNH CHUYẾN ĐI  <span *ngIf="isDown" class="fas fa-chevron-down" (click)='onClick()'></span>
                     <span *ngIf="!isDown" class="fas fa-chevron-up" (click)='onClick()'></span></h2>
@@ -210,7 +209,8 @@
             </div>
         </div>
         <div class="back">
-            <button class="button" [routerLink]="['']" style="margin-left: -10px;"><i class="fas fa-chevron-left"></i> Quay Lại</button>        </div>
+            <button class="button" [routerLink]="['']" style="margin-left: -10px;"><i class="fas fa-chevron-left"></i> Quay Lại</button>        
+        </div>
         <div class="cont">
             <button class="button" (click)="submit()">Tiếp Tục<i class="fas fa-chevron-right"></i></button>
         </div>

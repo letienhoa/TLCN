@@ -14,6 +14,9 @@ export class AdminService {
   private urlCustomer =  'http://localhost:8082/api/khach-hang';
   private urlCar = "http://localhost:8082/api/xe";
   private urlTicket = "http://localhost:8082/api/ve";
+  private urlExcel = "http://localhost:8082/api/excel/";
+  private urlB = "http://localhost:8082/api/ben";
+
   
 
   constructor(public http: HttpClient) { }
@@ -127,5 +130,50 @@ export class AdminService {
         return res;
     }));
   }
+
+  getAllRouteToExport(token:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    return this.http.get(this.urlRoute+"/list-tuyen-xe-theo-ve",httpOptions);
+  }
+
+  postExcel(token:any,routeId:any, time:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    return this.http.post(this.urlExcel+"xuat-file?id_tuyen_xe="+routeId+"&gio="+time,null,httpOptions);
+  }
+
+  getAllRouteInfor():Observable<any>{
+    return this.http.get(this.urlB);
+  }
+
+  postCreateB(token:any,data:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    return this.http.post(this.urlB+"/create",data,httpOptions);
+  }
+
+  postUpdateB(token:any,id:any,data:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token })
+    };
+    return this.http.post(this.urlB+"/"+id+"/update",data,httpOptions);
+  }
+  
 
 }

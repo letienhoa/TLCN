@@ -74,4 +74,19 @@ export class LogInService {
     return this.http.post(this.url+"/update/"+customerID+"/",customerInfor,httpOptions);
   }
   
+  getPointCustomer(token:any,customerId:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',      
+        "Access-Control-Allow-Origin": "*",
+        'Authorization': token
+      })
+    };
+    return this.http.get(this.url+"/get-detail-point/"+customerId,httpOptions);
+  }
+
+  postCreateAccount(customer:any):Observable<any>{
+    return this.http.post("http://localhost:8082/api/khach-hang/create",customer);
+  }
+
 }

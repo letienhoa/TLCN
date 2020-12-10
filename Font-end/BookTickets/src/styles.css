@@ -358,7 +358,8 @@ ul{
 
 .for_slick_slider .items h3{
     margin-top: 10px;
-    font-size: 34px;
+    font-size: 28px;
+    margin-bottom: 35px;
 }
 
 .for_slick_slider .items .overlay{
@@ -849,6 +850,7 @@ footer.footer .move-up span:hover{
 
 .container .schedule-content td{
     text-align: center;
+    font-weight: bold;
 }
 
 .container table{
@@ -884,6 +886,7 @@ footer.footer .move-up span:hover{
 .container table .paren td{
     text-align: left;   
     color: #F15A61;
+    
 }
 
 .container table tr td span{
@@ -1386,6 +1389,36 @@ footer.footer .move-up span:hover{
     cursor: pointer;
 }
 
+.return-right .disable{
+    border: 1px solid #95989b;
+    background-color: #696b6d;
+    cursor: pointer;
+    color: white;
+}
+
+
+.return-right .active{
+    border: 1px solid #cbe2f3;
+    background-color: #eff9ff;
+    cursor: pointer;
+}
+
+.return-right .select{
+    border: 1px solid #e05c30;
+    background-color: #e05c30;
+}
+
+
+.return-right td button{
+    padding: 3px;
+    width: 80%;
+    text-align: center;
+    height: 50px;
+    border-radius: 5px;
+    
+}
+
+
 .floor-seat .active{
     border: 1px solid #cbe2f3;
     background-color: #eff9ff;
@@ -1491,12 +1524,41 @@ footer.footer .move-up span:hover{
     font-size: 18px;
 }
 
-
-
-
 .clear{
     clear: left;
 }
+/* ========================================== */
+/* Select seat return ticket */
+.return-left{
+    width: 100%; 
+    background-color: #F6F6F6; 
+    padding: 10px 0px 20px; 
+    border-radius: 10px;
+    font-family: 'Oswald', sans-serif;
+}
+.return-right{
+    width: 100%; 
+    background-color: #F6F6F6; 
+    border-radius: 10px;
+}
+
+.return-right .btn-right{
+    width: 49%; 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 18px; 
+}
+
+.return-right .btn-right:hover{
+    cursor: pointer;
+}
+
+.bottom{
+    border-bottom:3px solid black;
+}
+
+
+
+
 /* ========================================== */
 /* Infor Customer */
 .route-container .infor-left{
@@ -1740,78 +1802,13 @@ footer.footer .move-up span:hover{
 /* ========================================== */
 /* Invoice */
 .invoice{
+    margin: auto;
     width: 30%;
-    margin: 100px auto;
-    height: 300px;
-    background: -webkit-linear-gradient(left, #F2754E,#009344  );    border-radius: 10px;
 }
 
 .invoice p{
-    padding-top: 20px;
-    color: white;
-    font-size: 30px;
-}
-
-.invoice .code{
-    margin-bottom: 25px;
-    margin-left: 20px;
-}
-
-.invoice .code input{
+    font-family: 'Oswald', sans-serif; 
     font-size: 20px;
-}
-
-.invoice .code  i{
-    padding: 10.3px;
-    background: white;
-    border: 2px solid black;
-    text-align: center;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.invoice .code input{
-    font-size: 15px;
-    padding: 10px;
-    width: 80%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.invoice .code-confirm{
-    margin-bottom: 15px;
-    margin-left: 20px;
-}
-
-
-.invoice .code-confirm .btn-code-confirm{
-    float: right;
-    margin-top: 10px;
-    margin-right: 12%;
-    text-align: center;
-    font-size: 50px;   
-    color: black;
-}
-
-.invoice .code-confirm button i:hover, .btn-code-confirm:hover{
-    color: white;
-    cursor: pointer;
-}
-
-.invoice .btn-confirm{
-    border: 2px solid white;
-    padding: 15px;
-    font-size: 20px;
-    color: white;
-    margin-left: 35%;
-    border-radius: 5px;
-    width: 30%;
-}
-
-.invoice .btn-confirm:hover{
-    color: black;
-    border: 2px solid black;
-    cursor: pointer;
 }
 
 .infor-invoice{
@@ -1820,6 +1817,35 @@ footer.footer .move-up span:hover{
     height: 300px;
     display: flex;
 }
+
+.invoice .invoice-search{
+    display: flex; 
+}
+
+.invoice .invoice-search input{
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif; 
+    outline: none;
+    border:none;
+    border-bottom:5px solid #009344;
+    
+}
+
+.invoice .invoice-search .btn-confirm{
+    width: 35%;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif; 
+    border-bottom: 5px solid #009344;
+}
+
+.invoice .invoice-search .btn-confirm:hover{
+    cursor: pointer;
+    background: -webkit-linear-gradient(left, #009344,#F2754E  );  
+    color: white;
+}
+
 
 .infor-invoice .title{
     border-radius: 50px;
@@ -1840,11 +1866,13 @@ footer.footer .move-up span:hover{
     margin-bottom: 20px;
 }
 
-.infor-invoice .infor-invoice-item input{
+.infor-invoice .infor-invoice-item p{
     font-size: 16px;
-    padding: 5px 0px;
+    padding:  0px;
     margin-left: 10px; 
     width: 60%;
+    font-family: 'Oswald', sans-serif; 
+    color: black;
 }
 
 .infor-invoice  .btn-function p{
@@ -2024,6 +2052,10 @@ footer.footer .move-up span:hover{
 
 .hide-item{
     display: none;
+}
+
+.show-hide-item{
+    display: initial;
 }
 
 .container-book-ticket .ticket-item-center .floor-2{
@@ -2393,12 +2425,12 @@ button-pay .button-pay-right{
 
 .reward-point-container  .reward-point-right .level .level-item .level-item-left{
     float: left;
-    width: 50%;
+    width: 30%;
     height: 59px;
 }
 .reward-point-container  .reward-point-right .level .level-item .level-item-right{
     float: right;
-    width: 40%;
+    width: 65%;
     height: 59px;
 }
 

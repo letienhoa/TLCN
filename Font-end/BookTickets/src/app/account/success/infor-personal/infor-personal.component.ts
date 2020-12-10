@@ -33,13 +33,8 @@ export class InforPersonalComponent implements OnInit {
       ad.disabled = false
     }
     else{
-      alert(this.customer.id);
-
       this.form.value.ten = this.inforCustomer.tenKh;
       this.form.value.cmnd = this.inforCustomer.cmnd;
-
-      console.log("==============")
-      console.log(this.form.value);
     
       this.service.postChangeInforPersional(this.customer.Token, this.customer.id,this.form.value)
       .subscribe(data => {

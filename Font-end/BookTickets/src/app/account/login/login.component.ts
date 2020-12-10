@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           window.alert('success')
           return this.router.navigate(['login/admin', this.form.value.email])    
         }
-        else{
+        else if(data.Roles == null){
           window.alert("Sai tai khoan mat khau");
         }
         

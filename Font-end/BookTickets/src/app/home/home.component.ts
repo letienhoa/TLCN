@@ -98,7 +98,10 @@ export class HomeComponent implements OnInit {
     this.ser.step1.isOneWay = true;
 
     this.ser.getRoterPopular().subscribe(
-      data => this.listRoterPoppular = data.data
+      data => {
+        this.listRoterPoppular = data.data;
+        console.log(this.listRoterPoppular);
+      }
     )
   }
 
@@ -111,14 +114,19 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('b1',JSON.stringify(this.ser.step1));
     console.log('Step1: '+sessionStorage.getItem('b1'));
 
-    this.route.navigate(['/booktickets/select-seat']);
+    if(this.ser.step1.isOneWay == false){
+      this.route.navigate(['/booktickets/select-seat-two-way']);
+    }
+    else{
+      this.route.navigate(['/booktickets/select-seat']);
+    }
   }
     
   getDate(){
     var today = new Date();
     var x = (<HTMLInputElement>document.getElementById("date"));
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
-    this.ser.step1.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+    this.ser.step1.daygo = ('0' + today.getDate()).slice(-2)+"/"+('0' + (today.getMonth() + 1)).slice(-2)+"/"+today.getFullYear();
     this.today = x.value;
   }
 

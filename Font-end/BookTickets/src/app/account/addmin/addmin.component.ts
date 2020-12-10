@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Chart } from "chart.js";
@@ -6,6 +6,13 @@ import { BookService } from 'src/app/shared/book.service';
 
 import { AdminService } from "../../shared/admin.service";
 
+
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
   selector: 'app-addmin',
@@ -15,8 +22,21 @@ import { AdminService } from "../../shared/admin.service";
 })
 export class AddminComponent implements OnInit {
 
+  @ViewChild('khoang_thoi_gian') inputKhoangThoiGian;
+  @ViewChild('khoang_cach') inputKhoangCach;
+  @ViewChild('gia_ca') inputGiaCa;
+  @ViewChild('tenXe') inputTenXe;
+  @ViewChild('hangXe') inputHangXe;
+  @ViewChild('gioChay') inputGioChay;
+
+  @ViewChild('tenTP') inputTenTP;
+  @ViewChild('diaChi') inputDiaChi;
+  @ViewChild('tenBen') inputTenBen;
+
+
   isShow = 0;
   isCreateAccount = 1;
+  isUpdate = false;
 
   typeChart = 1;
 
@@ -45,6 +65,8 @@ export class AddminComponent implements OnInit {
   route;
 
   listCar=[];
+
+  listRouteExport = []
 
   listMonth = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
   listDate = ["Ngày 1","Ngày 2","Ngày 3","Ngày 4","Ngày 5","Ngày 6","Ngày 7","Ngày 8","Ngày 9","Ngày 10","Ngày 11","Ngày 12","Ngày 13","Ngày 14","Ngày 15","Ngày 16","Ngày 17"
@@ -98,6 +120,8 @@ export class AddminComponent implements OnInit {
 
   chart:any;
 
+  data: any = []
+
   constructor(private fb:FormBuilder, private service: AdminService,public ser: BookService, private routerr: Router) { }
 
   ngOnInit(): void {
@@ -112,7 +136,7 @@ export class AddminComponent implements OnInit {
       tenKh:['', [Validators.required]],
       email:['', [Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
       sdt:['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(10), Validators.minLength(10)]],
-      cmnd:['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(10), Validators.minLength(10)]],
+      cmnd:['', [Validators.required]],
       dia_chi:['', [Validators.required]],
       thanh_pho:['', [Validators.required]],
       quan_huyen:['', [Validators.required]],
@@ -123,14 +147,13 @@ export class AddminComponent implements OnInit {
       diem_toi_id:['', [Validators.required]],
       khoang_cach:['', [Validators.required]],
       gia_ca:['', [Validators.required]],
-      thoi_gian_hanh_trinh:['', [Validators.required]],
+      khoang_thoi_gian:['', [Validators.required]],
     })
 
     this.formPoint = this.fb.group({
       thanh_pho:['', [Validators.required]],
       ten_ben:['', [Validators.required]],
       dia_chi:['', [Validators.required]],
-      hinh_anh:['', [Validators.required]],
     })
 
     this.formCar = this.fb.group({
@@ -149,6 +172,8 @@ export class AddminComponent implements OnInit {
     this.getAllAccount();
     this.getAllCar();
     this.getDate();
+    this.onGetRouteToExport();
+    this.onGetAllRouteInfor();
   }
 
   onItemChange(obj:any,type:any){
@@ -163,11 +188,15 @@ export class AddminComponent implements OnInit {
     }
   }
 
+  dateValue;
+
   getDate(){
     var date = new Date();
     this.today = date.getFullYear()+ '-' + ('0' + (date.getMonth() + 1)).slice(-2)  + '-' + ('0' + date.getDate()).slice(-2);
-    this.date = date.getFullYear()+'/'+('0' + (date.getMonth())).slice(-2)+"/"+('0' + date.getDate()).slice(-2);  }
-
+    this.date = date.getFullYear()+'/'+('0' + (date.getMonth())).slice(-2)+"/"+('0' + date.getDate()).slice(-2);  
+    this.dateValue = ('0' + date.getDate()).slice(-2) + "/"+ ('0' + (date.getMonth() + 1)).slice(-2)+"/"+ date.getFullYear();
+  }
+    
   dateChanged(obj:any){
     var dd = new Date(obj.value);
     this.date = dd.getFullYear()+'/'+('0' + (dd.getMonth() + 1)).slice(-2)+"/"+('0' + dd.getDate()).slice(-2);
@@ -183,6 +212,7 @@ export class AddminComponent implements OnInit {
           this.updateRoute();
           break;
         case 2:
+            this.onSubmit(2);
             break;
         case 3:
           this.updateCar();
@@ -201,6 +231,7 @@ export class AddminComponent implements OnInit {
           this.createRoute();
           break;
         case 2:
+          this.onSubmit(1);
           break;
         case 3:
           this.postCreateCar();
@@ -210,16 +241,39 @@ export class AddminComponent implements OnInit {
     }
     else if(type==1){
       this.isCreateAccount = 1;
+      this.ResetText();
+      this.isUpdate =false;
       alert('đăng ký')
+    
     }
     else{
+      alert('chỉnh sửa');
       this.route = optArg;
-      this.SwapData(this.route);
+      this.isUpdate =true;
+      if(this.isShow == 1){
+        this.SwapData(this.route);
+      }
+      if(this.isShow == 2){
+        this.srcImage = this.route.picture;
+      }
       this.isCreateAccount = 2;
-      console.log(this.route)
-      alert('chỉnh sửa')
+      console.log(this.route);
+      this.ResetText();
     }
-    
+  }
+
+  ResetText(){
+    this.inputKhoangThoiGian.nativeElement.value = "";
+    this.inputGiaCa.nativeElement.value = "";
+    this.inputKhoangCach.nativeElement.value = "";
+
+    this.inputTenXe.nativeElement.value = "";
+    this.inputHangXe.nativeElement.value = "";
+    this.inputGioChay.nativeElement.value = "";
+
+    this.inputTenTP.nativeElement.value = "";
+    this.inputDiaChi.nativeElement.value = "";
+    this.inputTenBen.nativeElement.value = "";
   }
 
   SwapData(data:any){
@@ -229,7 +283,7 @@ export class AddminComponent implements OnInit {
       case 1:
         this.formRoute.value.khoang_cach = data.khoang_cach;
         this.formRoute.value.gia_ca = data.gia_ca;
-        this.formRoute.value.thoi_gian_hanh_trinh = data.thoi_gian_hanh_trinh;
+        this.formRoute.value.khoang_thoi_gian = data.khoang_thoi_gian;
         break;
       case 2:
         break;
@@ -351,11 +405,8 @@ export class AddminComponent implements OnInit {
           }
         );
       }
-     
     }
-
     this.isCreateAccount = 1;
-    
   }
 
   drawChart(type:any){
@@ -445,7 +496,6 @@ export class AddminComponent implements OnInit {
   }
 
   createAccount(){
-
     var account = {
       tai_khoan:this.form.value.tai_khoan,
       mat_khau:this.form.value.mat_khau,
@@ -457,6 +507,11 @@ export class AddminComponent implements OnInit {
       thanh_pho:this.form.value.thanh_pho,
       quan_huyen:this.form.value.quan_huyen
     }
+
+    if(this.form.invalid){
+      return alert("Xin hãy nhập đúng loại giá trị hoặc điền đầy đủ thông tin");
+    }
+
     this.service.postCreateAccount(this.logIn.Token,account).subscribe(
       data => {
         if(data.status==200){
@@ -464,12 +519,17 @@ export class AddminComponent implements OnInit {
           return alert("Tạo tài khoản thành công");
         }
         else
-          return alert("Không thể tạo tài khoản này");
+          alert("Không thể tạo tài khoản này")
+          return;
       }
     )
   }
 
   createRoute(){
+    if(this.formRoute.invalid){
+      return alert("Xin hãy nhập đúng loại giá trị hoặc điền đầy đủ thông tin");
+    }
+
     this.service.postCreateRote(this.logIn.Token,this.formRoute.value).subscribe(
       data => {
         if(data.status==200){
@@ -495,7 +555,7 @@ export class AddminComponent implements OnInit {
       diem_toi_id:this.route.ben_xe_toi_id,
       khoang_cach:this.formRoute.value.khoang_cach==""?this.route.khoang_cach:this.formRoute.value.khoang_cach,
       gia_ca:this.formRoute.value.gia_ca==""?this.route.gia_ca:this.formRoute.value.gia_ca,
-      thoi_gian_hanh_trinh:this.formRoute.value.thoi_gian_hanh_trinh==""?this.route.thoi_gian_hanh_trinh:this.formRoute.value.thoi_gian_hanh_trinh
+      khoang_thoi_gian:this.formRoute.value.khoang_thoi_gian==""?this.route.khoang_thoi_gian:this.formRoute.value.khoang_thoi_gian
     }
 
     this.service.postUpdateRoute(this.logIn.Token,routerId,route).subscribe(
@@ -569,6 +629,10 @@ export class AddminComponent implements OnInit {
 
   postCreateCar(){
 
+    if(this.formCar.invalid){
+      return alert("Xin hãy nhập đúng loại giá trị hoặc nhập đầy đủ dữ liệu");
+    }
+
     for(let i of this.listRoute){
       if(i.ben_xe_di_id == this.form.value.diem_di_id && i.ben_xe_toi_id == this.form.value.diem_toi_id){
         this.formCar.value.tuyen_san_sang_id = i.id;
@@ -615,14 +679,137 @@ export class AddminComponent implements OnInit {
     );
   }
 
-  onSubmit(){
-    alert(123)
-    this.service.uploadImage(this.fileSelected)
+  hinhAnh;
+
+  onSubmit(data:any){
+    if(data == 1){
+      this.service.uploadImage(this.fileSelected)
     .pipe()
     .subscribe(
-      res => console.log("https://drive.google.com/uc?id="+res.id)
+      res => {
+        this.hinhAnh = "https://drive.google.com/uc?id="+res.id;
+        if(this.isUpdate == false){
+          alert("Thêm")
+          var data = {
+            ten_ben:this.formPoint.value.ten_ben,
+            dia_chi:this.formPoint.value.dia_chi,
+            thanh_pho:this.formPoint.value.thanh_pho,
+            picture:this.hinhAnh,
+          };
+          console.log(data);
+          this.onCreateRoute(data);
+        }
+        else{
+          alert(123);
+          }
+        }
+        )
+    }
+    else{
+      console.log(this.route.picture);
+    }
+    
+  }
+
+  onGetRouteToExport(){
+    this.service.getAllRouteToExport(this.logIn.Token).subscribe(
+      data => {
+        var listRoute = data.data;
+        console.log(this.listRoute);
+        console.log(listRoute);
+        for(let i of listRoute){
+          for(let j of this.listRoute){
+            if(i.id_tuyen_xe.toString() == j.id.toString()){
+              var route = {
+                id_tuyen_xe:i.id_tuyen_xe,
+                ben_xe_di:j.ben_xe_di,
+                ben_xe_toi:j.ben_xe_toi,
+                gio_chay: i.gio_chay,
+                so_luong_ve:i.so_luong_ve
+              }
+              this.listRouteExport.push(route)
+            }
+          }
+        }
+        console.log(this.listRouteExport);
+      }
+    )
+  }
+
+  onPostExcel(obj:any){
+    console.log(obj);
+
+    this.service.postExcel(this.logIn.Token,obj.id_tuyen_xe,obj.gio_chay).subscribe(
+      data => {
+        var infor = data.data;
+        var route = {
+          "Tuyến xe":infor.tuyen_xe,
+          "Ngày chạy":infor.ngay_chay,
+          "Tổng vé":infor.tong_ve,
+          "Giờ chạy":infor.gio_chay,
+        }
+        this.data.push(route);
+        for(let i of infor.danh_sach_ve){
+          var routeInfor = {
+            "Tên khách hàng":i.ten_khach_hang,
+            "Số điện thoại":i.so_dien_thoai,
+            "Mã vé":i.ma_ve,
+            "Ví trí giường":i.vi_tri_giuong.toString()
+          }
+          this.data.push(routeInfor)
+        }
+        this.exportAsExcelFile(this.data,infor.tuyen_xe);
+      }
+    );
+ }
+
+  public exportAsExcelFile(json: any[], excelFileName: string): void {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});
+    FileSaver.saveAs(data, fileName + EXCEL_EXTENSION );
+  }
+
+  routeInfor;
+  onGetAllRouteInfor(){
+    this.service.getAllRouteInfor().subscribe(
+      data => {
+        this.routeInfor = data.data;
+        console.log(this.routeInfor);
+      }
+    )
+  }
+
+  onCreateRoute(data:any){
+    this.service.postCreateB(this.logIn.Token,data).subscribe(
+      data =>{
+        if(data.status == 200){
+          this.onGetAllRouteInfor();
+        }
+        else {
+          alert("Không tạo được bến");
+        }
+      }
+    )
+  }
+
+  onUpdatePoint(id:any,data:any){
+    this.service.postUpdateB(this.logIn.Token,id,data).subscribe(
+      data =>{
+        if(data.status == 200){
+          this.onGetAllRouteInfor();
+        }
+        else {
+          alert("Không cập nhật được bến");
+        }
+      }
     )
   }
 
 
 }
+

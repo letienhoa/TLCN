@@ -22,14 +22,14 @@
                 <div class="time">
                     <div class="point" style="margin-left: 20px;">
                         <label>Nơi đi</label>
-                        <select name="departure" (change)="cityChanged($event.target,0)" required >
-                              <option *ngFor="let item of listDeparture">{{item.ben_toi}}</option>
+                        <select name="departure" (change)="cityChanged($event.target.value,0)" required >
+                              <option *ngFor="let item of listDeparture" value="{{item.id}}">{{item.ben_toi}}</option>
                         </select>
                     </div>
                     <div class="point">
                         <label>Nơi đến</label>
-                        <select name="destination" (change)="cityChanged($event.target,1)" required>
-                            <option *ngFor="let item of listDestiantion">{{item.ben_toi}}</option>
+                        <select name="destination" (change)="cityChanged($event.target.value,1)" required>
+                            <option *ngFor="let item of listDestiantion" value="{{item.id}}">{{item.ben_toi}}</option>
                         </select>
                     </div>
                     <div class="point-date">

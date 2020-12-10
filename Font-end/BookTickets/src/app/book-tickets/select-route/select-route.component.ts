@@ -33,7 +33,7 @@ export class SelectRouteComponent implements OnInit {
     var today = new Date();
     var x = (<HTMLInputElement>document.getElementById("date"))
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
-    this.service.step1.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+    this.service.step1.daygo = ('0' + today.getDate()).slice(-2)+"/"+('0' + (today.getMonth() + 1)).slice(-2)+"/"+today.getFullYear();
     this.today = x.value;
   }
 
@@ -54,7 +54,6 @@ export class SelectRouteComponent implements OnInit {
   
     this.schedule = JSON.parse(sessionStorage.getItem('schedule'));
   
-    
     this.service.step1.departure.id = this.schedule.ben_xe_di_id;
     this.service.step1.departure.ben_toi = this.schedule.ben_xe_di;
     this.service.step1.destination.id = this.schedule.ben_xe_toi_id;
@@ -71,12 +70,28 @@ export class SelectRouteComponent implements OnInit {
           this.listDeparture.push(i);
       }
       this.listDestiantion.push(this.service.step1.destination);
-      this.cityChanged(this.listDeparture[0].id,0);
+      /* this.cityChanged(this.listDeparture[0].id,0); */
+      this.getAllDestination(this.listDeparture[0].id);
       console.log(this.listDeparture);
     });
     this.service.step1.isOneWay = true;
 
     this.getDate()
+    alert(this.service.step1.daygo);
+  }
+
+  getAllDestination(item:any){
+    this.service.getBenById(item).subscribe(
+      data => {
+        var destination = data.data;
+        for(let i of destination){
+          if(i.id != this.listDestiantion[0].id){
+            this.listDestiantion.push(i);
+          }
+        }
+        console.log(this.listDestiantion);
+      }
+    )
   }
 
 
@@ -84,17 +99,9 @@ export class SelectRouteComponent implements OnInit {
     if(index==0){
       this.service.getBenById(obj).subscribe(
         data => {
-          for(let i of data.data){
-            if(i.ben_toi != this.listDestiantion[0].ben_toi)
-              this.listDestiantion.push(i);
-          }
-          this.service.step1.destination.ben_toi = this.listDestiantion[0].ben_toi.replace('Bến xe','');
-          this.service.step1.destination.id = this.listDestiantion[0].id;
+          this.listDestiantion = data.data;
         }
       )
-      const item = this.listDeparture.find(departure => departure.id == obj);
-      this.service.step1.departure.ben_toi = item.ben_toi.replace('Bến xe','');
-      this.service.step1.departure.id = item.id.toString();
     }
     else{
       const item = this.listDestiantion.find(destination => destination.id == obj);
@@ -108,7 +115,6 @@ export class SelectRouteComponent implements OnInit {
       window.alert("xin hay chon ngay ve")
       return
     }
-   
     sessionStorage.setItem('b1',JSON.stringify(this.service.step1))
     console.log(sessionStorage.getItem('b1'))
     this.router.navigate(['/booktickets/select-seat'])
@@ -116,7 +122,7 @@ export class SelectRouteComponent implements OnInit {
 
   dateChanged(obj:any){
     var dd = new Date(obj.value)
-    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear()
+    var value =  ('0' + dd.getDate()).slice(-2)+"/"+('0' + (dd.getMonth() + 1)).slice(-2)+"/"+dd.getFullYear()
     if(this.service.step1.isOneWay==true){
       this.service.step1.daygo = value;
       this.service.step1.returnday = "";
