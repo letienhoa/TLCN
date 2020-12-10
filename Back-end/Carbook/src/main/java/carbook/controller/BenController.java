@@ -61,10 +61,8 @@ public class BenController {
 				ben.setDiaChi(wrraper.getDiaChi());
 				benDao.create(ben);
 				response.setData(ben);
-			}
-			
+			}	
 		}
-		
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	

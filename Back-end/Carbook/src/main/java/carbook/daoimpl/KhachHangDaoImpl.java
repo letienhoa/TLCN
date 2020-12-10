@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import carbook.dao.AbstractDao;
 import carbook.dao.KhachHangDao;
 import carbook.entity.BaseEntity;
+import carbook.entity.Ben;
 import carbook.entity.User;
 import carbook.entity.UserRoleDataModel;
 import carbook.entity.UserToken;
@@ -46,7 +47,15 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 		CriteriaQuery<User> criteria = this.getBuilder().createQuery(User.class);
 		Root<User> root = criteria.from(User.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
-		return this.getSession().createQuery(criteria).getSingleResult();
+		User user =new User();
+		try {
+			user =this.getSession().createQuery(criteria).getSingleResult();
+		}catch (Exception e) {
+			user=null;
+		}
+		
+		return user;
+		//return this.getSession().createQuery(criteria).getSingleResult();
 	}
 
 	@Override
@@ -78,6 +87,8 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 		Root<User> root = criteria.from(User.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("taiKhoan"), username));
 		User user= this.getSession().createQuery(criteria).getSingleResult();
+		
+		
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("get_list_roles_for_user");
 		procedureCall.registerParameter("idUser", Integer.class, ParameterMode.IN).bindValue(user.getId());
 		UserToken userToken = new UserToken(user);
@@ -94,7 +105,15 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 		CriteriaQuery<User> criteria = this.getBuilder().createQuery(User.class);
 		Root<User> root = criteria.from(User.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("taiKhoan"), name));
-		return  this.getSession().createQuery(criteria).uniqueResult();
+		User user =new User();
+		try {
+			user =this.getSession().createQuery(criteria).getSingleResult();
+		}catch (Exception e) {
+			user=null;
+		}
+		
+		return user;
+		//return  this.getSession().createQuery(criteria).uniqueResult();
 	}
 
 	@Override
@@ -103,8 +122,16 @@ public class KhachHangDaoImpl extends AbstractDao<Integer,User> implements Khach
 		Root<User> root = criteria.from(User.class);
 		criteria.select(root).where(this.getSession().getCriteriaBuilder().equal(root.get("taiKhoan"),name),
 									this.getSession().getCriteriaBuilder().equal(root.get("Password"), mk));
-		User user= this.getSession().createQuery(criteria).getSingleResult();
+		User user =new User();
+		try {
+			user =this.getSession().createQuery(criteria).getSingleResult();
+		}catch (Exception e) {
+			user=null;
+		}
+		
 		return user;
+		//User user= this.getSession().createQuery(criteria).getSingleResult();
+		//return user;
 	}
 
 	@Override

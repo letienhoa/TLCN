@@ -52,7 +52,15 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 		CriteriaQuery<Ben> criteria = this.getBuilder().createQuery(Ben.class);
 		Root<Ben> root = criteria.from(Ben.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
-		return this.getSession().createQuery(criteria).getSingleResult();
+		//return this.getSession().createQuery(criteria).getSingleResult();
+		Ben ben =new Ben();
+		try {
+			ben =this.getSession().createQuery(criteria).getSingleResult();
+		}catch (Exception e) {
+			ben=null;
+		}
+		
+		return ben;
 	}
 
 	@Override
@@ -60,7 +68,15 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 		CriteriaQuery<Ben> criteria = this.getBuilder().createQuery(Ben.class);
 		Root<Ben> root = criteria.from(Ben.class);
 		criteria.select(root).where(this.getBuilder().equal(root.get("tenBen"), name));
-		return this.getSession().createQuery(criteria).getSingleResult();
+		//return this.getSession().createQuery(criteria).getSingleResult();
+		Ben ben =new Ben();
+		try {
+			ben =this.getSession().createQuery(criteria).getSingleResult();
+		}catch (Exception e) {
+			ben=null;
+		}
+		
+		return ben;
 	}
 
 	@Override
