@@ -34,4 +34,6 @@ public interface VeDao {
 	List<VeOverviewDataModel> spGetTuyenXeTrongNgay();
 	
 	VeForCustomerByCodeDataModelFinal spGetVeForCustomerByCode(String code);
+	
+	String spGetNameTuyenXe(int idTuyenXe);
 }

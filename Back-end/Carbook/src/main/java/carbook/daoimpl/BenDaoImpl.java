@@ -71,4 +71,12 @@ public class BenDaoImpl extends AbstractDao<Integer, Ben> implements BenDao {
 		return this.getSession().createQuery(criteria).getResultList();
 	}
 
+	@Override
+	public Ben findOneByThanhPho(String thanhPho) {
+		CriteriaQuery<Ben> criteria = this.getBuilder().createQuery(Ben.class);
+		Root<Ben> root = criteria.from(Ben.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("thanhPho"), thanhPho));
+		return this.getSession().createQuery(criteria).getSingleResult();
+	}
+
 }

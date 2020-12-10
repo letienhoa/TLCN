@@ -37,19 +37,25 @@ public class BenController {
 	@RequestMapping(value="/create",method= RequestMethod.POST)
 	public ResponseEntity<BaseResponse>create(@RequestBody BenRequest wrraper){
 		BaseResponse response= new BaseResponse();
-		Ben ben= new Ben();
-		List<QuyTacIdBenXe> listQuyTac= benDao.getAllQuyTacId();
-		for(QuyTacIdBenXe x: listQuyTac) {
-			if(x.getThanhPho().equals(wrraper.getThanhPho())){
-				ben.setId(x.getId());
+		Ben ben1= benDao.findOneByThanhPho(wrraper.getThanhPho());
+		if(ben1!=null) {
+			response.setMessageError("Bến này đã tồn tại, vui lòng chọn thành phố khác !!!");
+		} else {
+			Ben ben= new Ben();
+			List<QuyTacIdBenXe> listQuyTac= benDao.getAllQuyTacId();
+			for(QuyTacIdBenXe x: listQuyTac) {
+				if(x.getThanhPho().equals(wrraper.getThanhPho())){
+					ben.setId(x.getId());
+				}
 			}
+			ben.setPicture(wrraper.getPicture());
+			ben.setThanhPho(wrraper.getThanhPho());
+			ben.setTenBen(wrraper.getTenBen());
+			ben.setDiaChi(wrraper.getDiaChi());
+			benDao.create(ben);
+			response.setData(ben);
 		}
-		ben.setPicture(wrraper.getPicture());
-		ben.setThanhPho(wrraper.getThanhPho());
-		ben.setTenBen(wrraper.getTenBen());
-		ben.setDiaChi(wrraper.getDiaChi());
-		benDao.create(ben);
-		response.setData(ben);
+		
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 	

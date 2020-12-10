@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.procedure.ProcedureOutputs;
 import org.springframework.stereotype.Repository;
 
 import carbook.dao.AbstractDao;
@@ -189,6 +190,16 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 			} else return null;
 		} else return null;
 
+	}
+
+	@Override
+	public String spGetNameTuyenXe(int idTuyenXe) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_name_tuyen_xe");
+		procedureCall.registerParameter("idTuyenXe", Integer.class, ParameterMode.IN).bindValue(idTuyenXe);
+		procedureCall.registerParameter("tuyenXe", String.class, ParameterMode.OUT);
+
+		String tuyenXe = (String) procedureCall.getOutputParameterValue("tuyenXe");
+		return tuyenXe;
 	}
 	 
 
