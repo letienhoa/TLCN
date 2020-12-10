@@ -1,5 +1,6 @@
 package carbook.daoimpl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -171,24 +172,39 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 	@Override
 	public VeForCustomerByCodeDataModelFinal spGetVeForCustomerByCode(String code) {
 		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_get_ve_for_customer_by_code",VeForCustomerByCodeDataModel.class); 
-		procedureCall.registerParameter("code", String.class, ParameterMode.IN).bindValue(code);  
-		VeForCustomerByCodeDataModel veCustomer = (VeForCustomerByCodeDataModel) procedureCall.getSingleResult();
+		procedureCall.registerParameter("code", String.class, ParameterMode.IN).bindValue(code);
+		VeForCustomerByCodeDataModel veCustomer = new VeForCustomerByCodeDataModel();
 		
-		VeForCustomerByCodeDataModelFinal listData =new VeForCustomerByCodeDataModelFinal(veCustomer);
+		try {
+			veCustomer = (VeForCustomerByCodeDataModel) procedureCall.getSingleResult();
+		}	catch (Exception e) {
+			veCustomer =null;
+		}
+		
+		VeForCustomerByCodeDataModelFinal listData =new VeForCustomerByCodeDataModelFinal();
 		if(veCustomer!=null) {
+			listData =new VeForCustomerByCodeDataModelFinal(veCustomer);
 			ProcedureCall procedureCall1 = this.getSession().createStoredProcedureCall("sp_get_thong_tin_giuong_detail_ve",GiuongMapDataModel.class); 
 			procedureCall1.registerParameter("idVe", Integer.class, ParameterMode.IN).bindValue(veCustomer.getId());
 			procedureCall1.registerParameter("hour", Integer.class, ParameterMode.IN).bindValue(veCustomer.getGioChay());
-			List<GiuongMapDataModel> list2 = procedureCall1.getResultList();
+			List<GiuongMapDataModel> list2= new ArrayList<GiuongMapDataModel>();
+			
+			try {
+				list2 = procedureCall1.getResultList();
+			}catch (Exception e) {
+				list2=null;
+			}		
 			
 			if(list2!=null) {
 				for(GiuongMapDataModel x: list2) {
 					listData.getSlots().add(String.valueOf(x.getStt()));
 				}
-				
+					
 				return listData;
 			} else return null;
 		} else return null;
+
+		
 
 	}
 

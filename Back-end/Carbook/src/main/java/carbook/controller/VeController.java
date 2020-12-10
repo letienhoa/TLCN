@@ -190,7 +190,12 @@ public class VeController {
 			@RequestParam(name = "code", required = false) String code){
 		BaseResponse response = new BaseResponse();
 		VeForCustomerByCodeDataModelFinal datas= veDao.spGetVeForCustomerByCode(code);
-		response.setData(datas);
+		if(datas ==null) {
+			response.setMessageError("Nhập mã tào lao nhe Đỉnh =))))");
+		}else {
+			response.setData(datas);
+		}
+
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 

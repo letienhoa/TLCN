@@ -13,13 +13,12 @@ public class UtilsService {
 
 	public static Date changeStringToDate(String chuoiDate) {
 		
-		String g= "12/03/1999";
+
 		SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
 		Date ngay = new Date();
 		try {
 			ngay = df.parse(chuoiDate);
-			Date h= df.parse(g);
-			 System.out.println(ngay);
+		
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
