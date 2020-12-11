@@ -13,14 +13,14 @@ public class BenToiResponse {
 	private int id;
 	
 	@JsonProperty("ben_toi")
-	private String tenBen;
+	private String thanhPho;
 	
 	public BenToiResponse() {
 		
 	}
 	public BenToiResponse(Ben entity) {
 		this.id = entity.getId();
-		this.tenBen = entity.getTenBen();
+		this.thanhPho = entity.getThanhPho();
 	}
 
 	public int getId() {
@@ -31,12 +31,12 @@ public class BenToiResponse {
 		this.id = id;
 	}
 
-	public String getTenBen() {
-		return tenBen;
+	public String getThanhPho() {
+		return thanhPho;
 	}
 
-	public void setTenBen(String tenBen) {
-		this.tenBen = tenBen;
+	public void setThanhPho(String tenBen) {
+		this.thanhPho = tenBen;
 	}
 	
 	public List<BenToiResponse> mapTolist(List<Ben> baseEntity){
