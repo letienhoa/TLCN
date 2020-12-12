@@ -218,6 +218,7 @@ public class KhachHangController {
 		respnse.setId(khachHang.getId());
 		respnse.setName(khachHang.getName());
 		respnse.setEmail(khachHang.getEmail());
+		respnse.setDiscount(khachHang.getDiscount());
 		respnse.setRoles(khachHang.getRoles());
 		return new ResponseEntity<TokenResponse>(respnse,HttpStatus.OK);
 	}

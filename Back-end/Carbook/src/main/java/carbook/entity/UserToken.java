@@ -20,6 +20,8 @@ public class UserToken {
 	
 	private String email;
 	
+	private int discount;
+	
 	public UserToken() {
 		
 	}
@@ -30,6 +32,7 @@ public class UserToken {
 		this.id = entity.getId();
 		this.name = entity.getTenKh();
 		this.email = entity.getEmail();
+		this.discount=entity.getDiscount();
 	}
 	
 	
@@ -89,6 +92,16 @@ public class UserToken {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}
 
 	public List<GrantedAuthority> getAuthorities() {

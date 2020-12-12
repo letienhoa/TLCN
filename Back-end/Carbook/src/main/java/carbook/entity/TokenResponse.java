@@ -13,6 +13,9 @@ public class TokenResponse {
 	@JsonProperty("email")
 	private String email;
 	
+	@JsonProperty("discount")
+	private int discount;
+	
 	@JsonProperty("Token")
 	private final String jwttoken;
 	
@@ -57,6 +60,14 @@ public class TokenResponse {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}	
 	
 	
