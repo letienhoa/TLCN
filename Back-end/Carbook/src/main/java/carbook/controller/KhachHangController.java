@@ -121,10 +121,14 @@ public class KhachHangController {
 			role.setRoleId("ROLE_USER");
 			roleDetalDaol.create(role);
 			
+			try {
+				emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
+						+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
+						response.setData(khachHang);
+			} catch (Exception e) {
+				response.setMessageError("email bạn có vấn đề, nhập lại");
+			}
 			
-			emailService.sendEmail(wrapper.getEmail(),"XÁC THỰC EMAIL","Bấm vào links này để xác thực tài khoản: "
-			+"http://localhost:8082/api/khach-hang/confirm?user_name="+wrapper.getTaiKhoan()+"&code="+code);
-			response.setData(khachHang);
 			return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 		}
 
