@@ -25,7 +25,7 @@ public class VeCustomerDataModelResponse {
 	private int giaVe;
 	
 	@JsonProperty("code")
-	private int code;
+	private String code;
 	
 	@JsonProperty("id_tuyen_xe")
 	private int idTuyenXe;
@@ -104,11 +104,11 @@ public class VeCustomerDataModelResponse {
 		this.giaVe = giaVe;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
