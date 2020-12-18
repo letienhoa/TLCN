@@ -46,6 +46,8 @@ export class RegisterComponent implements OnInit {
       quan_huyen:this.form.value.quan_huyen
     }
 
+    var check = false;
+
     if(this.form.invalid){
       return alert("Xin hãy nhập đúng loại giá trị hoặc điền đầy đủ thông tin");
     }
@@ -55,10 +57,14 @@ export class RegisterComponent implements OnInit {
       data => {
         if(data.status == 200){
           alert('Xin hãy vào email để xác thực');
-          window.location.href = 'https://accounts.google.com/signin/v2';
+          check =true;
         }
         else{
           alert("Tên tài khoản đã tồn tại");
+        }
+
+        if(check == true){
+          window.location.href = 'https://accounts.google.com/signin/v2';
         }
       }
     )

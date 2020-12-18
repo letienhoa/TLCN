@@ -7,7 +7,7 @@
             <div>
                 <label for="" class="label-title">Điểm Đi</label>
                 <select class="text-input" name="departure" (change)="cityChanged($event.target.value,0)" required>
-                    <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
+                    <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.thanh_pho}}</option>
                 </select>
                 <label for=""  class="label-title">Điểm Đến</label>
                 <select class="text-input" name="destination" (change)="cityChanged($event.target.value,1)" required>
@@ -28,7 +28,7 @@
             </div>
             <hr>
             <div>
-                <button type="submit" name="search" class="btn btn-big" (click)='submit()'>Search</button>
+                <button type="submit" name="search" class="btn btn-big" (click)='submit()'>Tìm kiếm</button>
             </div>
         </form>
     </div>   
@@ -39,8 +39,8 @@
             <div class="container">
                 <div class="section" *ngFor="let i of listRoterPoppular">
                     <div class="section-info">
-                       <img src="../../assets/1.jpg" alt="">
-                       <span style="float: right; padding-top: 15px; margin-right: 10px;">{{i.ben_xe_di}} => {{i.ben_xe_toi}}</span>
+                       <img src="{{i.hinh_anh}}" alt="">
+                       <span style="float: right; padding-top: 15px; margin-right: 10px;">{{i.ben_xe_di}} ⇒ {{i.ben_xe_toi}}</span>
                         <i class="fas fa-map-marker-alt"> {{i.khoang_cach}}KM</i>
                         <i class="fas fa-clock"> {{i.khoang_thoi_gian}}h</i>
                         <i class="fas fa-tags price" > {{i.gia_ca}}đ</i>
@@ -102,16 +102,16 @@
             <div class="items">
                 <img src="../../assets/nam_cat_tien.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Nam Cát Tiên</i>
-                    <h3>Đồng Nai</h3>
+                    <i class="fas fa-map-marker-alt">  Đồng Nai</i>
+                    <h3>Nam Cát Tiên</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
                 <img src="../../assets/da_lat.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Lâm Đồng</i>
-                    <h3>Đà Lạt</h3>
+                    <i class="fas fa-map-marker-alt">  Đà Lạt</i>
+                    <h3>Lâm Đồng</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
@@ -126,16 +126,16 @@
             <div class="items">
                 <img src="../../assets/da_nang.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Cầu Rồng</i>
-                    <h3>Đà Nẵng</h3>
+                    <i class="fas fa-map-marker-alt">  Đà Nẵng</i>
+                    <h3>Cầu Rồng</h3>
                 </div>
                 <div class="overlay"></div>
             </div>
             <div class="items">
                 <img src="../../assets/ha_noi.png" alt="">
                 <div class="item-text">
-                    <i class="fas fa-map-marker-alt">  Hồ Gươm</i>
-                    <h3>Hà Nội</h3>
+                    <i class="fas fa-map-marker-alt">  Hà Nội</i>
+                    <h3>Hồ Gươm</h3>
                 </div>
                 <div class="overlay"></div>
             </div>

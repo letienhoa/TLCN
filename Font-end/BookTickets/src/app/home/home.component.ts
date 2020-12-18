@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   items = ['oneway','round'];
 
   today:any;
-  listDeparture:Ben[];
+  listDeparture:any;
   listDestiantion: any;
   listRoterPoppular: [];
 
@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
     this.ser.getAllBen().subscribe(data => {
       this.listDeparture = data.data;
       this.cityChanged(this.listDeparture[0].id,0);
-      this.ser.step1.departure.ben_toi = this.listDeparture[0].ben_toi.replace('Bến xe','');
+      this.ser.step1.departure.ben_toi = data.data[0].thanh_pho.replace('Bến xe','');
       this.ser.step1.departure.id = this.listDeparture[0].id.toString();
       sessionStorage.setItem('lBenDi', JSON.stringify(this.listDeparture));
     });
@@ -159,7 +159,7 @@ cityChanged(obj:any,index:any){
     }
     else{
       const item = this.listDestiantion.find(destination => destination.id == obj);
-      this.ser.step1.destination.ben_toi = item.ben_toi.replace('Bến xe','');
+      this.ser.step1.destination.ben_toi = item.thanh_pho.replace('Bến xe','');
       this.ser.step1.destination.id = item.id.toString();
     }
   }

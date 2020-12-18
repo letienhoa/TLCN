@@ -181,7 +181,7 @@
                     <table style="width:100%; border-collapse: collapse;">
                         <ng-container *ngFor="let item of listRoute">
                             <tr>
-                                <td>{{item.ben_xe_di}} => {{item.ben_xe_toi}}</td>
+                                <td>{{item.ben_xe_di}} -- {{item.ben_xe_toi}}</td>
                                 <td>{{item.khoang_cach}} KM</td>
                                 <td>{{item.gia_ca}} đ</td>
                                 <td style="color: #F2754E;" (click)="onShow(0,2,item)"><i class="far fa-edit"></i> Chỉnh sửa </td>
@@ -203,14 +203,14 @@
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Nơi đi</p>
                         <select name="departure" class="form-control" formControlName="diem_di_id" *ngIf='isCreateAccount==1' (change)="onChangeRoute($event.target.value)">
-                            <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
+                            <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.thanh_pho}}</option>
                         </select>
                         <input type="text" placeholder="Bến xe {{route.ben_xe_di}}" *ngIf='isCreateAccount==2' disabled>
                     </div>
                     <div class="infor-item form-group">
                         <p for="">Nơi đến</p>
                         <select name="placego" id="" class="form-control" formControlName="diem_toi_id" *ngIf='isCreateAccount==1'>
-                            <option *ngFor="let item of listDestinationForRoute" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
+                            <option *ngFor="let item of listDestinationForRoute" value='{{item.id}}'>Bến xe {{item.thanh_pho}}</option>
                         </select>
                         <input type="text" placeholder="Bến xe {{route.ben_xe_toi}}" *ngIf='isCreateAccount==2' disabled>
                     </div>
@@ -275,54 +275,57 @@
 
         </div>
         <div class="menu-item-right" *ngIf='isCreateAccount!=0'>
-            <div class="item-account">
-                <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
-                    <p>Thông tin thành phố</p> 
-                </div>
-                <form [formGroup]="formPoint">
-                    <div class="infor-item form-group" style="padding-top: 5px;">
-                        <p for="">Thành Phố</p>
-                        <input type="text" #tenTP placeholder="Nhập thành phố" *ngIf='isCreateAccount==1' class="form-control" formControlName="thanh_pho">
-                        <input type="text" #tenTP placeholder="{{route.thanh_pho}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="thanh_pho" disabled>
+           
+                <div  *ngIf="!isWaiting" class="item-account">
+                    <div class="menu-content-title" style="background: -webkit-linear-gradient(left, #F2754E,#009344  );">
+                        <p>Thông tin thành phố</p> 
                     </div>
-                    <div class="infor-item">
-                        <p for="">Hình ảnh của thành phố</p>
-                        <input type="file" accept="image/*" capture="camera" (change)="imgeChanged($event)">
-                        <div *ngIf=retrievedImage>
-                            <img [src]="srcImage">
+                    <form [formGroup]="formPoint">
+                        <div class="infor-item form-group" style="padding-top: 5px;">
+                            <p for="">Thành Phố</p>
+                            <input type="text" #tenTP placeholder="Nhập thành phố" *ngIf='isCreateAccount==1' class="form-control" formControlName="thanh_pho">
+                            <input type="text" #tenTP placeholder="{{route.thanh_pho}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="thanh_pho" disabled>
                         </div>
-                    </div>
-                    <div class="infor-item">
-                        <img [src]="srcImage" *ngIf='srcImage' width="300" height="300">
-                    </div>
-                </form>
-            </div>
-            <div class="item-account" style="margin-left: 25px;">
-                <div class="menu-content-title" style="border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;">
-                    <p>Thông tin chi tiết bến</p> 
+                        <div class="infor-item">
+                            <p for="">Hình ảnh của thành phố</p>
+                            <input type="file" accept="image/*" capture="camera" (change)="imgeChanged($event)">
+                            <div *ngIf=retrievedImage>
+                                <img [src]="srcImage">
+                            </div>
+                        </div>
+                        <div class="infor-item">
+                            <img [src]="srcImage" *ngIf='srcImage' width="300" height="300">
+                        </div>
+                    </form>
                 </div>
-                <form [formGroup]="formPoint">
-                    <div class="infor-item form-group" style="padding-top: 5px;">
-                        <p for="">Tên bến</p>
-                        <input type="text" #tenBen placeholder="Nhập tên bến" *ngIf='isCreateAccount==1' class="form-control" formControlName="ten_ben">
-                        <input type="text" #tenBen placeholder="Bến xe {{route.ben_toi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="ten_ben">
-
+                <div  *ngIf="!isWaiting" class="item-account" style="margin-left: 25px;">
+                    <div class="menu-content-title" style="border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;">
+                        <p>Thông tin chi tiết bến</p> 
                     </div>
-                    <div class="infor-item form-group">
-                        <p for="">Địa chỉ</p>
-                        <input type="text" #diaChi placeholder="Nhập địa chỉ" *ngIf='isCreateAccount==1' class="form-control" formControlName="dia_chi">
-                        <input type="text" #diaChi placeholder="{{route.dia_chi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="dia_chi">
-
-                    </div>
-                    <div style="clear: both;"></div>
-                    <div class="infor-item">
-                        <button class="btn-submit" (click)="onShow(1,0)" *ngIf='isCreateAccount==1' >Thêm bến</button>
-                        <button class="btn-submit" (click)="onShow(2,0)" *ngIf='isCreateAccount==2'>Lưu</button>
-                    </div>
-                </form>
-            </div>
+                    <form [formGroup]="formPoint">
+                        <div class="infor-item form-group" style="padding-top: 5px;">
+                            <p for="">Tên bến</p>
+                            <input type="text" #tenBen placeholder="Nhập tên bến" *ngIf='isCreateAccount==1' class="form-control" formControlName="ten_ben">
+                            <input type="text" #tenBen placeholder="Bến xe {{route.ben_toi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="ten_ben">
+                        </div>
+                        <div class="infor-item form-group">
+                            <p for="">Địa chỉ</p>
+                            <input type="text" #diaChi placeholder="Nhập địa chỉ" *ngIf='isCreateAccount==1' class="form-control" formControlName="dia_chi">
+                            <input type="text" #diaChi placeholder="{{route.dia_chi}}" *ngIf='isCreateAccount==2' class="form-control" formControlName="dia_chi">
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="infor-item">
+                            <button class="btn-submit" (click)="onShow(1,0)" *ngIf='isCreateAccount==1' >Thêm bến</button>
+                            <button class="btn-submit" (click)="onShow(2,0)" *ngIf='isCreateAccount==2'>Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            
+            <div *ngIf="isWaiting==true" class="loader">Loading...</div>
         </div>
+        
+       
     </div>
     <div class="menu-content" *ngIf='isShow == 3'>
         <div class="menu-content-item">
@@ -361,7 +364,7 @@
                     <div class="infor-item form-group" style="padding-top: 5px;">
                         <p for="">Nơi đi</p>
                         <select name="placego" class="form-control" formControlName="diem_di_id" (change)="cityChanged($event.target.value,0)" *ngIf='isCreateAccount==1'>
-                            <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.ben_toi}}</option>
+                            <option *ngFor="let item of listDeparture" value='{{item.id}}'>Bến xe {{item.thanh_pho}}</option>
                         </select>
                         <input type="text" placeholder="{{route.ben_xe_di}}" disabled *ngIf='isCreateAccount==2'>
                     </div>

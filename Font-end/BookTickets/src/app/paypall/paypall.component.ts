@@ -25,6 +25,7 @@ export class PaypallComponent implements OnInit {
 
 
   paidFor = false;
+  isWaitting = false;
 
   constructor(private service: BookService) { }
 
@@ -58,12 +59,12 @@ export class PaypallComponent implements OnInit {
 
     var description = "Book ticket" + this.infor_router.departure.ben_toi + " -- "+this.infor_router.destination.ben_toi;
     var price = this.infor_seat.totalMoney/22000;
-    alert(price);
-    alert(description);
+
     this.payMent(description,price);
   }
 
   payMent(description:any, price:any){
+    this.isWaitting = true;
     paypal
     .Buttons({
       createOrder: (data, actions) => {
@@ -97,9 +98,11 @@ export class PaypallComponent implements OnInit {
             if(data.status==200){
               alert("Thành công");
               this.paidFor = true;
+              this.isWaitting = false
               console.log(data);
             }
             else{
+              this.isWaitting = false
               alert("Lỗi server");
               return;
             }

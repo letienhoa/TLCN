@@ -2884,13 +2884,139 @@ button-pay .button-pay-right{
 .adminContainer .menu-content-1  .search-infor .search-left button:hover{
     cursor: pointer;
 }
-
-
-
-
 /* ========================================== */
-/* CRUD Schedule */
-
+/* Loader */
+.loader{
+    margin: 150px auto;
+    font-size: 25px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    text-indent: -9999em;
+    -webkit-animation: load5 1.1s infinite ease;
+    animation: load5 1.1s infinite ease;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+@-webkit-keyframes load5 {
+    0%,
+    100% {
+      box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.5), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+    }
+    12.5% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7), 1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+    }
+    25% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff, 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+    }
+    37.5% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5), 2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff, 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.5), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff, -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2), -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+    }
+    62.5% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5), 0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff, -2.6em 0em 0 0em rgba(255, 255, 255, 0.2), -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+    }
+    75% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.5), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff, -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+    }
+    87.5% {
+      box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+    }
+  }
+  @keyframes load5 {
+    0%,
+    100% {
+      box-shadow: 0em -2.6em 0em 0em #F2754E, 
+      1.8em -1.8em 0 0em#eb6942, 
+      2.5em 0em 0 0em #e98465, 
+      1.75em 1.75em 0 0em  #d88d76, 
+      0em 2.5em 0 0em#d6947f, 
+      -1.8em 1.8em 0 0em #d49480, 
+      -2.6em 0em 0 0em #d89682, 
+      -1.8em -1.8em 0 0em #d19c8b;
+    }
+    12.5% {
+      box-shadow: 
+      0em -2.6em 0em 0em #eb6942, 
+      1.8em -1.8em 0 0em #F2754E, 
+      2.5em 0em 0 0em #e98465, 
+      1.75em 1.75em 0 0em #e98465, 
+      0em 2.5em 0 0em #e98465, 
+      -1.8em 1.8em 0 0em #e98465, 
+      -2.6em 0em 0 0em #e98465, 
+      -1.8em -1.8em 0 0em #d6947f;
+    }
+    25% {
+      box-shadow: 
+      0em -2.6em 0em 0em #d6947f, 
+      1.8em -1.8em 0 0em #eb6942, 
+      2.5em 0em 0 0em#F2754E, 
+      1.75em 1.75em 0 0em #e98465, 
+      0em 2.5em 0 0em #e98465, 
+      -1.8em 1.8em 0 0em #e98465, 
+      -2.6em 0em 0 0em #e98465, 
+      -1.8em -1.8em 0 0em #e98465;
+    }
+    37.5% {
+      box-shadow: 
+      0em -2.6em 0em 0em #e98465, 
+      1.8em -1.8em 0 0em #d6947f, 
+      2.5em 0em 0 0em #eb6942, 
+      1.75em 1.75em 0 0em #F2754E, 
+      0em 2.5em 0 0em #e98465, 
+      -1.8em 1.8em 0 0em #e98465, 
+      -2.6em 0em 0 0em #e98465, 
+      -1.8em -1.8em 0 0em #e98465;
+    }
+    50% {
+      box-shadow: 
+      0em -2.6em 0em 0em #e98465, 
+      1.8em -1.8em 0 0em #e98465, 
+      2.5em 0em 0 0em #d6947f, 
+      1.75em 1.75em 0 0em #eb6942, 
+      0em 2.5em 0 0em#F2754E, 
+      -1.8em 1.8em 0 0em #e98465, 
+      -2.6em 0em 0 0em #e98465, 
+      -1.8em -1.8em 0 0em #e98465;
+    }
+    62.5% {
+      box-shadow: 
+      0em -2.6em 0em 0em #e98465, 
+      1.8em -1.8em 0 0em #e98465, 
+      2.5em 0em 0 0em #e98465, 
+      1.75em 1.75em 0 0em #d6947f, 
+      0em 2.5em 0 0em #eb6942, 
+      -1.8em 1.8em 0 0em #F2754E, 
+      -2.6em 0em 0 0em #e98465, 
+      -1.8em -1.8em 0 0em #e98465;
+    }
+    75% {
+      box-shadow: 
+      0em -2.6em 0em 0em #e98465, 
+      1.8em -1.8em 0 0em #e98465, 
+      2.5em 0em 0 0em #e98465, 
+      1.75em 1.75em 0 0em #e98465, 
+      0em 2.5em 0 0em #d6947f, 
+      -1.8em 1.8em 0 0em #eb6942, 
+      -2.6em 0em 0 0em #F2754E, 
+      -1.8em -1.8em 0 0em #e98465;
+    }
+    87.5% {
+      box-shadow: 
+      0em -2.6em 0em 0em #e98465, 
+      1.8em -1.8em 0 0em #e98465, 
+      2.5em 0em 0 0em #e98465, 
+      1.75em 1.75em 0 0em #e98465, 
+      0em 2.5em 0 0em #e98465, 
+      -1.8em 1.8em 0 0em #d6947f, 
+      -2.6em 0em 0 0em #eb6942, 
+      -1.8em -1.8em 0 0em #F2754E;
+    }
+  }
 /* ========================================== */
 /* Viewport less then or equal to 750px */
 @media only screen and (max-width: 1350px){

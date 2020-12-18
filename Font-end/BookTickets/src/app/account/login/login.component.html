@@ -10,8 +10,8 @@
     <form class="form" [formGroup]='form' autocomplete="on" (ngSubmit)="onSubmit()">
       <h2 class="" style="color: #6e6c6c;">Đăng nhập</h2>
       <div >
-          <label for="" class="">Email</label>
-          <input [class.is-invalid] = "form.get('email').invalid && form.get('email').touched" type="email" class="" formControlName='email' >
+          <label for="" class="">Tài Khoản</label>
+          <input [class.is-invalid] = "form.get('email').invalid && form.get('email').touched"  class="" formControlName='email' >
       </div>
       <div >
           <label for="" class="">Mật khẩu</label>

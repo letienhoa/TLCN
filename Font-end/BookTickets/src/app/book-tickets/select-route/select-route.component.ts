@@ -77,7 +77,7 @@ export class SelectRouteComponent implements OnInit {
     this.service.step1.isOneWay = true;
 
     this.getDate()
-    alert(this.service.step1.daygo);
+    /* alert(this.service.step1.daygo); */
   }
 
   getAllDestination(item:any){
@@ -117,7 +117,13 @@ export class SelectRouteComponent implements OnInit {
     }
     sessionStorage.setItem('b1',JSON.stringify(this.service.step1))
     console.log(sessionStorage.getItem('b1'))
-    this.router.navigate(['/booktickets/select-seat'])
+    if(this.service.step1.isOneWay == false){
+      this.router.navigate(['/booktickets/select-seat-two-way'])
+    }
+    else{
+      this.router.navigate(['/booktickets/select-seat'])
+    }
+    
   }
 
   dateChanged(obj:any){

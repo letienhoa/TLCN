@@ -174,6 +174,8 @@ export class AdminService {
     };
     return this.http.post(this.urlB+"/"+id+"/update",data,httpOptions);
   }
+
+
   
 
 }

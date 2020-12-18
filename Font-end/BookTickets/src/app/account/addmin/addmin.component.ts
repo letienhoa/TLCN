@@ -49,6 +49,7 @@ export class AddminComponent implements OnInit {
 
   isRoute = false;
   isDate = 1;
+  isWaiting = false;
 
   form: FormGroup;
   formRoute: FormGroup;
@@ -248,32 +249,64 @@ export class AddminComponent implements OnInit {
     }
     else{
       alert('chỉnh sửa');
+      this.ResetText();
       this.route = optArg;
       this.isUpdate =true;
       if(this.isShow == 1){
         this.SwapData(this.route);
       }
+      if(this.isShow == 1){
+        this.formRoute = this.fb.group({
+          diem_di_id:'',
+          diem_toi_id:'',
+          khoang_cach:'',
+          gia_ca:'',
+          khoang_thoi_gian:'',
+        })
+      }
       if(this.isShow == 2){
+        this.formPoint = this.fb.group({
+          thanh_pho:'',
+          ten_ben:'',
+          dia_chi:'',
+        });
         this.srcImage = this.route.picture;
       }
+      if(this.isShow == 3){
+        this.formCar = this.fb.group({
+          ten_xe :'',
+          hang_xe:'',
+          tuyen_san_sang_id:'',
+          tuyen_off_id:'',
+          gio_chay:'',
+          diem_di_id:'',
+          diem_toi_id:'',
+        })
+      }
+
       this.isCreateAccount = 2;
-      console.log(this.route);
       this.ResetText();
     }
   }
 
   ResetText(){
-    this.inputKhoangThoiGian.nativeElement.value = "";
-    this.inputGiaCa.nativeElement.value = "";
-    this.inputKhoangCach.nativeElement.value = "";
+    if(this.isShow==1){
+      this.inputKhoangThoiGian.nativeElement.value = "";
+      this.inputGiaCa.nativeElement.value = "";
+      this.inputKhoangCach.nativeElement.value = "";
+    }
 
-    this.inputTenXe.nativeElement.value = "";
-    this.inputHangXe.nativeElement.value = "";
-    this.inputGioChay.nativeElement.value = "";
+    if(this.isShow == 3){
+      this.inputTenXe.nativeElement.value = "";
+      this.inputHangXe.nativeElement.value = "";
+      this.inputGioChay.nativeElement.value = "";
+    }
 
-    this.inputTenTP.nativeElement.value = "";
-    this.inputDiaChi.nativeElement.value = "";
-    this.inputTenBen.nativeElement.value = "";
+    if(this.isShow==2){
+      this.inputTenTP.nativeElement.value = "";
+      this.inputDiaChi.nativeElement.value = "";
+      this.inputTenBen.nativeElement.value = "";
+    }
   }
 
   SwapData(data:any){
@@ -301,8 +334,6 @@ export class AddminComponent implements OnInit {
     }
   }
   listStatistic = [];
-  
-
 
   onShowChart(show:any,type:any){
     this.onChangeTypeChart(show,type);
@@ -447,6 +478,19 @@ export class AddminComponent implements OnInit {
         break;
       }
     }
+
+    for(let j = 0; j<length;j++){
+      for(let i of this.listRoute){
+        if(i.ben_xe_di_id == obj && i.ben_xe_toi_id == this.listDestinationForRoute[j].id){
+          this.listDestinationForRoute.splice(j,1);
+        }
+      }
+    }
+    
+    console.log("du lieu tuyen xe");
+    console.log(this.listRoute);
+    console.log("du lieu xe toi");
+    console.log(this.listDestinationForRoute);
   }
 
   onShowMenu(index:any){
@@ -530,6 +574,8 @@ export class AddminComponent implements OnInit {
       return alert("Xin hãy nhập đúng loại giá trị hoặc điền đầy đủ thông tin");
     }
 
+
+
     this.service.postCreateRote(this.logIn.Token,this.formRoute.value).subscribe(
       data => {
         if(data.status==200){
@@ -573,12 +619,17 @@ export class AddminComponent implements OnInit {
 
   getAllRoute(){
     this.listDeparture = JSON.parse(sessionStorage.getItem('lBenDi'));
-    this.listDestination = JSON.parse(sessionStorage.getItem('lBenToi'));
+    /* this.listDestination = JSON.parse(sessionStorage.getItem('lBenToi')); */
     this.listDestinationForRoute = JSON.parse(sessionStorage.getItem('lBenDi'));
+    console.log("Bến di");
+    console.log(this.listDestinationForRoute)
     this.service.getAllRoute().subscribe(
-      data => this.listRoute =  data.data
+      data => {
+        this.listRoute =  data.data;
+      }
     );
   }
+
 
   getAllAccount(){
     this.service.getAllAccount(this.logIn.Token).subscribe(
@@ -629,9 +680,9 @@ export class AddminComponent implements OnInit {
 
   postCreateCar(){
 
-    if(this.formCar.invalid){
+/*     if(this.formCar.invalid){
       return alert("Xin hãy nhập đúng loại giá trị hoặc nhập đầy đủ dữ liệu");
-    }
+    } */
 
     for(let i of this.listRoute){
       if(i.ben_xe_di_id == this.form.value.diem_di_id && i.ben_xe_toi_id == this.form.value.diem_toi_id){
@@ -642,9 +693,10 @@ export class AddminComponent implements OnInit {
         this.formCar.value.tuyen_off_id = i.id;
       }
     }
+
     this.service.postCreateCar(this.logIn.Token,this.formCar.value).subscribe(
       data => {
-        if(data.status == 200) {
+        if(data.data != null) {
           this.getAllCar();
           return alert("Thêm thành công");
         }
@@ -682,33 +734,76 @@ export class AddminComponent implements OnInit {
   hinhAnh;
 
   onSubmit(data:any){
+    this.isWaiting = true;
     if(data == 1){
-      this.service.uploadImage(this.fileSelected)
-    .pipe()
-    .subscribe(
-      res => {
-        this.hinhAnh = "https://drive.google.com/uc?id="+res.id;
-        if(this.isUpdate == false){
-          alert("Thêm")
-          var data = {
-            ten_ben:this.formPoint.value.ten_ben,
-            dia_chi:this.formPoint.value.dia_chi,
-            thanh_pho:this.formPoint.value.thanh_pho,
-            picture:this.hinhAnh,
-          };
-          console.log(data);
-          this.onCreateRoute(data);
-        }
-        else{
-          alert(123);
+      var data1 = {}
+      if(this.fileSelected==null){
+        data1 = {
+          ten_ben:this.formPoint.value.ten_ben,
+          dia_chi:this.formPoint.value.dia_chi,
+          thanh_pho:this.formPoint.value.thanh_pho,
+          picture:null,
+        };
+        console.log(data1);
+      }
+      else{
+        this.service.uploadImage(this.fileSelected)
+        .pipe()
+        .subscribe(
+        res => {
+          this.hinhAnh = "https://drive.google.com/uc?id="+res.id;
+          data1 = {
+              ten_ben:this.formPoint.value.ten_ben,
+              dia_chi:this.formPoint.value.dia_chi,
+              thanh_pho:this.formPoint.value.thanh_pho,
+              picture:this.hinhAnh,
+            };
+            this.onCreateRoute(data1);
           }
-        }
         )
+      }
+
     }
     else{
-      console.log(this.route.picture);
+      var data1 = {}
+      var hinhAnh;
+      console.log("AAA");
+      console.log(this.route);
+      if(this.fileSelected==null){
+        if(this.route.picture!=null)
+          hinhAnh = this.route.picture;
+        else
+          hinhAnh = null;
+
+        data1 = {
+          ten_ben:this.formPoint.value.ten_ben==""?this.route.ben_toi:this.formPoint.value.ten_ben,
+          dia_chi:this.formPoint.value.dia_chi==""?this.route.dia_chi:this.formPoint.value.dia_chi,
+          picture:hinhAnh,
+        };
+      }
+      else{
+        this.service.uploadImage(this.fileSelected)
+        .pipe()
+        .subscribe(
+        res => {
+          this.hinhAnh = "https://drive.google.com/uc?id="+res.id;
+          data1 = {
+              ten_ben:this.formPoint.value.ten_ben==""?this.route.ben_toi:this.formPoint.value.ten_ben,
+              dia_chi:this.formPoint.value.dia_chi==""?this.route.dia_chi:this.formPoint.value.dia_chi,
+              picture:this.hinhAnh,
+            };
+            console.log(data1);
+            this.onUpdatePoint(this.route.id,data1)
+          }
+        )
+      }
+      
     }
     
+    this.srcImage = "";
+    this.ResetText();
+    this.isCreateAccount = 1;
+    this.ResetText();
   }
 
   onGetRouteToExport(){
@@ -779,7 +874,9 @@ export class AddminComponent implements OnInit {
     this.service.getAllRouteInfor().subscribe(
       data => {
         this.routeInfor = data.data;
+        console.log("Bến ")
         console.log(this.routeInfor);
+
       }
     )
   }
@@ -787,10 +884,13 @@ export class AddminComponent implements OnInit {
   onCreateRoute(data:any){
     this.service.postCreateB(this.logIn.Token,data).subscribe(
       data =>{
-        if(data.status == 200){
+        if(data.data != null){
           this.onGetAllRouteInfor();
+          this.isWaiting = false;
+          alert("Thành công");
         }
         else {
+          this.isWaiting = false;
           alert("Không tạo được bến");
         }
       }
@@ -798,18 +898,20 @@ export class AddminComponent implements OnInit {
   }
 
   onUpdatePoint(id:any,data:any){
+
     this.service.postUpdateB(this.logIn.Token,id,data).subscribe(
       data =>{
         if(data.status == 200){
           this.onGetAllRouteInfor();
+          this.isWaiting = false;
+          alert("Cập nhật bến thành công");
         }
         else {
+          this.isWaiting = false;
           alert("Không cập nhật được bến");
         }
       }
     )
   }
-
-
 }
 
