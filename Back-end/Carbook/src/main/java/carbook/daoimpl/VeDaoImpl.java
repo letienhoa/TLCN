@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import carbook.dao.AbstractDao;
 import carbook.dao.VeDao;
+import carbook.entity.BaseEntity;
 import carbook.entity.GiuongMapDataModel;
 import carbook.entity.ThongKeDoanhThuModelData;
 import carbook.entity.ThongTinVeDataModel;
@@ -26,6 +28,7 @@ import carbook.entity.VeForCustomerByCodeDataModel;
 import carbook.entity.VeForCustomerByCodeDataModelFinal;
 import carbook.entity.VeOverviewDataModel;
 import carbook.entity.VeThongKeModelDate;
+import carbook.entity.Xe;
 import carbook.request.VeRequest;
 import carbook.response.VeExcelVer1Response;
 import carbook.service.UtilsService;
@@ -217,8 +220,33 @@ public class VeDaoImpl extends AbstractDao<Integer, Ve> implements VeDao {
 		String tuyenXe = (String) procedureCall.getOutputParameterValue("tuyenXe");
 		return tuyenXe;
 	}
-	 
 
+	@Override
+	public Ve findOne(int id) {
+		CriteriaQuery<Ve> criteria = this.getBuilder().createQuery(Ve.class);
+		Root<Ve> root = criteria.from(Ve.class);
+		criteria.select(root).where(this.getBuilder().equal(root.get("id"), id));
+		Ve ve=new Ve();
+		try {
+			ve=this.getSession().createQuery(criteria).getSingleResult();
+		} catch (Exception e) {
+			ve=null;
+		}
+		return ve;
+	}
+	 
+	@Override
+	public void update(BaseEntity ve) {
+		this.getSession().update(ve);
+	}
+
+	@Override
+	public void spDeleteGiuong(int id) {
+		ProcedureCall procedureCall = this.getSession().createStoredProcedureCall("sp_delecte_giuong");
+		procedureCall.registerParameter("idVe", Integer.class, ParameterMode.IN).bindValue(id);
+		
+		procedureCall.execute();
+	}
 	
 	 
 

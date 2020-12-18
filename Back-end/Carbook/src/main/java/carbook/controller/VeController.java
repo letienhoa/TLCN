@@ -18,6 +18,7 @@ import carbook.dao.PointDao;
 import carbook.dao.QuyDoiDiemDao;
 import carbook.dao.VeDao;
 import carbook.entity.ThongKeDoanhThuModelData;
+import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
 import carbook.entity.VeForCustomerByCodeDataModelFinal;
@@ -199,4 +200,34 @@ public class VeController {
 		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
 	}
 
+	
+	@RequestMapping(value ="cancel-ticket", method = RequestMethod.POST )
+	public ResponseEntity<BaseResponse> huyVe(
+			@RequestParam(name = "id", required = false) Integer id){
+		BaseResponse response = new BaseResponse();
+		Ve ve = veDao.findOne(id);
+		if(ve ==null) {
+			response.setMessageError("Không tồn tại vé này!!!");
+		}else {
+			Date now= new Date();
+			Date h= ve.getDate();
+			Calendar c = Calendar.getInstance();
+			c.setTime(h);
+			int t1 =c.get(Calendar.DAY_OF_MONTH);
+			c.setTime(now);
+			int t2= c.get(Calendar.DAY_OF_MONTH);
+			if(ve.getTrangThai()==3||ve.getTrangThai()==1||t1-t2<2)
+			{
+				response.setMessageError("Không thể hủy vé này!!!");
+			}else {
+				ve.setTrangThai(3);
+				veDao.update(ve);
+				veDao.spDeleteGiuong(id);
+				response.setData(ve);
+			}
+		
+		}
+
+		return new ResponseEntity<BaseResponse>(response,HttpStatus.OK);
+	}
 }

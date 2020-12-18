@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import carbook.entity.BaseEntity;
 import carbook.entity.ThongKeDoanhThuModelData;
+import carbook.entity.Ve;
 import carbook.entity.VeCustomerDataModel;
 import carbook.entity.VeExcelDataModel;
 
@@ -15,6 +17,7 @@ import carbook.request.VeRequest;
 import carbook.response.VeExcelVer1Response;
 
 public interface VeDao {
+	
 	Long spUpdateVe(int id,String sdt,String email);
 	
 	Long create(VeRequest wrapper, String slot,String code);
@@ -36,4 +39,10 @@ public interface VeDao {
 	VeForCustomerByCodeDataModelFinal spGetVeForCustomerByCode(String code);
 	
 	String spGetNameTuyenXe(int idTuyenXe);
+	
+	Ve findOne(int id);
+	
+	void update(BaseEntity ve);
+	
+	void spDeleteGiuong(int id);
 }
