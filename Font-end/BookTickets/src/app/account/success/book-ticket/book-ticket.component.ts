@@ -30,8 +30,8 @@ export class BookTicketComponent implements OnInit {
   customer;
   isCheck = false;
 
-  ticket = {};
-  customerInfor = {};
+  ticket: any;
+  customerInfor:any;
   paidFor = false;
 
   constructor(private route: Router, public service: BookService, private serviceCustomer:LogInService) { }
@@ -95,7 +95,6 @@ export class BookTicketComponent implements OnInit {
         this.seat = data.data;
       }
     );
-    
   }
 
   onBook(item: any, index:any){
@@ -212,14 +211,14 @@ export class BookTicketComponent implements OnInit {
     var today = new Date();
     var x = (<HTMLInputElement>document.getElementById("date"));
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
-    this.service.step1.daygo = today.getDate()+"/"+today.getMonth()+"/"+today.getFullYear();
+    this.service.step1.daygo = ('0' + today.getDate()).slice(-2)+"/"+('0' + (today.getMonth() + 1)).slice(-2)+"/"+today.getFullYear();
     this.today = x.value;
     this.getTimes(this.service.step2.routerId);
   }
 
   dateChanged(obj:any){
     var dd = new Date(obj.value);
-    var value = dd.getDate()+"/"+dd.getMonth()+"/"+dd.getFullYear();
+    var value = ('0' + dd.getDate()).slice(-2)+"/"+('0' + (dd.getMonth() + 1)).slice(-2)+"/"+dd.getFullYear();
     this.service.step1.daygo = value;
   }
 
@@ -304,6 +303,7 @@ export class BookTicketComponent implements OnInit {
     range:"",
     time:"",
     }
+
     var description = "Book ticket" + this.service.step1.departure.ben_toi + " -- "+this.service.step1.destination.ben_toi;
     var price = this.service.step2.totalMoney/22000;
     this.payMent(description,price);
@@ -327,9 +327,32 @@ export class BookTicketComponent implements OnInit {
       },
       onApprove: async (data, actions) => {
         const order = await actions.order.capture();
-        this.paidFor = true;
-        console.log(order);
-        //
+
+        var ticket = {
+          sdt: this.customerInfor.sdt,
+          gio_ket_thuc:0,
+          id_tuyen_xe:this.ticket.route,
+          gio_chay:this.ticket.timeGo,
+          email:this.customerInfor.email,
+          date: this.ticket.dateGo,
+          gia_ve: this.ticket.totalMoney,
+          slot: this.ticket.seats
+        }
+
+        this.service.postCreateTicket(ticket).subscribe(
+          data => {
+            if(data.status==200){
+              alert("Thành công");
+              this.paidFor = true;
+              console.log(data);
+            }
+            else{
+            
+              alert("Lỗi server");
+              return;
+            }
+          }
+        )
       },
       onError: err => {
         console.log(err);

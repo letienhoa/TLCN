@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class RegisterComponent implements OnInit {
 
   form:FormGroup;
+  isWaitting = false;
 
   constructor(public http: HttpClient,private fb:FormBuilder, private service:LogInService) { }
 
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
   } */
 
   onSignUp(){
+
     var account = {
       tai_khoan:this.form.value.tai_khoan,
       mat_khau:this.form.value.mat_khau,
@@ -51,6 +53,7 @@ export class RegisterComponent implements OnInit {
     if(this.form.invalid){
       return alert("Xin hãy nhập đúng loại giá trị hoặc điền đầy đủ thông tin");
     }
+    this.isWaitting = true;
 
     console.log(account);
     this.service.postCreateAccount(account).subscribe(
@@ -64,7 +67,8 @@ export class RegisterComponent implements OnInit {
         }
 
         if(check == true){
-          window.location.href = 'https://accounts.google.com/signin/v2';
+          this.isWaitting = false;
+          window.location.href = 'https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin';
         }
       }
     )
