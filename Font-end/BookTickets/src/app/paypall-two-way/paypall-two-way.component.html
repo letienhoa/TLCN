@@ -1,7 +1,7 @@
 <div class="payment-container" *ngIf="!paidFor">
     <h1>{{infor_router.departure.ben_toi}} -- {{infor_router.destination.ben_toi}}</h1>
     <h2>Tổng tiền cả đi lẫn về: {{ totalMoney }} VND</h2>
-    <div style="display: flex;">
+    <div  style="display: flex;">
         <div class="item-infor">
             <h2>Thông tin vé đi</h2>
             <div style=" width: 80%;margin: auto;display: flex;">
@@ -73,6 +73,9 @@
                 <label for="" style="text-align: right;">{{customer.city}}</label>
             </div>
         </div>
+    </div>
+    <div *ngIf="isWaitting" class="loader">
+
     </div>
 </div>
 <div *ngIf=paidFor class="payment-container">

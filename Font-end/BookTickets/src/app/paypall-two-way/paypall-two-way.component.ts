@@ -34,6 +34,7 @@ export class PaypallTwoWayComponent implements OnInit {
   totalMoney = 0;
 
   paidFor = false;
+  isWaitting = false;
 
   constructor(private service: BookService) { }
 
@@ -68,6 +69,7 @@ export class PaypallTwoWayComponent implements OnInit {
   }
 
   payMent(description:any, price:any){
+
     paypal
     .Buttons({
       createOrder: (data, actions) => {
@@ -84,6 +86,7 @@ export class PaypallTwoWayComponent implements OnInit {
         });
       },
       onApprove: async (data, actions) => {
+        /* this.isWaitting = true; */
         const order = await actions.order.capture();
 
         var ticket = {
@@ -108,11 +111,13 @@ export class PaypallTwoWayComponent implements OnInit {
               alert("Thành công");
               this.paidFor = true;
               console.log(data);
+              this.isWaitting = false;
             }
             else{
               alert("Lỗi server");
               return;
             }
+
           }
         )
       },

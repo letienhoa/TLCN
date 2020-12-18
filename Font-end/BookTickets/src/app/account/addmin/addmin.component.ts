@@ -195,12 +195,12 @@ export class AddminComponent implements OnInit {
     var date = new Date();
     this.today = date.getFullYear()+ '-' + ('0' + (date.getMonth() + 1)).slice(-2)  + '-' + ('0' + date.getDate()).slice(-2);
     this.date = date.getFullYear()+'/'+('0' + (date.getMonth())).slice(-2)+"/"+('0' + date.getDate()).slice(-2);  
-    this.dateValue = ('0' + date.getDate()).slice(-2) + "/"+ ('0' + (date.getMonth() + 1)).slice(-2)+"/"+ date.getFullYear();
+    this.dateValue = date.getFullYear()+'/'+('0' + (date.getMonth()+ 1)).slice(-2)+"/"+('0' + date.getDate()).slice(-2); 
   }
     
   dateChanged(obj:any){
     var dd = new Date(obj.value);
-    this.date = dd.getFullYear()+'/'+('0' + (dd.getMonth() + 1)).slice(-2)+"/"+('0' + dd.getDate()).slice(-2);
+    this.dateValue = dd.getFullYear()+'/'+('0' + (dd.getMonth() + 1)).slice(-2)+"/"+('0' + dd.getDate()).slice(-2);
   }
 
   onShow(show:any,type:any,optArg = "qqqq"){
@@ -341,16 +341,18 @@ export class AddminComponent implements OnInit {
     if(show==false){
       this.isChart = 0;
       if(type==1){
-        this.service.getStatisticByDateRoute(this.date,type).subscribe(
+        this.service.getStatisticByDateRoute(this.dateValue,type).subscribe(
           data => {
             console.log(this.listRoute);
+            var lStatistic = data.data;
             this.listStatistic = [];
-            for(let i of data.data){
+            
+            for(let i of lStatistic){
               for(let j of this.listRoute){
                 if(i.idTuyenXe == j.id){
                   var item = {
                     time:i.time,
-                    route:j.ben_xe_di + " => "+j.ben_xe_toi,
+                    route:j.ben_xe_di + " ⇒ "+j.ben_xe_toi,
                     number:i.tongVe,
                     totalMoney:i.doanhThu
                   }
@@ -358,21 +360,26 @@ export class AddminComponent implements OnInit {
                 }
               }
             }
-            console.log(this.listStatistic);
-          }
+            console.log(this.listStatistic); 
+        }
         );
       }
       else{
-        this.service.getStatisticsByMonthRoute(this.date,type).subscribe(
+        this.service.getStatisticsByMonthRoute(this.dateValue,type).subscribe(
           data => {
             this.listStatistic = [];
+            var lStatistic = data.data;
+            console.log(lStatistic);
+            console.log("Tuyến ");
             console.log(this.listRoute);
-            for(let i of data.data){
+
+            for(let i of lStatistic){
               for(let j of this.listRoute){
                 if(i.idTuyenXe == j.id){
+                  alert(123)
                   var item = {
                     time:i.time,
-                    route:j.ben_xe_di + " => "+j.ben_xe_toi,
+                    route:j.ben_xe_di + " ⇒ "+j.ben_xe_toi,
                     number:i.tongVe,
                     totalMoney:i.doanhThu
                   }
@@ -381,6 +388,7 @@ export class AddminComponent implements OnInit {
               }
             }
             console.log(this.listStatistic);
+            
           }
         );
       }
@@ -388,7 +396,7 @@ export class AddminComponent implements OnInit {
     else{
       this.isChart = 1;
       if(type==1){
-        this.service.getStatisticsByDateRevenue(this.date,type).subscribe(
+        this.service.getStatisticsByDateRevenue(this.dateValue,type).subscribe(
           data => {
             var length = data.data.length;
             var listData = data.data;
@@ -413,12 +421,13 @@ export class AddminComponent implements OnInit {
             console.log("date of revenue")
             console.log(data);
             console.log(this.listDataDate);
+
             this.drawChart(type);
           }
         );
       }
       else{
-        this.service.getStatisticsByMonthRevenue(this.date,type).subscribe(
+        this.service.getStatisticsByMonthRevenue(this.dateValue,type).subscribe(
           data => {
             var length = data.data.length;
             var listData = data.data;
@@ -447,6 +456,12 @@ export class AddminComponent implements OnInit {
         type: 'bar',
         data: {
             labels: this.listMonth,
+            datasets:[{
+              label:"",
+              data: this.listDataMonth,
+              backgroundColor:this.listColorMonth,
+              borderColor: this.listColorMonth
+            }]
           }
         });
     }
@@ -456,6 +471,12 @@ export class AddminComponent implements OnInit {
         type: 'bar',
         data: {
             labels: this.listDate,
+            datasets:[{
+              label:"",
+              data: this.listDataDate,
+              backgroundColor:this.listColorDate,
+              borderColor: this.listColorDate
+            }]
         }
       });
     }
@@ -723,12 +744,6 @@ export class AddminComponent implements OnInit {
         else alert("Cập nhật thất bại");
       }
     )
-  }
-
-  StatisticByDateRoute(){
-    this.service.getStatisticByDateRoute(this.date,this.isDate).subscribe(
-      data => console.log(data)
-    );
   }
 
   hinhAnh;
