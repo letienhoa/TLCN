@@ -25,7 +25,7 @@ public class VeCustomerDataModel {
 	private int giaVe;
 	
 	@Column(name="code")
-	private int code;
+	private String code;
 	
 	@Column(name="id_tuyen_xe")
 	private int idTuyenXe;
@@ -129,11 +129,11 @@ public class VeCustomerDataModel {
 		this.count = count;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
