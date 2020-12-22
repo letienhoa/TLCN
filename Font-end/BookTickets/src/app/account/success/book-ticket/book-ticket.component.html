@@ -262,7 +262,7 @@
     <div class="payment-container" *ngIf="!paidFor">
         <h1>{{service.step1.departure.ben_toi}} -- {{service.step1.destination.ben_toi}}</h1>
         <h2>{{ service.step2.totalMoney }} VND</h2>
-        <div style="display: flex;">
+        <div *ngIf="!isWaitting" style="display: flex;">
             <div class="item-infor">
                 <h2>Thông tin vé</h2>
                 <div style=" width: 80%;margin: auto;">
@@ -310,6 +310,7 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="isWaitting" class="loader"></div>
         <div *ngIf="paidFor" class="payment-container">
             <h1>Thanh toán thành công</h1>
             <div>

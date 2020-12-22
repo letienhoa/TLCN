@@ -33,6 +33,7 @@ export class BookTicketComponent implements OnInit {
   ticket: any;
   customerInfor:any;
   paidFor = false;
+  isWaitting = false;
 
   constructor(private route: Router, public service: BookService, private serviceCustomer:LogInService) { }
 
@@ -81,20 +82,6 @@ export class BookTicketComponent implements OnInit {
     this.getAllDeparture();
     this.getDate();
     this.getInforCustomerById();
-
-    this.service.getStatusSeat(this.service.step2.routerId,this.service.step2.time,this.service.step1.daygo).subscribe(
-      data => {
-        for(let i of data.data){
-          if(i.trangThai == Number(1)){
-            document.getElementsByClassName(i.stt)[0].classList.add('disable');
-          }
-          else{ 
-            document.getElementsByClassName(i.stt)[0].classList.add('active');
-          }
-        }
-        this.seat = data.data;
-      }
-    );
   }
 
   onBook(item: any, index:any){
@@ -204,6 +191,8 @@ export class BookTicketComponent implements OnInit {
         this.price = i.gia_ca;
       }
     }
+
+    this.resetSeats(this.seat);
     this.getTimes(obj);
   }
 
@@ -213,7 +202,8 @@ export class BookTicketComponent implements OnInit {
     x.value = today.getFullYear()+ '-' + ('0' + (today.getMonth() + 1)).slice(-2)  + '-' + ('0' + today.getDate()).slice(-2);
     this.service.step1.daygo = ('0' + today.getDate()).slice(-2)+"/"+('0' + (today.getMonth() + 1)).slice(-2)+"/"+today.getFullYear();
     this.today = x.value;
-    this.getTimes(this.service.step2.routerId);
+/*     this.getTimes(this.service.step2.routerId);
+    alert(this.service.step2.routerId); */
   }
 
   dateChanged(obj:any){
@@ -240,6 +230,24 @@ export class BookTicketComponent implements OnInit {
       }
       this.service.step2.time = res.data[0].giochay;
       console.log(res.data);
+
+/*       alert(routerId);
+      alert(this.service.step2.time);
+      alert(this.service.step1.daygo); */
+
+      this.service.getStatusSeat(routerId,this.service.step2.time,this.service.step1.daygo).subscribe(
+        data => {
+          for(let i of data.data){
+            if(i.trangThai == Number(1)){
+              document.getElementsByClassName(i.stt)[0].classList.add('disable');
+            }
+            else{ 
+              document.getElementsByClassName(i.stt)[0].classList.add('active');
+            }
+          }
+          this.seat = data.data;
+        }
+      );
     });
   }
 
@@ -269,6 +277,7 @@ export class BookTicketComponent implements OnInit {
     }
 
     this.listitem = [];
+    this.seat = [];
     this.service.step2.totalMoney = 0
   }
 
@@ -310,6 +319,7 @@ export class BookTicketComponent implements OnInit {
   }
 
   payMent(description:any, price:any){
+    
     paypal
     .Buttons({
       createOrder: (data, actions) => {
@@ -326,6 +336,7 @@ export class BookTicketComponent implements OnInit {
         });
       },
       onApprove: async (data, actions) => {
+        this.isWaitting = true;
         const order = await actions.order.capture();
 
         var ticket = {
@@ -343,6 +354,7 @@ export class BookTicketComponent implements OnInit {
           data => {
             if(data.status==200){
               alert("Thành công");
+              this.isWaitting = false;
               this.paidFor = true;
               console.log(data);
             }

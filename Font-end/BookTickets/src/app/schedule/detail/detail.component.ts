@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookService } from 'src/app/shared/book.service';
 
 @Component({
   selector: 'app-detail',
@@ -8,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  routeId;
+  route;
+
+  listSang = [];
+  listChieu = [];
+  listToi = [];
+
+  constructor(private routers: Router,private router: ActivatedRoute, private service: BookService ) { }
 
   ngOnInit(): void {
+    this.routeId = this.router.snapshot.params['id'];
+    this.route = JSON.parse(sessionStorage.getItem('routeDetail'));
+    this.getTime(this.routeId);
+  }
+
+  getTime(routerId:any){
+    this.service.getRunTime(routerId).subscribe(res=>{
+        for(let i of res.data){
+          if(i.giochay<12)
+            this.listSang.push(i.giochay)
+          else if(i.giochay>=12&&i.giochay<17)
+            this.listChieu.push(i.giochay)
+          else 
+            this.listToi.push(i.giochay)
+        }
+      console.log(this.listToi);
+    });
+  }
+
+  onBook(){
+    sessionStorage.setItem('schedule',JSON.stringify(this.route));
+    this.routers.navigate(['/booktickets/select-route']);
   }
 
 }

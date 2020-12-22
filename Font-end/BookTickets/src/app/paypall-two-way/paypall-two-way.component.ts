@@ -86,7 +86,7 @@ export class PaypallTwoWayComponent implements OnInit {
         });
       },
       onApprove: async (data, actions) => {
-        /* this.isWaitting = true; */
+        this.isWaitting = true;
         const order = await actions.order.capture();
 
         var ticket = {

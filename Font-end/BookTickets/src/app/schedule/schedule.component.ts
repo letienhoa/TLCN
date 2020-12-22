@@ -30,4 +30,9 @@ export class ScheduleComponent implements OnInit {
     sessionStorage.setItem('schedule',JSON.stringify(item));
     this.route.navigate(['/booktickets/select-route']);
   }
+
+  onDetail(item:any){
+    sessionStorage.setItem("routeDetail", JSON.stringify(item));
+    this.route.navigate(['/schedule/detail', item.id]);
+  }
 }

@@ -934,23 +934,46 @@ footer.footer .move-up span:hover{
 }
 
 .container .transhipment .content-left{
-    float: left;
-    width: 30%;
+    width: 100%;
     background: #d9edf7;
     text-align: center;
     font-size: 18px;
-    height: 300px;
-    padding-top: 20px;
+    padding: 20px 0px;
+}
+
+.container .transhipment p{
+    text-align: center;
+    color: #4f5152;
+    font-weight: bold;
 }
 
 
 .container .transhipment .content-right{
-    width: 70%;
+    width: 100%;
     background: #ffffff;
     text-align: center;
     font-size: 18px;
-    height: 300px;
-    padding-top: 20px;
+    padding: 20px 0px;
+    height: 250px;
+}
+
+.container .continue{
+    float: right;
+   
+}
+
+.container .continue .button{
+    width: 250px;
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid   #e7e4e4;
+    background: #F15A24;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.container .continue .button:hover{
+    cursor: pointer;
 }
 /* ========================================== */
 /* Book Tickets */
@@ -1435,8 +1458,8 @@ footer.footer .move-up span:hover{
 }
 
 .disable{
-    border: 1px solid #919ba5;
-    background-color: #c0c6cc;
+    border: 1px solid #696b6d;
+    background-color: #696b6d;
     cursor: no-drop;
 }
 

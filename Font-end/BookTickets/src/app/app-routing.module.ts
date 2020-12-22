@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'news', component:NewsListComponent},
   {path:'news/details', component:NewsDetailsComponent},
   {path:'schedule', component:ScheduleComponent},
-  {path:'schedule/detail', component:DetailComponent},
+  {path:'schedule/detail/:id', component:DetailComponent},
   {path:'booktickets/select-route', component:SelectRouteComponent},
   {path:'booktickets/select-seat', component:SelectSeatComponent},
   {path:'booktickets/infor-customer', component:InforCustomerComponent},

@@ -1,7 +1,7 @@
 <div class="payment-container" *ngIf="!paidFor">
     <h1>{{infor_router.departure.ben_toi}} -- {{infor_router.destination.ben_toi}}</h1>
     <h2>Tổng tiền cả đi lẫn về: {{ totalMoney }} VND</h2>
-    <div  style="display: flex;">
+    <div *ngIf="!isWaitting" style="display: flex;">
         <div class="item-infor">
             <h2>Thông tin vé đi</h2>
             <div style=" width: 80%;margin: auto;display: flex;">
@@ -111,7 +111,6 @@
         <div style="width: 50%;">
             <p style="text-align: left;font-size: 20px; color:#009344;">Lưu ý (*)</p>
             <p style="text-align: left;">- Xin hãy lên bến trước <span style="color: #F2754E;"> 20 phút</span>  để thu xếp hành lý.</p>
-            <p style="text-align: left;">- Lưu lại <span style="color: #F2754E;"> mã vé</span> để xác thực trước khi lên xe khởi hành.</p>
             <p style="text-align: left;">- Xin hãy <span style="color: #F2754E;"> vô gmail</span> để xem cũng như lưu lại mã vé.</p>
         </div>
     </div>

@@ -32,13 +32,13 @@ export class HistoryComponent implements OnInit {
         this.history = data;
         this.history = this.history.data;
         this.tempHistory = this.history;
-        var length = this.history.length;
-        for(let i =0;i<length;i++){
-          if(this.history[i].trangThai=="1"){
-            this.history[i].trangThai = "Đã chạy";
+
+        for(let i of this.history){
+          if(i.trang_thai == "1"){
+            i.trang_thai = "Đã chạy";
           }
           else{
-            this.history[i].trangThai = "Chưa chạy";
+            i.trang_thai = "Chưa chạy";
           }
         }
         console.log(data);

@@ -148,19 +148,19 @@ cityChanged(obj:any,index:any){
       this.ser.getBenById(obj).subscribe(
         data => {
           this.listDestiantion = data.data;
-          this.ser.step1.destination.ben_toi = this.listDestiantion[0].ben_toi.replace('Bến xe','');
+          this.ser.step1.destination.ben_toi = this.listDestiantion[0].ben_toi;
           this.ser.step1.destination.id = this.listDestiantion[0].id;
           sessionStorage.setItem('lBenToi', JSON.stringify(this.listDestiantion));
         }
       )
       const item = this.listDeparture.find(departure => departure.id == obj);
-      this.ser.step1.departure.ben_toi = item.ben_toi.replace('Bến xe','');
+      this.ser.step1.departure.ben_toi = item.ben_toi;
       this.ser.step1.departure.id = item.id.toString();
     }
     else{
       const item = this.listDestiantion.find(destination => destination.id == obj);
-      this.ser.step1.destination.ben_toi = item.thanh_pho.replace('Bến xe','');
-      this.ser.step1.destination.id = item.id.toString();
+      this.ser.step1.destination.ben_toi = item.ben_toi;
+      this.ser.step1.destination.id = item.id.toString();  
     }
   }
 

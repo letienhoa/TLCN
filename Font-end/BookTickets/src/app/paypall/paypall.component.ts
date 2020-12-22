@@ -64,7 +64,7 @@ export class PaypallComponent implements OnInit {
   }
 
   payMent(description:any, price:any){
-    this.isWaitting = true;
+
     paypal
     .Buttons({
       createOrder: (data, actions) => {
@@ -81,8 +81,8 @@ export class PaypallComponent implements OnInit {
         });
       },
       onApprove: async (data, actions) => {
+        this.isWaitting = true;
         const order = await actions.order.capture();
-
         var ticket ={
           gio_chay:this.infor_seat.time,
           gio_ket_thuc:this.infor_seat.time,

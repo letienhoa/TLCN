@@ -28,7 +28,7 @@
                         <td> Giường</td>
                         <td>  {{item.khoang_cach}} KM</td>
                         <td> {{item.khoang_thoi_gian}} giờ</td>
-                        <td><span class="detail" [routerLink]="['/schedule/detail']">Chi tiết <i class="fas fa-info-circle"></i></span></td>
+                        <td><span class="detail" (click)="onDetail(item)">Chi tiết <i class="fas fa-info-circle"></i></span></td>
                         <td (click)="onClick(item)"><span class="book">Đặt vé <i class="fas fa-calendar-check"></i></span></td>
                     </tr>
                 </ng-container>
